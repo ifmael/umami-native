@@ -16,8 +16,12 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "userInterfaceStyle": "light"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "userInterfaceStyle": "light"
     },
     "web": {
       "favicon": "./assets/favicon.png"

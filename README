@@ -1,0 +1,3 @@
+La idea es que cuando se inicie la  app y sea un dia distinto al actual, se compruebe si hay nuevos productos disponibles.
+Los productos se almacenaran en una DB local y se irá actualizando en función de lo anterior.
+Cuando se abra la aplicación se cargará en el contexto los datos actualizados de la DB local.
