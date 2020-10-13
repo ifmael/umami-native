@@ -4,11 +4,11 @@ import { GlobalContext } from "../../../utils/context/GlobalContext";
 import MenuItem from "../MenuItem";
 
 const MenuList = () => {
-  const { productCategories } = useContext(GlobalContext);
+  const { categories } = useContext(GlobalContext);
 
   return (
     <FlatList
-      data={productCategories}
+      data={categories}
       renderItem={({ item }) => <MenuItem {...item} />}
       keyExtractor={(item) => item.id}
     />

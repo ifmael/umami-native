@@ -9,8 +9,8 @@ import ContextProvider from "./utils/context/GlobalContext";
 import Home from "./screens/Home";
 import Menu from "./screens/Menu";
 import ShoppingCart from "./screens/ShoppingCart";
-import Product from "./components/Product";
-import ProductDetail from "./components/Product/ProductDetail";
+import Product from "./screens/Product";
+import ProductDetail from "./screens/ProductDetail";
 
 import TabBar from "./components/TabBar";
 import logo from "./assets/umami.png";

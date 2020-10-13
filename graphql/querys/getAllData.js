@@ -11,6 +11,7 @@ const GET_ALL_DATA = gql`
       description
       price
       ingredients {
+        id
         name
         type
       }

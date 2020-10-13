@@ -32,8 +32,7 @@ const MenuItem = ({ id, name, color }) => {
   });
 
   const navigateToCategory = () => {
-    // console.log("navegandooooo.");
-    navigation.navigate("Product");
+    navigation.navigate("Product", { name: name.toLowerCase() });
   };
 
   return (
