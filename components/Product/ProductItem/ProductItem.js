@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { GlobalContext } from "../../../utils/context/GlobalContext";
 
 const ProductItem = (props) => {
   const navigation = useNavigation();
-  const { name, description, price } = props;
+  const { setItemShoppingCart } = useContext(GlobalContext);
+
+  const { name, description, price, isCustomizable } = props;
   const styles = StyleSheet.create({
     container: {
       marginHorizontal: 10,
@@ -34,7 +37,12 @@ const ProductItem = (props) => {
 
   const add = () => {
     //Logic to know if a customizable product
-    navigation.navigate("ProductDetail", props);
+    if (isCustomizable) {
+      navigation.navigate("ProductDetail", props);
+    } else {
+      setItemShoppingCart({ title: "test" });
+      navigation.setOptions({ title: "Updated!" });
+    }
   };
 
   return (

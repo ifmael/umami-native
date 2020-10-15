@@ -1,5 +1,5 @@
 import React from "react";
-import { AppRegistry } from "react-native";
+import { AppRegistry, Text } from "react-native";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -11,9 +11,7 @@ import Menu from "./screens/Menu";
 import ShoppingCart from "./screens/ShoppingCart";
 import Product from "./screens/Product";
 import ProductDetail from "./screens/ProductDetail";
-
-import TabBar from "./components/TabBar";
-import logo from "./assets/umami.png";
+import ShoppingCartTopMenu from "./components/common/ShoppingCartTopMenu";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -24,7 +22,7 @@ const client = new ApolloClient({
 });
 
 const App = () => {
-  const screenOptions = ({ route }) => ({
+  const screenOptionsTabBar = ({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
       let component;
 
@@ -52,14 +50,40 @@ const App = () => {
     },
   });
 
+  const productOptionsFn = ({ route }) => {
+    const { name } = route.params;
+    return {
+      title: name,
+      headerStyle: {
+        backgroundColor: "#f4511e",
+        borderWidth: 3,
+        borderColor: "yellow",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold",
+        textAlign: "center",
+      },
+    };
+  };
+
   const MenuStack = () => (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerRight: () => <ShoppingCartTopMenu />,
       }}
     >
-      <Stack.Screen name="Menu" component={Menu} />
-      <Stack.Screen name="Product" component={Product} />
+      <Stack.Screen
+        name="Menu"
+        component={Menu}
+        options={{ headerTitle: "Ummm glutamato", headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
+        name="Product"
+        component={Product}
+        options={productOptionsFn}
+      />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
     </Stack.Navigator>
   );
@@ -70,9 +94,8 @@ const App = () => {
         <NavigationContainer>
           <Tab.Navigator
             initialRouteName="Home"
-            screenOptions={screenOptions}
+            screenOptions={screenOptionsTabBar}
             lazy="true"
-            // tabBar={TabBar}
           >
             <Tab.Screen
               name="Home"

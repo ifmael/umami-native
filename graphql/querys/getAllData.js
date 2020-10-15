@@ -16,6 +16,7 @@ const GET_ALL_DATA = gql`
         type
       }
       order
+      isCustomizable
     }
     productCategories {
       id

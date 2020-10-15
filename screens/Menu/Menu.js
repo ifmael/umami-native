@@ -9,30 +9,7 @@ const Menu = () => {
     "Montserrat-Regular": require("../../assets/fonts/Montserrat-Regular.otf"),
   });
 
-  const styles = StyleSheet.create({
-    title: {
-      fontFamily: "Montserrat-Regular",
-      fontSize: 32,
-      padding: 10,
-      textAlign: "center",
-    },
-    container: {
-      justifyContent: "center",
-      borderBottomWidth: 1,
-      borderBottomColor: "black",
-    },
-  });
-
-  return !fontsLoaded ? (
-    <AppLoading />
-  ) : (
-    <>
-      <View style={styles.container}>
-        <Text style={styles.title}>Menú</Text>
-      </View>
-      <MenuList />
-    </>
-  );
+  return !fontsLoaded ? <AppLoading /> : <MenuList />;
 };
 
 export default Menu;
