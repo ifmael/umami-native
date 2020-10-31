@@ -3,18 +3,21 @@ import { View } from "react-native";
 import UmamiMenuInfo from "./Info";
 import UmamiMenuSide from "./Side";
 import UmamiMenuBeverage from "./Beverage";
+import { sortAsc } from "../../../utils/functions";
 
 const UmamiMenu = ({ options }) => {
   let components = [];
-  const ummamiMenuComponents = options.reduce((components, option) => {
-    const { __typename: type, ...rest } = option;
+  const ummamiMenuComponents = options
+    .slice()
+    .sort(sortAsc)
+    .reduce((components, option) => {
+      const { __typename: type, ...rest } = option;
 
-    components[type] = components[type] || [];
-    components[type].push({ ...rest });
+      components[type] = components[type] || [];
+      components[type].push({ ...rest });
 
-    return components;
-  }, {});
-
+      return components;
+    }, {});
   for (const [componentName, componentProps] of Object.entries(
     ummamiMenuComponents
   )) {

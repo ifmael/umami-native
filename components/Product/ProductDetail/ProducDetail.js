@@ -52,7 +52,10 @@ const ProductDetail = ({
       <Text>{description}</Text>
       <Text>{price}</Text>
       {isBurguerSandwich ? (
-        <UmamiDishConfiguration configuration={configuration} title={"hello"} />
+        <UmamiDishConfiguration
+          configurations={configuration}
+          title={"hello"}
+        />
       ) : null}
 
       {isCustomizable ? Ingredients : null}

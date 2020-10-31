@@ -24,6 +24,7 @@ const GET_DATA = gql`
           name
           description
           isRadioButton
+          order
           data {
             id
             name
@@ -35,6 +36,7 @@ const GET_DATA = gql`
           name
           description
           isRadioButton
+          order
           data {
             id
             name
@@ -45,6 +47,7 @@ const GET_DATA = gql`
           name
           description
           isRadioButton
+          order
           data {
             id
             name
@@ -61,6 +64,7 @@ const GET_DATA = gql`
           id
           name
           isRadioButton
+          order
           sides {
             ... on ComponentMenuSideItem {
               id
@@ -81,6 +85,7 @@ const GET_DATA = gql`
           id
           name
           isRadioButton
+          order
           beverages {
             ... on ComponentMenuBeverageItem {
               id
