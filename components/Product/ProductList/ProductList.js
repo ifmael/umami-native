@@ -3,7 +3,7 @@ import { FlatList } from "react-native";
 import ProductItem from "../ProductItem";
 import { GlobalContext } from "../../../utils/context/GlobalContext";
 
-const Product = ({ category }) => {
+const ProductList = ({ category }) => {
   const { productsByCategory } = useContext(GlobalContext);
   const products = productsByCategory[category];
 
@@ -16,4 +16,4 @@ const Product = ({ category }) => {
   );
 };
 
-export default Product;
+export default ProductList;

@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, StyleSheet, View, Image } from "react-native";
-import SafeAreaViewAndroid from "../../components/common/SafeAreaViewAndroid";
 import logo from "../../assets/umami.png";
 
 import { Dimensions } from "react-native";
@@ -22,13 +21,11 @@ const Home = ({ navigation, route }) => {
   });
 
   return (
-    <SafeAreaViewAndroid>
-      <View style={styles.container}>
-        <Image source={logo} style={styles.image} />
-        <Text>{windowWidth}</Text>
-        <Text>{windowHeight}</Text>
-      </View>
-    </SafeAreaViewAndroid>
+    <View style={styles.container}>
+      <Image source={logo} style={styles.image} />
+      <Text>{windowWidth}</Text>
+      <Text>{windowHeight}</Text>
+    </View>
   );
 };
 

@@ -1,17 +1,18 @@
 import React from "react";
-import SafeAreaViewAndroid from "../../components/common/SafeAreaViewAndroid";
 import { useQuery } from "@apollo/client";
-import useProducts from "./useProducts";
-import useCategories from "./useCategories";
-import useShoppingCart from "./useShoppingCart";
-import GET_ALL_DATA from "../../graphql/querys/getAllData";
+import SafeAreaViewAndroid from "../../components/common/SafeAreaViewAndroid";
+import useProducts from "../hooks/useProducts";
+import useCategories from "../hooks/useCategories";
+import useShoppingCart from "../hooks/useShoppingCart";
+import GET_DATA from "../../graphql/querys/getData";
 
 export const GlobalContext = React.createContext({});
 
 const ContextProvider = ({ children }) => {
-  const { loading, error, data } = useQuery(GET_ALL_DATA);
-  const { products, productsByCategory } = useProducts(data);
-  const { simpleCategories, categories } = useCategories(data);
+  const { loading, error, data } = useQuery(GET_DATA);
+  const { productsByCategory } = useProducts(data);
+  const { categories } = useCategories(data);
+
   const {
     shoppingCart,
     setItemShoppingCart,
@@ -21,15 +22,13 @@ const ContextProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        loading,
-        error,
-        products,
-        productsByCategory,
         categories,
-        simpleCategories,
+        error,
+        loading,
+        productsByCategory,
         shoppingCart,
+        // clearShoppingCart,
         setItemShoppingCart,
-        clearShoppingCart,
       }}
     >
       <SafeAreaViewAndroid>{children}</SafeAreaViewAndroid>

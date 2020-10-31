@@ -1,3 +1,85 @@
-La idea es que cuando se inicie la  app y sea un dia distinto al actual, se compruebe si hay nuevos productos disponibles.
+# Funcionamiento global de la app.
+
+Se intenta que el esqueleto de la app no sea muy dependiente de los datos proporcionados por el servidor para asi favorecer la reutilización de muchas piezas de software. Claro está, que esto no se va a conseguir en las primeras versiones de la app, pero se tiene que desarrollar con esto en mente. Para ello se ha creado un directorio para los componentes visuales especificos que se requieren para umami.
+
+A pesar de esto, como el próposito es generar apps para comercios de comida a domicilio, se ha modelado los datos en base a productos y categorias.
+Todo item que se venda en la app es un producto, y estos se puede agrupar en diferentes secciones por categorías.
+
+Para los productos se ha pensado en unas características comunues que se dan en todos los comercios, como son precio, nombre, descripción, imagenes ... A partir de ahí en función de las necesidades que tenga cada producto dentro de cada app, en el servidor se pueden generar componentes espeficos que cumplas con los requirimientos del producto. Esto generara un modelo del dato que tiene que ser tratado en el frontend por medio otros componentes ya espeficos para cada aplicación y cada componente del back.
+
+# App.js
+
+En el punto de entrada de la aplicación se están realizando varias tareas actualmente:
+
+- Se configura el cliente Apollo para las peticiones graphql.
+- Se definen varios stack de navegación. Uno para las pestañas inferiores que aparecen en la aplicación y se define otro stack para cuando se está navegando sobre la carta(menu) para generar un pedido.
+- Los flujos de navegación estan envueltos en 2 provider.
+  - Uno para la Apollo
+  - El contexto creado para la aplicación.
+
+# GlobalContext.js
+
+Se crea un contexto global para la aplicación además de un provider que envuelve al resto de componente de la aplicación para que puedan acceder a sus datos. Hace uso de diferentes customHooks:
+
+- useQuery: hook proporcionado por la libería apollo para realizar petiticones a la api graphql. Se le pasa entrada la graphql query.
+- useProducts: Una vez obtenidos los datos del server este hook hace uso de ellos para agrupar los productos por categoria. Esto es útil para cuando el usuario seleccione una opción de la carta disponer de todos los productos de esta sección.
+- useCategories: Una vez obtenidos los datos del server este hook hace uso de ellos para mostrar categorias de la carta.
+- useShoppingCart: Es un hook que proporcionara las funciones para manipular el carrito de la compra del usuario. (Quizás sería más recomendable crear un contexto para esto propiamente dicho en el que el carrito solo este disponible cuando se quiere hacer un pedido y no en toda la aplicación)
+
+Estos hooks proporcionan variables y funciones que son las que se alimentan el contexto.
+
+# getData.js
+
+Query para obtener los datos del server.
+
+# Screens
+
+Bajo este directorio se pueden encontrar las diferentes "pantallas" que se encontrar a lo largo de la aplicación. Cuando se configura la navegabilidad de la aplicación en el `App.js` se hace referencia a estas pantallas. Su funcionalidad es recoger los diferentes parámetros que pueden necesitar los componentes que las conforman para alimentarlos con ellos. También proporcionan un layout de como se estructura la pantalla.
+
+# RadioButtons
+
+Componente comun utilizado para seleccionar una opción entre varias disponibles. Se ha desacoplado la logica intrinseca de los radiobutton en customhook que tiene que utilizar para alimentar los radio buttons y también estabecer el elemento seleccionado. Gracias a esto, es posible en un componente de orden mayor disponer del elemento seleccionado para luego realizar las tareas oportunas con el.
+
+# Switch
+
+Hay 2 componentes bajo switch. Una lista de switch y un switch propiamente. Al separarlos es posible usar switch indpendientemente de un listado de switch. Para el component SwithchList se ha separado su lógica en un custom hook como se ha hecho con los Radiobutton.
+
+# SafeAreaViewAndroid
+
+Componente utilizado para mostrar información en la aplicación en los límites de la pantalla. Tanto en Android como IOS los dispositivos pueden tener notch. Para evitar que se muestre información junto a él, se ha creado este componete que muestra información justo debajo de el. Es utilizado en el contexto global ya que este envuelve el resto de la app, por lo que todos los componentes hijos estarán bajo el.
+
+# Componentes Menu
+
+Lo que viene siendo la carta de un bar pero de mostrado de manera digital. Esta conformado por 2 componentes:
+
+- MenuList: Encargado de mostrar las diferentes categorias del menu/carta
+- MenuItem: Utilizado por MenuList para mostar cada uno de los títulos de cada categoria. Es el encargado de realizar la navegación a cada una de las categorias individuales del menu por medio del slug de la categoria (info que tiene que estar informada en el backend)
+
+# Componentes Product
+
+Como se menciono con anterioridad cada elemento que se venda a través de la app es un producto. Los productos estan agrupados en categorías por lo que se requieren varios componentes para administrar todas su funcionalidades:
+
+- ProductList: Como el MenuList, el ProductList es el encargado de mostrar todos los productos que pertenecen a una categoría.
+- ProductITem: También, como el MenuItem, el ProductItem es un complemento para ProductList encargado de la visualización de los elementos dentro de la lista de productos.
+- ProductDetail: Hay diferentes productos con diferentes necesidades. Para aquellos que se puedan personalizar y/o personalizar o se puedan realizar otro tipo de operaciones como por ejemplo crear un menu a partir de ellos, este componente es el encargado de ellos. Será en este componente donde se debe de realizar un acople con las requisitios que tenga cada negocio para mostrar estas personalizaciones. Para realizar este acople este componente será en encargado de actuar como layout y administrar los componentes generados específicamente para cada aplicación.
+
+# Bar
+
+Directorio para los diferentes bar que contenga la aplicación. Actualmente, se esta utilizando una bar para el stack del menu, para mostrar el carrtito.
+Hay otra Bar (TabBar), que no está siendo utilizada en la aplicación, pero es un ejemplo completo de una barra.
+
+# Umami
+
+En este directorio recaerán los componetes para los requisitos de negocio de umami.
+
+# Ideas y varios
+
+## 1
+
+La idea es que cuando se inicie la app y sea un dia distinto al actual, se compruebe si hay nuevos productos disponibles.
 Los productos se almacenaran en una DB local y se irá actualizando en función de lo anterior.
 Cuando se abra la aplicación se cargará en el contexto los datos actualizados de la DB local.
+
+## 2
+
+Separar los componentes genéricos de los específicos de cada app en diferentes paquetes/repositorios. La idea detrás de esto es que se puedan actualizar por separado en el hipotético caso en el que se tenga mas clientes, no solo umami, y así poder actulizar los componentes genéricos en un sitio y que este disponibles para el resto de clientes.

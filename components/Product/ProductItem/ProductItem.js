@@ -6,7 +6,6 @@ import { GlobalContext } from "../../../utils/context/GlobalContext";
 const ProductItem = (props) => {
   const navigation = useNavigation();
   const { setItemShoppingCart } = useContext(GlobalContext);
-
   const { name, description, price, isCustomizable } = props;
   const styles = StyleSheet.create({
     container: {

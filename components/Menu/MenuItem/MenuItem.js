@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import Images from "../../../assets/images.js";
 
-const MenuItem = ({ id, name, color }) => {
+const MenuItem = ({ id, name, color, slug }) => {
   const navigation = useNavigation();
   const [fontsLoaded] = useFonts({
     "Montserrat-Regular": require("../../../assets/fonts/Montserrat-Regular.otf"),
@@ -32,7 +32,7 @@ const MenuItem = ({ id, name, color }) => {
   });
 
   const navigateToCategory = () => {
-    navigation.navigate("Product", { name: name.toLowerCase() });
+    navigation.navigate("Product", { slug });
   };
 
   return (

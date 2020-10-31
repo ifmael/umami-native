@@ -1,17 +1,13 @@
 import React from "react";
-import { AppRegistry, Text } from "react-native";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import FontAwesome from "react-native-vector-icons/FontAwesome5";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import ContextProvider from "./utils/context/GlobalContext";
-import Home from "./screens/Home";
-import Menu from "./screens/Menu";
-import ShoppingCart from "./screens/ShoppingCart";
-import Product from "./screens/Product";
-import ProductDetail from "./screens/ProductDetail";
-import ShoppingCartTopMenu from "./components/common/ShoppingCartTopMenu";
+import { Home, Menu, Product, ProductDetail, ShoppingCart } from "./screens";
+import FontAwesome from "react-native-vector-icons/FontAwesome5";
+import ShoppingCartTopMenu from "./components/Bar/ShoppingCartTopMenu";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

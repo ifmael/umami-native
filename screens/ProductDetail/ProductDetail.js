@@ -1,20 +1,14 @@
 import React from "react";
-import { View, Text, FlatList } from "react-native";
+import { ScrollView } from "react-native";
+import ProductInfo from "../../components/Product/ProductDetail";
 
 const ProductDetail = ({ route }) => {
-  const { name, description, price, ingredients } = route.params;
+  const { ...rest } = route.params;
 
   return (
-    <View>
-      <Text>{name}</Text>
-      <Text>{description}</Text>
-      <Text>{price}</Text>
-      <FlatList
-        data={ingredients}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
+    <ScrollView>
+      <ProductInfo {...rest} />
+    </ScrollView>
   );
 };
 

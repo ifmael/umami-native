@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import React from "react";
 import { AppLoading } from "expo";
 import { useFonts } from "expo-font";
 import MenuList from "../../components/Menu/MenuList";
