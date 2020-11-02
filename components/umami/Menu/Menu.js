@@ -1,44 +1,26 @@
 import React from "react";
 import { View } from "react-native";
-import UmamiMenuInfo from "./Info";
-import UmamiMenuSide from "./Side";
-import UmamiMenuBeverage from "./Beverage";
+import { UmamiMenuInfo, UmamiMenuSide, UmamiMenuBeverage } from "./index";
+import { destructComponentOptions } from "../utils/functions";
 import { sortAsc } from "../../../utils/functions";
 
 const UmamiMenu = ({ options }) => {
-  let components = [];
-  const ummamiMenuComponents = options
-    .slice()
-    .sort(sortAsc)
-    .reduce((components, option) => {
-      const { __typename: type, ...rest } = option;
+  const allComponents = destructComponentOptions(options);
+  const componentsJSX = allComponents.sort(sortAsc).map((componentProps) => {
+    const { __typename: componentName } = componentProps;
 
-      components[type] = components[type] || [];
-      components[type].push({ ...rest });
-
-      return components;
-    }, {});
-  for (const [componentName, componentProps] of Object.entries(
-    ummamiMenuComponents
-  )) {
     if (componentName === "ComponentMenuInfo") {
-      componentProps.forEach((props) =>
-        components.push(<UmamiMenuInfo {...props} />)
-      );
+      return <UmamiMenuInfo {...componentProps} />;
     } else if (componentName === "ComponentMenuSide") {
-      componentProps.forEach((props) =>
-        components.push(<UmamiMenuSide {...props} />)
-      );
+      return <UmamiMenuSide {...componentProps} />;
     } else if (componentName === "ComponentMenuBeverage") {
-      componentProps.forEach((props) =>
-        components.push(<UmamiMenuBeverage {...props} />)
-      );
+      return <UmamiMenuBeverage {...componentProps} />;
     }
-  }
+  });
 
   return (
     <View>
-      {components?.map((component, index) => (
+      {componentsJSX?.map((component, index) => (
         <View key={index}>{component}</View>
       ))}
     </View>

@@ -53,6 +53,63 @@ const GET_DATA = gql`
             name
           }
         }
+        ... on ComponentOptionsMeat {
+          id
+          order
+          options {
+            elements {
+              ... on ComponentBurgerMeats {
+                id
+                name
+                description
+                isRadioButton
+                order
+                data {
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
+        ... on ComponentOptionsPointMeatConfiguration {
+          id
+          order
+          options {
+            elements {
+              ... on ComponentBurgerPointCooking {
+                id
+                name
+                description
+                isRadioButton
+                order
+                data {
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
+        ... on ComponentOptionsBread {
+          id
+          order
+          options {
+            elements {
+              ... on ComponentSandwichBreads {
+                id
+                name
+                description
+                isRadioButton
+                order
+                data {
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
       }
       menu {
         ... on ComponentMenuInfo {
@@ -64,7 +121,7 @@ const GET_DATA = gql`
           id
           name
           isRadioButton
-          order
+
           sides {
             ... on ComponentMenuSideItem {
               id
@@ -81,11 +138,39 @@ const GET_DATA = gql`
             }
           }
         }
+        ... on ComponentOptionsSides {
+          id
+          order
+          options {
+            elements {
+              ... on ComponentMenuSide {
+                id
+                name
+                isRadioButton
+
+                sides {
+                  ... on ComponentMenuSideItem {
+                    id
+                    isRadioButton
+                    extraPrice
+                    product {
+                      id
+                      name
+                    }
+                    options {
+                      id
+                      name
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
         ... on ComponentMenuBeverage {
           id
           name
           isRadioButton
-          order
           beverages {
             ... on ComponentMenuBeverageItem {
               id
@@ -93,6 +178,29 @@ const GET_DATA = gql`
               product {
                 id
                 name
+              }
+            }
+          }
+        }
+        ... on ComponentOptionsBeverage {
+          id
+          order
+          options {
+            elements {
+              ... on ComponentMenuBeverage {
+                id
+                name
+                isRadioButton
+                beverages {
+                  ... on ComponentMenuBeverageItem {
+                    id
+                    extraPrice
+                    product {
+                      id
+                      name
+                    }
+                  }
+                }
               }
             }
           }

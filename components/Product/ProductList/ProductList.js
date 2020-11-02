@@ -6,8 +6,8 @@ import { sortAsc } from "../../../utils/functions";
 
 const ProductList = ({ category }) => {
   const { productsByCategory } = useContext(GlobalContext);
-  const products = productsByCategory[category];
-  const sortedProducts = products.sort(sortAsc);
+  const products = productsByCategory[category] || [];
+  const sortedProducts = products?.sort(sortAsc);
 
   return (
     <FlatList
