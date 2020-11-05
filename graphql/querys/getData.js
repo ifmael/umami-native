@@ -110,6 +110,13 @@ const GET_DATA = gql`
             }
           }
         }
+        ... on ComponentOptionsType {
+          id
+          states {
+            id
+            name
+          }
+        }
       }
       menu {
         ... on ComponentMenuInfo {
@@ -118,20 +125,13 @@ const GET_DATA = gql`
           description
         }
         ... on ComponentMenuSide {
-          id
           name
           isRadioButton
-
+          order
           sides {
             ... on ComponentMenuSideItem {
-              id
-              isRadioButton
               extraPrice
               product {
-                id
-                name
-              }
-              options {
                 id
                 name
               }
@@ -144,20 +144,13 @@ const GET_DATA = gql`
           options {
             elements {
               ... on ComponentMenuSide {
-                id
                 name
                 isRadioButton
-
+                order
                 sides {
                   ... on ComponentMenuSideItem {
-                    id
-                    isRadioButton
                     extraPrice
                     product {
-                      id
-                      name
-                    }
-                    options {
                       id
                       name
                     }
