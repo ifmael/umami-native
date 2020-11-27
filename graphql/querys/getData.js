@@ -13,6 +13,7 @@ const GET_DATA = gql`
       }
       isMenuable
       isCustomizable
+      isRadioButton
       order
       ingredients {
         id
@@ -149,11 +150,17 @@ const GET_DATA = gql`
                 order
                 sides {
                   ... on ComponentMenuSideItem {
+                    id
                     extraPrice
                     product {
                       id
                       name
                     }
+                    options {
+                      id
+                      name
+                    }
+                    isRadioButton
                   }
                 }
               }

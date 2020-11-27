@@ -24,6 +24,7 @@ const useRadioButtons = (data, initialState) => {
     });
   }, []);
 
+  // return an array
   return { options, setOptions, setOption, selected };
 };
 

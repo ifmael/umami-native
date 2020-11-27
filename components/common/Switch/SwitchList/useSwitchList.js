@@ -19,7 +19,7 @@ const useSwitchList = (data, defaultValue = true) => {
       );
     });
   };
-
+  // TODO change for array
   return { items, setItem };
 };
 

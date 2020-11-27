@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Switch } from "react-native";
 import SwitchList from "../../../common/Switch/SwitchList";
+import useSwitchList from "../../../common/Switch/SwitchList/useSwitchList";
 
 const getTitle = (category) => {
   return category === "hamburguesas"
@@ -12,8 +13,10 @@ const getTitle = (category) => {
     : "";
 };
 
-const UmamiDishIngredients = ({ ingredients, setIngredient, category }) => {
-  const [isEnabled, setIsEnabled] = useState(false);
+const UmamiDishIngredients = ({ ingredients, category }) => {
+  const { items, setItem } = useSwitchList(ingredients, true);
+
+  const [isEnabled, setIsEnabled] = useState(true);
   return (
     <View>
       <Text>{getTitle(category)}</Text>
@@ -24,9 +27,7 @@ const UmamiDishIngredients = ({ ingredients, setIngredient, category }) => {
         onValueChange={() => setIsEnabled(!isEnabled)}
         value={isEnabled}
       />
-      {isEnabled ? (
-        <SwitchList list={ingredients} setItem={setIngredient} />
-      ) : null}
+      {isEnabled ? <SwitchList list={items} setItem={setItem} /> : null}
     </View>
   );
 };

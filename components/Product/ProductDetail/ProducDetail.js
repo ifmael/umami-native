@@ -18,11 +18,12 @@ const ProductDetail = ({
   ingredients,
   category,
   isMenuable,
+  isRadioButton,
   configuration,
   menu,
 }) => {
   const [isMenu, setIsMenu] = useState(false);
-
+  debugger;
   const isDish =
     category === "hamburguesas" ||
     category === "bocadillos" ||
@@ -30,19 +31,15 @@ const ProductDetail = ({
   const isBurguerSandwich =
     category === "hamburguesas" || category === "bocadillos";
 
-  const { items, setItem } = useSwitchList(ingredients, isDish ? true : false);
-
-  const Ingredients = isDish ? (
-    <UmamiDishIngredients
-      ingredients={items}
-      setIngredient={setItem}
-      category={category}
-    />
+  const IngredientsListComponent = isDish ? (
+    // Personalizar ensaladas , bocadillos y hamburguesas
+    <UmamiDishIngredients ingredients={ingredients} category={category} />
   ) : (
+    // Para las salsas y  patatas
     <UmamiIngredients
-      ingredients={items}
-      setIngredient={setItem}
+      ingredients={ingredients}
       title={"Selecciona las salsas que te de la gana"}
+      isRadioButton={isRadioButton}
     />
   );
 
@@ -58,7 +55,7 @@ const ProductDetail = ({
         />
       ) : null}
 
-      {isCustomizable ? Ingredients : null}
+      {isCustomizable ? IngredientsListComponent : null}
 
       {isMenuable ? (
         <View>

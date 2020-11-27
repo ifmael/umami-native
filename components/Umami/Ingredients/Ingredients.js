@@ -1,12 +1,18 @@
 import React from "react";
 import { View, Text } from "react-native";
-import SwitchList from "../../common/Switch/SwitchList";
+import IngredientsSwitch from "./IngredientsSwitch";
+import IngredientsRadio from "./IngredientsRadio";
 
-const UmamiIngredients = ({ ingredients, setIngredient, title }) => {
+const UmamiIngredients = ({ ingredients, title, isRadioButton }) => {
+  debugger;
   return (
     <View>
       <Text>{title}</Text>
-      <SwitchList list={ingredients} setItem={setIngredient} />
+      {isRadioButton ? (
+        <IngredientsRadio ingredients={ingredients} />
+      ) : (
+        <IngredientsSwitch ingredients={ingredients} />
+      )}
     </View>
   );
 };
