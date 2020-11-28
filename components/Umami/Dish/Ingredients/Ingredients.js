@@ -13,21 +13,32 @@ const getTitle = (category) => {
     : "";
 };
 
-const UmamiDishIngredients = ({ ingredients, category }) => {
-  const { items, setItem } = useSwitchList(ingredients, true);
+const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
+  const { items, setItem } = useSwitchList(
+    ingredients,
+    isYourTaste ? false : true
+  );
+  const [isEnabled, setIsEnabled] = useState(false);
 
-  const [isEnabled, setIsEnabled] = useState(true);
+  const title = isYourTaste
+    ? "Selecciona los ingredientes que desees:"
+    : getTitle(category);
   return (
     <View>
-      <Text>{getTitle(category)}</Text>
-      <Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={() => setIsEnabled(!isEnabled)}
-        value={isEnabled}
-      />
-      {isEnabled ? <SwitchList list={items} setItem={setItem} /> : null}
+      <Text>{title}</Text>
+      {!isYourTaste ? (
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => setIsEnabled(!isEnabled)}
+          value={isEnabled}
+        />
+      ) : null}
+
+      {isEnabled || isYourTaste ? (
+        <SwitchList list={items} setItem={setItem} />
+      ) : null}
     </View>
   );
 };

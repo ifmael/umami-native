@@ -20,10 +20,10 @@ const ProductDetail = ({
   isMenuable,
   isRadioButton,
   configuration,
+  isYourTaste,
   menu,
 }) => {
   const [isMenu, setIsMenu] = useState(false);
-  debugger;
   const isDish =
     category === "hamburguesas" ||
     category === "bocadillos" ||
@@ -33,7 +33,11 @@ const ProductDetail = ({
 
   const IngredientsListComponent = isDish ? (
     // Personalizar ensaladas , bocadillos y hamburguesas
-    <UmamiDishIngredients ingredients={ingredients} category={category} />
+    <UmamiDishIngredients
+      ingredients={ingredients}
+      category={category}
+      isYourTaste={isYourTaste}
+    />
   ) : (
     // Para las salsas y  patatas
     <UmamiIngredients

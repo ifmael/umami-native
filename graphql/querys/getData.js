@@ -15,6 +15,7 @@ const GET_DATA = gql`
       isCustomizable
       isRadioButton
       order
+      isYourTaste
       ingredients {
         id
         name

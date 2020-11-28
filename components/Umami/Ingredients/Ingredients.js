@@ -4,7 +4,6 @@ import IngredientsSwitch from "./IngredientsSwitch";
 import IngredientsRadio from "./IngredientsRadio";
 
 const UmamiIngredients = ({ ingredients, title, isRadioButton }) => {
-  debugger;
   return (
     <View>
       <Text>{title}</Text>
