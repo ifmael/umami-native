@@ -73,7 +73,7 @@ const App = () => {
       <Stack.Screen
         name="Menu"
         component={Menu}
-        options={{ headerTitle: "Ummm glutamato", headerTitleAlign: "center" }}
+        options={{ headerTitle: "Nuestro menú", headerTitleAlign: "center" }}
       />
       <Stack.Screen
         name="Product"

@@ -1,13 +1,21 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { ListItem, Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "../../../utils/context/GlobalContext";
+import COLORS from "../../../styles/colors";
 
 const ProductItem = (props) => {
   const navigation = useNavigation();
   const { setItemShoppingCart } = useContext(GlobalContext);
   const { name, description, price, isCustomizable } = props;
   const styles = StyleSheet.create({
+    title: {
+      flexDirection: "row",
+      flex: 1,
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
     container: {
       marginHorizontal: 10,
       padding: 5,
@@ -43,20 +51,25 @@ const ProductItem = (props) => {
       navigation.setOptions({ title: "Updated!" });
     }
   };
-
+  debugger;
   return (
-    <View style={styles.container}>
-      <View>
-        <Text>{name}</Text>
-        <Text>{description}</Text>
-      </View>
-      <View style={styles.action}>
-        <Text style={styles.price}>{price}</Text>
-        <TouchableOpacity onPress={add} style={styles.add}>
-          <Text>Añadir</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <ListItem bottomDivider onPress={add}>
+      <ListItem.Content>
+        <ListItem.Title>
+          <View style={styles.title}>
+            <Text>{name}</Text>
+          </View>
+        </ListItem.Title>
+        <ListItem.Subtitle>{description}</ListItem.Subtitle>
+      </ListItem.Content>
+      <Text>{price} €</Text>
+      <ListItem.Chevron
+        type="font-awesome-5"
+        name={isCustomizable ? "chevron-right" : "plus"}
+        size={24}
+        color={COLORS.defaultButton}
+      />
+    </ListItem>
   );
 };
 

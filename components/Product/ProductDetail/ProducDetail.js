@@ -21,6 +21,7 @@ const ProductDetail = ({
   isRadioButton,
   configuration,
   isYourTaste,
+  isChildrenMenu,
   menu,
 }) => {
   const [isMenu, setIsMenu] = useState(false);
@@ -61,7 +62,9 @@ const ProductDetail = ({
 
       {isCustomizable ? IngredientsListComponent : null}
 
-      {isMenuable ? (
+      {isChildrenMenu ? (
+        <UmamiMenu options={menu} />
+      ) : isChildrenMenu ? (
         <View>
           <Text>¿Quíeres convertirlo en Menú?</Text>
           <Switch

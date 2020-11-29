@@ -1,5 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
+import { useFonts } from "expo-font";
+import { AppLoading } from "expo";
 import SafeAreaViewAndroid from "../../components/common/SafeAreaViewAndroid";
 import useProducts from "../hooks/useProducts";
 import useCategories from "../hooks/useCategories";
@@ -12,14 +14,18 @@ const ContextProvider = ({ children }) => {
   const { loading, error, data } = useQuery(GET_DATA);
   const { productsByCategory } = useProducts(data);
   const { categories } = useCategories(data);
-
+  const [fontsLoaded] = useFonts({
+    "Montserrat-Regular": require("../../assets/fonts/Montserrat-Regular.otf"),
+  });
   const {
     shoppingCart,
     setItemShoppingCart,
     clearShoppingCart,
   } = useShoppingCart();
 
-  return (
+  return !fontsLoaded ? (
+    <AppLoading />
+  ) : (
     <GlobalContext.Provider
       value={{
         categories,

@@ -5,12 +5,11 @@ import MenuItem from "../MenuItem";
 
 const MenuList = () => {
   const { categories } = useContext(GlobalContext);
-
   return (
     <FlatList
       data={categories}
       renderItem={({ item }) => <MenuItem {...item} />}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item?.id?.toString()}
     />
   );
 };

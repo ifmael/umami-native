@@ -16,6 +16,7 @@ const GET_DATA = gql`
       isRadioButton
       order
       isYourTaste
+      isChildrenMenu
       ingredients {
         id
         name
@@ -132,11 +133,17 @@ const GET_DATA = gql`
           order
           sides {
             ... on ComponentMenuSideItem {
+              id
               extraPrice
               product {
                 id
                 name
               }
+              options {
+                id
+                name
+              }
+              isRadioButton
             }
           }
         }
@@ -214,6 +221,16 @@ const GET_DATA = gql`
       slug
       color
       order
+      image {
+        id
+        name
+        caption
+        width
+        height
+        size
+        url
+        previewUrl
+      }
     }
   }
 `;
