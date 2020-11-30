@@ -1,14 +1,10 @@
 import React, { useState } from "react";
+import { string, number, bool, array } from "prop-types";
 import { View, Text, Switch } from "react-native";
-
 import UmamiDishConfiguration from "../../Umami/Dish/Configurations";
-
 import UmamiIngredients from "../../Umami/Ingredients";
 import UmamiDishIngredients from "../../Umami/Dish/Ingredients";
 import UmamiMenu from "../../Umami/Menu";
-import { CheckBox } from "react-native-elements";
-import styles from "./styles";
-import useSwitchList from "../../common/Switch/SwitchList/useSwitchList";
 
 const ProductDetail = ({
   name,
@@ -17,7 +13,7 @@ const ProductDetail = ({
   isCustomizable,
   ingredients,
   category,
-  isMenuable,
+  // isMenuable,
   isRadioButton,
   configuration,
   isYourTaste,
@@ -25,20 +21,12 @@ const ProductDetail = ({
   menu,
 }) => {
   const [isMenu, setIsMenu] = useState(false);
-  const isDish =
-    category === "hamburguesas" ||
-    category === "bocadillos" ||
-    category === "ensaladas";
-  const isBurguerSandwich =
-    category === "hamburguesas" || category === "bocadillos";
+  const isDish = category === "hamburguesas" || category === "bocadillos" || category === "ensaladas";
+  const isBurguerSandwich = category === "hamburguesas" || category === "bocadillos";
 
   const IngredientsListComponent = isDish ? (
     // Personalizar ensaladas , bocadillos y hamburguesas
-    <UmamiDishIngredients
-      ingredients={ingredients}
-      category={category}
-      isYourTaste={isYourTaste}
-    />
+    <UmamiDishIngredients ingredients={ingredients} category={category} isYourTaste={isYourTaste} />
   ) : (
     // Para las salsas y  patatas
     <UmamiIngredients
@@ -53,12 +41,7 @@ const ProductDetail = ({
       <Text>{name}</Text>
       <Text>{description}</Text>
       <Text>{price}</Text>
-      {isBurguerSandwich ? (
-        <UmamiDishConfiguration
-          configurations={configuration}
-          title={"hello"}
-        />
-      ) : null}
+      {isBurguerSandwich ? <UmamiDishConfiguration configurations={configuration} title={"hello"} /> : null}
 
       {isCustomizable ? IngredientsListComponent : null}
 
@@ -92,6 +75,21 @@ const ProductDetail = ({
       /> */}
     </View>
   );
+};
+
+ProductDetail.propTypes = {
+  name: string,
+  description: string,
+  price: number,
+  isCustomizable: bool,
+  ingredients: array,
+  category: string,
+  // isMenuable: bool,
+  isRadioButton: bool,
+  configuration: array,
+  isYourTaste: bool,
+  isChildrenMenu: bool,
+  menu: array,
 };
 
 export default ProductDetail;

@@ -4,10 +4,7 @@ const useShoppingCart = () => {
   const [shoppingCart, setShoppingCart] = useState([]);
 
   const setItemShoppingCart = useCallback((itemShoppingCart) => {
-    return setShoppingCart((currentValue) => [
-      ...currentValue,
-      itemShoppingCart,
-    ]);
+    return setShoppingCart((currentValue) => [...currentValue, itemShoppingCart]);
   }, []);
 
   const clearShoppingCart = useCallback(() => {

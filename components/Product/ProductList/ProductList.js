@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { string } from "prop-types";
 import { FlatList } from "react-native";
 import ProductItem from "../ProductItem";
 import { GlobalContext } from "../../../utils/context/GlobalContext";
@@ -16,6 +17,9 @@ const ProductList = ({ category }) => {
       keyExtractor={(item) => item.id}
     />
   );
+};
+ProductList.propTypes = {
+  category: string,
 };
 
 export default ProductList;

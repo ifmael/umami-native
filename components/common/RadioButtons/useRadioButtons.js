@@ -12,10 +12,7 @@ const useRadioButtons = (data, initialState) => {
   const setOption = useCallback((id) => {
     setOptions((currentOptions) => {
       return currentOptions.map((item) => {
-        const newItem =
-          item.id !== id
-            ? { ...item, isSelected: false }
-            : { ...item, isSelected: !item.isEnabled };
+        const newItem = item.id !== id ? { ...item, isSelected: false } : { ...item, isSelected: !item.isEnabled };
 
         if (item.id === id) setSelected(newItem);
 

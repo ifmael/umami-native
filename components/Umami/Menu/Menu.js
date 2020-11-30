@@ -1,4 +1,5 @@
 import React from "react";
+import { array } from "prop-types";
 import { View } from "react-native";
 import { UmamiMenuInfo, UmamiMenuSide, UmamiMenuBeverage } from "./index";
 import { destructComponentOptions } from "../utils/functions";
@@ -25,6 +26,9 @@ const UmamiMenu = ({ options }) => {
       ))}
     </View>
   );
+};
+UmamiMenu.propTypes = {
+  options: array,
 };
 
 export default UmamiMenu;

@@ -1,4 +1,5 @@
 import React from "react";
+import { string, bool, func } from "prop-types";
 import { View, Text, Switch, StyleSheet } from "react-native";
 
 const SwitchItem = ({ id, name, isSelected, setState }) => {
@@ -22,6 +23,13 @@ const SwitchItem = ({ id, name, isSelected, setState }) => {
       />
     </View>
   );
+};
+
+SwitchItem.propTypes = {
+  id: string,
+  name: string,
+  isSelected: bool,
+  setState: func,
 };
 
 export default SwitchItem;

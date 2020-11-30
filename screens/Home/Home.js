@@ -1,4 +1,5 @@
 import React from "react";
+import { any } from "prop-types";
 import { Text, StyleSheet, View, Image } from "react-native";
 import logo from "../../assets/umami.png";
 
@@ -7,7 +8,7 @@ import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const Home = ({ navigation, route }) => {
+const Home = (/* { navigation, route } */) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -27,6 +28,11 @@ const Home = ({ navigation, route }) => {
       <Text>{windowHeight}</Text>
     </View>
   );
+};
+
+Home.propTypes = {
+  navigation: any,
+  route: any,
 };
 
 export default Home;

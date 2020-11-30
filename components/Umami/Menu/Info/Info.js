@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const UmamiMenuInfo = ({}) => {
+const UmamiMenuInfo = () => {
   return (
     <View>
       <Text> Menu: Info</Text>

@@ -14,9 +14,7 @@ const useSwitchList = (data, defaultValue = true) => {
 
   const setItem = (id) => {
     setItems((currentItems) => {
-      return currentItems.map((item) =>
-        item.id !== id ? item : { ...item, isSelected: !item.isSelected }
-      );
+      return currentItems.map((item) => (item.id !== id ? item : { ...item, isSelected: !item.isSelected }));
     });
   };
   // TODO change for array

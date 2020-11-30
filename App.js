@@ -19,7 +19,7 @@ const client = new ApolloClient({
 
 const App = () => {
   const screenOptionsTabBar = ({ route }) => ({
-    tabBarIcon: ({ focused, color, size }) => {
+    tabBarIcon: ({ /* focused, */ color, size }) => {
       let component;
 
       if (route.name === "Home") {
@@ -32,13 +32,9 @@ const App = () => {
           />
         );
       } else if (route.name === "Menu") {
-        component = (
-          <FontAwesome name="align-justify" size={size} color={color} />
-        );
+        component = <FontAwesome name="align-justify" size={size} color={color} />;
       } else if (route.name === "ShoppingCart") {
-        component = (
-          <FontAwesome name="shopping-cart" size={size} color={color} />
-        );
+        component = <FontAwesome name="shopping-cart" size={size} color={color} />;
       }
 
       // You can return any component that you like here!
@@ -67,6 +63,7 @@ const App = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: true,
+        // eslint-disable-next-line react/display-name
         headerRight: () => <ShoppingCartTopMenu />,
       }}
     >
@@ -75,11 +72,7 @@ const App = () => {
         component={Menu}
         options={{ headerTitle: "Nuestro menú", headerTitleAlign: "center" }}
       />
-      <Stack.Screen
-        name="Product"
-        component={Product}
-        options={productOptionsFn}
-      />
+      <Stack.Screen name="Product" component={Product} options={productOptionsFn} />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
     </Stack.Navigator>
   );
@@ -88,22 +81,10 @@ const App = () => {
     <ApolloProvider client={client}>
       <ContextProvider>
         <NavigationContainer>
-          <Tab.Navigator
-            initialRouteName="Home"
-            screenOptions={screenOptionsTabBar}
-            lazy="true"
-          >
-            <Tab.Screen
-              name="Home"
-              component={Home}
-              options={{ title: "Umami" }}
-            />
+          <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} lazy="true">
+            <Tab.Screen name="Home" component={Home} options={{ title: "Umami" }} />
             <Tab.Screen name="Menu" component={MenuStack} />
-            <Tab.Screen
-              name="ShoppingCart"
-              component={ShoppingCart}
-              options={{ tabBarBadge: 3, title: "Pedido" }}
-            />
+            <Tab.Screen name="ShoppingCart" component={ShoppingCart} options={{ tabBarBadge: 3, title: "Pedido" }} />
           </Tab.Navigator>
         </NavigationContainer>
       </ContextProvider>

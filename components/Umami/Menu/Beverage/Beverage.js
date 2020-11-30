@@ -1,4 +1,5 @@
 import React from "react";
+import { array, bool, string } from "prop-types";
 import { View, Text } from "react-native";
 import RadioButtons from "../../../common/RadioButtons";
 import useRadioButtons from "../../../common/RadioButtons/useRadioButtons";
@@ -19,14 +20,16 @@ const UmamiMenuBeverage = ({ beverages, isRadioButton, name }) => {
     <View>
       <Text>{name}</Text>
       {isRadioButton ? (
-        <RadioButtons
-          options={options}
-          setOption={setOption}
-          extraInfoComponent={ExtraPriceComponent}
-        />
+        <RadioButtons options={options} setOption={setOption} extraInfoComponent={ExtraPriceComponent} />
       ) : null}
     </View>
   );
+};
+
+UmamiMenuBeverage.propTypes = {
+  beverages: array,
+  isRadioButton: bool,
+  name: string,
 };
 
 export default UmamiMenuBeverage;

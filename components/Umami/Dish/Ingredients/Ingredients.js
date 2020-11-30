@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { array, string, bool } from "prop-types";
 import { View, Text, Switch } from "react-native";
 import SwitchList from "../../../common/Switch/SwitchList";
 import useSwitchList from "../../../common/Switch/SwitchList/useSwitchList";
@@ -14,15 +15,10 @@ const getTitle = (category) => {
 };
 
 const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
-  const { items, setItem } = useSwitchList(
-    ingredients,
-    isYourTaste ? false : true
-  );
+  const { items, setItem } = useSwitchList(ingredients, isYourTaste ? false : true);
   const [isEnabled, setIsEnabled] = useState(false);
 
-  const title = isYourTaste
-    ? "Selecciona los ingredientes que desees:"
-    : getTitle(category);
+  const title = isYourTaste ? "Selecciona los ingredientes que desees:" : getTitle(category);
   return (
     <View>
       <Text>{title}</Text>
@@ -36,11 +32,15 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
         />
       ) : null}
 
-      {isEnabled || isYourTaste ? (
-        <SwitchList list={items} setItem={setItem} />
-      ) : null}
+      {isEnabled || isYourTaste ? <SwitchList list={items} setItem={setItem} /> : null}
     </View>
   );
+};
+
+UmamiDishIngredients.propTypes = {
+  ingredients: array,
+  category: string,
+  isYourTaste: bool,
 };
 
 export default UmamiDishIngredients;

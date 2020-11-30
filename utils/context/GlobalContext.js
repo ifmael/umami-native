@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { useFonts } from "expo-font";
 import { AppLoading } from "expo";
+import { element } from "prop-types";
 import SafeAreaViewAndroid from "../../components/common/SafeAreaViewAndroid";
 import useProducts from "../hooks/useProducts";
 import useCategories from "../hooks/useCategories";
@@ -17,11 +18,7 @@ const ContextProvider = ({ children }) => {
   const [fontsLoaded] = useFonts({
     "Montserrat-Regular": require("../../assets/fonts/Montserrat-Regular.otf"),
   });
-  const {
-    shoppingCart,
-    setItemShoppingCart,
-    clearShoppingCart,
-  } = useShoppingCart();
+  const { shoppingCart, setItemShoppingCart } = useShoppingCart();
 
   return !fontsLoaded ? (
     <AppLoading />
@@ -42,4 +39,7 @@ const ContextProvider = ({ children }) => {
   );
 };
 
+ContextProvider.propTypes = {
+  children: element,
+};
 export default ContextProvider;

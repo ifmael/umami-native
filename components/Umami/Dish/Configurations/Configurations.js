@@ -1,4 +1,5 @@
 import React from "react";
+import { array, string } from "prop-types";
 import { View, Text, FlatList } from "react-native";
 import UmamiDishConfiguration from "./Configuration";
 import { sortAsc } from "../../../../utils/functions";
@@ -20,4 +21,8 @@ const UmamiDishConfigurations = ({ configurations, title }) => {
   );
 };
 
+UmamiDishConfigurations.propTypes = {
+  configurations: array,
+  title: string,
+};
 export default UmamiDishConfigurations;

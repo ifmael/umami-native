@@ -1,4 +1,5 @@
 import React from "react";
+import { array, bool, string } from "prop-types";
 import { View, Text } from "react-native";
 import RadioButtons from "../../../common/RadioButtons";
 import useRadioButtons from "../../../common/RadioButtons/useRadioButtons";
@@ -6,16 +7,12 @@ import extractProducts from "../utils/extractProducts";
 
 const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
   const newSides = extractProducts(sides);
-  const {
-    options: optionsV1,
-    setOption: setOptionV1,
-    selected: selectedV1,
-  } = useRadioButtons(newSides);
+  const { options: optionsV1, setOption: setOptionV1, selected: selectedV1 } = useRadioButtons(newSides);
 
   const {
     options: potatoesOptions,
     setOption: setPotatoOption,
-    selected: potatoSelected,
+    /*  selected: potatoSelected, */
     setOptions,
   } = useRadioButtons(selectedV1?.options);
 
@@ -50,6 +47,12 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
       ) : null}
     </View>
   );
+};
+
+UmamiMenuSide.propTypes = {
+  sides: array,
+  isRadioButton: bool,
+  name: string,
 };
 
 export default UmamiMenuSide;

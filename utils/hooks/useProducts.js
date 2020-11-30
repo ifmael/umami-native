@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { formatProducts, getProductsByCategory } from "./functions";
+import { getProductsByCategory } from "./functions";
 
 const useProducts = (dataFromServer) => {
   const [productsByCategory, setProductsByCategory] = useState();

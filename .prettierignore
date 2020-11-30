@@ -1,0 +1,11 @@
+# Ignore folder
+.expo
+.expo-shared
+build
+coverage
+node_modules
+public
+.vscode
+
+# Ignore files
+package-lock.json

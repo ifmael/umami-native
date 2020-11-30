@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import { GlobalContext } from "../../../utils/context/GlobalContext";
 
 const ShoppingCartTopMenu = () => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const { shoppingCart } = useContext(GlobalContext);
 
   const styles = StyleSheet.create({
