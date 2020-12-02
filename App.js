@@ -4,10 +4,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import ContextProvider from "./utils/context/GlobalContext";
-import { Home, Menu, Product, ProductDetail, ShoppingCart } from "./screens";
+import ContextProvider from "/Context/GlobalContext";
+import { Home, Menu, Product, ProductDetail, ShoppingCart } from "/screens";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
-import ShoppingCartTopMenu from "./components/Bar/ShoppingCartTopMenu";
+import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
