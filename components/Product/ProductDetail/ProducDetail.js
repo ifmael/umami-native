@@ -13,7 +13,7 @@ const ProductDetail = ({
   isCustomizable,
   ingredients,
   category,
-  // isMenuable,
+  isMenuable,
   isRadioButton,
   configuration,
   isYourTaste,
@@ -23,7 +23,6 @@ const ProductDetail = ({
   const [isMenu, setIsMenu] = useState(false);
   const isDish = category === "hamburguesas" || category === "bocadillos" || category === "ensaladas";
   const isBurguerSandwich = category === "hamburguesas" || category === "bocadillos";
-
   const IngredientsListComponent = isDish ? (
     // Personalizar ensaladas , bocadillos y hamburguesas
     <UmamiDishIngredients ingredients={ingredients} category={category} isYourTaste={isYourTaste} />
@@ -47,7 +46,7 @@ const ProductDetail = ({
 
       {isChildrenMenu ? (
         <UmamiMenu options={menu} />
-      ) : isChildrenMenu ? (
+      ) : isMenuable ? (
         <View>
           <Text>¿Quíeres convertirlo en Menú?</Text>
           <Switch
@@ -84,7 +83,7 @@ ProductDetail.propTypes = {
   isCustomizable: bool,
   ingredients: array,
   category: string,
-  // isMenuable: bool,
+  isMenuable: bool,
   isRadioButton: bool,
   configuration: array,
   isYourTaste: bool,

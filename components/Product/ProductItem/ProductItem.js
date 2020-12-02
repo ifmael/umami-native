@@ -6,7 +6,8 @@ import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "../../../utils/context/GlobalContext";
 import COLORS from "../../../styles/colors";
 
-const ProductItem = ({ name, description, price, isCustomizable }) => {
+const ProductItem = (props) => {
+  const { name, description, price, isCustomizable } = props;
   const navigation = useNavigation();
   const { setItemShoppingCart } = useContext(GlobalContext);
   const styles = StyleSheet.create({
@@ -45,7 +46,7 @@ const ProductItem = ({ name, description, price, isCustomizable }) => {
   const add = () => {
     //Logic to know if a customizable product
     if (isCustomizable) {
-      navigation.navigate("ProductDetail", { name, description, price, isCustomizable });
+      navigation.navigate("ProductDetail", props);
     } else {
       setItemShoppingCart({ title: "test" });
       navigation.setOptions({ title: "Updated!" });
