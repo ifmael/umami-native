@@ -1,7 +1,8 @@
 import React from "react";
 import { array, func, any } from "prop-types";
-import { View, TouchableOpacity, Text } from "react-native";
-import styles from "./RadioButtons.styles";
+import { View, Text, TouchableOpacity } from "react-native";
+import { CheckBox } from "react-native-elements";
+import styles, { radioButtonStyles } from "./RadioButtons.styles";
 
 const RadioButtons = ({ options, setOption, extraComponent, extraInfoComponent }) => {
   return (
@@ -9,11 +10,18 @@ const RadioButtons = ({ options, setOption, extraComponent, extraInfoComponent }
       {options &&
         options.map(({ id, name, isSelected }) => {
           return (
-            <View key={id} style={styles.container}>
-              <Text style={styles.radioText}>{name}</Text>
-              <TouchableOpacity style={styles.radioCircle} onPress={() => setOption(id)}>
-                {isSelected ? <View style={styles.selectedRb} /> : null}
+            <View key={id}>
+              <TouchableOpacity onPress={() => setOption(id)} style={styles.container}>
+                <Text style={styles.text}>{name}</Text>
+                <CheckBox
+                  checkedIcon="dot-circle-o"
+                  uncheckedIcon="circle-o"
+                  checked={isSelected}
+                  containerStyle={radioButtonStyles.container}
+                  onIconPress={() => setOption(id)}
+                />
               </TouchableOpacity>
+
               {isSelected ? extraInfoComponent : null}
               {isSelected ? extraComponent : null}
             </View>
@@ -31,3 +39,7 @@ RadioButtons.propTypes = {
 };
 
 export default RadioButtons;
+
+// <TouchableOpacity style={styles.radioCircle} onPress={() => setOption(id)}>
+// {isSelected ? <View style={styles.selectedRb} /> : null}
+// </TouchableOpacity>
