@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { array, string, bool } from "prop-types";
 import { View, Text, Switch } from "react-native";
 import SwitchList from "/components/common/Switch/SwitchList";
@@ -20,9 +20,24 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
   const {
     productDetailInfo: { isCustom },
     setCustom,
+    setIngredients,
   } = useContext(ProductDetailContext);
-  const { items, setItem } = useSwitchList(ingredients, isYourTaste ? false : true);
+  const [listIngredients, setIngredient, reset] = useSwitchList(ingredients, isYourTaste ? false : true);
   const title = isYourTaste ? "Selecciona los ingredientes que desees:" : getTitle(category);
+
+  const showIngredients = (value) => {
+    setCustom(value);
+    if (!value) {
+      reset();
+      setIngredients([]);
+    }
+  };
+
+  useEffect(() => {
+    if (!isCustom) return;
+
+    setIngredients(listIngredients);
+  }, [isCustom, listIngredients]);
 
   return (
     <View>
@@ -33,13 +48,13 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
             trackColor={{ false: "#767577", true: "#81b0ff" }}
             thumbColor={isCustom ? "#f5dd4b" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
-            onValueChange={() => setCustom(!isCustom)}
+            onValueChange={() => showIngredients(!isCustom)}
             value={isCustom}
           />
         ) : null}
       </View>
 
-      {isCustom || isYourTaste ? <SwitchList list={items} setItem={setItem} /> : null}
+      {isCustom || isYourTaste ? <SwitchList list={listIngredients} setItem={setIngredient} /> : null}
     </View>
   );
 };
