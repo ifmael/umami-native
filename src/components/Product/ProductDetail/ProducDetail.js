@@ -64,7 +64,7 @@ const ProductDetail = ({
           style={{ width: Dimensions.get("window").width - 32, height: 200 }}
           PlaceholderContent={<ActivityIndicator />}
         />
-        <Text h3>{description}</Text>
+        <Text h4>{description}</Text>
         <Divider />
         {/* <Text>{price}</Text> */}
         {isBurguerSandwich ? (
