@@ -7,14 +7,12 @@ import ProductDetailContext from "/context/ProductDetailContext";
 
 const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }) => {
   const { setDishConfiguration } = useContext(ProductDetailContext);
-  const { options, setOption } = useRadioButtons(data);
+  const { options, setOption, selected } = useRadioButtons(data);
 
   useEffect(() => {
     if (!options || !__typename) return;
 
-    const [optionSelected] = options?.filter(({ isSelected }) => isSelected);
-
-    if (optionSelected) {
+    if (selected) {
       const type =
         __typename === "ComponentBurgerMeats"
           ? "typeOfMeat"
@@ -24,10 +22,10 @@ const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }
           ? "typeOfBread"
           : null;
       if (type) {
-        setDishConfiguration(optionSelected, type);
+        setDishConfiguration(selected, type);
       }
     }
-  }, [options, __typename]);
+  }, [selected, __typename]);
 
   return (
     <View>

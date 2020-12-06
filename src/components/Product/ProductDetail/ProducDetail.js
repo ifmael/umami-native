@@ -27,7 +27,15 @@ const ProductDetail = ({
   isChildrenMenu,
   menu,
 }) => {
-  const { productDetailInfo, setCustom, setIngredients, setDishConfiguration, setIsMenu } = useProductDetail({
+  const {
+    productDetailInfo,
+    setCustom,
+    setIngredients,
+    setDishConfiguration,
+    setIsMenu,
+    setBeverage,
+    setSide,
+  } = useProductDetail({
     product: name,
     category,
   });
@@ -54,7 +62,7 @@ const ProductDetail = ({
   console.log(productDetailInfo);
   return (
     <ProductDetailContext.Provider
-      value={{ productDetailInfo, setCustom, setIngredients, setDishConfiguration, setIsMenu }}
+      value={{ productDetailInfo, setCustom, setIngredients, setDishConfiguration, setIsMenu, setBeverage, setSide }}
     >
       <View style={styles.container}>
         {/* <Text>{name}</Text> */}

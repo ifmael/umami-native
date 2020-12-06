@@ -30,6 +30,10 @@ const reducer = (state, action) => {
     }
     case "setMenu":
       return { ...state, isMenu: payload.isMenu };
+    case "setBeverage":
+      return { ...state, beverage: payload.beverage };
+    case "setSide":
+      return { ...state, side: payload.side };
     default:
       break;
   }
@@ -55,12 +59,22 @@ const useProductDetail = (options) => {
     dispatch({ type: "setMenu", payload: { isMenu } });
   };
 
+  const setBeverage = (beverage) => {
+    dispatch({ type: "setBeverage", payload: { beverage } });
+  };
+
+  const setSide = (side) => {
+    dispatch({ type: "setSide", payload: { side } });
+  };
+
   return {
     productDetailInfo,
     setCustom,
     setIngredients,
     setDishConfiguration,
     setIsMenu,
+    setBeverage,
+    setSide,
   };
 };
 

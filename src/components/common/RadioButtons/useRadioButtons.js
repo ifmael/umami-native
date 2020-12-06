@@ -22,7 +22,7 @@ const useRadioButtons = (data, initialState) => {
   }, []);
 
   // return an array
-  return { options, setOptions, setOption, selected };
+  return { options, setOptions, setOption, selected, setSelected };
 };
 
 export default useRadioButtons;

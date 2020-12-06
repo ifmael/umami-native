@@ -5,11 +5,14 @@ import { UmamiMenuInfo, UmamiMenuSide, UmamiMenuBeverage } from "./index";
 import ProductDetailContext from "/context/ProductDetailContext";
 import { destructComponentOptions } from "../utils/functions";
 import { sortAsc } from "/utils/functions";
+import styles from "./Menu.styles";
 
 const UmamiMenu = ({ options }) => {
   const {
     productDetailInfo: { isMenu },
     setIsMenu,
+    setBeverage,
+    setSide,
   } = useContext(ProductDetailContext);
   const allComponents = destructComponentOptions(options);
   const componentsJSX = allComponents.sort(sortAsc).map((componentProps) => {
@@ -24,16 +27,26 @@ const UmamiMenu = ({ options }) => {
     }
   });
 
+  const setShowMenu = (value) => {
+    setIsMenu(value);
+    if (!value) {
+      setBeverage(null);
+      setSide(null);
+    }
+  };
+
   return (
     <View>
-      <Text>¿Quíeres convertirlo en Menú?</Text>
-      <Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={isMenu ? "#f5dd4b" : "#f4f3f4"}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={() => setIsMenu(!isMenu)}
-        value={isMenu}
-      />
+      <View style={styles.container}>
+        <Text>¿Quíeres convertirlo en Menú?</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={isMenu ? "#f5dd4b" : "#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => setShowMenu(!isMenu)}
+          value={isMenu}
+        />
+      </View>
       {isMenu ? (
         <View>
           {componentsJSX?.map((component, index) => (
