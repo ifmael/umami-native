@@ -21,6 +21,12 @@ const GET_DATA = gql`
         id
         name
       }
+      images {
+        id
+        caption
+        name
+        url
+      }
       configuration {
         ... on ComponentBurgerMeats {
           id

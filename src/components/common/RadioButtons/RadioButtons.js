@@ -39,7 +39,3 @@ RadioButtons.propTypes = {
 };
 
 export default RadioButtons;
-
-// <TouchableOpacity style={styles.radioCircle} onPress={() => setOption(id)}>
-// {isSelected ? <View style={styles.selectedRb} /> : null}
-// </TouchableOpacity>

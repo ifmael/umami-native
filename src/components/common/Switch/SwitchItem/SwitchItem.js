@@ -1,16 +1,9 @@
 import React from "react";
 import { string, bool, func } from "prop-types";
-import { View, Text, Switch, StyleSheet } from "react-native";
+import { View, Text, Switch } from "react-native";
+import styles from "/styles/switch.styles";
 
 const SwitchItem = ({ id, name, isSelected, setState }) => {
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-  });
-
   return (
     <View style={styles.container}>
       <Text>{name}</Text>

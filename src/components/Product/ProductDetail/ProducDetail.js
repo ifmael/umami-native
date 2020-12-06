@@ -1,31 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import { string, number, bool, array } from "prop-types";
-import { View, Text, Switch } from "react-native";
+import { View, ActivityIndicator, Dimensions } from "react-native";
+import { Text, Divider, Image } from "react-native-elements";
 import UmamiDishConfiguration from "/components/Umami/Dish/Configurations";
 import UmamiIngredients from "/components/Umami/Ingredients";
 import UmamiDishIngredients from "/components/Umami/Dish/Ingredients";
 import UmamiMenu from "/components/Umami/Menu";
+import ProductDetailContext from "/context/ProductDetailContext";
+import { getImages } from "./utils";
+import { SERVER } from "/constant";
+import useProductDetail from "./useProductDetail";
+import styles from "./ProductDetail.styles";
 
 const ProductDetail = ({
   name,
   description,
-  price,
+  // price,
   isCustomizable,
   ingredients,
   category,
   isMenuable,
   isRadioButton,
   configuration,
+  images,
   isYourTaste,
   isChildrenMenu,
   menu,
 }) => {
-  const [isMenu, setIsMenu] = useState(false);
+  const { productDetailInfo, setCustom, setIngredients, setDishConfiguration, setIsMenu } = useProductDetail({
+    product: name,
+    category,
+  });
+  // const [isMenu, setIsMenu] = useState(false);
   const isDish = category === "hamburguesas" || category === "bocadillos" || category === "ensaladas";
   const isBurguerSandwich = category === "hamburguesas" || category === "bocadillos";
   const IngredientsListComponent = isDish ? (
     // Personalizar ensaladas , bocadillos y hamburguesas
-    <UmamiDishIngredients ingredients={ingredients} category={category} isYourTaste={isYourTaste} />
+    <>
+      <UmamiDishIngredients ingredients={ingredients} category={category} isYourTaste={isYourTaste} />
+      <Divider />
+    </>
   ) : (
     // Para las salsas y  patatas
     <UmamiIngredients
@@ -35,44 +49,36 @@ const ProductDetail = ({
     />
   );
 
+  const imagesSource = getImages(images);
+
+  console.log(productDetailInfo);
   return (
-    <View>
-      <Text>{name}</Text>
-      <Text>{description}</Text>
-      <Text>{price}</Text>
-      {isBurguerSandwich ? <UmamiDishConfiguration configurations={configuration} title={"hello"} /> : null}
+    <ProductDetailContext.Provider
+      value={{ productDetailInfo, setCustom, setIngredients, setDishConfiguration, setIsMenu }}
+    >
+      <View style={styles.container}>
+        {/* <Text>{name}</Text> */}
+        <Image
+          source={{ uri: `${SERVER}${imagesSource[0].url}` }}
+          // remove size padding
+          style={{ width: Dimensions.get("window").width - 32, height: 200 }}
+          PlaceholderContent={<ActivityIndicator />}
+        />
+        <Text h3>{description}</Text>
+        <Divider />
+        {/* <Text>{price}</Text> */}
+        {isBurguerSandwich ? (
+          <>
+            <UmamiDishConfiguration configurations={configuration} />
+            <Divider />
+          </>
+        ) : null}
 
-      {isCustomizable ? IngredientsListComponent : null}
+        {isCustomizable ? IngredientsListComponent : null}
 
-      {isChildrenMenu ? (
-        <UmamiMenu options={menu} />
-      ) : isMenuable ? (
-        <View>
-          <Text>¿Quíeres convertirlo en Menú?</Text>
-          <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isMenu ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={() => setIsMenu(!isMenu)}
-            value={isMenu}
-          />
-          {isMenu ? <UmamiMenu options={menu} /> : null}
-        </View>
-      ) : null}
-
-      {/* <CheckBox
-        center
-        title="¿Quíeres convertirlo en Menú?"
-        iconRight
-        iconType="material"
-        checkedIcon="clear"
-        uncheckedIcon="add"
-        uncheckedColor="green"
-        checkedColor="red"
-        checked={isMenu}
-        onPress={() => setIsMenu(!isMenu)}
-      /> */}
-    </View>
+        {isChildrenMenu ? <UmamiMenu options={menu} /> : isMenuable ? <UmamiMenu options={menu} /> : null}
+      </View>
+    </ProductDetailContext.Provider>
   );
 };
 
@@ -87,6 +93,7 @@ ProductDetail.propTypes = {
   isRadioButton: bool,
   configuration: array,
   isYourTaste: bool,
+  images: array,
   isChildrenMenu: bool,
   menu: array,
 };

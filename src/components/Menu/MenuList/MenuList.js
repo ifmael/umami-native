@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FlatList } from "react-native";
-import { GlobalContext } from "/Context/GlobalContext";
+import { GlobalContext } from "/context/GlobalContext";
 import MenuItem from "../MenuItem";
 
 const MenuList = () => {

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { string } from "prop-types";
 import { FlatList } from "react-native";
 import ProductItem from "../ProductItem";
-import { GlobalContext } from "/Context/GlobalContext";
+import { GlobalContext } from "/context/GlobalContext";
 import { sortAsc } from "/utils/functions";
 
 const ProductList = ({ category }) => {
