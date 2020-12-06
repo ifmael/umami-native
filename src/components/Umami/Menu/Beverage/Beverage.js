@@ -15,7 +15,7 @@ const UmamiMenuBeverage = ({ beverages, isRadioButton, name }) => {
     if (!selected) return;
 
     setBeverage(selected);
-  }, [selected]);
+  }, [selected, setBeverage]);
 
   const ExtraPriceComponent =
     selected && selected.extraPrice ? (

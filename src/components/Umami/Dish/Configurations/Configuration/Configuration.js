@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { array, string, bool } from "prop-types";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { Text } from "react-native-elements";
 import RadioButtons from "/components/common/RadioButtons";
 import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
 import ProductDetailContext from "/context/ProductDetailContext";
@@ -25,11 +26,11 @@ const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }
         setDishConfiguration(selected, type);
       }
     }
-  }, [selected, __typename]);
+  }, [selected, options, setDishConfiguration, __typename]);
 
   return (
-    <View>
-      <Text> {description}</Text>
+    <View style={{ marginBottom: 5 }}>
+      <Text h4> {description}</Text>
       {isRadioButton ? <RadioButtons options={options} setOption={setOption} /> : null}
     </View>
   );

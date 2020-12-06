@@ -1,12 +1,12 @@
 import React from "react";
-import { array, func, any } from "prop-types";
+import { array, func, any, bool } from "prop-types";
 import { View, Text, TouchableOpacity } from "react-native";
 import { CheckBox } from "react-native-elements";
 import styles, { radioButtonStyles } from "./RadioButtons.styles";
 
-const RadioButtons = ({ options, setOption, extraComponent, extraInfoComponent }) => {
+const RadioButtons = ({ options, setOption, extraComponent, extraInfoComponent, horizontal = false }) => {
   return (
-    <View>
+    <View style={horizontal ? { flexDirection: "row", justifyContent: "space-around" } : null}>
       {options &&
         options.map(({ id, name, isSelected }) => {
           return (
@@ -36,6 +36,7 @@ RadioButtons.propTypes = {
   setOption: func,
   extraComponent: any,
   extraInfoComponent: any,
+  horizontal: bool,
 };
 
 export default RadioButtons;

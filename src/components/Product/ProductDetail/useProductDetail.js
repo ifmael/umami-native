@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useCallback } from "react";
 
 const init = (options) => {
   return { ...initValue, ...options };
@@ -42,30 +42,30 @@ const reducer = (state, action) => {
 const useProductDetail = (options) => {
   const [productDetailInfo, dispatch] = useReducer(reducer, options, init);
 
-  const setCustom = (value) => {
+  const setCustom = useCallback((value) => {
     dispatch({ type: "setCustom", payload: { isCustom: value } });
-  };
+  }, []);
 
-  const setIngredients = (listOfIngredients) => {
+  const setIngredients = useCallback((listOfIngredients) => {
     dispatch({ type: "setListIngredients", payload: { ingredients: listOfIngredients } });
-  };
+  }, []);
 
   // eslint-disable-next-line no-unused-vars
-  const setDishConfiguration = ({ isSelected, ...rest }, type) => {
+  const setDishConfiguration = useCallback(({ isSelected, ...rest }, type) => {
     dispatch({ type: "setDishConfiguration", payload: { [type]: rest } });
-  };
+  }, []);
 
-  const setIsMenu = (isMenu) => {
+  const setIsMenu = useCallback((isMenu) => {
     dispatch({ type: "setMenu", payload: { isMenu } });
-  };
+  }, []);
 
-  const setBeverage = (beverage) => {
+  const setBeverage = useCallback((beverage) => {
     dispatch({ type: "setBeverage", payload: { beverage } });
-  };
+  }, []);
 
-  const setSide = (side) => {
+  const setSide = useCallback((side) => {
     dispatch({ type: "setSide", payload: { side } });
-  };
+  }, []);
 
   return {
     productDetailInfo,

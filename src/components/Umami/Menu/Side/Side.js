@@ -36,7 +36,7 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
       const { options, ...rest } = selectedV1;
       options.length === 0 ? setSide(rest) : setSide(null);
     }
-  }, [selectedV1, potatoSelected]);
+  }, [selectedV1, potatoSelected, setSide]);
 
   const ExtraPriceComponent =
     selectedV1 && selectedV1.extraPrice ? (
@@ -47,7 +47,7 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
 
   const ExtraRadioButtons =
     selectedV1 && selectedV1?.isRadioButton ? (
-      <RadioButtons options={potatoesOptions} setOption={setPotatoOption} />
+      <RadioButtons options={potatoesOptions} setOption={setPotatoOption} horizontal />
     ) : null;
 
   return (

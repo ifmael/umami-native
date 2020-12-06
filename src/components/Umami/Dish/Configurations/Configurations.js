@@ -1,17 +1,16 @@
 import React from "react";
-import { array, string } from "prop-types";
-import { View, Text, FlatList } from "react-native";
+import { array } from "prop-types";
+import { View, FlatList } from "react-native";
 import UmamiDishConfiguration from "./Configuration";
 import { sortAsc } from "/utils/functions";
 import { destructComponentOptions } from "../../utils/functions";
 
-const UmamiDishConfigurations = ({ configurations, title }) => {
+const UmamiDishConfigurations = ({ configurations }) => {
   const allComponents = destructComponentOptions(configurations);
   const sortedConfigurations = allComponents.sort(sortAsc);
 
   return (
     <View>
-      <Text>{title}</Text>
       <FlatList
         data={sortedConfigurations}
         renderItem={({ item }) => <UmamiDishConfiguration {...item} />}
@@ -23,6 +22,5 @@ const UmamiDishConfigurations = ({ configurations, title }) => {
 
 UmamiDishConfigurations.propTypes = {
   configurations: array,
-  title: string,
 };
 export default UmamiDishConfigurations;

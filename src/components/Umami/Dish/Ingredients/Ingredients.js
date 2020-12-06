@@ -37,7 +37,7 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
     if (!isCustom) return;
 
     setIngredients(listIngredients);
-  }, [isCustom, listIngredients]);
+  }, [isCustom, listIngredients, setIngredients]);
 
   return (
     <View>

@@ -10,7 +10,7 @@ import ProductDetailContext from "/context/ProductDetailContext";
 import { getImages } from "./utils";
 import { SERVER } from "/constant";
 import useProductDetail from "./useProductDetail";
-import styles from "./ProductDetail.styles";
+import styles, { headerStyles } from "./ProductDetail.styles";
 
 const ProductDetail = ({
   name,
@@ -58,21 +58,26 @@ const ProductDetail = ({
   );
 
   const imagesSource = getImages(images);
-
   console.log(productDetailInfo);
+
   return (
     <ProductDetailContext.Provider
       value={{ productDetailInfo, setCustom, setIngredients, setDishConfiguration, setIsMenu, setBeverage, setSide }}
     >
       <View style={styles.container}>
-        {/* <Text>{name}</Text> */}
-        <Image
-          source={{ uri: `${SERVER}${imagesSource[0].url}` }}
-          // remove size padding
-          style={{ width: Dimensions.get("window").width - 32, height: 200 }}
-          PlaceholderContent={<ActivityIndicator />}
-        />
-        <Text h4>{description}</Text>
+        <View style={styles.header}>
+          {/* <Text>{name}</Text> */}
+          <Image
+            source={{ uri: `${SERVER}${imagesSource[0].url}` }}
+            // remove size padding
+            style={{ width: Dimensions.get("window").width - 32, height: 200 }}
+            PlaceholderContent={<ActivityIndicator />}
+          />
+          <Text h4 style={headerStyles.text}>
+            {description}
+          </Text>
+        </View>
+
         <Divider />
         {/* <Text>{price}</Text> */}
         {isBurguerSandwich ? (
