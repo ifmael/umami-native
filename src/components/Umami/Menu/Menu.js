@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 import { array } from "prop-types";
-import { View, Text, Switch } from "react-native";
-import { UmamiMenuInfo, UmamiMenuSide, UmamiMenuBeverage } from "./index";
+import { View, Switch } from "react-native";
+import UmamiMenuInfo from "./Info";
+import UmamiMenuSide from "./Side";
+import UmamiMenuBeverage from "./Beverage";
+import FontText from "/components/common/FontText";
 import ProductDetailContext from "/context/ProductDetailContext";
 import { destructComponentOptions } from "../utils/functions";
 import { sortAsc } from "/utils/functions";
@@ -38,7 +41,7 @@ const UmamiMenu = ({ options }) => {
   return (
     <View>
       <View style={styles.container}>
-        <Text>¿Quíeres convertirlo en Menú?</Text>
+        <FontText>¿Quíeres convertirlo en Menú?</FontText>
         <Switch
           trackColor={{ false: "#767577", true: "#81b0ff" }}
           thumbColor={isMenu ? "#f5dd4b" : "#f4f3f4"}

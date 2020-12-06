@@ -1,12 +1,13 @@
 import React from "react";
 import { string, number, bool, array } from "prop-types";
 import { View, ActivityIndicator, Dimensions } from "react-native";
-import { Text, Divider, Image } from "react-native-elements";
+import { Divider, Image } from "react-native-elements";
 import UmamiDishConfiguration from "/components/Umami/Dish/Configurations";
 import UmamiIngredients from "/components/Umami/Ingredients";
 import UmamiDishIngredients from "/components/Umami/Dish/Ingredients";
 import UmamiMenu from "/components/Umami/Menu";
 import ProductDetailContext from "/context/ProductDetailContext";
+import FontText from "/components/common/FontText";
 import { getImages } from "./utils";
 import { SERVER } from "/constant";
 import useProductDetail from "./useProductDetail";
@@ -66,20 +67,18 @@ const ProductDetail = ({
     >
       <View style={styles.container}>
         <View style={styles.header}>
-          {/* <Text>{name}</Text> */}
           <Image
             source={{ uri: `${SERVER}${imagesSource[0].url}` }}
             // remove size padding
             style={{ width: Dimensions.get("window").width - 32, height: 200 }}
             PlaceholderContent={<ActivityIndicator />}
           />
-          <Text h4 style={headerStyles.text}>
+          <FontText h4 style={headerStyles.text}>
             {description}
-          </Text>
+          </FontText>
         </View>
 
         <Divider />
-        {/* <Text>{price}</Text> */}
         {isBurguerSandwich ? (
           <>
             <UmamiDishConfiguration configurations={configuration} />

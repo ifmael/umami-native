@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import ContextProvider from "/context/GlobalContext";
 import { Home, Menu, Product, ProductDetail, ShoppingCart } from "/screens";
+import { SERVER } from "/constant";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
 
@@ -13,7 +14,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const client = new ApolloClient({
-  uri: "http://localhost:1337/graphql",
+  uri: `${SERVER}/graphql`,
   cache: new InMemoryCache(),
 });
 

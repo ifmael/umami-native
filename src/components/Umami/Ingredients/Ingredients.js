@@ -1,13 +1,14 @@
 import React from "react";
 import { array, string, bool } from "prop-types";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import IngredientsSwitch from "./IngredientsSwitch";
 import IngredientsRadio from "./IngredientsRadio";
+import FontText from "/components/common/FontText";
 
 const UmamiIngredients = ({ ingredients, title, isRadioButton }) => {
   return (
     <View>
-      <Text>{title}</Text>
+      <FontText>{title}</FontText>
       {isRadioButton ? <IngredientsRadio ingredients={ingredients} /> : <IngredientsSwitch ingredients={ingredients} />}
     </View>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { array } from "prop-types";
-import { View, FlatList } from "react-native";
+import { View } from "react-native";
 import UmamiDishConfiguration from "./Configuration";
 import { sortAsc } from "/utils/functions";
 import { destructComponentOptions } from "../../utils/functions";
@@ -11,11 +11,9 @@ const UmamiDishConfigurations = ({ configurations }) => {
 
   return (
     <View>
-      <FlatList
-        data={sortedConfigurations}
-        renderItem={({ item }) => <UmamiDishConfiguration {...item} />}
-        keyExtractor={(item) => item.id}
-      />
+      {sortedConfigurations?.map((item) => {
+        return <UmamiDishConfiguration key={item.id} {...item} />;
+      })}
     </View>
   );
 };

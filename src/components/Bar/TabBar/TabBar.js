@@ -1,6 +1,7 @@
 import React from "react";
 import { any } from "prop-types";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
+import FontText from "/components/common/FontText";
 import COLORS from "/styles/colors";
 
 const TabBar = ({ state, descriptors, navigation }) => {
@@ -53,7 +54,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
             onLongPress={onLongPress}
             style={{ flex: 1, borderColor: COLORS.red, borderWidth: 1 }}
           >
-            <Text style={{ color: isFocused ? "#673ab7" : "#222" }}>{label}</Text>
+            <FontText style={{ color: isFocused ? "#673ab7" : "#222" }}>{label}</FontText>
           </TouchableOpacity>
         );
       })}

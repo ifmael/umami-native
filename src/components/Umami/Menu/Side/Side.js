@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { array, bool, string } from "prop-types";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import RadioButtons from "/components/common/RadioButtons";
 import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
 import ProductDetailContext from "/context/ProductDetailContext";
 import extractProducts from "../utils/extractProducts";
+import FontText from "/components/common/FontText";
 
 const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
   const { setSide } = useContext(ProductDetailContext);
@@ -39,11 +40,7 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
   }, [selectedV1, potatoSelected, setSide]);
 
   const ExtraPriceComponent =
-    selectedV1 && selectedV1.extraPrice ? (
-      <View>
-        <Text>Precio extra del menú: {selectedV1.extraPrice}</Text>
-      </View>
-    ) : null;
+    selectedV1 && selectedV1.extraPrice ? <FontText>Precio extra del menú: {selectedV1.extraPrice}</FontText> : null;
 
   const ExtraRadioButtons =
     selectedV1 && selectedV1?.isRadioButton ? (
@@ -52,7 +49,7 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
 
   return (
     <View>
-      <Text>{name}</Text>
+      <FontText>{name}</FontText>
       {isRadioButton ? (
         <RadioButtons
           options={optionsV1}

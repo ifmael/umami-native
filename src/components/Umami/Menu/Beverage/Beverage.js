@@ -1,8 +1,9 @@
 import React, { useEffect, useContext } from "react";
 import { array, bool, string } from "prop-types";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import RadioButtons from "/components/common/RadioButtons";
 import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
+import FontText from "/components/common/FontText";
 import ProductDetailContext from "/context/ProductDetailContext";
 import extractProducts from "../utils/extractProducts";
 
@@ -20,13 +21,13 @@ const UmamiMenuBeverage = ({ beverages, isRadioButton, name }) => {
   const ExtraPriceComponent =
     selected && selected.extraPrice ? (
       <View>
-        <Text>Precio extra de la bebida {selected.extraPrice}</Text>
+        <FontText>Precio extra de la bebida {selected.extraPrice}</FontText>
       </View>
     ) : null;
 
   return (
     <View>
-      <Text>{name}</Text>
+      <FontText>{name}</FontText>
       {isRadioButton ? (
         <RadioButtons options={options} setOption={setOption} extraInfoComponent={ExtraPriceComponent} />
       ) : null}

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { array, string, bool } from "prop-types";
-import { View, Text, Switch } from "react-native";
+import { View, Switch } from "react-native";
 import SwitchList from "/components/common/Switch/SwitchList";
 import useSwitchList from "/components/common/Switch/SwitchList/useSwitchList";
 import ProductDetailContext from "/context/ProductDetailContext";
 import styles from "./Ingredients.styles";
+import FontText from "/components/common/FontText";
 
 const getTitle = (category) => {
   return category === "hamburguesas"
@@ -42,7 +43,7 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
   return (
     <View>
       <View style={styles.container}>
-        <Text>{title}</Text>
+        <FontText>{title}</FontText>
         {!isYourTaste ? (
           <Switch
             trackColor={{ false: "#767577", true: "#81b0ff" }}

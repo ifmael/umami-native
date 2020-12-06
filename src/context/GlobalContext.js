@@ -16,7 +16,7 @@ const ContextProvider = ({ children }) => {
   const { productsByCategory } = useProducts(data);
   const { categories } = useCategories(data);
   const [fontsLoaded] = useFonts({
-    "Montserrat-Regular": require("/assets/fonts/Montserrat-Regular.otf"),
+    Confortaa: require("/assets/fonts/Comfortaa.ttf"),
   });
   const { shoppingCart, setItemShoppingCart } = useShoppingCart();
 

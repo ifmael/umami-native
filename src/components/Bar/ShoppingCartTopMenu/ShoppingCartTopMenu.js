@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import FontText from "/components/common/FontText";
 // import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import { GlobalContext } from "/context/GlobalContext";
@@ -36,7 +37,7 @@ const ShoppingCartTopMenu = () => {
         <FontAwesome name="shopping-cart" size={25} color={"grey"} />
         {shoppingCart.length > 0 && (
           <View style={[styles.IconBadge]}>
-            <Text style={{ color: "#FFFFFF" }}>{shoppingCart.length}</Text>
+            <FontText style={{ color: "#FFFFFF" }}>{shoppingCart.length}</FontText>
           </View>
         )}
       </View>

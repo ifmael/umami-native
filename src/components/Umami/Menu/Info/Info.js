@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import FontText from "/components/common/FontText";
 
 const UmamiMenuInfo = () => {
   return (
     <View>
-      <Text> Menu: Info</Text>
+      <FontText> Menu: Info</FontText>
     </View>
   );
 };
