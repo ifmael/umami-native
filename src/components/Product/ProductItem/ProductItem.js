@@ -30,7 +30,7 @@ const ProductItem = (props) => {
             <FontText h4>{name}</FontText>
           </View>
         </ListItem.Title>
-        <ListItem.Subtitle>{description}</ListItem.Subtitle>
+        {description ? <ListItem.Subtitle>{description}</ListItem.Subtitle> : null}
       </ListItem.Content>
       <FontText h4>{price} €</FontText>
       <ListItem.Chevron

@@ -7,7 +7,7 @@ const ProductDetail = ({ route }) => {
   const { ...rest } = route.params;
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: "white" }}>
       <ProductInfo {...rest} />
     </ScrollView>
   );

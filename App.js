@@ -47,7 +47,10 @@ const App = () => {
     const { name } = route.params;
     return {
       title: name,
-      headerStyle: {
+      headerTitleStyle: {
+        textAlign: "center",
+      },
+      /* headerStyle: {
         backgroundColor: "#f4511e",
         borderWidth: 3,
         borderColor: "yellow",
@@ -55,6 +58,16 @@ const App = () => {
       headerTintColor: "#fff",
       headerTitleStyle: {
         fontWeight: "bold",
+        textAlign: "center",
+      }, */
+    };
+  };
+
+  const productDetailOptionsFn = ({ route }) => {
+    const { name } = route.params;
+    return {
+      title: name,
+      headerTitleStyle: {
         textAlign: "center",
       },
     };
@@ -74,7 +87,7 @@ const App = () => {
         options={{ headerTitle: "Nuestro menú", headerTitleAlign: "center" }}
       />
       <Stack.Screen name="Product" component={Product} options={productOptionsFn} />
-      <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="ProductDetail" component={ProductDetail} options={productDetailOptionsFn} />
     </Stack.Navigator>
   );
 

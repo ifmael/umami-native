@@ -3,8 +3,8 @@ import { object } from "prop-types";
 import ProductList from "/components/Product/ProductList";
 
 const Product = ({ route }) => {
-  const { slug } = route.params;
-  return <ProductList category={slug} />;
+  const { slug, name } = route.params;
+  return <ProductList category={slug} name={name} />;
 };
 
 Product.propTypes = {

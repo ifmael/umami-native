@@ -9,7 +9,7 @@ import styles, { stylesRNElements } from "./MenuItem.styles";
 const MenuItem = ({ /* id, */ name, /*  color, */ image, slug }) => {
   const navigation = useNavigation();
   const navigateToCategory = () => {
-    navigation.navigate("Product", { slug });
+    navigation.navigate("Product", { slug, name });
   };
 
   return (

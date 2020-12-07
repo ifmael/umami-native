@@ -58,7 +58,7 @@ const ProductDetail = ({
     />
   );
 
-  const imagesSource = getImages(images);
+  const [imagesSource] = getImages(images);
   console.log(productDetailInfo);
 
   return (
@@ -66,13 +66,31 @@ const ProductDetail = ({
       value={{ productDetailInfo, setCustom, setIngredients, setDishConfiguration, setIsMenu, setBeverage, setSide }}
     >
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Image
-            source={{ uri: `${SERVER}${imagesSource[0].url}` }}
-            // remove size padding
-            style={{ width: Dimensions.get("window").width - 32, height: 200 }}
-            PlaceholderContent={<ActivityIndicator />}
-          />
+        <View>
+          <View
+            style={{
+              borderRadius: 20,
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.5,
+              shadowRadius: 2,
+              elevation: 5,
+            }}
+          >
+            {imagesSource ? (
+              <Image
+                source={{ uri: `${SERVER}${imagesSource.url}` }}
+                style={{
+                  borderRadius: 20,
+                  width: Dimensions.get("window").width - 32,
+                  height: 200,
+                  resizeMode: "cover",
+                }}
+                PlaceholderContent={<ActivityIndicator />}
+              />
+            ) : null}
+          </View>
+
           <FontText h4 style={headerStyles.text}>
             {description}
           </FontText>

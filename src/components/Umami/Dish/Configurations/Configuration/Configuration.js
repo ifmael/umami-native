@@ -30,7 +30,9 @@ const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }
 
   return (
     <View style={{ marginBottom: 5 }}>
-      <FontText h4> {description}</FontText>
+      <FontText h4 style={{ textAlign: "center" }}>
+        {description}
+      </FontText>
       {isRadioButton ? <RadioButtons options={options} setOption={setOption} /> : null}
     </View>
   );
