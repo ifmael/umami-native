@@ -40,7 +40,9 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
   }, [selectedV1, potatoSelected, setSide]);
 
   const ExtraPriceComponent =
-    selectedV1 && selectedV1.extraPrice ? <FontText>Precio extra del menú: {selectedV1.extraPrice}</FontText> : null;
+    selectedV1 && selectedV1.extraPrice ? (
+      <FontText style={{ marginLeft: 10 }}>Precio extra del menú: {selectedV1.extraPrice}€</FontText>
+    ) : null;
 
   const ExtraRadioButtons =
     selectedV1 && selectedV1?.isRadioButton ? (
@@ -49,7 +51,7 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
 
   return (
     <View>
-      <FontText>{name}</FontText>
+      <FontText style={{ textAlign: "center", fontSize: 18 }}>{name}</FontText>
       {isRadioButton ? (
         <RadioButtons
           options={optionsV1}

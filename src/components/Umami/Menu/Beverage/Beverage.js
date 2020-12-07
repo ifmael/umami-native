@@ -27,7 +27,7 @@ const UmamiMenuBeverage = ({ beverages, isRadioButton, name }) => {
 
   return (
     <View>
-      <FontText>{name}</FontText>
+      <FontText style={{ textAlign: "center", fontSize: 18 }}>{name}</FontText>
       {isRadioButton ? (
         <RadioButtons options={options} setOption={setOption} extraInfoComponent={ExtraPriceComponent} />
       ) : null}

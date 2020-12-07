@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingVertical: 5,
   },
 });
 

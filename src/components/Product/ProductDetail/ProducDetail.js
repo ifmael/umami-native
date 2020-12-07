@@ -66,7 +66,7 @@ const ProductDetail = ({
       value={{ productDetailInfo, setCustom, setIngredients, setDishConfiguration, setIsMenu, setBeverage, setSide }}
     >
       <View style={styles.container}>
-        <View>
+        <View style={{ marginBottom: 20 }}>
           <View
             style={{
               borderRadius: 20,
@@ -75,6 +75,7 @@ const ProductDetail = ({
               shadowOpacity: 0.5,
               shadowRadius: 2,
               elevation: 5,
+              marginBottom: 10,
             }}
           >
             {imagesSource ? (
@@ -97,6 +98,7 @@ const ProductDetail = ({
         </View>
 
         <Divider />
+
         {isBurguerSandwich ? (
           <>
             <UmamiDishConfiguration configurations={configuration} />
