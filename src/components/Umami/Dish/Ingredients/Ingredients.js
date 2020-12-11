@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { array, string, bool } from "prop-types";
-import { View } from "react-native";
-import { Switch } from "react-native-switch";
+import { View, Switch } from "react-native";
 import SwitchList from "/components/common/Switch/SwitchList";
 import useSwitchList from "/components/common/Switch/SwitchList/useSwitchList";
 import ProductDetailContext from "/context/ProductDetailContext";
