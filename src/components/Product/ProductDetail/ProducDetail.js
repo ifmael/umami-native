@@ -6,15 +6,12 @@ import UmamiDishConfiguration from "/components/Umami/Dish/Configurations";
 import UmamiIngredients from "/components/Umami/Ingredients";
 import UmamiDishIngredients from "/components/Umami/Dish/Ingredients";
 import UmamiMenu from "/components/Umami/Menu";
-import ProductDetailContext from "/context/ProductDetailContext";
 import FontText from "/components/common/FontText";
 import { getImages } from "./utils";
 import { SERVER } from "/constant";
-import useProductDetail from "./useProductDetail";
 import styles, { headerStyles } from "./ProductDetail.styles";
 
 const ProductDetail = ({
-  name,
   description,
   // price,
   isCustomizable,
@@ -28,18 +25,6 @@ const ProductDetail = ({
   isChildrenMenu,
   menu,
 }) => {
-  const {
-    productDetailInfo,
-    setCustom,
-    setIngredients,
-    setDishConfiguration,
-    setIsMenu,
-    setBeverage,
-    setSide,
-  } = useProductDetail({
-    product: name,
-    category,
-  });
   // const [isMenu, setIsMenu] = useState(false);
   const isDish = category === "hamburguesas" || category === "bocadillos" || category === "ensaladas";
   const isBurguerSandwich = category === "hamburguesas" || category === "bocadillos";
@@ -59,58 +44,53 @@ const ProductDetail = ({
   );
 
   const [imagesSource] = getImages(images);
-  console.log(productDetailInfo);
 
   return (
-    <ProductDetailContext.Provider
-      value={{ productDetailInfo, setCustom, setIngredients, setDishConfiguration, setIsMenu, setBeverage, setSide }}
-    >
-      <View style={styles.container}>
-        <View style={{ marginBottom: 20 }}>
-          <View
-            style={{
-              borderRadius: 20,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.5,
-              shadowRadius: 2,
-              elevation: 5,
-              marginBottom: 10,
-            }}
-          >
-            {imagesSource ? (
-              <Image
-                source={{ uri: `${SERVER}${imagesSource.url}` }}
-                style={{
-                  borderRadius: 20,
-                  width: Dimensions.get("window").width - 32,
-                  height: 200,
-                  resizeMode: "cover",
-                }}
-                PlaceholderContent={<ActivityIndicator />}
-              />
-            ) : null}
-          </View>
-
-          <FontText h4 style={headerStyles.text}>
-            {description}
-          </FontText>
+    <View style={styles.container}>
+      <View style={{ marginBottom: 20 }}>
+        <View
+          style={{
+            borderRadius: 20,
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.5,
+            shadowRadius: 2,
+            elevation: 5,
+            marginBottom: 10,
+          }}
+        >
+          {imagesSource ? (
+            <Image
+              source={{ uri: `${SERVER}${imagesSource.url}` }}
+              style={{
+                borderRadius: 20,
+                width: Dimensions.get("window").width - 32,
+                height: 200,
+                resizeMode: "cover",
+              }}
+              PlaceholderContent={<ActivityIndicator />}
+            />
+          ) : null}
         </View>
 
-        <Divider />
-
-        {isBurguerSandwich ? (
-          <>
-            <UmamiDishConfiguration configurations={configuration} />
-            <Divider />
-          </>
-        ) : null}
-
-        {isCustomizable ? IngredientsListComponent : null}
-
-        {isChildrenMenu ? <UmamiMenu options={menu} /> : isMenuable ? <UmamiMenu options={menu} /> : null}
+        <FontText h4 style={headerStyles.text}>
+          {description}
+        </FontText>
       </View>
-    </ProductDetailContext.Provider>
+
+      <Divider />
+
+      {isBurguerSandwich ? (
+        <>
+          <UmamiDishConfiguration configurations={configuration} />
+          <Divider />
+        </>
+      ) : null}
+
+      {isCustomizable ? IngredientsListComponent : null}
+
+      {isChildrenMenu ? <UmamiMenu options={menu} /> : isMenuable ? <UmamiMenu options={menu} /> : null}
+    </View>
   );
 };
 

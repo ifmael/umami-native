@@ -18,6 +18,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const headerOptions = {
+  headerShown: true,
+  headerTitleStyle: {
+    textAlign: "center",
+  },
+  headerRight: ShoppingCartTopMenu,
+};
+
 const App = () => {
   const screenOptionsTabBar = ({ route }) => ({
     tabBarIcon: ({ /* focused, */ color, size }) => {
@@ -43,63 +51,44 @@ const App = () => {
     },
   });
 
-  const productOptionsFn = ({ route }) => {
+  const productHeaderOption = ({ route }) => {
     const { name } = route.params;
-    return {
-      title: name,
-      headerTitleStyle: {
-        textAlign: "center",
-      },
-      /* headerStyle: {
-        backgroundColor: "#f4511e",
-        borderWidth: 3,
-        borderColor: "yellow",
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        fontWeight: "bold",
-        textAlign: "center",
-      }, */
-    };
+
+    return { ...headerOptions, title: name };
   };
 
-  const productDetailOptionsFn = ({ route }) => {
-    const { name } = route.params;
-    return {
-      title: name,
-      headerTitleStyle: {
-        textAlign: "center",
-      },
-    };
+  const MenuStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="Menu" component={Menu} options={{ ...headerOptions, title: "Nuestro menú" }} />
+        <Stack.Screen name="Product" component={Product} options={productHeaderOption} />
+      </Stack.Navigator>
+    );
   };
 
-  const MenuStack = () => (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: true,
-        // eslint-disable-next-line react/display-name
-        headerRight: () => <ShoppingCartTopMenu />,
-      }}
-    >
-      <Stack.Screen
-        name="Menu"
-        component={Menu}
-        options={{ headerTitle: "Nuestro menú", headerTitleAlign: "center" }}
-      />
-      <Stack.Screen name="Product" component={Product} options={productOptionsFn} />
-      <Stack.Screen name="ProductDetail" component={ProductDetail} options={productDetailOptionsFn} />
-    </Stack.Navigator>
-  );
+  const MenuTabs = () => {
+    return (
+      <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} lazy="true">
+        <Tab.Screen name="Home" component={Home} options={{ title: "Umami" }} />
+        <Tab.Screen name="Menu" component={MenuStack} />
+        <Tab.Screen name="ShoppingCart" component={ShoppingCart} options={{ tabBarBadge: 3, title: "Pedido" }} />
+      </Tab.Navigator>
+    );
+  };
 
   return (
     <ApolloProvider client={client}>
       <ContextProvider>
         <NavigationContainer>
-          <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} lazy="true">
-            <Tab.Screen name="Home" component={Home} options={{ title: "Umami" }} />
-            <Tab.Screen name="Menu" component={MenuStack} />
-            <Tab.Screen name="ShoppingCart" component={ShoppingCart} options={{ tabBarBadge: 3, title: "Pedido" }} />
-          </Tab.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="homeTab" component={MenuTabs} />
+
+            <Stack.Screen name="ProductDetail" component={ProductDetail} options={productHeaderOption} />
+          </Stack.Navigator>
         </NavigationContainer>
       </ContextProvider>
     </ApolloProvider>
