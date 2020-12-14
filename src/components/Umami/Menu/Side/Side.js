@@ -24,10 +24,12 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
 
   const setInnerSide = (idSelected) => {
     const { options } = optionsV1.find(({ id }) => idSelected === id);
+
     setOptionV1(idSelected);
+
     if (options.length > 0) setOptions(options);
     else {
-      removeError("ComponentMenuSide");
+      if (isError) removeError("ComponentMenuSide");
       setSelected(null);
     }
   };
@@ -37,13 +39,14 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
 
     if (potatoSelected) {
       const { name } = potatoSelected;
-      removeError("ComponentMenuSide");
+
+      if (isError) removeError("ComponentMenuSide");
       setSide({ ...potatoSelected, name: `Patatas: ${name}` });
     } else {
       const { options, ...rest } = selectedV1;
       options.length === 0 ? setSide(rest) : setSide(null);
     }
-  }, [selectedV1, potatoSelected, setSide, removeError]);
+  }, [selectedV1, potatoSelected, setSide, removeError, isError]);
 
   const ExtraPriceComponent =
     selectedV1 && selectedV1.extraPrice ? (

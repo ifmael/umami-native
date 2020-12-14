@@ -39,7 +39,7 @@ const reducer = (state, action) => {
       return { ...state, errors: payload.errors };
     case "removeError": {
       const { errors } = state;
-      const newErrors = errors.filter((errors) => errors.type !== payload.type);
+      const newErrors = errors?.filter((errors) => errors.type !== payload.type);
       return { ...state, errors: newErrors };
     }
     default:
