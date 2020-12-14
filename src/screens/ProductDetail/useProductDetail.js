@@ -15,6 +15,7 @@ const initValue = {
   isMenu: false,
   beverage: null,
   side: null,
+  errors: null,
 };
 
 const reducer = (state, action) => {
@@ -34,6 +35,13 @@ const reducer = (state, action) => {
       return { ...state, beverage: payload.beverage };
     case "setSide":
       return { ...state, side: payload.side };
+    case "setErrors":
+      return { ...state, errors: payload.errors };
+    case "removeError": {
+      const { errors } = state;
+      const newErrors = errors.filter((errors) => errors.type !== payload.type);
+      return { ...state, errors: newErrors };
+    }
     default:
       break;
   }
@@ -67,6 +75,14 @@ const useProductDetail = (options) => {
     dispatch({ type: "setSide", payload: { side } });
   }, []);
 
+  const setErrors = useCallback((errors) => {
+    dispatch({ type: "setErrors", payload: { errors } });
+  }, []);
+
+  const removeError = useCallback((type) => {
+    dispatch({ type: "removeError", payload: { type } });
+  }, []);
+
   return {
     productDetailInfo,
     setCustom,
@@ -75,6 +91,8 @@ const useProductDetail = (options) => {
     setIsMenu,
     setBeverage,
     setSide,
+    setErrors,
+    removeError,
   };
 };
 
