@@ -21,7 +21,7 @@ const ProductDetailAdd = ({ goTo }) => {
   };
 
   const showModalFn = () => {
-    const { category, beverage, side, isMenu, typeOfMeat, meatPoint } = productDetailInfo;
+    const { category, beverage, side, isMenu, typeOfMeat, meatPoint, typeOfBread } = productDetailInfo;
     let isError = false;
     let messageErrors = [];
 
@@ -38,13 +38,18 @@ const ProductDetailAdd = ({ goTo }) => {
           type: "ComponentBurgerPointCooking",
         });
       }
-      if (isMenu && (!beverage || !side)) {
+    } else if (category === "bocadillos") {
+      if (!typeOfBread) {
         isError = true;
-        !side &&
-          messageErrors.push({ text: "· Por favor elige un complemento", id: "side", type: "ComponentMenuSide" });
-        !beverage &&
-          messageErrors.push({ text: "· Por favor elige una bebida", id: "beverage", type: "ComponentMenuBeverage" });
+        messageErrors.push({ text: "· Por favor elige el pan", id: "typeOfBread", type: "ComponentSandwichBreads" });
       }
+    }
+
+    if (isMenu && (!beverage || !side)) {
+      isError = true;
+      !side && messageErrors.push({ text: "· Por favor elige un complemento", id: "side", type: "ComponentMenuSide" });
+      !beverage &&
+        messageErrors.push({ text: "· Por favor elige una bebida", id: "beverage", type: "ComponentMenuBeverage" });
     }
 
     if (isError) {
