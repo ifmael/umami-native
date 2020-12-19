@@ -9,13 +9,14 @@ import COLORS from "/styles/colors";
 import styles from "./ProductItem.styles";
 
 const ProductItem = (props) => {
-  const { name, description, price, isCustomizable } = props;
+  const { name, description, price, isCustomizable, isMenuable } = props;
   const navigation = useNavigation();
   const { setItemShoppingCart } = useContext(GlobalContext);
+  const editable = isCustomizable || isMenuable;
 
   const add = () => {
-    //Logic to know if a customizable product
-    if (isCustomizable) {
+    //Logic to know if a customizable product or menuable
+    if (editable) {
       navigation.navigate("ProductDetail", props);
     } else {
       setItemShoppingCart({ title: "test" });
@@ -35,7 +36,7 @@ const ProductItem = (props) => {
       <FontText h4>{price} €</FontText>
       <ListItem.Chevron
         type="font-awesome-5"
-        name={isCustomizable ? "chevron-right" : "plus"}
+        name={editable ? "chevron-right" : "plus"}
         size={24}
         color={COLORS.defaultButton}
       />
@@ -48,6 +49,7 @@ ProductItem.propTypes = {
   description: string,
   price: number,
   isCustomizable: bool,
+  isMenuable: bool,
 };
 
 export default ProductItem;

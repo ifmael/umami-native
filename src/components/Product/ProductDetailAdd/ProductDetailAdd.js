@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback } from "react";
-import { object } from "prop-types";
+import { object, bool } from "prop-types";
 import { View } from "react-native";
 import { BottomSheet, Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
@@ -8,7 +8,7 @@ import { GlobalContext } from "/context/GlobalContext";
 import ProductDetailContext from "/context/ProductDetailContext";
 import FontText from "/components/common/FontText";
 
-const ProductDetailAdd = ({ goTo }) => {
+const ProductDetailAdd = ({ goTo, isChildrenMenu }) => {
   const [localErrors, setLocalErrors] = useState(null);
   const { setItemShoppingCart } = useContext(GlobalContext);
   const { productDetailInfo, setErrors } = useContext(ProductDetailContext);
@@ -30,7 +30,7 @@ const ProductDetailAdd = ({ goTo }) => {
         isError = true;
         messageErrors.push({ text: "· Por favor elige la carne", id: "typeMeat", type: "ComponentBurgerMeats" });
       }
-      if (!meatPoint) {
+      if (!meatPoint && !isChildrenMenu) {
         isError = true;
         messageErrors.push({
           text: "· Por favor escoge el punto de la carne",
@@ -56,10 +56,14 @@ const ProductDetailAdd = ({ goTo }) => {
     }
 
     if (isMenu && (!beverage || !side)) {
-      isError = true;
-      !side && messageErrors.push({ text: "· Por favor elige un complemento", id: "side", type: "ComponentMenuSide" });
-      !beverage &&
+      if (!side && !isChildrenMenu) {
+        isError = true;
+        messageErrors.push({ text: "· Por favor elige un complemento", id: "side", type: "ComponentMenuSide" });
+      }
+      if (!beverage) {
+        isError = true;
         messageErrors.push({ text: "· Por favor elige una bebida", id: "beverage", type: "ComponentMenuBeverage" });
+      }
     }
 
     if (isError) {
@@ -119,6 +123,7 @@ const ProductDetailAdd = ({ goTo }) => {
 };
 
 ProductDetailAdd.propTypes = {
+  isChildrenMenu: bool,
   goTo: object,
 };
 

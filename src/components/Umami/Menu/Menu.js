@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { array } from "prop-types";
+import React, { useEffect, useContext } from "react";
+import { bool, array } from "prop-types";
 import { View, Switch } from "react-native";
 // import UmamiMenuInfo from "./Info";
 import UmamiMenuSide from "./Side";
@@ -10,7 +10,7 @@ import { destructComponentOptions } from "../utils/functions";
 import { sortAsc } from "/utils/functions";
 import styles from "./Menu.styles";
 
-const UmamiMenu = ({ options }) => {
+const UmamiMenu = ({ isChildrenMenu, options }) => {
   const {
     productDetailInfo: { isMenu },
     setIsMenu,
@@ -41,18 +41,25 @@ const UmamiMenu = ({ options }) => {
     }
   };
 
+  useEffect(() => {
+    if (isChildrenMenu) setIsMenu(true);
+  }, [isChildrenMenu, setIsMenu]);
+
   return (
     <View>
-      <View style={styles.container}>
-        <FontText style={{ fontSize: 18, fontWeight: "bold" }}>Hazlo menú por sólo {price}€</FontText>
-        <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isMenu ? "#f5dd4b" : "#f4f3f4"}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => setShowMenu(!isMenu)}
-          value={isMenu}
-        />
-      </View>
+      {!isChildrenMenu ? (
+        <View style={styles.container}>
+          <FontText style={{ fontSize: 18, fontWeight: "bold" }}>Hazlo menú por sólo {price}€</FontText>
+          <Switch
+            trackColor={{ false: "#767577", true: "#81b0ff" }}
+            thumbColor={isMenu ? "#f5dd4b" : "#f4f3f4"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={() => setShowMenu(!isMenu)}
+            value={isMenu}
+          />
+        </View>
+      ) : null}
+
       {isMenu ? (
         <View>
           {componentsJSX?.map((component, index) => (
@@ -67,6 +74,7 @@ const UmamiMenu = ({ options }) => {
   );
 };
 UmamiMenu.propTypes = {
+  isChildrenMenu: bool,
   options: array,
 };
 

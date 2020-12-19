@@ -43,7 +43,7 @@ const ProductDetail = ({ route }) => {
       <ScrollView style={{ backgroundColor: "white" }} ref={scrollViewElement}>
         <ProductInfo {...rest} />
       </ScrollView>
-      <ProductDetailAdd goTo={scrollViewElement} />
+      <ProductDetailAdd goTo={scrollViewElement} isChildrenMenu={rest.isChildrenMenu} />
     </ProductDetailContext.Provider>
   );
 };
