@@ -2,10 +2,11 @@ import { useState } from "react";
 
 const initialValue = (data, defaultValue) => {
   return data?.map(
-    ({ id, name }) =>
+    ({ id, name, price }) =>
       ({
         id,
         name,
+        price,
         isSelected: defaultValue,
       } || [])
   );

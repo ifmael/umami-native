@@ -40,7 +40,7 @@ const reducer = (state, action) => {
     case "removeError": {
       const { errors } = state;
       const newErrors = errors?.filter((errors) => errors.type !== payload.type);
-      return { ...state, errors: newErrors };
+      return { ...state, errors: newErrors.length > 0 ? newErrors : null };
     }
     default:
       break;

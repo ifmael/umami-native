@@ -43,6 +43,16 @@ const ProductDetailAdd = ({ goTo }) => {
         isError = true;
         messageErrors.push({ text: "· Por favor elige el pan", id: "typeOfBread", type: "ComponentSandwichBreads" });
       }
+    } else if (category === "complementos") {
+      if (!side) {
+        isError = true;
+        messageErrors.push({
+          text: "· Seleccion al menos una opción",
+          id: "side",
+          type: "errorSide",
+        });
+      }
+      console.log("hello");
     }
 
     if (isMenu && (!beverage || !side)) {
