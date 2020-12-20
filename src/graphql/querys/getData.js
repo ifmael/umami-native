@@ -20,6 +20,7 @@ const GET_DATA = gql`
       ingredients {
         id
         name
+        price
       }
       images {
         id

@@ -9,6 +9,7 @@ import useProductDetail from "./useProductDetail";
 
 const ProductDetail = ({ route }) => {
   const { ...rest } = route.params;
+  const { isChildrenMenu, isYourTaste, price, menu } = rest;
   const scrollViewElement = useRef(null);
   const {
     productDetailInfo,
@@ -25,7 +26,10 @@ const ProductDetail = ({ route }) => {
     category: rest.category,
   });
 
-  console.log(productDetailInfo);
+  const menuInfo = menu?.find(({ __typename }) => {
+    return __typename === "ComponentMenuInfo";
+  });
+
   return (
     <ProductDetailContext.Provider
       value={{
@@ -43,7 +47,13 @@ const ProductDetail = ({ route }) => {
       <ScrollView style={{ backgroundColor: "white" }} ref={scrollViewElement}>
         <ProductInfo {...rest} />
       </ScrollView>
-      <ProductDetailAdd goTo={scrollViewElement} isChildrenMenu={rest.isChildrenMenu} />
+      <ProductDetailAdd
+        goTo={scrollViewElement}
+        isChildrenMenu={isChildrenMenu}
+        isYourTaste={isYourTaste}
+        price={price}
+        priceMenu={menuInfo?.price}
+      />
     </ProductDetailContext.Provider>
   );
 };

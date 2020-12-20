@@ -20,6 +20,7 @@ const getTitle = (category) => {
 const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
   const {
     productDetailInfo: { isCustom },
+    productDetailInfo,
     setCustom,
     setIngredients,
   } = useContext(ProductDetailContext);
@@ -35,10 +36,16 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
   };
 
   useEffect(() => {
+    if (isYourTaste) setCustom(true);
+  }, [setCustom, isYourTaste]);
+
+  useEffect(() => {
     if (!isCustom) return;
 
     setIngredients(listIngredients);
   }, [isCustom, listIngredients, setIngredients]);
+
+  console.log(productDetailInfo);
 
   return (
     <View>

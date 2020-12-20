@@ -50,7 +50,7 @@ const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
 
   const ExtraPriceComponent =
     selectedV1 && selectedV1.extraPrice ? (
-      <FontText style={{ marginLeft: 10 }}>Precio extra del menú: {selectedV1.extraPrice}€</FontText>
+      <FontText style={{ marginLeft: 10 }}>Se añadirán {selectedV1.extraPrice}€</FontText>
     ) : null;
 
   const ExtraRadioButtons =

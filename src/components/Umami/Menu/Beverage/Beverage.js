@@ -25,7 +25,7 @@ const UmamiMenuBeverage = ({ beverages, isRadioButton, name }) => {
   const ExtraPriceComponent =
     selected && selected.extraPrice ? (
       <View>
-        <FontText>Precio extra de la bebida {selected.extraPrice}</FontText>
+        <FontText>Se añadirán {selected.extraPrice}€</FontText>
       </View>
     ) : null;
 

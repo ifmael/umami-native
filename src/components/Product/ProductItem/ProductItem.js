@@ -9,7 +9,7 @@ import COLORS from "/styles/colors";
 import styles from "./ProductItem.styles";
 
 const ProductItem = (props) => {
-  const { name, description, price, isCustomizable, isMenuable } = props;
+  const { category, description, isCustomizable, isMenuable, name, price } = props;
   const navigation = useNavigation();
   const { setItemShoppingCart } = useContext(GlobalContext);
   const editable = isCustomizable || isMenuable;
@@ -19,7 +19,7 @@ const ProductItem = (props) => {
     if (editable) {
       navigation.navigate("ProductDetail", props);
     } else {
-      setItemShoppingCart({ title: "test" });
+      setItemShoppingCart({ name, price, category });
       navigation.setOptions({ title: "Updated!" });
     }
   };
@@ -45,11 +45,12 @@ const ProductItem = (props) => {
 };
 
 ProductItem.propTypes = {
-  name: string,
+  category: string,
   description: string,
-  price: number,
   isCustomizable: bool,
   isMenuable: bool,
+  name: string,
+  price: number,
 };
 
 export default ProductItem;

@@ -10,7 +10,7 @@ import { destructComponentOptions } from "../utils/functions";
 import { sortAsc } from "/utils/functions";
 import styles from "./Menu.styles";
 
-const UmamiMenu = ({ isChildrenMenu, options }) => {
+const UmamiMenu = ({ isChildrenMenu, isYourTaste, options }) => {
   const {
     productDetailInfo: { isMenu },
     setIsMenu,
@@ -49,7 +49,9 @@ const UmamiMenu = ({ isChildrenMenu, options }) => {
     <View>
       {!isChildrenMenu ? (
         <View style={styles.container}>
-          <FontText style={{ fontSize: 18, fontWeight: "bold" }}>Hazlo menú por sólo {price}€</FontText>
+          <FontText style={{ fontSize: 18, fontWeight: "bold" }}>
+            {isYourTaste ? `Hazlo menú por sólo ${price}€ más ` : `Hazlo menú por sólo ${price}€`}
+          </FontText>
           <Switch
             trackColor={{ false: "#767577", true: "#81b0ff" }}
             thumbColor={isMenu ? "#f5dd4b" : "#f4f3f4"}
@@ -75,6 +77,7 @@ const UmamiMenu = ({ isChildrenMenu, options }) => {
 };
 UmamiMenu.propTypes = {
   isChildrenMenu: bool,
+  isYourTaste: bool,
   options: array,
 };
 
