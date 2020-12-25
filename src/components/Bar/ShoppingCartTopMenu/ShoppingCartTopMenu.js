@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import FontText from "/components/common/FontText";
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import { GlobalContext } from "/context/GlobalContext";
 
 const ShoppingCartTopMenu = () => {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
   const { shoppingCart } = useContext(GlobalContext);
 
   const styles = StyleSheet.create({
@@ -27,8 +27,7 @@ const ShoppingCartTopMenu = () => {
   });
 
   const goToShoppingCart = () => {
-    //navivation.push("ShoppingCart");
-    if (shoppingCart.length > 0) console.log("vamosnossssss");
+    if (shoppingCart.length > 0) navigation.push("ShoppingCart");
   };
 
   return (

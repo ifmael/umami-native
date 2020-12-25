@@ -2,6 +2,7 @@ import { useCallback, useState, useEffect, useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "/context/GlobalContext";
 import ProductDetailContext from "/context/ProductDetailContext";
+import { guidGenerator } from "/utils/functions";
 
 export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, price, priceMenu) {
   const [localErrors, setLocalErrors] = useState(null);
@@ -61,7 +62,9 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
     } else {
       // console.log(productDetailInfo);
       // console.log(priceProduct);
-      setItemShoppingCart({ ...productDetailInfo, price: priceProduct });
+      const shoppingCartItem = { ...productDetailInfo, id: guidGenerator(), isMenu, price: priceProduct };
+      console.log(shoppingCartItem);
+      setItemShoppingCart(shoppingCartItem);
       navigation.goBack();
     }
   }, [isChildrenMenu, navigation, priceProduct, productDetailInfo, setErrors, setItemShoppingCart]);
@@ -71,13 +74,12 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
     goTo.current?.scrollTo({ x: 0, y: 0, animated: true });
   }, [goTo]);
 
-  // Calculate product price !== "complementos"
+  // Calculate product price when is not a side
   useEffect(() => {
     const { isMenu, beverage, side, ingredients, category } = productDetailInfo;
     if (category === "complementos") return;
 
     let total = price;
-
     if (isYourTaste) {
       const ingredientsPrice = ingredients?.reduce((total, { isSelected, price }) => {
         return isSelected ? total + price : total;

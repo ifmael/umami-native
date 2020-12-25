@@ -71,7 +71,7 @@ const App = () => {
       <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} lazy="true">
         <Tab.Screen name="Home" component={Home} options={{ title: "Umami" }} />
         <Tab.Screen name="Menu" component={MenuStack} />
-        <Tab.Screen name="ShoppingCart" component={ShoppingCart} options={{ tabBarBadge: 3, title: "Pedido" }} />
+        {/* <Tab.Screen name="ShoppingCart" component={ShoppingCart} options={{ tabBarBadge: 3, title: "Pedido" }} /> */}
       </Tab.Navigator>
     );
   };
@@ -85,9 +85,16 @@ const App = () => {
               headerShown: false,
             }}
           >
-            <Stack.Screen name="homeTab" component={MenuTabs} />
-
+            <Stack.Screen name="HomeTab" component={MenuTabs} />
             <Stack.Screen name="ProductDetail" component={ProductDetail} options={productHeaderOption} />
+            <Stack.Screen
+              name="ShoppingCart"
+              component={ShoppingCart}
+              options={{
+                title: "Mi pedido 🤤",
+                headerShown: true,
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </ContextProvider>

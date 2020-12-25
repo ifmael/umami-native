@@ -9,7 +9,7 @@ import useProductDetail from "./useProductDetail";
 
 const ProductDetail = ({ route }) => {
   const { ...rest } = route.params;
-  const { isChildrenMenu, isYourTaste, price, menu } = rest;
+  const { isChildrenMenu, isMenu, isYourTaste, price, menu } = rest;
   const scrollViewElement = useRef(null);
   const {
     productDetailInfo,
@@ -22,7 +22,7 @@ const ProductDetail = ({ route }) => {
     setErrors,
     removeError,
   } = useProductDetail({
-    product: rest.name,
+    name: rest.name,
     category: rest.category,
   });
 
@@ -50,6 +50,7 @@ const ProductDetail = ({ route }) => {
       <ProductDetailAdd
         goTo={scrollViewElement}
         isChildrenMenu={isChildrenMenu}
+        isMenu={isMenu}
         isYourTaste={isYourTaste}
         price={price}
         priceMenu={menuInfo?.price}

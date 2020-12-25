@@ -5,7 +5,7 @@ const init = (options) => {
 };
 
 const initValue = {
-  product: null,
+  name: null,
   category: null,
   typeOfMeat: null,
   meatPoint: null,

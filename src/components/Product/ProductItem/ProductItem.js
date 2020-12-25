@@ -5,6 +5,7 @@ import { ListItem } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "/context/GlobalContext";
 import FontText from "/components/common/FontText";
+import { guidGenerator } from "/utils/functions";
 import COLORS from "/styles/colors";
 import styles from "./ProductItem.styles";
 
@@ -19,7 +20,14 @@ const ProductItem = (props) => {
     if (editable) {
       navigation.navigate("ProductDetail", props);
     } else {
-      setItemShoppingCart({ name, price, category });
+      const shoppingCartItem = {
+        id: guidGenerator(),
+        name,
+        price,
+        category,
+      };
+      console.log(shoppingCartItem);
+      setItemShoppingCart(shoppingCartItem);
       navigation.setOptions({ title: "Updated!" });
     }
   };

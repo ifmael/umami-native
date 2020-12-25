@@ -18,7 +18,7 @@ const ContextProvider = ({ children }) => {
   const [fontsLoaded] = useFonts({
     Confortaa: require("/assets/fonts/Comfortaa.ttf"),
   });
-  const { shoppingCart, setItemShoppingCart } = useShoppingCart();
+  const [shoppingCartSelectors, shoppingCartHandlers] = useShoppingCart();
 
   return !fontsLoaded ? (
     <AppLoading />
@@ -29,9 +29,8 @@ const ContextProvider = ({ children }) => {
         error,
         loading,
         productsByCategory,
-        shoppingCart,
-        // clearShoppingCart,
-        setItemShoppingCart,
+        ...shoppingCartSelectors,
+        ...shoppingCartHandlers,
       }}
     >
       <SafeAreaViewAndroid>{children}</SafeAreaViewAndroid>

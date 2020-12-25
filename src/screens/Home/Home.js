@@ -14,6 +14,7 @@ const Home = (/* { navigation, route } */) => {
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
+      backgroundColor: "white",
     },
     image: {
       width: 250,
