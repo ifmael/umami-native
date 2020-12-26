@@ -1,24 +1,37 @@
 import React, { useContext } from "react";
 import { View } from "react-native";
 import { Button } from "react-native-elements";
-import { number, string, object } from "prop-types";
+import { array, number, string, object, oneOfType } from "prop-types";
 import { ListItem } from "react-native-elements";
 import FontText from "/components/common/FontText";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { GlobalContext } from "/context/GlobalContext";
 
+const getListOfIngredients = (listOfIngredients = [], initialWord = "") => {
+  const listOfIngredientsSelected = listOfIngredients.filter(({ isSelected }) => isSelected);
+  const nTotalIngredients = listOfIngredientsSelected.length;
+
+  return listOfIngredientsSelected?.reduce((listGenerated, { name }, currentIndex) => {
+    const withDot = nTotalIngredients === currentIndex + 1;
+    const andWord = nTotalIngredients === currentIndex + 2;
+
+    return (listGenerated += `${name.toLowerCase()}${withDot ? "." : andWord ? " y " : ", "}`);
+  }, initialWord);
+};
+
 export default function ShoppingCartItem({
-  // beverage,
+  beverage = {},
   id,
-  // ingredients,
-  // meatPoint,
+  ingredients = [],
+  meatPoint = {},
   name,
   price,
-  // side,
-  // typeOfBread,
-  // typeOfMeat,
+  side = {},
+  typeOfBread = {},
+  typeOfMeat = {},
 }) {
   const { removeItem } = useContext(GlobalContext);
+
   return (
     <ListItem>
       <ListItem.Content>
@@ -38,18 +51,28 @@ export default function ShoppingCartItem({
             />
           </View>
         </View>
-        <FontText style={{ paddingHorizontal: 5, margin: 5 }}>
-          Esto es una prueba. Esto es una prueba.Esto es una prueba.Esto es una prueba.Esto es una prueba. Esto es una
-          prueba. Esto es una prueba.
-        </FontText>
+        <View style={{ paddingHorizontal: 5, margin: 5 }}>
+          {typeOfMeat?.name ? <FontText style={{ marginBottom: 5 }}>· {typeOfMeat.name}</FontText> : null}
+          {meatPoint?.name ? <FontText style={{ marginBottom: 5 }}>· {meatPoint.name}</FontText> : null}
+          {typeOfBread?.name ? <FontText style={{ marginBottom: 5 }}>· {typeOfBread.name}</FontText> : null}
+          {side?.name ? <FontText style={{ marginBottom: 5 }}>· {side.name}</FontText> : null}
+          {side?.length > 0 ? <FontText>{getListOfIngredients(side, "· Con ")}</FontText> : null}
+          {beverage?.name ? <FontText style={{ marginBottom: 5 }}>· {beverage.name}</FontText> : null}
+          {ingredients?.length > 0 ? <FontText>{getListOfIngredients(ingredients)} </FontText> : null}
+        </View>
       </ListItem.Content>
     </ListItem>
   );
 }
 
 ShoppingCartItem.propTypes = {
+  beverage: object,
   id: string,
+  ingredients: array,
+  meatPoint: object,
   name: string,
   price: number,
-  props: object,
+  side: oneOfType([array, object]),
+  typeOfBread: object,
+  typeOfMeat: object,
 };
