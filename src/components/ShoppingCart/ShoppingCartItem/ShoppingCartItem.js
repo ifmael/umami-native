@@ -56,9 +56,9 @@ export default function ShoppingCartItem({
           {meatPoint?.name ? <FontText style={{ marginBottom: 5 }}>· {meatPoint.name}</FontText> : null}
           {typeOfBread?.name ? <FontText style={{ marginBottom: 5 }}>· {typeOfBread.name}</FontText> : null}
           {side?.name ? <FontText style={{ marginBottom: 5 }}>· {side.name}</FontText> : null}
-          {side?.length > 0 ? <FontText>{getListOfIngredients(side, "· Con ")}</FontText> : null}
+          {side?.length > 0 ? <FontText>{getListOfIngredients(side)}</FontText> : null}
           {beverage?.name ? <FontText style={{ marginBottom: 5 }}>· {beverage.name}</FontText> : null}
-          {ingredients?.length > 0 ? <FontText>{getListOfIngredients(ingredients)} </FontText> : null}
+          {ingredients?.length > 0 ? <FontText>{getListOfIngredients(ingredients, "· Con ")} </FontText> : null}
         </View>
       </ListItem.Content>
     </ListItem>
