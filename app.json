@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "umami-native",
-    "slug": "umami-native",
-    "version": "1.0.0",
+    "name": "Hamburgueseria Umami",
+    "slug": "umami-burger",
+    "version": "0.1.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -15,14 +15,18 @@
     },
     "assetBundlePatterns": ["**/*"],
     "android": {
-      "userInterfaceStyle": "light"
+      "userInterfaceStyle": "light",
+      "package": "com.ifmael.umamiburger",
+      "versionCode": 1
     },
     "ios": {
       "supportsTablet": true,
-      "userInterfaceStyle": "light"
+      "userInterfaceStyle": "light",
+      "bundleIdentifier": "com.ifmael.umamiburger",
+      "buildNumber": "0.1.0"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/favicon.png"
     }
   }
 }
