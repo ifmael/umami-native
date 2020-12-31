@@ -6,7 +6,6 @@ import UmamiDishConfiguration from "/components/Umami/Dish/Configurations";
 import UmamiDishIngredients from "/components/Umami/Dish/Ingredients";
 import UmamiMenu from "/components/Umami/Menu";
 import FontText from "/components/common/FontText";
-import { SERVER } from "/constant";
 import { getImages } from "../utils";
 import { headerStyles } from "../ProductDetail.styles";
 
@@ -41,7 +40,7 @@ export default function ProductDetailDish({
         >
           {imagesSource ? (
             <Image
-              source={{ uri: `${SERVER}${imagesSource.url}` }}
+              source={{ uri: `${imagesSource.url}` }}
               style={{
                 borderRadius: 20,
                 width: Dimensions.get("window").width - 32,

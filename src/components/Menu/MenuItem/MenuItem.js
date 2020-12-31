@@ -3,7 +3,6 @@ import { string, object } from "prop-types";
 import { useNavigation } from "@react-navigation/native";
 import { Card, Button } from "react-native-elements";
 import FontText from "/components/common/FontText";
-import { SERVER } from "/constant";
 import styles, { stylesRNElements } from "./MenuItem.styles";
 
 const MenuItem = ({ /* id, */ name, /*  color, */ image, slug }) => {
@@ -18,7 +17,7 @@ const MenuItem = ({ /* id, */ name, /*  color, */ image, slug }) => {
         <FontText h2>{name}</FontText>
       </Card.Title>
       <Card.Divider />
-      {image?.url ? <Card.Image source={{ uri: `${SERVER}${image.url}` }} /> : null}
+      {image?.url ? <Card.Image source={{ uri: `${image.url}` }} /> : null}
 
       <FontText style={{ fontSize: 16, textAlign: "justify", marginTop: 15 }}>
         Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
