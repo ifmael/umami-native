@@ -5,7 +5,7 @@ export default ({ config }) => {
     ...config,
     // All values in extra will be passed to your app.
     extra: {
-      server: process.env.EXPO_DEVELOPMENT_SERVER,
+      server: process.env.EXPO_PRODUCTION_SERVER,
     },
   };
 };
