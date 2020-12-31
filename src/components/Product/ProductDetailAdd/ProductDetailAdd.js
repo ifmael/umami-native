@@ -6,6 +6,13 @@ import AddButton from "/components/common/AddButton";
 import FontText from "/components/common/FontText";
 import useProductDetailAdd from "./useProductDetailAdd";
 
+const modalProps = {
+  // onDismiss: () => console.log("onDismiss"),
+  // onShow: () => console.log("show"),
+  animationType: "fade",
+  // transparent: true,
+};
+
 const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu }) => {
   const [{ localErrors, priceProduct }, handlers] = useProductDetailAdd(
     goTo,
@@ -14,13 +21,6 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
     price,
     priceMenu
   );
-
-  const modalProps = {
-    // onDismiss: () => console.log("onDismiss"),
-    // onShow: () => console.log("show"),
-    animationType: "fade",
-    // transparent: true,
-  };
 
   return (
     <>
