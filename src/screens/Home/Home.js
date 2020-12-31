@@ -27,6 +27,7 @@ const Home = (/* { navigation, route } */) => {
       <Image source={logo} style={styles.image} />
       <Text>{windowWidth}</Text>
       <Text>{windowHeight}</Text>
+      <Text>Producion</Text>
     </View>
   );
 };
