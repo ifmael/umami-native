@@ -17,13 +17,13 @@
     "android": {
       "userInterfaceStyle": "light",
       "package": "com.ifmael.umamiburger",
-      "versionCode": 1
+      "versionCode": 0
     },
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "light",
       "bundleIdentifier": "com.ifmael.umamiburger",
-      "buildNumber": "0.1.0"
+      "buildNumber": "0.0.0"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
