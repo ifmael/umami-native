@@ -2,7 +2,7 @@
   "expo": {
     "name": "Hamburgueseria Umami",
     "slug": "umami-burger",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "splash": {
@@ -17,13 +17,13 @@
     "android": {
       "userInterfaceStyle": "light",
       "package": "com.ifmael.umamiburger",
-      "versionCode": 0
+      "versionCode": 400000101
     },
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "light",
       "bundleIdentifier": "com.ifmael.umamiburger",
-      "buildNumber": "0.0.0"
+      "buildNumber": "0.1.1"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
