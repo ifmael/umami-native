@@ -4,10 +4,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.1.1](https://github.com/ifmael/umami-native/compare/v0.1.0...v0.1.1) (2021-01-01)
 
-
 ### Features
 
-* add standard version for releases ([3806fef](https://github.com/ifmael/umami-native/commit/3806fefe73f6b5706c57736f5cb30aa4999c277e))
+- add standard version for releases ([3806fef](https://github.com/ifmael/umami-native/commit/3806fefe73f6b5706c57736f5cb30aa4999c277e))
 
 ## 0.1.0 (2021-01-01)
 

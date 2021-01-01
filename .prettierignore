@@ -9,3 +9,4 @@ public
 
 # Ignore files
 package-lock.json
+CHANGELOG.md
