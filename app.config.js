@@ -7,7 +7,6 @@ const getDescription = (releaseChannel) => {
 };
 
 export default ({ config }) => {
-  console.log(config);
   const { releaseChannel } = config;
 
   return {
