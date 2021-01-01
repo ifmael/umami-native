@@ -1,3 +1,3 @@
-import Constants from "expo-constants";
+import { getServerURL } from "/utils/functions";
 
-export const SERVER = Constants.manifest.extra.server;
+export const SERVER = getServerURL();
