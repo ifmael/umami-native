@@ -1,3 +1,3 @@
-import { getServerURL } from "/utils/functions";
+import { getEnvironment } from "/utils/functions";
 
-export const SERVER = getServerURL();
+export const { server: SERVER, token: TOKEN } = getEnvironment();

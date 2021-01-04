@@ -11,10 +11,21 @@ export const guidGenerator = () => {
   });
 };
 
-export const getServerURL = () => {
+const getObjectEnvironment = (server, token) => ({ server, token });
+
+export const getEnvironment = () => {
   let releaseChannel = Constants.manifest.releaseChannel;
 
-  if (releaseChannel === undefined) return Constants.manifest.extra.server.local; // since releaseChannels are undefined in dev, return your default.
-  if (releaseChannel.indexOf("development") !== -1) return Constants.manifest.extra.server.development; // this would pick up development-v1, development-v2 ...
-  if (releaseChannel.indexOf("production") !== -1) return Constants.manifest.extra.server.production; // this would pick up production-v1, production-v2 ...
+  if (releaseChannel === undefined)
+    // since releaseChannels are undefined in dev, return your default.
+    return getObjectEnvironment(Constants.manifest.extra.server.local, Constants.manifest.extra.secret.development);
+  if (releaseChannel.indexOf("development") !== -1)
+    // this would pick up development-v1, development-v2 ...
+    return getObjectEnvironment(
+      Constants.manifest.extra.server.development,
+      Constants.manifest.extra.secret.development
+    );
+  if (releaseChannel.indexOf("production") !== -1)
+    // this would pick up production-v1, production-v2 ...
+    return getObjectEnvironment(Constants.manifest.extra.server.production, Constants.manifest.extra.secret.production);
 };

@@ -3,18 +3,34 @@ import { AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 import ContextProvider from "/context/GlobalContext";
 import { Home, Menu, Product, ProductDetail, ShoppingCart } from "/screens";
-import { SERVER } from "/constant";
+import { SERVER, TOKEN } from "/constant";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const client = new ApolloClient({
+// debugger;
+const authLink = new ApolloLink((operation, forward) => {
+  // Use the setContext method to set the HTTP headers.
+  operation.setContext({
+    headers: {
+      authorization: TOKEN ? `Bearer ${TOKEN}` : "",
+    },
+  });
+
+  // Call the next link in the middleware chain.
+  return forward(operation);
+});
+
+const httpLink = new HttpLink({
   uri: `${SERVER}/graphql`,
+});
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
