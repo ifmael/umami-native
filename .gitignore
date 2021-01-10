@@ -19,5 +19,7 @@ TODO.md
 bitacora.md
 .env
 
-# Environment config
-app.config.js
+# IDEs
+.vscode
+
+
