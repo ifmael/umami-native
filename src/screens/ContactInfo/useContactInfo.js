@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View } from "react-native";
 import { Icon } from "react-native-elements";
 import FontText from "/components/common/FontText";
-// import { PLACES_TYPE } from "/constant";
+import { GlobalContext } from "/context/GlobalContext";
+import { validateContactInfo } from "/utils/functions";
+import { validPhone } from "/constant";
 
-// const allowedPostalCodes = ["18320", "18329", "18101"];
 const localityOptions = [
   { name: "Santa Fe", zip: "18320" },
   { name: "Belicena", zip: "18101" },
@@ -25,9 +26,8 @@ const renderRow = (data) => {
   );
 };
 
-const validPhone = /^[6-9]\d{8}/;
-
 const useContactInfo = () => {
+  const { addContactInfo } = useContext(GlobalContext);
   const [block, setBlock] = useState("");
   const [flat, setFlat] = useState("");
   const [number, setNumber] = useState("");
@@ -60,18 +60,32 @@ const useContactInfo = () => {
 
   const onPressAddContactInfo = () => {
     // Check fields
-    const isPhoneValid = validPhone.test(phone);
-    const isStreetValid = street?.length > 0 ? true : false;
-    const isLocalityValid = locality?.length > 0 ? true : false;
-    const isPossibleAddContact = isPhoneValid && isStreetValid && isLocalityValid;
+    try {
+      const { isLocalityValid, isPhoneValid, isStreetValid } = validateContactInfo({
+        locality,
+        phone,
+        street,
+      });
 
-    if (isPossibleAddContact) {
-      // Add to the context
-    } else {
-      // Show error
-      if (!isLocalityValid) setLocalityError(true);
-      if (!isPhoneValid) setPhoneError(true);
-      if (!isStreetValid) setStreetError(true);
+      const isPossibleAddContact = isLocalityValid && isPhoneValid && isStreetValid;
+
+      if (isPossibleAddContact) {
+        // Add to the context
+        addContactInfo({ block, flat, number, locality, phone, street });
+      } else {
+        // Show error
+        if (!isLocalityValid) setLocalityError(true);
+        if (!isPhoneValid) {
+          setPhoneInputPristine(false);
+          setPhoneError(true);
+        }
+        if (!isStreetValid) {
+          setStreetInputPristine(false);
+          setStreetError(true);
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -90,6 +104,7 @@ const useContactInfo = () => {
             break;
           case "route":
             setStreet(long_name);
+
             setStreetError(false);
             break;
           case "postal_code":

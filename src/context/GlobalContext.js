@@ -7,6 +7,7 @@ import SafeAreaViewAndroid from "/components/common/SafeAreaViewAndroid";
 import useProducts from "/hooks/useProducts";
 import useCategories from "/hooks/useCategories";
 import useShoppingCart from "/hooks/useShoppingCart";
+import useOrder from "/hooks/useOrder";
 import GET_DATA from "/graphql/querys/getData";
 
 export const GlobalContext = React.createContext({});
@@ -19,7 +20,7 @@ const ContextProvider = ({ children }) => {
     Confortaa: require("/assets/fonts/Comfortaa.ttf"),
   });
   const [shoppingCartSelectors, shoppingCartHandlers] = useShoppingCart();
-
+  const [orderSelectosr, orderHandlers] = useOrder();
   return !fontsLoaded ? (
     <AppLoading />
   ) : (
@@ -31,6 +32,8 @@ const ContextProvider = ({ children }) => {
         productsByCategory,
         ...shoppingCartSelectors,
         ...shoppingCartHandlers,
+        ...orderSelectosr,
+        ...orderHandlers,
       }}
     >
       <SafeAreaViewAndroid>{children}</SafeAreaViewAndroid>
