@@ -17,13 +17,13 @@
     "assetBundlePatterns": ["**/*"],
     "android": {
       "userInterfaceStyle": "light",
-      "package": "com.ifmael.umamiburger",
+      "package": "com.ifmael.umami",
       "versionCode": 400000200
     },
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "light",
-      "bundleIdentifier": "com.ifmael.umamiburger",
+      "bundleIdentifier": "com.ifmael.umami",
       "buildNumber": "0.2.0"
     },
     "web": {

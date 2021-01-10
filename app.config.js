@@ -15,6 +15,8 @@ export default ({ config }) => {
         development: process.env.EXPO_JWT_SECRET_DEVELOPMENT,
         production: process.env.EXPO_JWT_SECRET_DEVELOPMENT,
       },
+      mapsToken: process.env.GOOGLE_MAPS_KEY,
+      placesToken: process.env.PLACES_API,
     },
   };
 };

@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 import ContextProvider from "/context/GlobalContext";
-import { Home, Menu, Product, ProductDetail, ShoppingCart } from "/screens";
+import { ContactInfo, Home, Menu, Product, ProductDetail, ShoppingCart } from "/screens";
 import { SERVER, TOKEN } from "/constant";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
@@ -87,6 +87,8 @@ const App = () => {
       <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} lazy="true">
         <Tab.Screen name="Home" component={Home} options={{ title: "Umami" }} />
         <Tab.Screen name="Menu" component={MenuStack} />
+        <Tab.Screen name="Maps" component={ContactInfo} />
+
         {/* <Tab.Screen name="ShoppingCart" component={ShoppingCart} options={{ tabBarBadge: 3, title: "Pedido" }} /> */}
       </Tab.Navigator>
     );
