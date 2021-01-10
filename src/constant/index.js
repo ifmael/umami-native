@@ -1,5 +1,38 @@
-import { getEnvironment } from "/utils/functions";
+import Constants from "expo-constants";
 
+// Helper  functions
+const getObjectEnvironment = (server, token, mapsToken, placesToken) => ({ server, token, mapsToken, placesToken });
+
+const getEnvironment = () => {
+  let releaseChannel = Constants.manifest.releaseChannel;
+
+  if (releaseChannel === undefined)
+    // since releaseChannels are undefined in dev, return your default.
+    return getObjectEnvironment(
+      Constants.manifest.extra.server.local,
+      Constants.manifest.extra.secret.development,
+      Constants.manifest.extra.mapsToken,
+      Constants.manifest.extra.placesToken
+    );
+  if (releaseChannel.indexOf("development") !== -1)
+    // this would pick up development-v1, development-v2 ...
+    return getObjectEnvironment(
+      Constants.manifest.extra.server.development,
+      Constants.manifest.extra.secret.development,
+      Constants.manifest.extra.mapsToken,
+      Constants.manifest.extra.placesToken
+    );
+  if (releaseChannel.indexOf("production") !== -1)
+    // this would pick up production-v1, production-v2 ...
+    return getObjectEnvironment(
+      Constants.manifest.extra.server.production,
+      Constants.manifest.extra.secret.production,
+      Constants.manifest.extra.mapsToken,
+      Constants.manifest.extra.placesToken
+    );
+};
+
+// Constant
 export const { server: SERVER, token: TOKEN, mapsToken: MAPS_TOKEN, placesToken: PLACES_TOKEN } = getEnvironment();
 
 export const MAPS_URI_API = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${MAPS_TOKEN}&input=`;
@@ -48,3 +81,5 @@ export const PLACES_TYPE = [
   "subpremise",
   "town_square",
 ];
+
+export const validPhone = /^[6-9]\d{8}/;

@@ -1,4 +1,4 @@
-import Constants from "expo-constants";
+import { validPhone } from "/constant";
 
 export const sortDesc = (a, b) => b.order - a.order;
 export const sortAsc = (a, b) => a.order - b.order;
@@ -11,33 +11,17 @@ export const guidGenerator = () => {
   });
 };
 
-const getObjectEnvironment = (server, token, mapsToken, placesToken) => ({ server, token, mapsToken, placesToken });
+export const validateContactInfo = (contactInfo) => {
+  try {
+    // Valide mandatory fields
+    const { phone, street, locality } = contactInfo;
+    const isLocalityValid = locality?.length > 0 ? true : false;
+    const isPhoneValid = validPhone.test(phone) ? true : false;
+    const isStreetValid = street?.length > 0 ? true : false;
+    const isValidContactInfo = isLocalityValid && isPhoneValid && isStreetValid;
 
-export const getEnvironment = () => {
-  let releaseChannel = Constants.manifest.releaseChannel;
-
-  if (releaseChannel === undefined)
-    // since releaseChannels are undefined in dev, return your default.
-    return getObjectEnvironment(
-      Constants.manifest.extra.server.local,
-      Constants.manifest.extra.secret.development,
-      Constants.manifest.extra.mapsToken,
-      Constants.manifest.extra.placesToken
-    );
-  if (releaseChannel.indexOf("development") !== -1)
-    // this would pick up development-v1, development-v2 ...
-    return getObjectEnvironment(
-      Constants.manifest.extra.server.development,
-      Constants.manifest.extra.secret.development,
-      Constants.manifest.extra.mapsToken,
-      Constants.manifest.extra.placesToken
-    );
-  if (releaseChannel.indexOf("production") !== -1)
-    // this would pick up production-v1, production-v2 ...
-    return getObjectEnvironment(
-      Constants.manifest.extra.server.production,
-      Constants.manifest.extra.secret.production,
-      Constants.manifest.extra.mapsToken,
-      Constants.manifest.extra.placesToken
-    );
+    return { isLocalityValid, isPhoneValid, isStreetValid, isValid: isValidContactInfo };
+  } catch (error) {
+    console.log(error);
+  }
 };
