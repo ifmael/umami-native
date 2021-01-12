@@ -11,7 +11,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   const { productDetailInfo, setErrors } = useContext(ProductDetailContext);
   let navigation = useNavigation();
 
-  const addProcutToShoppingCart = useCallback(() => {
+  const addProductToShoppingCart = useCallback(() => {
     const { category, beverage, side, isMenu, typeOfMeat, meatPoint, typeOfBread } = productDetailInfo;
     let isError = false;
     let messageErrors = [];
@@ -110,6 +110,6 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
 
   return [
     { localErrors, priceProduct },
-    { addProcutToShoppingCart, closeModal },
+    { addProductToShoppingCart, closeModal },
   ];
 }

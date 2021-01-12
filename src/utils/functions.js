@@ -25,3 +25,31 @@ export const validateContactInfo = (contactInfo) => {
     console.log(error);
   }
 };
+
+/**
+ *
+ * @param {*} listOfIngredients  List of ingredients
+ * @param {*} initialWord First word to show in the string
+ * @param {*} inverse To select  unselected  ingredients
+ */
+
+export const getListOfIngredients = (listOfIngredients = [], initialWord = "", inverse = false) => {
+  try {
+    const listOfIngredientsSelected = listOfIngredients.filter((ingredient) => {
+      //To  get the  !seleted item
+      const selectItem = inverse ? (ingredient.isSelected ? false : true) : ingredient.isSelected;
+
+      return selectItem ? true : false;
+    });
+    const nTotalIngredients = listOfIngredientsSelected.length;
+
+    return listOfIngredientsSelected?.reduce((listGenerated, { name }, currentIndex) => {
+      const withDot = nTotalIngredients === currentIndex + 1;
+      const andWord = nTotalIngredients === currentIndex + 2;
+
+      return (listGenerated += `${name?.toLowerCase()}${withDot ? "." : andWord ? " y " : ", "}`);
+    }, initialWord);
+  } catch (error) {
+    console.log(error);
+  }
+};

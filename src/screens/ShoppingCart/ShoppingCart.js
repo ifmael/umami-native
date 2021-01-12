@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScrollView } from "react-native";
 import { Button } from "react-native-elements";
 import ShoppingCartList from "/components/ShoppingCart/ShoppingCartList";
 import useShoppingCart from "./useShoppingCart";
 import COLORS from "/styles/colors";
 import styles from "./ShoppingCart.styles";
+import { GlobalContext } from "/context/GlobalContext";
 
 export default function ShoppingCart() {
+  const { createNewOrder } = useContext(GlobalContext);
   const [{ shoppingCartByCategory, totalPrice }] = useShoppingCart();
 
   return (
@@ -15,8 +17,9 @@ export default function ShoppingCart() {
         <ShoppingCartList shoppingCartByCategory={shoppingCartByCategory} />
       </ScrollView>
       <Button
-        title={`Pagar: ${totalPrice}€`}
         buttonStyle={{ paddingVertical: 12, backgroundColor: COLORS.addButton }}
+        onPress={() => createNewOrder(shoppingCartByCategory, totalPrice)}
+        title={`Pagar: ${totalPrice}€`}
         titleStyle={{
           fontSize: 20,
           fontFamily: "Confortaa",

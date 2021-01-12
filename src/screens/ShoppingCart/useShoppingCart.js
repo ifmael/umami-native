@@ -5,38 +5,52 @@ import { GlobalContext } from "/context/GlobalContext";
 const menusCategory = "menus";
 
 const groupByCategory = (shoppingCart, categories) => {
-  const sortCategoriesWithData = categories.reduce(
-    (allCategories, { slug, order }) => {
-      return [...allCategories, { category: slug.toLowerCase(), data: [], order }];
-    },
-    [{ category: menusCategory, data: [], order: 0 }]
-  );
+  try {
+    const sortCategoriesWithData = categories.reduce(
+      (allCategories, { slug, order }) => {
+        return [...allCategories, { category: slug.toLowerCase(), data: [], order }];
+      },
+      [{ category: menusCategory, data: [], order: 0 }]
+    );
 
-  return shoppingCart
-    .reduce((elementsGrouped, cartElement) => {
-      const {
-        beverage,
-        category,
-        ingredients,
-        id,
-        isMenu,
-        meatPoint,
-        name,
-        price,
-        side,
-        typeOfBread,
-        typeOfMeat,
-      } = cartElement;
-      const newCategory = isMenu ? menusCategory : category;
-      const categoryElement = elementsGrouped?.find(({ category: categoryGrouped }) => {
-        return categoryGrouped === newCategory;
-      });
+    return shoppingCart
+      .reduce((elementsGrouped, cartElement) => {
+        const {
+          beverage,
+          category,
+          ingredients,
+          id,
+          isMenu,
+          meatPoint,
+          name,
+          price,
+          side,
+          typeOfBread,
+          typeOfMeat,
+        } = cartElement;
+        const newCategory = isMenu ? menusCategory : category;
+        const categoryElement = elementsGrouped?.find(({ category: categoryGrouped }) => {
+          return categoryGrouped === newCategory;
+        });
 
-      categoryElement?.data.push({ beverage, id, ingredients, meatPoint, name, price, side, typeOfBread, typeOfMeat });
+        categoryElement?.data.push({
+          beverage,
+          id,
+          ingredients,
+          meatPoint,
+          name,
+          price,
+          side,
+          typeOfBread,
+          typeOfMeat,
+        });
 
-      return elementsGrouped;
-    }, sortCategoriesWithData)
-    .filter(({ data }) => data.length > 0);
+        return elementsGrouped;
+      }, sortCategoriesWithData)
+      .filter(({ data }) => data.length > 0);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const getPrice = (shoppingCart) => {
@@ -57,7 +71,7 @@ export default function useShoppingCart() {
     newShoppingCartByCategory.length > 0
       ? setShoppingCartByCategory(newShoppingCartByCategory)
       : navigation.navigate("HomeTab");
-  }, [shoppingCart, categories]);
+  }, [categories, navigation, shoppingCart]);
 
   useEffect(() => {
     const newPrice = getPrice(shoppingCart);

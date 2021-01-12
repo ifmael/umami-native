@@ -6,18 +6,7 @@ import { ListItem } from "react-native-elements";
 import FontText from "/components/common/FontText";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { GlobalContext } from "/context/GlobalContext";
-
-const getListOfIngredients = (listOfIngredients = [], initialWord = "") => {
-  const listOfIngredientsSelected = listOfIngredients.filter(({ isSelected }) => isSelected);
-  const nTotalIngredients = listOfIngredientsSelected.length;
-
-  return listOfIngredientsSelected?.reduce((listGenerated, { name }, currentIndex) => {
-    const withDot = nTotalIngredients === currentIndex + 1;
-    const andWord = nTotalIngredients === currentIndex + 2;
-
-    return (listGenerated += `${name.toLowerCase()}${withDot ? "." : andWord ? " y " : ", "}`);
-  }, initialWord);
-};
+import { getListOfIngredients } from "/utils/functions";
 
 export default function ShoppingCartItem({
   beverage = {},
