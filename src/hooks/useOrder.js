@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { CREATE_ORDER } from "/graphql/mutations/order";
 import { validateContactInfo } from "/utils/functions";
 
 const contactInfoInitialValue = () => ({
@@ -12,6 +14,9 @@ const contactInfoInitialValue = () => ({
 
 const useOrder = () => {
   const [contactInfo, setContactInfo] = useState(contactInfoInitialValue);
+  const [createOrder, { data: newOrderData, error: newOrderError, loading: newOrderLoading }] = useMutation(
+    CREATE_ORDER
+  );
 
   const addContactInfo = (contactInfoInput) => {
     try {
@@ -33,7 +38,15 @@ const useOrder = () => {
     }
   };
 
-  return [{ contactInfo }, { addContactInfo }];
+  const createNewOrder = (orderInput) => {
+    const order = { variables: { input: { data: { contactInfo: orderInput } } } };
+    createOrder(order);
+  };
+
+  return [
+    { contactInfo, newOrderData, newOrderError, newOrderLoading },
+    { addContactInfo, createNewOrder },
+  ];
 };
 
 export default useOrder;
