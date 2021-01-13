@@ -89,6 +89,7 @@ export const shoppingCartBEComponent = {
   burger: { __component: "shopping-cart.burger", __typename: "ComponentShoppingCartBurger" },
   dessert: { __component: "shopping-cart.dessert", __typename: "ComponentShoppingCartDessert" },
   menu: { __component: "shopping-cart.menu", __typename: "ComponentShoppingCartMenu" },
+  salad: { __component: "shopping-cart.salad", __typename: "ComponentShoppingCartSalad" },
   sandwich: { __component: "shopping-cart.sandwich", __typename: "ComponentShoppingCartSandwich" },
   side: { __component: "shopping-cart.side", __typename: "ComponentShoppingCartSide" },
 };
