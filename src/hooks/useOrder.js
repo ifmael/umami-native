@@ -49,14 +49,16 @@ const useOrder = () => {
 
   const createNewOrder = (shoppingCartByCategories, totalPrice) => {
     try {
-      const shoppingCart = addShoppingCart(shoppingCartByCategories, totalPrice);
+      const shoppingCart = addShoppingCart(shoppingCartByCategories);
       const contactInfoMockup = {
         locality: "",
         phone: "",
         street: "",
       };
 
-      const order = { variables: { input: { data: { contactInfo: contactInfoMockup, shoppingCart: shoppingCart } } } };
+      const order = {
+        variables: { input: { data: { contactInfo: contactInfoMockup, shoppingCart: shoppingCart, totalPrice } } },
+      };
       createOrder(order);
     } catch (error) {
       console.log(error);

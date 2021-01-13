@@ -13,9 +13,6 @@ export const CREATE_ORDER = gql`
           phone
           street
         }
-        shoppingCart {
-          id
-        }
       }
     }
   }

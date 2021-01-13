@@ -35,6 +35,7 @@ const groupByCategory = (shoppingCart, categories) => {
 
         categoryElement?.data.push({
           beverage,
+          category,
           id,
           ingredients,
           meatPoint,
