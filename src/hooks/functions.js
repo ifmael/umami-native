@@ -18,7 +18,7 @@ export const getProductsByCategory = (products) => {
 
 // ### ORDERS ###
 
-export const addBurger = (burgersInput) => {
+export const addBurgers = (burgersInput) => {
   try {
     const { burger } = shoppingCartBEComponent;
 
@@ -42,8 +42,9 @@ export const addMenus = (menusInput) => {
       const { menu: menuComponent } = shoppingCartBEComponent;
       let newMenuElement = {};
 
-      if (category === "hamburguesas") [newMenuElement.burger] = addBurger([menuItem]);
-      if (category === "bocadillos") [newMenuElement.sandwich] = addSandwich([menuItem]);
+      if (category === "hamburguesas") [newMenuElement.burger] = addBurgers([menuItem]);
+      if (category === "bocadillos") [newMenuElement.sandwich] = addSandwiches([menuItem]);
+      [newMenuElement.side] = addSides([menuItem.side]);
 
       return { ...newMenuElement, ...menuComponent };
     });
@@ -52,7 +53,7 @@ export const addMenus = (menusInput) => {
   }
 };
 
-export const addSandwich = (sandwichInput) => {
+export const addSandwiches = (sandwichInput) => {
   try {
     const { sandwich } = shoppingCartBEComponent;
 
@@ -68,15 +69,38 @@ export const addSandwich = (sandwichInput) => {
   }
 };
 
+export const addSides = (sideInput) => {
+  try {
+    const { side } = shoppingCartBEComponent;
+
+    return sideInput?.map((sideElement) => {
+      let addToName = "";
+
+      if (Array.isArray(sideElement.side) && sideElement.side.length > 0) {
+        addToName = sideElement.side?.map(({ name }) => name).join(", ");
+      }
+
+      return {
+        name: `${sideElement.name}${addToName ? `: ${addToName}` : ""}`,
+        ...side,
+      };
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const addShoppingCart = (shoppingCartByCategories) => {
   try {
     return shoppingCartByCategories?.reduce((newShoppingCart, { category, data }) => {
       return category === "bocadillos"
-        ? [...newShoppingCart, ...addSandwich(data)]
+        ? [...newShoppingCart, ...addSandwiches(data)]
         : category === "hamburguesas"
-        ? [...newShoppingCart, ...addBurger(data)]
+        ? [...newShoppingCart, ...addBurgers(data)]
         : category === "menus"
         ? [...newShoppingCart, ...addMenus(data)]
+        : category === "complementos"
+        ? [...newShoppingCart, ...addSides(data)]
         : newShoppingCart;
     }, []);
   } catch (error) {

@@ -85,7 +85,8 @@ export const PLACES_TYPE = [
 export const validPhone = /^[6-9]\d{8}/;
 
 export const shoppingCartBEComponent = {
-  burger: { __typename: "ComponentShoppingCartBurger", __component: "shopping-cart.burger" },
-  menu: { __typename: "ComponentShoppingCartMenu", __component: "shopping-cart.menu" },
-  sandwich: { __type: "ComponentShoppingCartSandwich", __component: "shopping-cart.sandwich" },
+  burger: { __component: "shopping-cart.burger", __typename: "ComponentShoppingCartBurger" },
+  menu: { __component: "shopping-cart.menu", __typename: "ComponentShoppingCartMenu" },
+  sandwich: { __component: "shopping-cart.sandwich", __typename: "ComponentShoppingCartSandwich" },
+  side: { __component: "shopping-cart.side", __typename: "ComponentShoppingCartSide" },
 };
