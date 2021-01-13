@@ -56,13 +56,13 @@ export const addGenericItem = (genericItemInput, category) => {
 export const addMenus = (menusInput) => {
   try {
     return menusInput?.map((menuItem) => {
-      const { category } = menuItem;
+      const { category, isChildrenMenu } = menuItem;
       const { menu: menuComponent } = shoppingCartBEComponent;
       let newMenuElement = {};
 
       if (category === "hamburguesas") [newMenuElement.burger] = addBurgers([menuItem]);
       if (category === "bocadillos") [newMenuElement.sandwich] = addSandwiches([menuItem]);
-      [newMenuElement.side] = addSides([menuItem?.side]);
+      if (!isChildrenMenu) [newMenuElement.side] = addSides([menuItem?.side]);
       [newMenuElement.beverage] = addGenericItem([menuItem?.beverage], "bebidas");
 
       return { ...newMenuElement, ...menuComponent };

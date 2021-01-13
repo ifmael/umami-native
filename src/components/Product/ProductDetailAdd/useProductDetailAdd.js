@@ -62,7 +62,13 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
     } else {
       // console.log(productDetailInfo);
       // console.log(priceProduct);
-      const shoppingCartItem = { ...productDetailInfo, id: guidGenerator(), isMenu, price: priceProduct };
+      const shoppingCartItem = {
+        ...productDetailInfo,
+        id: guidGenerator(),
+        isChildrenMenu,
+        isMenu,
+        price: priceProduct,
+      };
       console.log(shoppingCartItem);
       setItemShoppingCart(shoppingCartItem);
       navigation.goBack();
