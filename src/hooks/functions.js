@@ -35,6 +35,23 @@ export const addBurgers = (burgersInput) => {
   }
 };
 
+export const addGenericItem = (genericItemInput, category) => {
+  try {
+    const { beverage } = shoppingCartBEComponent;
+
+    return genericItemInput?.map(({ name }) => {
+      const component = category === "bebidas" ? beverage : {};
+
+      return {
+        name,
+        ...component,
+      };
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const addMenus = (menusInput) => {
   try {
     return menusInput?.map((menuItem) => {
@@ -44,7 +61,8 @@ export const addMenus = (menusInput) => {
 
       if (category === "hamburguesas") [newMenuElement.burger] = addBurgers([menuItem]);
       if (category === "bocadillos") [newMenuElement.sandwich] = addSandwiches([menuItem]);
-      [newMenuElement.side] = addSides([menuItem.side]);
+      [newMenuElement.side] = addSides([menuItem?.side]);
+      [newMenuElement.beverage] = addGenericItem([menuItem?.beverage], "bebidas");
 
       return { ...newMenuElement, ...menuComponent };
     });
@@ -101,6 +119,8 @@ export const addShoppingCart = (shoppingCartByCategories) => {
         ? [...newShoppingCart, ...addMenus(data)]
         : category === "complementos"
         ? [...newShoppingCart, ...addSides(data)]
+        : category === "bebidas"
+        ? [...newShoppingCart, ...addGenericItem(data, category)]
         : newShoppingCart;
     }, []);
   } catch (error) {
