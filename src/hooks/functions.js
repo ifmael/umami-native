@@ -37,10 +37,10 @@ export const addBurgers = (burgersInput) => {
 
 export const addGenericItem = (genericItemInput, category) => {
   try {
-    const { beverage } = shoppingCartBEComponent;
+    const { beverage, dessert } = shoppingCartBEComponent;
 
     return genericItemInput?.map(({ name }) => {
-      const component = category === "bebidas" ? beverage : {};
+      const component = category === "bebidas" ? beverage : category === "postres" ? dessert : {};
 
       return {
         name,
@@ -119,7 +119,7 @@ export const addShoppingCart = (shoppingCartByCategories) => {
         ? [...newShoppingCart, ...addMenus(data)]
         : category === "complementos"
         ? [...newShoppingCart, ...addSides(data)]
-        : category === "bebidas"
+        : category === "bebidas" || category === "postres"
         ? [...newShoppingCart, ...addGenericItem(data, category)]
         : newShoppingCart;
     }, []);

@@ -87,6 +87,7 @@ export const validPhone = /^[6-9]\d{8}/;
 export const shoppingCartBEComponent = {
   beverage: { __component: "shopping-cart.beverage", __typename: "ComponentShoppingCartBeverage" },
   burger: { __component: "shopping-cart.burger", __typename: "ComponentShoppingCartBurger" },
+  dessert: { __component: "shopping-cart.dessert", __typename: "ComponentShoppingCartDessert" },
   menu: { __component: "shopping-cart.menu", __typename: "ComponentShoppingCartMenu" },
   sandwich: { __component: "shopping-cart.sandwich", __typename: "ComponentShoppingCartSandwich" },
   side: { __component: "shopping-cart.side", __typename: "ComponentShoppingCartSide" },
