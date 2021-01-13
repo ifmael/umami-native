@@ -21,6 +21,7 @@ const groupByCategory = (shoppingCart, categories) => {
           ingredients,
           id,
           isChildrenMenu,
+          isCustom,
           isMenu,
           meatPoint,
           name,
@@ -33,13 +34,14 @@ const groupByCategory = (shoppingCart, categories) => {
         const categoryElement = elementsGrouped?.find(({ category: categoryGrouped }) => {
           return categoryGrouped === newCategory;
         });
-
         categoryElement?.data.push({
           beverage,
           category,
           id,
           ingredients,
           isChildrenMenu,
+          isCustom,
+          isMenu,
           meatPoint,
           name,
           price,

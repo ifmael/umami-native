@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View } from "react-native";
 import { Button } from "react-native-elements";
-import { array, number, string, object, oneOfType } from "prop-types";
+import { array, boolean, number, string, object, oneOfType } from "prop-types";
 import { ListItem } from "react-native-elements";
 import FontText from "/components/common/FontText";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -10,8 +10,11 @@ import { getListOfIngredients } from "/utils/functions";
 
 export default function ShoppingCartItem({
   beverage = {},
+  category = "",
   id,
   ingredients = [],
+  isCustom,
+  isMenu,
   meatPoint = {},
   name,
   price,
@@ -21,11 +24,14 @@ export default function ShoppingCartItem({
 }) {
   const { removeItem } = useContext(GlobalContext);
 
+  const customName =
+    isMenu && isCustom ? `${category.charAt(0).toUpperCase()}${category.slice(1, -1)} ${name.toLowerCase()}` : name;
+
   return (
     <ListItem>
       <ListItem.Content>
         <View style={{ width: "100%", justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
-          <FontText h4>{name} </FontText>
+          <FontText h4>{customName}</FontText>
           <View style={{ marginLeft: "auto", flexDirection: "row", alignItems: "center" }}>
             <FontText h4 style={{ marginRight: 10 }}>
               {price}
@@ -56,8 +62,11 @@ export default function ShoppingCartItem({
 
 ShoppingCartItem.propTypes = {
   beverage: object,
+  category: string,
   id: string,
   ingredients: array,
+  isCustom: boolean,
+  isMenu: boolean,
   meatPoint: object,
   name: string,
   price: number,

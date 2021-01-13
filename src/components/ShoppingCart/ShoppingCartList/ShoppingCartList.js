@@ -29,7 +29,7 @@ export default function ShoppingCartList({ shoppingCartByCategory }) {
             </Card.Title>
             <Card.Divider style={{ marginBottom: 0 }} />
             {data?.map((shoppingItem) => {
-              return <ShoppingCartItem key={shoppingItem?.id?.toString()} {...shoppingItem} />;
+              return <ShoppingCartItem key={shoppingItem?.id?.toString()} {...shoppingItem} {...category} />;
             })}
           </Card>
         );

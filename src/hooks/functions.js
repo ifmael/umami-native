@@ -22,14 +22,20 @@ export const addBurgers = (burgersInput) => {
   try {
     const { burger } = shoppingCartBEComponent;
 
-    return burgersInput?.map(({ ingredients, meatPoint, name, price, typeOfMeat }) => ({
-      ingredients: ingredients?.length > 0 ? getListOfIngredients(ingredients, "· Sin ", true) : "",
-      meatPoint: meatPoint?.name,
-      name,
-      price,
-      typeOfMeat: typeOfMeat?.name,
-      ...burger,
-    }));
+    return burgersInput?.map(({ ingredients, isCustom, meatPoint, name, price, typeOfMeat }) => {
+      const listOfIngredients = isCustom
+        ? getListOfIngredients(ingredients, "· Con ")
+        : getListOfIngredients(ingredients, "· Sin ", true);
+
+      return {
+        ingredients: ingredients?.length > 0 ? listOfIngredients : "",
+        meatPoint: meatPoint?.name,
+        name,
+        price,
+        typeOfMeat: typeOfMeat?.name,
+        ...burger,
+      };
+    });
   } catch (error) {
     console.log(error);
   }
@@ -76,13 +82,19 @@ export const addSandwiches = (sandwichInput) => {
   try {
     const { sandwich } = shoppingCartBEComponent;
 
-    return sandwichInput?.map(({ ingredients, name, price, typeOfBread }) => ({
-      ingredients: ingredients?.length > 0 ? getListOfIngredients(ingredients, "· Sin ", true) : "",
-      name,
-      price,
-      typeOfBread: typeOfBread?.name,
-      ...sandwich,
-    }));
+    return sandwichInput?.map(({ ingredients, isCustom, name, price, typeOfBread }) => {
+      const listOfIngredients = isCustom
+        ? getListOfIngredients(ingredients, "· Con ")
+        : getListOfIngredients(ingredients, "· Sin ", true);
+
+      return {
+        ingredients: ingredients?.length > 0 ? listOfIngredients : "",
+        name,
+        price,
+        typeOfBread: typeOfBread?.name,
+        ...sandwich,
+      };
+    });
   } catch (error) {
     console.log(error);
   }
