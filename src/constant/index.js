@@ -93,3 +93,13 @@ export const shoppingCartBEComponent = {
   sandwich: { __component: "shopping-cart.sandwich", __typename: "ComponentShoppingCartSandwich" },
   side: { __component: "shopping-cart.side", __typename: "ComponentShoppingCartSide" },
 };
+
+export const deliveryOptions = [
+  { option: "home", id: 0, name: "A domicilio." },
+  { option: "restaurant", id: 1, name: "En nuestro local." },
+];
+
+export const deliverySteps = [
+  { options: deliveryOptions, step: 0, titleStep: "Opciones de envio" },
+  { options: [], step: 1, titleStep: "Información de contacto" },
+];

@@ -8,6 +8,7 @@ import useProducts from "/hooks/useProducts";
 import useCategories from "/hooks/useCategories";
 import useShoppingCart from "/hooks/useShoppingCart";
 import useOrder from "/hooks/useOrder";
+import useDelivery from "/hooks/useDelivery";
 import GET_DATA from "/graphql/querys/getData";
 
 export const GlobalContext = React.createContext({});
@@ -20,7 +21,9 @@ const ContextProvider = ({ children }) => {
     Confortaa: require("/assets/fonts/Comfortaa.ttf"),
   });
   const [shoppingCartSelectors, shoppingCartHandlers] = useShoppingCart();
-  const [orderSelectosr, orderHandlers] = useOrder();
+  const [orderSelectors, orderHandlers] = useOrder();
+  const [deliverySelectors, deliveryHandlers] = useDelivery();
+
   return !fontsLoaded ? (
     <AppLoading />
   ) : (
@@ -32,8 +35,10 @@ const ContextProvider = ({ children }) => {
         productsByCategory,
         ...shoppingCartSelectors,
         ...shoppingCartHandlers,
-        ...orderSelectosr,
+        ...orderSelectors,
         ...orderHandlers,
+        ...deliverySelectors,
+        ...deliveryHandlers,
       }}
     >
       <SafeAreaViewAndroid>{children}</SafeAreaViewAndroid>

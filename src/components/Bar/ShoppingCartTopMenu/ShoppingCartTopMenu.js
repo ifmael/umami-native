@@ -27,16 +27,16 @@ const ShoppingCartTopMenu = () => {
   });
 
   const goToShoppingCart = () => {
-    if (shoppingCart.length > 0) navigation.push("ShoppingCart");
+    if (shoppingCart?.length > 0) navigation.push("ShoppingCart");
   };
 
   return (
     <TouchableOpacity onPress={goToShoppingCart} style={styles.button}>
       <View>
         <FontAwesome name="shopping-cart" size={25} color={"grey"} />
-        {shoppingCart.length > 0 && (
+        {shoppingCart?.length > 0 && (
           <View style={[styles.IconBadge]}>
-            <FontText style={{ color: "#FFFFFF" }}>{shoppingCart.length}</FontText>
+            <FontText style={{ color: "#FFFFFF" }}>{shoppingCart?.length}</FontText>
           </View>
         )}
       </View>
