@@ -12,6 +12,8 @@ const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }
   const [isError, setIsError] = useState(false);
   const { options, setOption, selected } = useRadioButtons(data);
   useCheckErrors(__typename, productDetailInfo, setIsError);
+  const ExtraPriceComponent =
+    selected && selected.price ? <FontText style={{ marginLeft: 10 }}>Se añadirá {selected.price}€</FontText> : null;
 
   useEffect(() => {
     if (!options || !__typename) return;
@@ -37,7 +39,9 @@ const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }
       <FontText h4 style={{ textAlign: "center", color: isError ? "red" : "black" }}>
         {isError ? "⚠" : null} {description} {isError ? "⚠" : null}
       </FontText>
-      {isRadioButton ? <RadioButtons options={options} setOption={setOption} /> : null}
+      {isRadioButton ? (
+        <RadioButtons extraInfoComponent={ExtraPriceComponent} options={options} setOption={setOption} />
+      ) : null}
     </View>
   );
 };

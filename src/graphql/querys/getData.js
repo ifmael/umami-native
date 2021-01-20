@@ -38,6 +38,7 @@ const GET_DATA = gql`
           data {
             id
             name
+            price
           }
         }
 
@@ -77,6 +78,7 @@ const GET_DATA = gql`
                 data {
                   id
                   name
+                  price
                 }
               }
             }
