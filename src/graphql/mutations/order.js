@@ -5,14 +5,6 @@ export const CREATE_ORDER = gql`
     createOrder(input: $input) {
       order {
         id
-        contactInfo {
-          block
-          flat
-          locality
-          number
-          phone
-          street
-        }
       }
     }
   }

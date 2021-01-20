@@ -1,5 +1,6 @@
 import React from "react";
 import { array } from "prop-types";
+import { View } from "react-native";
 import { Card } from "react-native-elements";
 import FontText from "/components/common/FontText";
 
@@ -7,7 +8,7 @@ import ShoppingCartItem from "/components/ShoppingCart/ShoppingCartItem";
 
 export default function ShoppingCartList({ shoppingCartByCategory }) {
   return (
-    <>
+    <View>
       {shoppingCartByCategory?.map((shoppingCartCategory) => {
         const { category, data } = shoppingCartCategory;
         return (
@@ -34,7 +35,7 @@ export default function ShoppingCartList({ shoppingCartByCategory }) {
           </Card>
         );
       })}
-    </>
+    </View>
   );
 }
 

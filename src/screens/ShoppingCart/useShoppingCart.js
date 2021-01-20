@@ -83,8 +83,5 @@ export default function useShoppingCart() {
     setTotalPrice(newPrice);
   }, [shoppingCart]);
 
-  console.log(shoppingCartByCategory);
-  console.log(`price: ${totalPrice}`);
-
   return [{ shoppingCartByCategory, totalPrice }];
 }

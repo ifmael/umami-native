@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View } from "react-native";
 import { Button } from "react-native-elements";
-import { array, boolean, number, string, object, oneOfType } from "prop-types";
+import { array, bool, number, string, object, oneOfType } from "prop-types";
 import { ListItem } from "react-native-elements";
 import FontText from "/components/common/FontText";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -65,8 +65,8 @@ ShoppingCartItem.propTypes = {
   category: string,
   id: string,
   ingredients: array,
-  isCustom: boolean,
-  isMenu: boolean,
+  isCustom: bool,
+  isMenu: bool,
   meatPoint: object,
   name: string,
   price: number,

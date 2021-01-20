@@ -26,7 +26,6 @@ const ProductItem = (props) => {
         price,
         category,
       };
-      console.log(shoppingCartItem);
       setItemShoppingCart(shoppingCartItem);
       navigation.setOptions({ title: "Updated!" });
     }

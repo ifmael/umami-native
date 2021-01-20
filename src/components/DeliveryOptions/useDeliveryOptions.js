@@ -6,7 +6,7 @@ import usePickUpInLocal from "./PickUpInLocal/usePickupInLocal";
 import { deliveryOptions } from "/constant";
 
 const useDeliveryOptions = (showModalHandler) => {
-  const { addContactInfo } = useContext(GlobalContext);
+  const { setContactInfo, setDeliveryOption } = useContext(GlobalContext);
   const [parentWidth, setParentWidth] = useState(0);
   const { options, setOption, selected } = useRadioButtons(deliveryOptions);
   const [deliverAtHomeSelectors, deliveryAthomeHandlers, deliveryAtHomeUI] = useDeliveryAtHome();
@@ -54,7 +54,8 @@ const useDeliveryOptions = (showModalHandler) => {
       wizardRef?.current?.next();
     } else if (currentStep === 1) {
       if (deliverAtHomeSelectors.isPossibleAddContact && selected?.option === "home") {
-        addContactInfo({
+        setDeliveryOption(selected?.name, selected?.option);
+        setContactInfo({
           block: deliverAtHomeSelectors.block,
           flat: deliverAtHomeSelectors.flat,
           number: deliverAtHomeSelectors.number,
@@ -62,6 +63,14 @@ const useDeliveryOptions = (showModalHandler) => {
           phone: deliverAtHomeSelectors.phone,
           street: deliverAtHomeSelectors.street,
         });
+      } else if (pickUpInLocalSelectors.isValidPickUpInLocal && selected?.option === "restaurant") {
+        setContactInfo({
+          name: pickUpInLocalSelectors.name,
+          phone: pickUpInLocalSelectors.phone,
+        });
+        setDeliveryOption(selected?.name, selected?.option);
+      } else {
+        console.log("it should be impossibe!!");
       }
 
       showModalHandler(false);

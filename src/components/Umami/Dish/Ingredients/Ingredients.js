@@ -20,7 +20,6 @@ const getTitle = (category) => {
 const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
   const {
     productDetailInfo: { isCustom },
-    productDetailInfo,
     setCustom,
     setIngredients,
   } = useContext(ProductDetailContext);
@@ -44,8 +43,6 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
 
     setIngredients(listIngredients);
   }, [isCustom, listIngredients, setIngredients]);
-
-  console.log(productDetailInfo);
 
   return (
     <View>

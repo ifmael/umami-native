@@ -1,63 +1,37 @@
-import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_ORDER } from "/graphql/mutations/order";
 import { addShoppingCart } from "/hooks/functions";
-import { validateContactInfo } from "/utils/functions";
-
-const contactInfoInitialValue = () => ({
-  block: null,
-  flat: null,
-  locality: null,
-  number: null,
-  phone: null,
-  street: null,
-});
-
-// const shoppingCartInitialValue = () => ({
-//   burger: [],
-// });
+import { shoppingCartBEComponent } from "/constant";
 
 const useOrder = () => {
-  // Contact Info
-  const [contactInfo, setContactInfo] = useState(contactInfoInitialValue);
   const [createOrder, { data: newOrderData, error: newOrderError, loading: newOrderLoading }] = useMutation(
     CREATE_ORDER
   );
 
-  // ShoppingCart
-  // const [shoppingCart, setShoppingCart] = useState(shoppingCartInitialValue);
-
-  const addContactInfo = (contactInfoInput) => {
+  const addDelivery = (deliveryOptions) => {
     try {
-      // Valide mandatory fields
-      const { phone, street, locality } = contactInfoInput;
-      const { isValid } = validateContactInfo({
-        phone,
-        street,
-        locality,
-      });
-      if (isValid) {
-        console.log(contactInfoInput);
-        setContactInfo(contactInfoInput);
+      const { atHome, inLocal } = shoppingCartBEComponent;
+      if (deliveryOptions?.option === "home") {
+        return { ...deliveryOptions?.contactInfo, ...atHome };
+      } else if (deliveryOptions?.option === "restaurant") {
+        return { ...deliveryOptions?.contactInfo, ...inLocal };
       } else {
-        console.log("No se ha podido añadir la información de contacto");
+        console.log(`it should be impossibe(addDelivery): ${deliveryOptions?.option}`);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const createNewOrder = (shoppingCartByCategories, totalPrice) => {
+  const createNewOrder = (deliveryOptionsInput, shoppingCartByCategories, totalPrice) => {
     try {
+      const deliveryOptions = addDelivery(deliveryOptionsInput);
       const shoppingCart = addShoppingCart(shoppingCartByCategories);
-      const contactInfoMockup = {
-        locality: "",
-        phone: "",
-        street: "",
-      };
 
       const order = {
-        variables: { input: { data: { contactInfo: contactInfoMockup, shoppingCart: shoppingCart, totalPrice } } },
+        variables: {
+          input: { data: { deliveryOptions, shoppingCart, totalPrice } },
+        },
       };
       createOrder(order);
     } catch (error) {
@@ -65,10 +39,7 @@ const useOrder = () => {
     }
   };
 
-  return [
-    { contactInfo, newOrderData, newOrderError, newOrderLoading },
-    { addContactInfo, createNewOrder },
-  ];
+  return [{ newOrderData, newOrderError, newOrderLoading }, { createNewOrder }];
 };
 
 export default useOrder;
