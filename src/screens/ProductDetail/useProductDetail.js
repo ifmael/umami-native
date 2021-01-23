@@ -12,6 +12,7 @@ const initValue = {
   typeOfBread: null,
   isCustom: false,
   ingredients: [],
+  ingredientsExtra: [],
   isMenu: false,
   beverage: null,
   side: null,
@@ -20,11 +21,14 @@ const initValue = {
 
 const reducer = (state, action) => {
   const { type, payload } = action;
+
   switch (type) {
     case "setCustom":
       return { ...state, isCustom: payload.isCustom };
     case "setListIngredients":
       return { ...state, ingredients: payload.ingredients };
+    case "setListIngredientsExtra":
+      return { ...state, ingredientsExtra: payload.ingredientsExtra };
     case "setDishConfiguration": {
       const [key] = Object.keys(payload);
       return { ...state, [key]: payload[key] };
@@ -58,6 +62,10 @@ const useProductDetail = (options) => {
     dispatch({ type: "setListIngredients", payload: { ingredients: listOfIngredients } });
   }, []);
 
+  const setIngredientsExtra = useCallback((listOfIngredientsExtra) => {
+    dispatch({ type: "setListIngredientsExtra", payload: { ingredientsExtra: listOfIngredientsExtra } });
+  }, []);
+
   // eslint-disable-next-line no-unused-vars
   const setDishConfiguration = useCallback(({ isSelected, ...rest }, type) => {
     dispatch({ type: "setDishConfiguration", payload: { [type]: rest } });
@@ -83,17 +91,22 @@ const useProductDetail = (options) => {
     dispatch({ type: "removeError", payload: { type } });
   }, []);
 
-  return {
-    productDetailInfo,
-    setCustom,
-    setIngredients,
-    setDishConfiguration,
-    setIsMenu,
-    setBeverage,
-    setSide,
-    setErrors,
-    removeError,
-  };
+  return [
+    {
+      productDetailInfo,
+    },
+    {
+      setCustom,
+      setIngredients,
+      setIngredientsExtra,
+      setDishConfiguration,
+      setIsMenu,
+      setBeverage,
+      setSide,
+      setErrors,
+      removeError,
+    },
+  ];
 };
 
 export default useProductDetail;

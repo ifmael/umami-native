@@ -11,17 +11,7 @@ const ProductDetail = ({ route }) => {
   const { ...rest } = route.params;
   const { isChildrenMenu, isMenu, isYourTaste, price, menu } = rest;
   const scrollViewElement = useRef(null);
-  const {
-    productDetailInfo,
-    setCustom,
-    setIngredients,
-    setDishConfiguration,
-    setIsMenu,
-    setBeverage,
-    setSide,
-    setErrors,
-    removeError,
-  } = useProductDetail({
+  const [selectorProductDetail, handlerProductDetail] = useProductDetail({
     name: rest.name,
     category: rest.category,
   });
@@ -33,15 +23,8 @@ const ProductDetail = ({ route }) => {
   return (
     <ProductDetailContext.Provider
       value={{
-        productDetailInfo,
-        setCustom,
-        setIngredients,
-        setDishConfiguration,
-        setIsMenu,
-        setBeverage,
-        setSide,
-        setErrors,
-        removeError,
+        ...selectorProductDetail,
+        ...handlerProductDetail,
       }}
     >
       <ScrollView style={{ backgroundColor: "white" }} ref={scrollViewElement}>

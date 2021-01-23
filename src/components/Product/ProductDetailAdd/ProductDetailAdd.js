@@ -25,7 +25,8 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
   return (
     <>
       <AddButton
-        title={isYourTaste ? `Añadelo por ${priceProduct}€` : "Añadir"}
+        title={`Añadelo por ${priceProduct}€`}
+        // title={isYourTaste ? `Añadelo por ${priceProduct}€` : "Añadir"}
         onPress={handlers.addProductToShoppingCart}
       />
       {localErrors ? (

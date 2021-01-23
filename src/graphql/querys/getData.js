@@ -241,6 +241,12 @@ const GET_DATA = gql`
         previewUrl
       }
     }
+    ingredients {
+      id
+      name
+      price
+      showAddExtraIngredient
+    }
   }
 `;
 

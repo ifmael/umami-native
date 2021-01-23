@@ -4,11 +4,8 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { element } from "prop-types";
 import SafeAreaViewAndroid from "/components/common/SafeAreaViewAndroid";
-import useProducts from "/hooks/useProducts";
-import useCategories from "/hooks/useCategories";
-import useShoppingCart from "/hooks/useShoppingCart";
-import useOrder from "/hooks/useOrder";
-import useDelivery from "/hooks/useDelivery";
+import { useCategories, useDelivery, useIngredients, useOrder, useProducts, useShoppingCart } from "/hooks";
+
 import GET_DATA from "/graphql/querys/getData";
 
 export const GlobalContext = React.createContext({});
@@ -17,6 +14,7 @@ const ContextProvider = ({ children }) => {
   const { loading, error, data } = useQuery(GET_DATA);
   const { productsByCategory } = useProducts(data);
   const { categories } = useCategories(data);
+  const ingredients = useIngredients(data);
   const [fontsLoaded] = useFonts({
     Confortaa: require("/assets/fonts/Comfortaa.ttf"),
   });
@@ -31,6 +29,7 @@ const ContextProvider = ({ children }) => {
       value={{
         categories,
         error,
+        ingredients,
         loading,
         productsByCategory,
         ...shoppingCartSelectors,

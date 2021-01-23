@@ -3,6 +3,7 @@ import { array, string, bool } from "prop-types";
 import { View, Switch } from "react-native";
 import SwitchList from "/components/common/Switch/SwitchList";
 import useSwitchList from "/components/common/Switch/SwitchList/useSwitchList";
+import AddExtraIngredients from "/components/Umami/Dish/AddExtraIngredients";
 import ProductDetailContext from "/context/ProductDetailContext";
 import styles from "./Ingredients.styles";
 import FontText from "/components/common/FontText";
@@ -49,19 +50,22 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
       <View style={styles.container}>
         <FontText style={{ fontSize: 18, fontWeight: "bold" }}>{title}</FontText>
         {!isYourTaste ? (
-          <Switch
-            trackColor={{ false: "#767577", true: "#c96" }}
-            thumbColor={isCustom ? "#fc0" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={() => showIngredients(!isCustom)}
-            value={isCustom}
-          />
+          <>
+            <Switch
+              trackColor={{ false: "#767577", true: "#c96" }}
+              thumbColor={isCustom ? "#fc0" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={() => showIngredients(!isCustom)}
+              value={isCustom}
+            />
+          </>
         ) : null}
       </View>
 
       {isCustom || isYourTaste ? (
         <View style={{ paddingHorizontal: 15 }}>
           <SwitchList list={listIngredients} setItem={setIngredient} />
+          <AddExtraIngredients originalListIngredients={ingredients} />
         </View>
       ) : null}
     </View>
