@@ -14,7 +14,7 @@ const calculateIngredientsPrice = (listOfIngredients) => {
   }
 };
 
-export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, price, priceMenu) {
+export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, price) {
   const [localErrors, setLocalErrors] = useState(null);
   const [priceProduct, setPriceProduct] = useState(price);
   const { setItemShoppingCart } = useContext(GlobalContext);
@@ -70,8 +70,6 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
       setLocalErrors(messageErrors);
       setErrors(messageErrors);
     } else {
-      // console.log(productDetailInfo);
-      // console.log(priceProduct);
       const shoppingCartItem = {
         ...productDetailInfo,
         id: guidGenerator(),
@@ -93,27 +91,31 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   // Calculate product price when is not a side
   useEffect(() => {
     try {
-      const { isMenu, beverage, side, ingredients, ingredientsExtra, category, typeOfMeat } = productDetailInfo;
+      const { beverage, side, ingredients, ingredientsExtra, category, typeOfMeat } = productDetailInfo;
       if (category === "complementos") return;
+      if (isChildrenMenu) {
+        setPriceProduct(price);
+        return;
+      }
 
       let total = price;
       if (isYourTaste) {
         total += calculateIngredientsPrice(ingredients) || 0;
-        total += isMenu ? priceMenu : 0;
-      } else if (isMenu) {
-        total = isChildrenMenu ? price : priceMenu + total;
+      } else {
+        total += calculateIngredientsPrice(ingredientsExtra) || 0;
       }
+      const discountMenu = beverage?.price && side.price ? true : false;
 
-      total += calculateIngredientsPrice(ingredientsExtra);
-      total += side?.extraPrice ? side.extraPrice : 0;
-      total += beverage?.extraPrice ? beverage.extraPrice : 0;
+      total += side?.price ? side?.price : 0;
+      total += beverage?.price ? beverage?.price : 0;
       total += typeOfMeat?.price ? typeOfMeat?.price : 0;
+      total -= discountMenu ? 1 : 0;
 
       setPriceProduct(total);
     } catch (error) {
       console.log(error);
     }
-  }, [isChildrenMenu, isYourTaste, productDetailInfo, price, priceMenu]);
+  }, [isChildrenMenu, isYourTaste, productDetailInfo, price]);
 
   // Calculate product price === "complementos"
   useEffect(() => {

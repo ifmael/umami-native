@@ -27,9 +27,9 @@ const UmamiMenuBeverage = ({ beverages, name }) => {
         <View style={{ marginVertical: 15 }}>
           <Picker
             inputProps={{
-              placeholder: "Pulsame para elegir una",
+              containerStyle: { paddingHorizontal: 50 },
               errorMessage: isError ? "Elige una bebida" : "",
-              containerStyle: { paddingHorizontal: 80 },
+              placeholder: "Pulsame para elegir una",
               value: productDetailInfo?.beverage?.name ? productDetailInfo?.beverage?.name : "",
             }}
             onValueChange={onValueChange}

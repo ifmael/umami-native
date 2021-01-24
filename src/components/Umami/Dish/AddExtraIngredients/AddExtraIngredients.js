@@ -55,7 +55,7 @@ export default function ExtraIngredients({ originalListIngredients }) {
             <SwitchList list={listOfIngredients} setItem={setIngredient} />
           </ScrollView>
           <View style={modalButtonView}>
-            <Button title="Cancelar" onPress={onCancel} />
+            <Button title="Cerrar" onPress={onCancel} />
             <Button title="Aceptar" onPress={() => setIsVisible(false)} />
           </View>
         </View>

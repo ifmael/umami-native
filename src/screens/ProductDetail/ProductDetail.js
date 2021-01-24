@@ -9,15 +9,11 @@ import useProductDetail from "./useProductDetail";
 
 const ProductDetail = ({ route }) => {
   const { ...rest } = route.params;
-  const { isChildrenMenu, isMenu, isYourTaste, price, menu } = rest;
+  const { isChildrenMenu, isYourTaste, price } = rest;
   const scrollViewElement = useRef(null);
   const [selectorProductDetail, handlerProductDetail] = useProductDetail({
     name: rest.name,
     category: rest.category,
-  });
-
-  const menuInfo = menu?.find(({ __typename }) => {
-    return __typename === "ComponentMenuInfo";
   });
 
   return (
@@ -33,10 +29,8 @@ const ProductDetail = ({ route }) => {
       <ProductDetailAdd
         goTo={scrollViewElement}
         isChildrenMenu={isChildrenMenu}
-        isMenu={isMenu}
         isYourTaste={isYourTaste}
         price={price}
-        priceMenu={menuInfo?.price}
       />
     </ProductDetailContext.Provider>
   );
