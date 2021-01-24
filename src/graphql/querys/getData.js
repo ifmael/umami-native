@@ -147,6 +147,7 @@ const GET_DATA = gql`
               product {
                 id
                 name
+                price
               }
               options {
                 id
@@ -172,6 +173,7 @@ const GET_DATA = gql`
                     product {
                       id
                       name
+                      price
                     }
                     options {
                       id
@@ -195,6 +197,7 @@ const GET_DATA = gql`
               product {
                 id
                 name
+                price
               }
             }
           }
@@ -215,6 +218,7 @@ const GET_DATA = gql`
                     product {
                       id
                       name
+                      price
                     }
                   }
                 }

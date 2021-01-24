@@ -6,11 +6,9 @@ import { guidGenerator } from "/utils/functions";
 
 const calculateIngredientsPrice = (listOfIngredients) => {
   try {
-    const x = listOfIngredients?.reduce((total, { isSelected, price }) => {
+    return listOfIngredients?.reduce((total, { isSelected, price }) => {
       return isSelected ? total + price : total;
     }, 0);
-    console.log(`los ingredientes extra son: ${x}`);
-    return x;
   } catch (error) {
     console.log(error);
   }

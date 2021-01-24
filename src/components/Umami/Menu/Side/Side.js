@@ -1,73 +1,41 @@
-import React, { useContext, useEffect, useState } from "react";
-import { array, bool, string } from "prop-types";
+import React, { useContext, useState } from "react";
 import { View } from "react-native";
-import RadioButtons from "/components/common/RadioButtons";
-import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
 import ProductDetailContext from "/context/ProductDetailContext";
-import extractProducts from "../utils/extractProducts";
 import FontText from "/components/common/FontText";
+import extractProducts from "/components/Umami/Menu//utils/extractProducts";
+import Picker from "/components/common/Picker";
 import useCheckErrors from "/hooks/useCheckErrors";
+import { array, bool, string } from "prop-types";
 
-const UmamiMenuSide = ({ sides, isRadioButton, name }) => {
+const UmamiMenuSide = ({ sides, name }) => {
+  console.log("render menuside");
   const { setSide, productDetailInfo, removeError } = useContext(ProductDetailContext);
   const [isError, setIsError] = useState(false);
   const newSides = extractProducts(sides);
-  const { options: optionsV1, setOption: setOptionV1, selected: selectedV1 } = useRadioButtons(newSides);
-  const {
-    options: potatoesOptions,
-    setOption: setPotatoOption,
-    selected: potatoSelected,
-    setOptions,
-    setSelected,
-  } = useRadioButtons(selectedV1?.options);
+  const isNewSides = Array.isArray(newSides) && newSides.length > 0;
   useCheckErrors("ComponentMenuSide", productDetailInfo, setIsError);
 
-  const setInnerSide = (idSelected) => {
-    const { options } = optionsV1.find(({ id }) => idSelected === id);
-
-    setOptionV1(idSelected);
-
-    if (options.length > 0) setOptions(options);
-    else {
-      if (isError) removeError("ComponentMenuSide");
-      setSelected(null);
-    }
+  const onValueChange = (option) => {
+    setSide(option);
+    if (isError) removeError("ComponentMenuSide");
   };
-
-  useEffect(() => {
-    if (!selectedV1) return;
-
-    if (potatoSelected) {
-      const { name } = potatoSelected;
-
-      if (isError) removeError("ComponentMenuSide");
-      setSide({ ...potatoSelected, name: `Patatas: ${name}` });
-    } else {
-      const { options, ...rest } = selectedV1;
-      options.length === 0 ? setSide(rest) : setSide(null);
-    }
-  }, [selectedV1, potatoSelected, setSide, removeError, isError]);
-
-  const ExtraPriceComponent =
-    selectedV1 && selectedV1.extraPrice ? (
-      <FontText style={{ marginLeft: 10 }}>Se añadirán {selectedV1.extraPrice}€</FontText>
-    ) : null;
-
-  const ExtraRadioButtons =
-    selectedV1 && selectedV1?.isRadioButton ? (
-      <RadioButtons options={potatoesOptions} setOption={setPotatoOption} horizontal />
-    ) : null;
 
   return (
     <View>
       <FontText style={{ textAlign: "center", fontSize: 18, color: isError ? "red" : "black" }}>{name}</FontText>
-      {isRadioButton ? (
-        <RadioButtons
-          options={optionsV1}
-          setOption={setInnerSide}
-          extraComponent={ExtraRadioButtons}
-          extraInfoComponent={ExtraPriceComponent}
-        />
+
+      {isNewSides ? (
+        <View style={{ marginVertical: 15 }}>
+          <Picker
+            inputProps={{
+              placeholder: "Pulsame para elegir uno",
+              errorMessage: isError ? "Elige un complemento" : "",
+              value: productDetailInfo?.side?.name ? productDetailInfo?.side?.name : "",
+            }}
+            onValueChange={onValueChange}
+            options={newSides}
+          />
+        </View>
       ) : null}
     </View>
   );

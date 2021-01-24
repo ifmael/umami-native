@@ -15,5 +15,10 @@ export const radioButtonStyles = {
     marginRight: 0,
   },
 };
+export const priceView = {
+  flexDirection: "row",
+  flexGrow: 1,
+  justifyContent: "space-between",
+};
 
 export default styles;

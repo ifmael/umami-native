@@ -69,9 +69,7 @@ export default function ProductDetailDish({
           <Divider />
         </>
       ) : null}
-      {isChildrenMenu || isMenuable ? (
-        <UmamiMenu isChildrenMenu={isChildrenMenu} isYourTaste={isYourTaste} options={menu} />
-      ) : null}
+      {isChildrenMenu || isMenuable ? <UmamiMenu isChildrenMenu={isChildrenMenu} options={menu} /> : null}
     </>
   );
 }

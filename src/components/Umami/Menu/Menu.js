@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { bool, array } from "prop-types";
 import { View, Switch } from "react-native";
+import { Icon, Tooltip } from "react-native-elements";
 // import UmamiMenuInfo from "./Info";
 import UmamiMenuSide from "./Side";
 import UmamiMenuBeverage from "./Beverage";
@@ -10,7 +11,7 @@ import { destructComponentOptions } from "../utils/functions";
 import { sortAsc } from "/utils/functions";
 import styles from "./Menu.styles";
 
-const UmamiMenu = ({ isChildrenMenu, isYourTaste, options }) => {
+const UmamiMenu = ({ isChildrenMenu, options }) => {
   const {
     productDetailInfo: { isMenu },
     setIsMenu,
@@ -18,7 +19,7 @@ const UmamiMenu = ({ isChildrenMenu, isYourTaste, options }) => {
     setSide,
   } = useContext(ProductDetailContext);
   const allComponents = destructComponentOptions(options);
-  let price;
+  // let price;
   const componentsJSX = allComponents.sort(sortAsc).map((componentProps) => {
     const { __typename: componentName } = componentProps;
 
@@ -27,7 +28,6 @@ const UmamiMenu = ({ isChildrenMenu, isYourTaste, options }) => {
     } else if (componentName === "ComponentMenuSide") {
       return <UmamiMenuSide {...componentProps} />;
     } else if (componentName === "ComponentMenuInfo") {
-      price = componentProps.price;
       return null;
       // return <UmamiMenuInfo {...componentProps} />;
     }
@@ -49,9 +49,16 @@ const UmamiMenu = ({ isChildrenMenu, isYourTaste, options }) => {
     <View>
       {!isChildrenMenu ? (
         <View style={styles.container}>
-          <FontText style={{ fontSize: 18, fontWeight: "bold" }}>
-            {isYourTaste ? `Hazlo menú por sólo ${price}€ más ` : `Hazlo menú por sólo ${price}€`}
-          </FontText>
+          <FontText style={{ fontSize: 18, fontWeight: "bold" }}>{`Hazlo menú y ahorrate 1€`}</FontText>
+
+          <Tooltip
+            height={80}
+            width={200}
+            popover={<FontText>Elige un complemento y una bebida para aplicar el descuento</FontText>}
+            backgroundColor="#dedede"
+          >
+            <Icon type="font-awesome-5" name="info-circle" color="#dedede" size={18} />
+          </Tooltip>
           <Switch
             trackColor={{ false: "#767577", true: "#81b0ff" }}
             thumbColor={isMenu ? "#f5dd4b" : "#f4f3f4"}
