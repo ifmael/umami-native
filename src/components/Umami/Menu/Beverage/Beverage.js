@@ -1,39 +1,41 @@
-import React, { useState, useEffect, useContext } from "react";
-import { array, bool, string } from "prop-types";
+import React, { useState, useContext } from "react";
 import { View } from "react-native";
-import RadioButtons from "/components/common/RadioButtons";
-import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
 import FontText from "/components/common/FontText";
+import Picker from "/components/common/Picker";
 import ProductDetailContext from "/context/ProductDetailContext";
 import useCheckErrors from "/hooks/useCheckErrors";
-import extractProducts from "../utils/extractProducts";
+import extractProducts from "/components/Umami/Menu/utils/extractProducts";
+import { array, string } from "prop-types";
 
-const UmamiMenuBeverage = ({ beverages, isRadioButton, name }) => {
+const UmamiMenuBeverage = ({ beverages, name }) => {
   const { productDetailInfo, removeError, setBeverage } = useContext(ProductDetailContext);
   const [isError, setIsError] = useState(false);
   const newBeverages = extractProducts(beverages);
-  const { options, setOption, selected } = useRadioButtons(newBeverages);
+  const isNewBeverages = Array.isArray(beverages) && beverages.length > 0;
+
   useCheckErrors("ComponentMenuBeverage", productDetailInfo, setIsError);
 
-  useEffect(() => {
-    if (!selected) return;
-
+  const onValueChange = (option) => {
+    setBeverage(option);
     if (isError) removeError("ComponentMenuBeverage");
-    setBeverage(selected);
-  }, [selected, setBeverage, isError, removeError]);
-
-  const ExtraPriceComponent =
-    selected && selected.extraPrice ? (
-      <View>
-        <FontText>Se añadirán {selected.extraPrice}€</FontText>
-      </View>
-    ) : null;
+  };
 
   return (
     <View>
       <FontText style={{ textAlign: "center", fontSize: 18, color: isError ? "red" : "black" }}>{name}</FontText>
-      {isRadioButton ? (
-        <RadioButtons options={options} setOption={setOption} extraInfoComponent={ExtraPriceComponent} />
+      {isNewBeverages ? (
+        <View style={{ marginVertical: 15 }}>
+          <Picker
+            inputProps={{
+              placeholder: "Pulsame para elegir una",
+              errorMessage: isError ? "Elige una bebida" : "",
+              containerStyle: { paddingHorizontal: 80 },
+              value: productDetailInfo?.beverage?.name ? productDetailInfo?.beverage?.name : "",
+            }}
+            onValueChange={onValueChange}
+            options={newBeverages}
+          />
+        </View>
       ) : null}
     </View>
   );
@@ -41,7 +43,6 @@ const UmamiMenuBeverage = ({ beverages, isRadioButton, name }) => {
 
 UmamiMenuBeverage.propTypes = {
   beverages: array,
-  isRadioButton: bool,
   name: string,
 };
 
