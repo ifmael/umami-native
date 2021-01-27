@@ -1,7 +1,7 @@
 import React from "react";
-import { string } from "prop-types";
 import { View } from "react-native";
-import FontText from "/components/common/FontText";
+import { Text } from "react-native-elements";
+import { string } from "prop-types";
 
 const propTypes = {
   block: string,
@@ -15,12 +15,11 @@ const propTypes = {
 export default function DeliveryInfoHome({ block, flat, locality, number, phone, street }) {
   return (
     <View>
-      {street ? <FontText>{street}</FontText> : null}
-      {number ? <FontText>Número: {number}</FontText> : null}
-      {block ? <FontText>Bloque: {block}</FontText> : null}
-      {flat ? <FontText>Piso: {flat}</FontText> : null}
-      {locality ? <FontText>Localidad: {locality}</FontText> : null}
-      {phone ? <FontText>Telefono: {phone}</FontText> : null}
+      {street ? <Text>{street}</Text> : null}
+      {number ? <Text>Número: {number}</Text> : null}º{block ? <Text>Bloque: {block}</Text> : null}º
+      {flat ? <Text>Piso: {flat}</Text> : null}
+      {locality ? <Text>Localidad: {locality}</Text> : null}
+      {phone ? <Text>Telefono: {phone}</Text> : null}
     </View>
   );
 }

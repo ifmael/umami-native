@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { View } from "react-native";
+import { Text } from "react-native-elements";
 import ProductDetailContext from "/context/ProductDetailContext";
-import FontText from "/components/common/FontText";
 import extractProducts from "/components/Umami/Menu/utils/extractProducts";
 import Picker from "/components/common/Picker";
 import useCheckErrors from "/hooks/useCheckErrors";
@@ -21,7 +21,7 @@ const UmamiMenuSide = ({ sides, name }) => {
 
   return (
     <View>
-      <FontText style={{ textAlign: "center", fontSize: 18, color: isError ? "red" : "black" }}>{name}</FontText>
+      <Text style={{ textAlign: "center", fontSize: 18, color: isError ? "red" : "black" }}>{name}</Text>
 
       {isNewSides ? (
         <View style={{ marginVertical: 15 }}>

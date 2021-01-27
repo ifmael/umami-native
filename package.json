@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.4",
+    "@expo-google-fonts/comfortaa": "^0.1.0",
     "@expo-google-fonts/inter": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
+    "@react-native-picker/picker": "1.9.2",
     "@react-navigation/bottom-tabs": "^5.9.1",
     "@react-navigation/drawer": "^5.9.2",
     "@react-navigation/native": "^5.7.5",
@@ -38,8 +40,7 @@
     "react-native-screens": "~2.15.0",
     "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.13.12",
-    "react-native-wizard": "^2.1.0",
-    "@react-native-picker/picker": "1.9.2"
+    "react-native-wizard": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",

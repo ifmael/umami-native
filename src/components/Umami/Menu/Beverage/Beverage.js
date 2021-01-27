@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { View } from "react-native";
-import FontText from "/components/common/FontText";
+import { Text } from "react-native-elements";
 import Picker from "/components/common/Picker";
 import ProductDetailContext from "/context/ProductDetailContext";
 import useCheckErrors from "/hooks/useCheckErrors";
@@ -22,7 +22,7 @@ const UmamiMenuBeverage = ({ beverages, name }) => {
 
   return (
     <View>
-      <FontText style={{ textAlign: "center", fontSize: 18, color: isError ? "red" : "black" }}>{name}</FontText>
+      <Text style={{ textAlign: "center", fontSize: 18, color: isError ? "red" : "black" }}>{name}</Text>
       {isNewBeverages ? (
         <View style={{ marginVertical: 15 }}>
           <Picker

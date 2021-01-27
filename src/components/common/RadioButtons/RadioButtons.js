@@ -1,9 +1,9 @@
 import React from "react";
-import { array, func, any, bool } from "prop-types";
 import { View, TouchableOpacity } from "react-native";
+import { Text } from "react-native-elements";
 import { CheckBox } from "react-native-elements";
-import FontText from "/components/common/FontText";
 import styles, { priceView, radioButtonStyles } from "./RadioButtons.styles";
+import { array, func, any, bool } from "prop-types";
 
 const RadioButtons = ({ options, setOption, extraComponent, extraInfoComponent, horizontal = false }) => {
   return (
@@ -15,11 +15,11 @@ const RadioButtons = ({ options, setOption, extraComponent, extraInfoComponent, 
               <TouchableOpacity onPress={() => setOption(id)} style={styles.container}>
                 {price ? (
                   <View style={priceView}>
-                    <FontText style={{ fontSize: 16 }}>{name}</FontText>
-                    <FontText style={{ fontSize: 16 }}>{price} €</FontText>
+                    <Text style={{ fontSize: 16 }}>{name}</Text>
+                    <Text style={{ fontSize: 16 }}>{price} €</Text>
                   </View>
                 ) : (
-                  <FontText style={{ fontSize: 16 }}>{name}</FontText>
+                  <Text style={{ fontSize: 16 }}>{name}</Text>
                 )}
                 <CheckBox
                   checkedIcon="dot-circle-o"

@@ -1,6 +1,13 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { useFonts } from "expo-font";
+import {
+  useFonts,
+  Comfortaa_300Light,
+  Comfortaa_400Regular,
+  Comfortaa_500Medium,
+  // Comfortaa_600SemiBold,
+  Comfortaa_700Bold,
+} from "@expo-google-fonts/comfortaa";
 import AppLoading from "expo-app-loading";
 import { element } from "prop-types";
 import SafeAreaViewAndroid from "/components/common/SafeAreaViewAndroid";
@@ -16,7 +23,11 @@ const ContextProvider = ({ children }) => {
   const { categories } = useCategories(data);
   const ingredients = useIngredients(data);
   const [fontsLoaded] = useFonts({
-    Confortaa: require("/assets/fonts/Comfortaa.ttf"),
+    Comfortaa_300Light,
+    Comfortaa_400Regular,
+    Comfortaa_500Medium,
+    // Comfortaa_600SemiBold,
+    Comfortaa_700Bold,
   });
   const [shoppingCartSelectors, shoppingCartHandlers] = useShoppingCart();
   const [orderSelectors, orderHandlers] = useOrder();

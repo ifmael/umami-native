@@ -32,8 +32,6 @@ export default function ShoppingCart() {
         title={`Pagar: ${totalPrice}€`}
         titleStyle={{
           fontSize: 20,
-          fontFamily: "Confortaa",
-          fontWeight: "bold",
           textShadowColor: "rgba(0, 0, 0, 0.75)",
           textShadowOffset: { width: -1, height: 1 },
           textShadowRadius: 10,

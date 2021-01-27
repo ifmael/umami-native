@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import FontText from "/components/common/FontText";
+import { Text } from "react-native-elements";
 import { func, number, string } from "prop-types";
 import styles from "./Picker.styles";
 
@@ -15,8 +15,8 @@ export default function PickerDefaultItem(props) {
   const { id, name, onPress, price } = props;
   return (
     <TouchableOpacity key={id} onPress={() => onPress({ id, name, price })} style={styles.rowItem}>
-      <FontText style={styles.fontItem}>{`${name}`}</FontText>
-      <FontText style={styles.fontItem}>{`${price.toFixed(2)} €`}</FontText>
+      <Text style={styles.fontItem}>{`${name}`}</Text>
+      <Text style={styles.fontItem}>{`${price.toFixed(2)} €`}</Text>
     </TouchableOpacity>
   );
 }

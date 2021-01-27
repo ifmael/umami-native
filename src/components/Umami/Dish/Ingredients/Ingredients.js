@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { array, string, bool } from "prop-types";
 import { View, Switch } from "react-native";
+import { Text } from "react-native-elements";
 import SwitchList from "/components/common/Switch/SwitchList";
 import useSwitchList from "/components/common/Switch/SwitchList/useSwitchList";
 import AddExtraIngredients from "/components/Umami/Dish/AddExtraIngredients";
 import ProductDetailContext from "/context/ProductDetailContext";
 import styles from "./Ingredients.styles";
-import FontText from "/components/common/FontText";
 
 const getTitle = (category) => {
   return category === "hamburguesas"
@@ -48,7 +48,7 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
   return (
     <View>
       <View style={styles.container}>
-        <FontText style={{ fontSize: 18, fontWeight: "bold" }}>{title}</FontText>
+        <Text style={{ fontSize: 18, fontWeight: "bold" }}>{title}</Text>
         {!isYourTaste ? (
           <>
             <Switch

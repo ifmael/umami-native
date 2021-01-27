@@ -1,9 +1,8 @@
 import React from "react";
 import { object } from "prop-types";
 import { View } from "react-native";
-import { Input } from "react-native-elements";
+import { Input, Text } from "react-native-elements";
 import { Picker } from "@react-native-picker/picker";
-import FontText from "/components/common/FontText";
 
 const propTypes = {
   handlers: object,
@@ -31,7 +30,7 @@ export default function PickUpInLocal({ selectors, handlers }) {
       <View
         style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 10 }}
       >
-        <FontText>Hora de recogida: </FontText>
+        <Text>Hora de recogida: </Text>
         <Picker style={{ width: 150 }}>
           <Picker.Item label="Hour 1" value="date-1" />
         </Picker>

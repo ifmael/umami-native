@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import FontText from "/components/common/FontText";
+import { Text } from "react-native-elements";
 import { validateContactInfo } from "/utils/functions";
 import { validPhone } from "/constant";
 
@@ -15,7 +15,7 @@ const findLocalityFromZip = (zipCode) => {
 };
 
 const renderRow = (data) => {
-  return <FontText>{data.description ? data.description : data.formatted_address}</FontText>;
+  return <Text>{data.description ? data.description : data.formatted_address}</Text>;
 };
 
 const useDeliveryAtHome = () => {

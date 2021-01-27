@@ -1,5 +1,6 @@
 import React from "react";
 import { AppRegistry } from "react-native";
+import { ThemeProvider } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -9,6 +10,7 @@ import { ContactInfo, Home, Menu, Product, ProductDetail, ShoppingCart } from "/
 import { SERVER, TOKEN } from "/constant";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
+import theme from "/styles/theme";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -98,22 +100,24 @@ const App = () => {
     <ApolloProvider client={client}>
       <ContextProvider>
         <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <Stack.Screen name="HomeTab" component={MenuTabs} />
-            <Stack.Screen name="ProductDetail" component={ProductDetail} options={productHeaderOption} />
-            <Stack.Screen
-              name="ShoppingCart"
-              component={ShoppingCart}
-              options={{
-                title: "Mi pedido 🤤",
-                headerShown: true,
+          <ThemeProvider theme={theme}>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
               }}
-            />
-          </Stack.Navigator>
+            >
+              <Stack.Screen name="HomeTab" component={MenuTabs} />
+              <Stack.Screen name="ProductDetail" component={ProductDetail} options={productHeaderOption} />
+              <Stack.Screen
+                name="ShoppingCart"
+                component={ShoppingCart}
+                options={{
+                  title: "Mi pedido 🤤",
+                  headerShown: true,
+                }}
+              />
+            </Stack.Navigator>
+          </ThemeProvider>
         </NavigationContainer>
       </ContextProvider>
     </ApolloProvider>

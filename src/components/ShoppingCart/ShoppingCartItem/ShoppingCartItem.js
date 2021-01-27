@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import { View } from "react-native";
 import { Button } from "react-native-elements";
 import { array, bool, number, string, object, oneOfType } from "prop-types";
-import { ListItem } from "react-native-elements";
-import FontText from "/components/common/FontText";
+import { ListItem, Text } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { GlobalContext } from "/context/GlobalContext";
 import { getListOfIngredients } from "/utils/functions";
@@ -31,11 +30,11 @@ export default function ShoppingCartItem({
     <ListItem>
       <ListItem.Content>
         <View style={{ width: "100%", justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
-          <FontText h4>{customName}</FontText>
+          <Text h4>{customName}</Text>
           <View style={{ marginLeft: "auto", flexDirection: "row", alignItems: "center" }}>
-            <FontText h4 style={{ marginRight: 10 }}>
+            <Text h4 style={{ marginRight: 10 }}>
               {price}
-            </FontText>
+            </Text>
             <Button
               raised
               icon={<Icon name="trash" size={15} color="white" />}
@@ -47,13 +46,13 @@ export default function ShoppingCartItem({
           </View>
         </View>
         <View style={{ paddingHorizontal: 5, margin: 5 }}>
-          {typeOfMeat?.name ? <FontText style={{ marginBottom: 5 }}>· {typeOfMeat.name}</FontText> : null}
-          {meatPoint?.name ? <FontText style={{ marginBottom: 5 }}>· {meatPoint.name}</FontText> : null}
-          {typeOfBread?.name ? <FontText style={{ marginBottom: 5 }}>· {typeOfBread.name}</FontText> : null}
-          {side?.name ? <FontText style={{ marginBottom: 5 }}>· {side.name}</FontText> : null}
-          {side?.length > 0 ? <FontText>{getListOfIngredients(side)}</FontText> : null}
-          {beverage?.name ? <FontText style={{ marginBottom: 5 }}>· {beverage.name}</FontText> : null}
-          {ingredients?.length > 0 ? <FontText>{getListOfIngredients(ingredients, "· Con ")} </FontText> : null}
+          {typeOfMeat?.name ? <Text style={{ marginBottom: 5 }}>· {typeOfMeat.name}</Text> : null}
+          {meatPoint?.name ? <Text style={{ marginBottom: 5 }}>· {meatPoint.name}</Text> : null}
+          {typeOfBread?.name ? <Text style={{ marginBottom: 5 }}>· {typeOfBread.name}</Text> : null}
+          {side?.name ? <Text style={{ marginBottom: 5 }}>· {side.name}</Text> : null}
+          {side?.length > 0 ? <Text>{getListOfIngredients(side)}</Text> : null}
+          {beverage?.name ? <Text style={{ marginBottom: 5 }}>· {beverage.name}</Text> : null}
+          {ingredients?.length > 0 ? <Text>{getListOfIngredients(ingredients, "· Con ")} </Text> : null}
         </View>
       </ListItem.Content>
     </ListItem>

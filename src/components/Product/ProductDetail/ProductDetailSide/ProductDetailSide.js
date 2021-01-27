@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { string, number, bool, array } from "prop-types";
+import { Text } from "react-native-elements";
 import UmamiIngredients from "/components/Umami/Ingredients";
-import FontText from "/components/common/FontText";
 import ProductDetailContext from "/context/ProductDetailContext";
 import useCheckErrors from "/hooks/useCheckErrors";
 import headerStyles from "../ProductDetail.styles";
+import { string, number, bool, array } from "prop-types";
 
 export default function ProductDetailSide({ description, ingredients, isRadioButton, price }) {
   const { productDetailInfo } = useContext(ProductDetailContext);
@@ -13,9 +13,9 @@ export default function ProductDetailSide({ description, ingredients, isRadioBut
 
   return (
     <>
-      <FontText h4 style={{ ...headerStyles.text, color: isError ? "red" : "black" }}>
+      <Text h4 style={{ ...headerStyles.text, color: isError ? "red" : "black" }}>
         {isError ? "⚠" : null} {description} {isError ? "⚠" : null}
-      </FontText>
+      </Text>
       <UmamiIngredients ingredients={ingredients} price={price} isRadioButton={isRadioButton} />
     </>
   );

@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import { string, number, bool } from "prop-types";
 import { View } from "react-native";
-import { ListItem } from "react-native-elements";
+import { ListItem, Text } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "/context/GlobalContext";
-import FontText from "/components/common/FontText";
 import { guidGenerator } from "/utils/functions";
 import COLORS from "/styles/colors";
 import styles from "./ProductItem.styles";
@@ -35,12 +34,12 @@ const ProductItem = (props) => {
       <ListItem.Content>
         <ListItem.Title>
           <View style={styles.title}>
-            <FontText h4>{name}</FontText>
+            <Text h4>{name}</Text>
           </View>
         </ListItem.Title>
         {description ? <ListItem.Subtitle>{description}</ListItem.Subtitle> : null}
       </ListItem.Content>
-      <FontText h4>{price} €</FontText>
+      <Text h4>{price} €</Text>
       <ListItem.Chevron
         type="font-awesome-5"
         name={editable ? "chevron-right" : "plus"}

@@ -1,9 +1,8 @@
 import React from "react";
 import { bool, number, object } from "prop-types";
 import { View } from "react-native";
-import { BottomSheet, Button } from "react-native-elements";
+import { BottomSheet, Button, Text } from "react-native-elements";
 import AddButton from "/components/common/AddButton";
-import FontText from "/components/common/FontText";
 import useProductDetailAdd from "./useProductDetailAdd";
 
 const modalProps = {
@@ -49,14 +48,14 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
             }}
           >
             {localErrors?.map(({ id, text }) => (
-              <FontText key={id} style={{ color: "red", fontWeight: "bold", fontSize: 16, paddingVertical: 5 }}>
+              <Text key={id} style={{ color: "red", fontWeight: "bold", fontSize: 16, paddingVertical: 5 }}>
                 {text}
-              </FontText>
+              </Text>
             ))}
 
             <Button
               title="Cerrar"
-              titleStyle={{ fontSize: 20, fontFamily: "Confortaa", fontWeight: "bold", width: "25%" }}
+              titleStyle={{ fontSize: 20, width: "25%" }}
               buttonStyle={{ backgroundColor: "red", marginTop: 20 }}
               onPress={handlers.closeModal}
             />

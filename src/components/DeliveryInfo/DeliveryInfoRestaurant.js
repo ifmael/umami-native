@@ -1,7 +1,7 @@
 import React from "react";
 import { string } from "prop-types";
 import { View } from "react-native";
-import FontText from "/components/common/FontText";
+import { Text } from "react-native-elements";
 
 const propTypes = {
   name: string,
@@ -11,8 +11,8 @@ const propTypes = {
 export default function DeliveryInfoRestaurant({ name, phone }) {
   return (
     <View>
-      {name ? <FontText>Nombre: {name}</FontText> : null}
-      {phone ? <FontText>Telefono: {phone}</FontText> : null}
+      {name ? <Text>Nombre: {name}</Text> : null}
+      {phone ? <Text>Telefono: {phone}</Text> : null}
     </View>
   );
 }

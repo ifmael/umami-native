@@ -8,7 +8,7 @@ const AddButton = ({ title, onPress }) => {
   return (
     <Button
       icon={<Icon name="plus" size={18} color="white" style={{ marginLeft: 20 }} />}
-      titleStyle={{ fontSize: 20, fontFamily: "Confortaa", fontWeight: "bold" }}
+      titleStyle={{ fontSize: 20 }}
       title={title}
       iconRight
       onPress={onPress}

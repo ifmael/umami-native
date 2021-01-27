@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View } from "react-native";
-import { Icon } from "react-native-elements";
-import FontText from "/components/common/FontText";
+import { Icon, Text } from "react-native-elements";
 import { GlobalContext } from "/context/GlobalContext";
 import { validateContactInfo } from "/utils/functions";
 import { validPhone } from "/constant";
@@ -21,7 +20,7 @@ const renderRow = (data) => {
   return (
     <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
       <Icon name="map-marker-alt" type="font-awesome-5" style={{ marginRight: 8 }} />
-      <FontText>{data.description ? data.description : data.formatted_address}</FontText>
+      <Text>{data.description ? data.description : data.formatted_address}</Text>
     </View>
   );
 };

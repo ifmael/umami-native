@@ -1,8 +1,7 @@
 import React from "react";
 import { array } from "prop-types";
 import { View } from "react-native";
-import { Card } from "react-native-elements";
-import FontText from "/components/common/FontText";
+import { Card, Text } from "react-native-elements";
 
 import ShoppingCartItem from "/components/ShoppingCart/ShoppingCartItem";
 
@@ -26,7 +25,7 @@ export default function ShoppingCartList({ shoppingCartByCategory }) {
             wrapperStyle={{ borderWidth: 0 }}
           >
             <Card.Title style={{ textTransform: "capitalize" }}>
-              <FontText h3>{category}</FontText>
+              <Text h3>{category}</Text>
             </Card.Title>
             <Card.Divider style={{ marginBottom: 0 }} />
             {data?.map((shoppingItem) => {

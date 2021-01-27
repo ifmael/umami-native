@@ -1,13 +1,13 @@
 import React from "react";
 import { string, bool, func } from "prop-types";
 import { View, Switch } from "react-native";
+import { Text } from "react-native-elements";
 import styles from "/styles/switch.styles";
-import FontText from "/components/common/FontText";
 
 const SwitchItem = ({ id, name, isSelected, setState }) => {
   return (
     <View style={styles.container}>
-      <FontText>{name}</FontText>
+      <Text>{name}</Text>
       <Switch
         trackColor={{ false: "#767577", true: "#c96" }}
         thumbColor={isSelected ? "#fc0" : "#f4f3f4"}

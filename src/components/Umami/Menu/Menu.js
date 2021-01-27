@@ -1,11 +1,10 @@
 import React, { useEffect, useContext } from "react";
 import { bool, array } from "prop-types";
 import { View, Switch } from "react-native";
-import { Icon, Tooltip } from "react-native-elements";
+import { Icon, Tooltip, Text } from "react-native-elements";
 // import UmamiMenuInfo from "./Info";
 import UmamiMenuSide from "./Side";
 import UmamiMenuBeverage from "./Beverage";
-import FontText from "/components/common/FontText";
 import ProductDetailContext from "/context/ProductDetailContext";
 import { destructComponentOptions } from "../utils/functions";
 import { sortAsc } from "/utils/functions";
@@ -49,12 +48,12 @@ const UmamiMenu = ({ isChildrenMenu, options }) => {
     <View>
       {!isChildrenMenu ? (
         <View style={styles.container}>
-          <FontText style={{ fontSize: 18, fontWeight: "bold" }}>{`Hazlo menú y ahorrate 1€`}</FontText>
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>{`Hazlo menú y ahorrate 1€`}</Text>
 
           <Tooltip
             height={80}
             width={200}
-            popover={<FontText>Elige un complemento y una bebida para aplicar el descuento</FontText>}
+            popover={<Text>Elige un complemento y una bebida para aplicar el descuento</Text>}
             backgroundColor="#dedede"
           >
             <Icon type="font-awesome-5" name="info-circle" color="#dedede" size={18} />

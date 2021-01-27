@@ -1,17 +1,17 @@
 import React from "react";
-import { array, string, bool, number } from "prop-types";
 import { View } from "react-native";
+import { Text } from "react-native-elements";
 import IngredientsSwitch from "./IngredientsSwitch";
 import IngredientsRadio from "./IngredientsRadio";
-import FontText from "/components/common/FontText";
 import styles from "./UmamiIngredients.styles.js";
+import { array, string, bool, number } from "prop-types";
 
 const UmamiIngredients = ({ ingredients, title, price, isRadioButton }) => {
   const ingredientsWithPrice = ingredients?.map((ingredient) => ({ ...ingredient, price }));
 
   return (
     <View>
-      {title ? <FontText>{title}</FontText> : null}
+      {title ? <Text>{title}</Text> : null}
       <View style={styles.options}>
         {isRadioButton ? (
           <IngredientsRadio ingredients={ingredientsWithPrice} price={price} />

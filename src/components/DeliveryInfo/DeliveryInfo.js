@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { func } from "prop-types";
 import { View } from "react-native";
-import { Divider, Button } from "react-native-elements";
-import FontText from "/components/common/FontText";
+import { Divider, Button, Text } from "react-native-elements";
 import DeliveryInfoRestaurant from "./DeliveryInfoRestaurant";
 import DeliveryInfoHome from "./DeliveryInfoHome";
 import { GlobalContext } from "/context/GlobalContext";
@@ -22,9 +21,9 @@ export default function DeliveryInfo({ showDeliveryOptions }) {
     <View>
       <Divider style={styles.deliveryInfoDivider} />
       <View style={styles.deliveryInfoViewContainer}>
-        <FontText h3 style={styles.deliveryInfoTitle}>
+        <Text h3 style={styles.deliveryInfoTitle}>
           Datos para la entrega
-        </FontText>
+        </Text>
         <View style={styles.deliveryInfoViewOptions}>
           {isDeliveryOption ? (
             deliveryOptions?.option === "restaurant" ? (
@@ -32,10 +31,10 @@ export default function DeliveryInfo({ showDeliveryOptions }) {
             ) : deliveryOptions?.option === "home" ? (
               <DeliveryInfoHome {...deliveryOptions?.contactInfo} />
             ) : (
-              <FontText>No data</FontText>
+              <Text>No data</Text>
             )
           ) : (
-            <FontText>No data</FontText>
+            <Text>No data</Text>
           )}
 
           <Button title="Cambiar" type="outline" onPress={showDeliveryOptions} />

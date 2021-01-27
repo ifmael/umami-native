@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react";
 import { bool, func } from "prop-types";
 import { View } from "react-native";
-import { Button, Icon } from "react-native-elements";
+import { Button, Icon, Text } from "react-native-elements";
 import Modal from "react-native-modal";
 import Wizard from "react-native-wizard";
-import FontText from "/components/common/FontText";
 import ChoosePlace from "./ChoosePlace";
 import DeliveryAtHome from "./DeliveryAtHome";
 import PickUpInLocal from "./PickUpInLocal";
@@ -46,9 +45,9 @@ export default function DeliveryOptions({ showComponent = false, showModalHandle
       <Modal isVisible={showComponent} style={{ flex: 1 }}>
         <View style={styles.mainContainer} onLayout={handlers.onLayout}>
           <View style={styles.titleContainer}>
-            <FontText h4 style={styles.titleContainerText}>
+            <Text h4 style={styles.titleContainerText}>
               {`${deliverySteps[currentStep]?.titleStep}`}
-            </FontText>
+            </Text>
             <Icon containerStyle={titleContainerIcon} type="font-awesome-5" name="times-circle" solid />
           </View>
           <Wizard

@@ -1,11 +1,10 @@
 import React from "react";
 import { string, bool, array } from "prop-types";
 import { View, ActivityIndicator, Dimensions } from "react-native";
-import { Divider, Image } from "react-native-elements";
+import { Divider, Image, Text } from "react-native-elements";
 import UmamiDishConfiguration from "/components/Umami/Dish/Configurations";
 import UmamiDishIngredients from "/components/Umami/Dish/Ingredients";
 import UmamiMenu from "/components/Umami/Menu";
-import FontText from "/components/common/FontText";
 import { getImages } from "../utils";
 import { headerStyles } from "../ProductDetail.styles";
 
@@ -52,9 +51,9 @@ export default function ProductDetailDish({
           ) : null}
         </View>
 
-        <FontText h4 style={headerStyles.text}>
+        <Text h4 style={headerStyles.text}>
           {description}
-        </FontText>
+        </Text>
       </View>
       {isBurguerSandwich ? (
         <>
