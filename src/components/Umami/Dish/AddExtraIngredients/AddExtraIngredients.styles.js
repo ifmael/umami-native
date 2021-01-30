@@ -17,7 +17,7 @@ export const modalStyle = {
   borderRadius: 5,
 };
 export const modalTitleStyle = { textAlign: "center", marginBottom: 10 };
-export const modalDividerStyle = { marginBottom: 20, borderWidth: 0.5 };
+export const modalDividerStyle = { marginBottom: 20 };
 export const modalButtonView = { flexDirection: "row", justifyContent: "space-around", marginTop: 10 };
 
 export default styles;

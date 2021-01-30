@@ -11,17 +11,17 @@ import styles from "./ShoppingCart.styles";
 
 export default function ShoppingCart() {
   const [showDeliveryOptions, setShowDEliveryOptions] = useState(false);
-
+  const { createNewOrder, deliveryOptions } = useContext(GlobalContext);
+  const [{ shoppingCartByCategory, totalPrice }] = useShoppingCart();
   const toggleModal = () => {
     setShowDEliveryOptions(!showDeliveryOptions);
   };
-  const { createNewOrder, deliveryOptions } = useContext(GlobalContext);
-  const [{ shoppingCartByCategory, totalPrice }] = useShoppingCart();
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
-      <ScrollView style={styles.container}>
+    <View style={styles.mainView}>
+      <ScrollView style={styles.scrollViewContainer}>
         <ShoppingCartList shoppingCartByCategory={shoppingCartByCategory} />
+        <View style={styles.divider} />
         <DeliveryInfo showDeliveryOptions={toggleModal} />
       </ScrollView>
       <DeliveryOptions showComponent={showDeliveryOptions} showModalHandler={setShowDEliveryOptions} />
@@ -32,9 +32,6 @@ export default function ShoppingCart() {
         title={`Pagar: ${totalPrice}€`}
         titleStyle={{
           fontSize: 20,
-          textShadowColor: "rgba(0, 0, 0, 0.75)",
-          textShadowOffset: { width: -1, height: 1 },
-          textShadowRadius: 10,
         }}
       />
     </View>

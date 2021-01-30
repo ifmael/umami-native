@@ -1,10 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  deliveryInfoDivider: {
-    backgroundColor: "black",
-    height: 2,
-  },
   deliveryInfoTitle: {
     textAlign: "center",
   },

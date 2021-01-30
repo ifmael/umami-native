@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { func } from "prop-types";
 import { View } from "react-native";
-import { Divider, Button, Text } from "react-native-elements";
+import { Button, Text } from "react-native-elements";
 import DeliveryInfoRestaurant from "./DeliveryInfoRestaurant";
 import DeliveryInfoHome from "./DeliveryInfoHome";
 import { GlobalContext } from "/context/GlobalContext";
 import styles from "./DeliveryInfo.styles";
+import { outlineButtonStyles } from "/styles/theme";
 
 const propTypes = {
   showDeliveryOptions: func,
@@ -16,10 +17,8 @@ export default function DeliveryInfo({ showDeliveryOptions }) {
 
   const isDeliveryOption = deliveryOptions?.option && deliveryOptions?.contactInfo;
 
-  console.log(deliveryOptions);
   return (
     <View>
-      <Divider style={styles.deliveryInfoDivider} />
       <View style={styles.deliveryInfoViewContainer}>
         <Text h3 style={styles.deliveryInfoTitle}>
           Datos para la entrega
@@ -31,13 +30,19 @@ export default function DeliveryInfo({ showDeliveryOptions }) {
             ) : deliveryOptions?.option === "home" ? (
               <DeliveryInfoHome {...deliveryOptions?.contactInfo} />
             ) : (
-              <Text>No data</Text>
+              <Text>Sin información</Text>
             )
           ) : (
-            <Text>No data</Text>
+            <Text>Sin información</Text>
           )}
 
-          <Button title="Cambiar" type="outline" onPress={showDeliveryOptions} />
+          <Button
+            buttonStyle={outlineButtonStyles.button}
+            onPress={showDeliveryOptions}
+            title="Cambiar"
+            titleStyle={outlineButtonStyles.title}
+            type="outline"
+          />
         </View>
       </View>
     </View>

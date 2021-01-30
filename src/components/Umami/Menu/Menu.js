@@ -8,6 +8,7 @@ import UmamiMenuBeverage from "./Beverage";
 import ProductDetailContext from "/context/ProductDetailContext";
 import { destructComponentOptions } from "../utils/functions";
 import { sortAsc } from "/utils/functions";
+import { productDetailCustomActionStyles } from "/styles/theme";
 import styles from "./Menu.styles";
 
 const UmamiMenu = ({ isChildrenMenu, options }) => {
@@ -48,7 +49,7 @@ const UmamiMenu = ({ isChildrenMenu, options }) => {
     <View>
       {!isChildrenMenu ? (
         <View style={styles.container}>
-          <Text style={{ fontSize: 18, fontWeight: "bold" }}>{`Hazlo menú y ahorrate 1€`}</Text>
+          <Text style={productDetailCustomActionStyles}>{`Hazlo menú y ahorrate 1€`}</Text>
 
           <Tooltip
             height={80}

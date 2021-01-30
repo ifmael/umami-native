@@ -103,5 +103,5 @@ export const deliveryOptions = [
 
 export const deliverySteps = [
   { options: deliveryOptions, step: 0, titleStep: "Opciones de envio" },
-  { options: [], step: 1, titleStep: "Información de contacto" },
+  { options: [], step: 1, titleStep: "Contacto" },
 ];

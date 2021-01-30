@@ -77,7 +77,6 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
         isMenu,
         price: priceProduct,
       };
-      console.log(shoppingCartItem);
       setItemShoppingCart(shoppingCartItem);
       navigation.goBack();
     }

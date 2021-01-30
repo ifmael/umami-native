@@ -5,7 +5,7 @@ import {
   Comfortaa_300Light,
   Comfortaa_400Regular,
   Comfortaa_500Medium,
-  // Comfortaa_600SemiBold,
+  Comfortaa_600SemiBold,
   Comfortaa_700Bold,
 } from "@expo-google-fonts/comfortaa";
 import AppLoading from "expo-app-loading";
@@ -26,7 +26,7 @@ const ContextProvider = ({ children }) => {
     Comfortaa_300Light,
     Comfortaa_400Regular,
     Comfortaa_500Medium,
-    // Comfortaa_600SemiBold,
+    Comfortaa_600SemiBold,
     Comfortaa_700Bold,
   });
   const [shoppingCartSelectors, shoppingCartHandlers] = useShoppingCart();

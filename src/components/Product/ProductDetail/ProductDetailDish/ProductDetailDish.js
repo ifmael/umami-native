@@ -51,9 +51,7 @@ export default function ProductDetailDish({
           ) : null}
         </View>
 
-        <Text h4 style={headerStyles.text}>
-          {description}
-        </Text>
+        <Text style={headerStyles.text}>{description}</Text>
       </View>
       {isBurguerSandwich ? (
         <>

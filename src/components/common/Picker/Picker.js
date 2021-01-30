@@ -15,7 +15,7 @@ const propTypes = {
 
 const defaultInputProperties = {
   disabled: true,
-  inputStyle: { textAlign: "center" },
+  inputStyle: { textAlign: "center", fontSize: 18 },
   placeholder: "Pulsame",
   rightIcon: { type: "font-awesome-5", name: "caret-down" },
 };

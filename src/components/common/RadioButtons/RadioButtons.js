@@ -15,11 +15,11 @@ const RadioButtons = ({ options, setOption, extraComponent, extraInfoComponent, 
               <TouchableOpacity onPress={() => setOption(id)} style={styles.container}>
                 {price ? (
                   <View style={priceView}>
-                    <Text style={{ fontSize: 16 }}>{name}</Text>
-                    <Text style={{ fontSize: 16 }}>{price} €</Text>
+                    <Text>{name}</Text>
+                    <Text>{price} €</Text>
                   </View>
                 ) : (
-                  <Text style={{ fontSize: 16 }}>{name}</Text>
+                  <Text>{name}</Text>
                 )}
                 <CheckBox
                   checkedIcon="dot-circle-o"

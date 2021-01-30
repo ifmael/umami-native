@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { bool, func } from "prop-types";
 import { View } from "react-native";
 import { Button, Icon, Text } from "react-native-elements";
 import Modal from "react-native-modal";
@@ -9,8 +8,8 @@ import DeliveryAtHome from "./DeliveryAtHome";
 import PickUpInLocal from "./PickUpInLocal";
 import useDeliveryOptions from "./useDeliveryOptions";
 import { deliverySteps } from "/constant";
-
-import styles, { titleContainerIcon } from "./styles";
+import { bool, func } from "prop-types";
+import styles, { titleContainerIcon } from "./DeliveryOptions.styles";
 
 const propTypes = {
   showComponent: bool,

@@ -6,6 +6,7 @@ import SwitchList from "/components/common/Switch/SwitchList";
 import useSwitchList from "/components/common/Switch/SwitchList/useSwitchList";
 import AddExtraIngredients from "/components/Umami/Dish/AddExtraIngredients";
 import ProductDetailContext from "/context/ProductDetailContext";
+import { productDetailCustomActionStyles } from "/styles/theme";
 import styles from "./Ingredients.styles";
 
 const getTitle = (category) => {
@@ -48,7 +49,7 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
   return (
     <View>
       <View style={styles.container}>
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>{title}</Text>
+        <Text style={productDetailCustomActionStyles}>{title}</Text>
         {!isYourTaste ? (
           <>
             <Switch

@@ -7,12 +7,12 @@ import COLORS from "/styles/colors";
 const AddButton = ({ title, onPress }) => {
   return (
     <Button
+      buttonStyle={{ paddingVertical: 12, backgroundColor: COLORS.addButton }}
       icon={<Icon name="plus" size={18} color="white" style={{ marginLeft: 20 }} />}
-      titleStyle={{ fontSize: 20 }}
-      title={title}
       iconRight
       onPress={onPress}
-      buttonStyle={{ paddingVertical: 12, backgroundColor: COLORS.addButton }}
+      title={title}
+      titleStyle={{ fontSize: 20 }}
     />
   );
 };

@@ -4,7 +4,7 @@ import { Platform, ScrollView, TouchableOpacity, View } from "react-native";
 import { BottomSheet, Button, Input, ListItem, SearchBar } from "react-native-elements";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { PLACES_TOKEN } from "/constant";
-import styles, { buttonStyles, getStyles, searchStyles } from "./styles";
+import styles, { buttonStyles, getStyles, searchStyles } from "./DeliveryAtHome.styles";
 
 const propTypes = {
   handlers: object,

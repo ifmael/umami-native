@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
 export const headerStyles = {
   text: {
     marginTop: 5,
+    fontSize: 18,
+    lineHeight: 25,
   },
 };
 

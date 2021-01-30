@@ -22,15 +22,7 @@ const MenuItem = ({ /* id, */ name, /*  color, */ image, slug }) => {
       </Card.Title>
       <Card.Divider />
       {image?.url ? <Card.Image source={{ uri: `${image.url}` }} /> : null}
-      <Text
-        style={{
-          fontSize: 16,
-          textAlign: "justify",
-          marginTop: 15,
-          fontFamily: "Comfortaa_400Regular",
-          lineHeight: 22,
-        }}
-      >
+      <Text style={stylesRNElements.textDescription}>
         Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
         texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se
         dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro
@@ -46,9 +38,7 @@ const MenuItem = ({ /* id, */ name, /*  color, */ image, slug }) => {
   );
 };
 MenuItem.propTypes = {
-  // id: string,
   name: string,
-  // color: string,
   image: object,
   slug: string,
 };

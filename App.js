@@ -10,7 +10,7 @@ import { ContactInfo, Home, Menu, Product, ProductDetail, ShoppingCart } from "/
 import { SERVER, TOKEN } from "/constant";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
-import theme from "/styles/theme";
+import theme, { headerTextStyles, tabBarOptionStyles } from "/styles/theme";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -38,9 +38,7 @@ const client = new ApolloClient({
 
 const headerOptions = {
   headerShown: true,
-  headerTitleStyle: {
-    textAlign: "center",
-  },
+  headerTitleStyle: headerTextStyles,
   headerRight: ShoppingCartTopMenu,
 };
 
@@ -50,21 +48,13 @@ const App = () => {
       let component;
 
       if (route.name === "Home") {
-        component = (
-          <FontAwesome
-            //name={focused ? "hamburger" : "hamburger"}
-            name="hamburger"
-            size={size}
-            color={color}
-          />
-        );
+        component = <FontAwesome name="hamburger" size={size} color={color} />;
       } else if (route.name === "Menu") {
         component = <FontAwesome name="align-justify" size={size} color={color} />;
       } else if (route.name === "ShoppingCart") {
         component = <FontAwesome name="shopping-cart" size={size} color={color} />;
       }
 
-      // You can return any component that you like here!
       return component;
     },
   });
@@ -77,7 +67,7 @@ const App = () => {
 
   const MenuStack = () => {
     return (
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerTitleStyle: { fontFamily: "Comfortaa_400Regular" } }}>
         <Stack.Screen name="Menu" component={Menu} options={{ ...headerOptions, title: "Nuestro menú" }} />
         <Stack.Screen name="Product" component={Product} options={productHeaderOption} />
       </Stack.Navigator>
@@ -86,7 +76,12 @@ const App = () => {
 
   const MenuTabs = () => {
     return (
-      <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} lazy="true">
+      <Tab.Navigator
+        initialRouteName="Home"
+        screenOptions={screenOptionsTabBar}
+        tabBarOptions={tabBarOptionStyles}
+        lazy="true"
+      >
         <Tab.Screen name="Home" component={Home} options={{ title: "Umami" }} />
         <Tab.Screen name="Menu" component={MenuStack} />
         <Tab.Screen name="Maps" component={ContactInfo} />
@@ -114,6 +109,7 @@ const App = () => {
                 options={{
                   title: "Mi pedido 🤤",
                   headerShown: true,
+                  headerTitleStyle: headerOptions.headerTitleStyle,
                 }}
               />
             </Stack.Navigator>

@@ -14,6 +14,7 @@ import styles, {
   modalDividerStyle,
   modalButtonView,
 } from "./AddExtraIngredients.styles";
+import { outlineButtonStyles } from "/styles/theme";
 
 const propTypes = {
   originalListIngredients: array,
@@ -37,17 +38,23 @@ export default function ExtraIngredients({ originalListIngredients }) {
             {selectedIngredients?.map(({ name, id }) => (
               <View key={id} style={ingredientsInfoItem}>
                 <Text>{name}</Text>
-                <Text>+ 0.50€</Text>
+                <Text>+ 0.50 €</Text>
               </View>
             ))}
           </View>
         </>
       ) : null}
-      <Button onPress={() => setIsVisible(true)} title={getTitle(selectedIngredients?.length > 0)} type="outline" />
+      <Button
+        onPress={() => setIsVisible(true)}
+        buttonStyle={outlineButtonStyles.button}
+        title={getTitle(selectedIngredients?.length > 0)}
+        titleStyle={outlineButtonStyles.title}
+        type="outline"
+      />
       <Modal isVisible={isVisible}>
         <View style={modalStyle}>
           <Text h4 style={modalTitleStyle}>
-            Añadelos por 0,50€
+            Añadelos por 0,50 €
           </Text>
           <Divider style={modalDividerStyle} />
           <ScrollView>

@@ -23,11 +23,7 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
 
   return (
     <>
-      <AddButton
-        title={`Añadelo por ${priceProduct}€`}
-        // title={isYourTaste ? `Añadelo por ${priceProduct}€` : "Añadir"}
-        onPress={handlers.addProductToShoppingCart}
-      />
+      <AddButton title={`Añadelo por ${priceProduct}€`} onPress={handlers.addProductToShoppingCart} />
       {localErrors ? (
         <BottomSheet isVisible={!!localErrors} modalProps={modalProps}>
           <View
