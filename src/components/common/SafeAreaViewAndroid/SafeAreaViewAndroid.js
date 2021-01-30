@@ -1,12 +1,13 @@
 import React from "react";
-import { element } from "prop-types";
 import { SafeAreaView, StyleSheet, StatusBar, Platform } from "react-native";
+import { white } from "/styles/theme";
+import { element } from "prop-types";
 
 const SafeAreaViewAndroid = ({ children }) => {
   const styles = StyleSheet.create({
     androidSafeArea: {
       flex: 1,
-      backgroundColor: "white",
+      backgroundColor: white,
       paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     },
   });

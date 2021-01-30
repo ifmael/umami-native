@@ -1,11 +1,8 @@
 import React from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Dimensions } from "react-native";
 import { Text } from "react-native-elements";
-
-import logo from "/assets/umami.png";
 import { any } from "prop-types";
-
-import { Dimensions } from "react-native";
+import logo from "/assets/umami.png";
 
 const windowWidth = Dimensions.get("window").width;
 

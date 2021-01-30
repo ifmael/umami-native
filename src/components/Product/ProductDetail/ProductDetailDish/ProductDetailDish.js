@@ -1,12 +1,13 @@
 import React from "react";
 import { string, bool, array } from "prop-types";
-import { View, ActivityIndicator, Dimensions } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import { Divider, Image, Text } from "react-native-elements";
 import UmamiDishConfiguration from "/components/Umami/Dish/Configurations";
 import UmamiDishIngredients from "/components/Umami/Dish/Ingredients";
 import UmamiMenu from "/components/Umami/Menu";
 import { getImages } from "../utils";
-import { headerStyles } from "../ProductDetail.styles";
+import { imageViewShadowWrapper } from "/styles/theme";
+import { headerStyles, imageWidth } from "../ProductDetail.styles";
 
 export default function ProductDetailDish({
   category,
@@ -26,25 +27,12 @@ export default function ProductDetailDish({
   return (
     <>
       <View style={{ marginBottom: 20 }}>
-        <View
-          style={{
-            borderRadius: 20,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.5,
-            shadowRadius: 2,
-            elevation: 5,
-            marginBottom: 10,
-          }}
-        >
+        <View style={imageViewShadowWrapper}>
           {imagesSource ? (
             <Image
               source={{ uri: `${imagesSource.url}` }}
               style={{
-                borderRadius: 20,
-                width: Dimensions.get("window").width - 32,
-                height: 200,
-                resizeMode: "cover",
+                width: imageWidth,
               }}
               PlaceholderContent={<ActivityIndicator />}
             />

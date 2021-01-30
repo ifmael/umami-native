@@ -10,12 +10,11 @@ import { ContactInfo, Home, Menu, Product, ProductDetail, ShoppingCart } from "/
 import { SERVER, TOKEN } from "/constant";
 import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
-import theme, { headerTextStyles, tabBarOptionStyles } from "/styles/theme";
+import theme, { menuStackStyles, tabBarStyles } from "/styles/theme";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// debugger;
 const authLink = new ApolloLink((operation, forward) => {
   // Use the setContext method to set the HTTP headers.
   operation.setContext({
@@ -36,61 +35,57 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const headerOptions = {
+const screenOptionsStack = {
   headerShown: true,
-  headerTitleStyle: headerTextStyles,
+  headerTitleStyle: menuStackStyles.headerTitleStyle,
+  cardStyle: menuStackStyles.cardStyle,
   headerRight: ShoppingCartTopMenu,
 };
 
+const screenOptionsTabBar = ({ route }) => ({
+  tabBarIcon: ({ /* focused, */ color, size }) => {
+    let component;
+
+    if (route.name === "Home") {
+      component = <FontAwesome name="hamburger" size={size} color={color} />;
+    } else if (route.name === "Menu") {
+      component = <FontAwesome name="align-justify" size={size} color={color} />;
+    } else if (route.name === "ShoppingCart") {
+      component = <FontAwesome name="shopping-cart" size={size} color={color} />;
+    }
+
+    return component;
+  },
+});
+
+const productHeaderOption = ({ route }) => {
+  const { name } = route.params;
+
+  return { ...screenOptionsStack, title: name };
+};
+
+const MenuStack = () => {
+  return (
+    <Stack.Navigator screenOptions={screenOptionsStack}>
+      <Stack.Screen name="Menu" component={Menu} options={{ title: "Nuestro menú" }} />
+      <Stack.Screen name="Product" component={Product} options={productHeaderOption} />
+    </Stack.Navigator>
+  );
+};
+
+const MenuTabs = () => {
+  return (
+    <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} tabBarOptions={tabBarStyles} lazy="true">
+      <Tab.Screen name="Home" component={Home} options={{ title: "Umami" }} />
+      <Tab.Screen name="Menu" component={MenuStack} />
+      <Tab.Screen name="Maps" component={ContactInfo} />
+
+      {/* <Tab.Screen name="ShoppingCart" component={ShoppingCart} options={{ tabBarBadge: 3, title: "Pedido" }} /> */}
+    </Tab.Navigator>
+  );
+};
+
 const App = () => {
-  const screenOptionsTabBar = ({ route }) => ({
-    tabBarIcon: ({ /* focused, */ color, size }) => {
-      let component;
-
-      if (route.name === "Home") {
-        component = <FontAwesome name="hamburger" size={size} color={color} />;
-      } else if (route.name === "Menu") {
-        component = <FontAwesome name="align-justify" size={size} color={color} />;
-      } else if (route.name === "ShoppingCart") {
-        component = <FontAwesome name="shopping-cart" size={size} color={color} />;
-      }
-
-      return component;
-    },
-  });
-
-  const productHeaderOption = ({ route }) => {
-    const { name } = route.params;
-
-    return { ...headerOptions, title: name };
-  };
-
-  const MenuStack = () => {
-    return (
-      <Stack.Navigator screenOptions={{ headerTitleStyle: { fontFamily: "Comfortaa_400Regular" } }}>
-        <Stack.Screen name="Menu" component={Menu} options={{ ...headerOptions, title: "Nuestro menú" }} />
-        <Stack.Screen name="Product" component={Product} options={productHeaderOption} />
-      </Stack.Navigator>
-    );
-  };
-
-  const MenuTabs = () => {
-    return (
-      <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={screenOptionsTabBar}
-        tabBarOptions={tabBarOptionStyles}
-        lazy="true"
-      >
-        <Tab.Screen name="Home" component={Home} options={{ title: "Umami" }} />
-        <Tab.Screen name="Menu" component={MenuStack} />
-        <Tab.Screen name="Maps" component={ContactInfo} />
-
-        {/* <Tab.Screen name="ShoppingCart" component={ShoppingCart} options={{ tabBarBadge: 3, title: "Pedido" }} /> */}
-      </Tab.Navigator>
-    );
-  };
-
   return (
     <ApolloProvider client={client}>
       <ContextProvider>
@@ -109,7 +104,7 @@ const App = () => {
                 options={{
                   title: "Mi pedido 🤤",
                   headerShown: true,
-                  headerTitleStyle: headerOptions.headerTitleStyle,
+                  headerTitleStyle: menuStackStyles.headerTitleStyle,
                 }}
               />
             </Stack.Navigator>

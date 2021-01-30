@@ -1,13 +1,18 @@
 import { StyleSheet } from "react-native";
+import { windowWidth } from "/styles/theme";
 
+const padding = 16;
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: padding,
   },
   header: {
     marginBottom: 10,
   },
 });
+
+// Image widh is  the windows widthn -  padding Horizontal(from the container)
+export const imageWidth = windowWidth - padding * 2;
 
 export const headerStyles = {
   text: {

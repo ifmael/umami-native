@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { lineHeight } from "/styles/theme";
-import COLORS from "/styles/colors";
 
 const styles = StyleSheet.create({
   title: {
@@ -12,8 +11,9 @@ const styles = StyleSheet.create({
 });
 
 export const stylesRNElements = {
-  action: {
-    backgroundColor: COLORS.defaultButton,
+  containerStyle: {
+    borderWidth: 0,
+    borderRadius: 20,
   },
   textDescription: {
     lineHeight,

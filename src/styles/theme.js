@@ -1,7 +1,9 @@
+import { Dimensions } from "react-native";
+
 /**
  * DEFAULT FONT
  */
-const defaultFont = "Comfortaa_400Regular";
+export const defaultFont = "Comfortaa_400Regular";
 const boldFont = { fontFamily: "Comfortaa_700Bold", fontWeight: "normal" };
 
 /**
@@ -13,15 +15,36 @@ export const brown = "#cc9966";
 export const red = "#cc3333";
 export const green = "#669966";
 export const yellow = "#ffcc00";
+export const white = "white";
 const colors = {
   primary: yellow,
   secondary: green,
 };
 
 /**
+ *  SHADOW STYLES
+ */
+const shadowStyles = {
+  shadowColor: "#000",
+  shadowOffset: { width: 0, height: 1 },
+  shadowOpacity: 0.5,
+  shadowRadius: 2,
+  elevation: 2,
+};
+
+/**
+ *  WINDOWS
+ */
+export const windowWidth = Dimensions.get("window").width;
+export const windowHeight = Dimensions.get("window").height;
+
+/**
  *  BUTTON
  */
 const Button = {
+  buttonStyle: {
+    backgroundColor: yellow,
+  },
   titleStyle: {
     fontFamily: defaultFont,
   },
@@ -38,27 +61,33 @@ export const outlineButtonStyles = {
 };
 
 /**
+ * CARD
+ */
+const Card = {
+  containerStyle: shadowStyles,
+};
+
+/**
+ *  IMAGE
+ */
+const Image = {
+  style: {
+    borderRadius: 20,
+    height: 200,
+    resizeMode: "cover",
+  },
+};
+const imageViewShadow = { ...shadowStyles, shadowOffset: { width: 0, height: 2 }, elevation: 5 };
+export const imageViewShadowWrapper = { borderRadius: 20, marginBottom: 10, ...imageViewShadow };
+
+/**
  *  INPUT
- *
  */
 export const Input = {
   inputStyle: {
     fontFamily: defaultFont,
   },
   labelStyle: boldFont,
-};
-
-/**
- * NAVIGATION
- */
-export const tabBarOptionStyles = {
-  activeTintColor: brown,
-  labelStyle: { fontSize: 12, fontFamily: defaultFont },
-};
-export const headerTextStyles = {
-  textAlign: "center",
-  fontFamily: "Comfortaa_700Bold",
-  fontSize: 22,
 };
 
 /**
@@ -77,6 +106,22 @@ export const productDetailCustomActionStyles = {
 };
 
 /**
+ *  SCREENS & NAVIGATIONS
+ */
+export const menuStackStyles = {
+  headerTitleStyle: {
+    textAlign: "center",
+    fontFamily: "Comfortaa_700Bold",
+    fontSize: 22,
+  },
+  cardStyle: { backgroundColor: white },
+};
+export const tabBarStyles = {
+  activeTintColor: brown,
+  labelStyle: { fontSize: 12, fontFamily: defaultFont },
+};
+
+/**
  *  TEXT COMPONENT
  */
 const Text = {
@@ -89,7 +134,9 @@ const Text = {
 
 const themeRNElements = {
   Button,
+  Card,
   colors,
+  Image,
   Input,
   Text,
 };
