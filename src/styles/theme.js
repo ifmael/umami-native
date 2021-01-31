@@ -56,6 +56,7 @@ export const outlineButtonStyles = {
     fontFamily: "Comfortaa_700Bold",
   },
   button: {
+    backgroundColor: white,
     borderColor: brown,
   },
 };

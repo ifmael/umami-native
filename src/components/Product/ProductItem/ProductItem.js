@@ -5,7 +5,7 @@ import { ListItem, Text } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "/context/GlobalContext";
 import { guidGenerator } from "/utils/functions";
-import COLORS from "/styles/colors";
+import { yellow } from "/styles/theme";
 import styles from "./ProductItem.styles";
 
 const ProductItem = (props) => {
@@ -40,12 +40,7 @@ const ProductItem = (props) => {
         {description ? <ListItem.Subtitle>{description}</ListItem.Subtitle> : null}
       </ListItem.Content>
       <Text h4>{price} €</Text>
-      <ListItem.Chevron
-        type="font-awesome-5"
-        name={editable ? "chevron-right" : "plus"}
-        size={24}
-        color={COLORS.defaultButton}
-      />
+      <ListItem.Chevron type="font-awesome-5" name={editable ? "chevron-right" : "plus"} size={24} color={yellow} />
     </ListItem>
   );
 };
