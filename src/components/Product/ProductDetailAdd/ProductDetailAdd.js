@@ -4,7 +4,8 @@ import { View } from "react-native";
 import { BottomSheet, Button, Text } from "react-native-elements";
 import AddButton from "/components/common/AddButton";
 import useProductDetailAdd from "./useProductDetailAdd";
-import { red } from "/styles/theme";
+import { bigTitleButton, red } from "/styles/theme";
+import styles from "./ProductDetailAdd.styles";
 
 const modalProps = {
   animationType: "fade",
@@ -18,29 +19,13 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
     price,
     priceMenu
   );
-
+  console.log("product detail");
   return (
     <>
       <AddButton title={`Añadelo por ${priceProduct}€`} onPress={handlers.addProductToShoppingCart} />
       {localErrors ? (
         <BottomSheet isVisible={!!localErrors} modalProps={modalProps}>
-          <View
-            style={{
-              backgroundColor: "white",
-              borderTopRightRadius: 20,
-              borderTopLeftRadius: 20,
-              paddingVertical: 30,
-              paddingHorizontal: 16,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              elevation: 5,
-            }}
-          >
+          <View style={styles.buttonErrorView}>
             {localErrors?.map(({ id, text }) => (
               <Text key={id} style={{ color: red, paddingVertical: 5 }}>
                 {text}
@@ -49,7 +34,7 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
 
             <Button
               title="Cerrar"
-              titleStyle={{ fontSize: 20, width: "25%" }}
+              titleStyle={bigTitleButton}
               buttonStyle={{ backgroundColor: red, marginTop: 20 }}
               onPress={handlers.closeModal}
             />

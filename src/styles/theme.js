@@ -49,6 +49,9 @@ const Button = {
     fontFamily: defaultFont,
   },
 };
+export const bigTitleButton = {
+  fontSize: 20,
+};
 
 export const outlineButtonStyles = {
   title: {

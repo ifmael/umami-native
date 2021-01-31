@@ -90,7 +90,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   // Calculate product price when is not a side
   useEffect(() => {
     try {
-      const { beverage, side, ingredients, ingredientsExtra, category, typeOfMeat } = productDetailInfo;
+      const { beverage, side, ingredientsExtra, category, typeOfMeat } = productDetailInfo;
       if (category === "complementos") return;
       if (isChildrenMenu) {
         setPriceProduct(price);
@@ -98,11 +98,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
       }
 
       let total = price;
-      if (isYourTaste) {
-        total += calculateIngredientsPrice(ingredients) || 0;
-      } else {
-        total += calculateIngredientsPrice(ingredientsExtra) || 0;
-      }
+      total += calculateIngredientsPrice(ingredientsExtra) || 0;
       const discountMenu = beverage?.price && side.price ? true : false;
 
       total += side?.price ? side?.price : 0;

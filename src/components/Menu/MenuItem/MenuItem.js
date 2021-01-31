@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Card, Button, Text } from "react-native-elements";
 import { string, object } from "prop-types";
 import { imageViewShadowWrapper } from "/styles/theme";
+import { bigTitleButton } from "/styles/theme";
 import styles, { stylesRNElements } from "./MenuItem.styles";
 
 const MenuItem = ({ name, image, slug }) => {
@@ -30,7 +31,7 @@ const MenuItem = ({ name, image, slug }) => {
         dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro
         de textos especimen.
       </Text>
-      <Button title="Ver" onPress={navigateToCategory} buttonStyle={{ marginTop: 15 }} />
+      <Button title="Ver" onPress={navigateToCategory} buttonStyle={{ marginTop: 15 }} titleStyle={bigTitleButton} />
     </Card>
   );
 };

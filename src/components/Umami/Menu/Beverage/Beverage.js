@@ -7,13 +7,17 @@ import useCheckErrors from "/hooks/useCheckErrors";
 import extractProducts from "/components/Umami/Menu/utils/extractProducts";
 import { stylesRNEComponents } from "../Menu.styles";
 import { red } from "/styles/theme";
-import { array, string } from "prop-types";
+import { array, bool, string } from "prop-types";
 
-const UmamiMenuBeverage = ({ beverages, name }) => {
+const UmamiMenuBeverage = ({ beverages, isChildrenMenu, name }) => {
   const { productDetailInfo, removeError, setBeverage } = useContext(ProductDetailContext);
   const [isError, setIsError] = useState(false);
   const newBeverages = extractProducts(beverages);
   const isNewBeverages = Array.isArray(beverages) && beverages.length > 0;
+  const beveragesNewBeverages = newBeverages.map((beverage) => ({
+    ...beverage,
+    showPrice: isChildrenMenu ? false : true,
+  }));
 
   useCheckErrors("ComponentMenuBeverage", productDetailInfo, setIsError);
 
@@ -34,7 +38,7 @@ const UmamiMenuBeverage = ({ beverages, name }) => {
               value: productDetailInfo?.beverage?.name ? productDetailInfo?.beverage?.name : "",
             }}
             onValueChange={onValueChange}
-            options={newBeverages}
+            options={beveragesNewBeverages}
           />
         </View>
       ) : null}
@@ -44,6 +48,7 @@ const UmamiMenuBeverage = ({ beverages, name }) => {
 
 UmamiMenuBeverage.propTypes = {
   beverages: array,
+  isChildrenMenu: bool,
   name: string,
 };
 

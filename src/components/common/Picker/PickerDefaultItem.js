@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Text } from "react-native-elements";
-import { func, number, string } from "prop-types";
+import { bool, func, number, string } from "prop-types";
 import styles from "./Picker.styles";
 
 const propTypes = {
@@ -9,14 +9,18 @@ const propTypes = {
   name: string,
   onPress: func,
   price: number,
+  showPrice: bool,
 };
 
-export default function PickerDefaultItem(props) {
-  const { id, name, onPress, price } = props;
+export default function PickerDefaultItem({ id, name, onPress, price, showPrice = true }) {
   return (
-    <TouchableOpacity key={id} onPress={() => onPress({ id, name, price })} style={styles.rowItem}>
+    <TouchableOpacity
+      key={id}
+      onPress={() => onPress({ id, name, price })}
+      style={{ ...styles.rowItem, justifyContent: showPrice ? "space-between" : "center" }}
+    >
       <Text style={styles.fontItem}>{`${name}`}</Text>
-      <Text style={styles.fontItem}>{`${price.toFixed(2)} €`}</Text>
+      {showPrice ? <Text style={styles.fontItem}>{`${price?.toFixed(2)} €`}</Text> : null}
     </TouchableOpacity>
   );
 }

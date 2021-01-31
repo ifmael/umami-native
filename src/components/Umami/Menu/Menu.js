@@ -24,7 +24,7 @@ const UmamiMenu = ({ isChildrenMenu, options }) => {
     const { __typename: componentName } = componentProps;
 
     if (componentName === "ComponentMenuBeverage") {
-      return <UmamiMenuBeverage {...componentProps} />;
+      return <UmamiMenuBeverage {...componentProps} isChildrenMenu={isChildrenMenu ? true : false} />;
     } else if (componentName === "ComponentMenuSide") {
       return <UmamiMenuSide {...componentProps} />;
     } else if (componentName === "ComponentMenuInfo") {

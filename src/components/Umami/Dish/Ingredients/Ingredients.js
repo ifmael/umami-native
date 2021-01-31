@@ -26,7 +26,7 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
     setIngredients,
   } = useContext(ProductDetailContext);
   const [listIngredients, setIngredient, reset] = useSwitchList(ingredients, isYourTaste ? false : true);
-  const title = isYourTaste ? "Selecciona los ingredientes que desees:" : getTitle(category);
+  const title = isYourTaste ? "Selecciona los ingredientes" : getTitle(category);
 
   const showIngredients = (value) => {
     setCustom(value);
@@ -48,24 +48,22 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
 
   return (
     <View>
-      <View style={styles.container}>
+      <View style={{ ...styles.container, justifyContent: isYourTaste ? "center" : "space-between" }}>
         <Text style={productDetailCustomActionStyles}>{title}</Text>
         {!isYourTaste ? (
-          <>
-            <Switch
-              trackColor={{ false: switchStyles.trackColor.false, true: switchStyles.trackColor.true }}
-              thumbColor={isCustom ? switchStyles.thumbColor.false : switchStyles.thumbColor.true}
-              ios_backgroundColor={switchStyles.ios_backgroundColor}
-              onValueChange={() => showIngredients(!isCustom)}
-              value={isCustom}
-            />
-          </>
+          <Switch
+            trackColor={{ false: switchStyles.trackColor.false, true: switchStyles.trackColor.true }}
+            thumbColor={isCustom ? switchStyles.thumbColor.false : switchStyles.thumbColor.true}
+            ios_backgroundColor={switchStyles.ios_backgroundColor}
+            onValueChange={() => showIngredients(!isCustom)}
+            value={isCustom}
+          />
         ) : null}
       </View>
 
       {isCustom || isYourTaste ? (
         <View style={{ paddingHorizontal: 15 }}>
-          <SwitchList list={listIngredients} setItem={setIngredient} />
+          {!isYourTaste ? <SwitchList list={listIngredients} setItem={setIngredient} /> : null}
           <AddExtraIngredients originalListIngredients={ingredients} />
         </View>
       ) : null}

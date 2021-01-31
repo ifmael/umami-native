@@ -15,6 +15,7 @@ const SwitchItem = ({ id, name, isSelected, setState }) => {
         onValueChange={() => setState(id)}
         value={isSelected}
         style={{ paddingVertical: 5 }}
+        // style={{ paddingVertical: 5, transform: [{ scaleX: 1 }, { scaleY: 1 }] }}
       />
     </View>
   );
