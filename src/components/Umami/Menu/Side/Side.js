@@ -29,7 +29,6 @@ const UmamiMenuSide = ({ sides, name }) => {
             inputProps={{
               containerStyle: { paddingHorizontal: 50 },
               errorMessage: isError ? "Elige un complemento" : "",
-              placeholder: "Pulsame para elegir uno",
               value: productDetailInfo?.side?.name ? productDetailInfo?.side?.name : "",
             }}
             onValueChange={onValueChange}

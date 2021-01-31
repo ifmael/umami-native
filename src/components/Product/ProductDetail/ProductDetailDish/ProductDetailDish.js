@@ -43,7 +43,7 @@ export default function ProductDetailDish({
       </View>
       {isBurguerSandwich ? (
         <>
-          <Divider />
+          <Divider style={{ marginBottom: 10 }} />
           <UmamiDishConfiguration configurations={configuration} />
           <Divider />
         </>

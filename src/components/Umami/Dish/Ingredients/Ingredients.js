@@ -6,7 +6,7 @@ import SwitchList from "/components/common/Switch/SwitchList";
 import useSwitchList from "/components/common/Switch/SwitchList/useSwitchList";
 import AddExtraIngredients from "/components/Umami/Dish/AddExtraIngredients";
 import ProductDetailContext from "/context/ProductDetailContext";
-import { productDetailCustomActionStyles } from "/styles/theme";
+import { productDetailCustomActionStyles, switchStyles } from "/styles/theme";
 import styles from "./Ingredients.styles";
 
 const getTitle = (category) => {
@@ -53,9 +53,9 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
         {!isYourTaste ? (
           <>
             <Switch
-              trackColor={{ false: "#767577", true: "#c96" }}
-              thumbColor={isCustom ? "#fc0" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
+              trackColor={{ false: switchStyles.trackColor.false, true: switchStyles.trackColor.true }}
+              thumbColor={isCustom ? switchStyles.thumbColor.false : switchStyles.thumbColor.true}
+              ios_backgroundColor={switchStyles.ios_backgroundColor}
               onValueChange={() => showIngredients(!isCustom)}
               value={isCustom}
             />

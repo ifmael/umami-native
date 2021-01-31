@@ -1,14 +1,14 @@
 import React, { useEffect, useContext } from "react";
 import { bool, array } from "prop-types";
 import { View, Switch } from "react-native";
-import { Icon, Tooltip, Text } from "react-native-elements";
+import { Text } from "react-native-elements";
 // import UmamiMenuInfo from "./Info";
 import UmamiMenuSide from "./Side";
 import UmamiMenuBeverage from "./Beverage";
 import ProductDetailContext from "/context/ProductDetailContext";
 import { destructComponentOptions } from "../utils/functions";
 import { sortAsc } from "/utils/functions";
-import { productDetailCustomActionStyles } from "/styles/theme";
+import { productDetailCustomActionStyles, switchStyles } from "/styles/theme";
 import styles from "./Menu.styles";
 
 const UmamiMenu = ({ isChildrenMenu, options }) => {
@@ -50,19 +50,10 @@ const UmamiMenu = ({ isChildrenMenu, options }) => {
       {!isChildrenMenu ? (
         <View style={styles.container}>
           <Text style={productDetailCustomActionStyles}>{`Hazlo menú y ahorrate 1€`}</Text>
-
-          <Tooltip
-            height={80}
-            width={200}
-            popover={<Text>Elige un complemento y una bebida para aplicar el descuento</Text>}
-            backgroundColor="#dedede"
-          >
-            <Icon type="font-awesome-5" name="info-circle" color="#dedede" size={18} />
-          </Tooltip>
           <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isMenu ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
+            trackColor={{ false: switchStyles.trackColor.false, true: switchStyles.trackColor.true }}
+            thumbColor={isMenu ? switchStyles.thumbColor.false : switchStyles.thumbColor.true}
+            ios_backgroundColor={switchStyles.ios_backgroundColor}
             onValueChange={() => setShowMenu(!isMenu)}
             value={isMenu}
           />

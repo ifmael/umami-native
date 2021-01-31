@@ -29,7 +29,6 @@ const UmamiMenuBeverage = ({ beverages, name }) => {
             inputProps={{
               containerStyle: { paddingHorizontal: 50 },
               errorMessage: isError ? "Elige una bebida" : "",
-              placeholder: "Pulsame para elegir una",
               value: productDetailInfo?.beverage?.name ? productDetailInfo?.beverage?.name : "",
             }}
             onValueChange={onValueChange}

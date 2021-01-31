@@ -146,6 +146,22 @@ export const tabBarStyles = {
 };
 
 /**
+ * SWITCH
+ */
+
+export const switchStyleView = {
+  flexDirection: "row",
+  marginVertical: 10,
+  justifyContent: "space-between",
+};
+
+export const switchStyles = {
+  trackColor: { false: "#767577", true: brown },
+  thumbColor: { false: yellow, true: "#f4f3f4" },
+  ios_backgroundColor: "#3e3e3e",
+};
+
+/**
  *  TEXT COMPONENT
  */
 const Text = {

@@ -2,16 +2,16 @@ import React from "react";
 import { string, bool, func } from "prop-types";
 import { View, Switch } from "react-native";
 import { Text } from "react-native-elements";
-import styles from "/styles/switch.styles";
+import { switchStyles, switchStyleView } from "/styles/theme";
 
 const SwitchItem = ({ id, name, isSelected, setState }) => {
   return (
-    <View style={styles.container}>
+    <View style={switchStyleView}>
       <Text>{name}</Text>
       <Switch
-        trackColor={{ false: "#767577", true: "#c96" }}
-        thumbColor={isSelected ? "#fc0" : "#f4f3f4"}
-        ios_backgroundColor="#3e3e3e"
+        trackColor={{ false: switchStyles.trackColor.false, true: switchStyles.trackColor.true }}
+        thumbColor={isSelected ? switchStyles.thumbColor.false : switchStyles.thumbColor.true}
+        ios_backgroundColor={switchStyles.ios_backgroundColor}
         onValueChange={() => setState(id)}
         value={isSelected}
         style={{ paddingVertical: 5 }}
