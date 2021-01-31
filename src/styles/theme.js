@@ -98,6 +98,29 @@ export const pickerStyles = {
 };
 
 /**
+ *  SEARCH
+ */
+const SearchBar = {
+  containerStyle: {
+    width: "100%",
+    padding: 0,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+    borderRadius: 5,
+    borderBottomWidth: 0,
+  },
+  inputContainerStyle: {
+    backgroundColor: "white",
+  },
+  inputStyle: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+  },
+  leftIconContainerStyle: { marginLeft: 0 },
+  rightIconContainerStyle: { marginLeft: 0 },
+};
+
+/**
  *  SHARE STYLES
  */
 export const productDetailCustomActionStyles = {
@@ -138,6 +161,7 @@ const themeRNElements = {
   colors,
   Image,
   Input,
+  SearchBar,
   Text,
 };
 

@@ -1,24 +1,21 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    alignItems: "center",
+  titleView: {
     marginBottom: 10,
-    flexDirection: "row",
-    justifyContent: "center",
   },
-  titleContainerText: {
+  titleViewText: {
     position: "relative",
     textAlign: "center",
   },
 
-  mainContainer: {
+  mainView: {
     backgroundColor: "white",
     paddingVertical: 20,
     paddingHorizontal: 10,
     borderRadius: 5,
   },
-  buttonContainer: {
+  buttonView: {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 30,

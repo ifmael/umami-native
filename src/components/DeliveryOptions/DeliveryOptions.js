@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { View } from "react-native";
-import { Button, Icon, Text } from "react-native-elements";
+import { Button, Text } from "react-native-elements";
 import Modal from "react-native-modal";
 import Wizard from "react-native-wizard";
 import ChoosePlace from "./ChoosePlace";
@@ -8,8 +8,8 @@ import DeliveryAtHome from "./DeliveryAtHome";
 import PickUpInLocal from "./PickUpInLocal";
 import useDeliveryOptions from "./useDeliveryOptions";
 import { deliverySteps } from "/constant";
+import styles from "./DeliveryOptions.styles";
 import { bool, func } from "prop-types";
-import styles, { titleContainerIcon } from "./DeliveryOptions.styles";
 
 const propTypes = {
   showComponent: bool,
@@ -41,13 +41,17 @@ export default function DeliveryOptions({ showComponent = false, showModalHandle
 
   return (
     <View style={{ flex: 1 }}>
-      <Modal isVisible={showComponent} style={{ flex: 1 }}>
-        <View style={styles.mainContainer} onLayout={handlers.onLayout}>
-          <View style={styles.titleContainer}>
-            <Text h4 style={styles.titleContainerText}>
+      <Modal
+        isVisible={showComponent}
+        onBackButtonPress={() => showModalHandler(false)}
+        onBackdropPress={() => showModalHandler(false)}
+        style={{ flex: 1 }}
+      >
+        <View style={styles.mainView} onLayout={handlers.onLayout}>
+          <View style={styles.titleView}>
+            <Text h4 style={styles.titleViewText}>
               {`${deliverySteps[currentStep]?.titleStep}`}
             </Text>
-            <Icon containerStyle={titleContainerIcon} type="font-awesome-5" name="times-circle" solid />
           </View>
           <Wizard
             currentStep={({ currentStep }) => {
@@ -56,7 +60,7 @@ export default function DeliveryOptions({ showComponent = false, showModalHandle
             ref={wizardRef}
             steps={stepList}
           />
-          <View style={styles.buttonContainer}>
+          <View style={styles.buttonView}>
             <Button title={handlers.getPrevName(currentStep)} onPress={() => handlers.onPrev(currentStep, wizardRef)} />
             <Button
               disabled={handlers.disableNextButton(currentStep)}

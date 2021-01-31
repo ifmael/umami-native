@@ -4,7 +4,7 @@ import { Platform, ScrollView, TouchableOpacity, View } from "react-native";
 import { BottomSheet, Button, Input, ListItem, SearchBar } from "react-native-elements";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { PLACES_TOKEN } from "/constant";
-import styles, { buttonStyles, getStyles, searchStyles } from "./DeliveryAtHome.styles";
+import styles, { buttonStyles, getStyles } from "./DeliveryAtHome.styles";
 
 const propTypes = {
   handlers: object,
@@ -29,7 +29,6 @@ export default function DeliveryAtHome({ handlers, parentWidth, selectors, showB
             enablePoweredByContainer={false}
             fetchDetails
             keyboardShouldPersistTaps="handled"
-            // listUnderlayColor="#ff0000" // color cuando se presiona un elemento de la lista
             minLength={2}
             nearbyPlacesAPI="GoogleReverseGeocoding"
             onPress={handlers.onPressAddress}
@@ -45,11 +44,6 @@ export default function DeliveryAtHome({ handlers, parentWidth, selectors, showB
               InputComp: SearchBar,
               searchIcon: { name: "search", type: "font-awesome-5" },
               clearIcon: Platform.OS === "ios" ? null : { name: "times-circle", type: "font-awesome-5", solid: true },
-              containerStyle: searchStyles.containerStyle,
-              inputContainerStyle: searchStyles.inputContainerStyle,
-              inputStyle: searchStyles.inputStyle,
-              leftIconContainerStyle: { marginLeft: 0 },
-              rightIconContainerStyle: { marginRight: 0 },
             }}
           />
 

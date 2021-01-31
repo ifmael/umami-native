@@ -1,9 +1,9 @@
 import React from "react";
-import { object } from "prop-types";
 import { View } from "react-native";
 import { Input, Text } from "react-native-elements";
 import { Picker } from "@react-native-picker/picker";
 import { pickerStyles } from "/styles/theme";
+import { object } from "prop-types";
 
 const propTypes = {
   handlers: object,
@@ -34,6 +34,7 @@ export default function PickUpInLocal({ selectors, handlers }) {
         <Text>Hora de recogida: </Text>
         <Picker style={{ width: 150, ...pickerStyles.text }} itemStyle={pickerStyles.text}>
           <Picker.Item label="Hour 1" value="date-1" />
+          <Picker.Item label="Hour 2" value="date-2" />
         </Picker>
       </View>
     </View>
