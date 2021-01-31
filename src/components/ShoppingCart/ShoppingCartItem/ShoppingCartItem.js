@@ -6,6 +6,7 @@ import { ListItem, Text } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { GlobalContext } from "/context/GlobalContext";
 import { getListOfIngredients } from "/utils/functions";
+import { red } from "/styles/theme";
 
 export default function ShoppingCartItem({
   beverage = {},
@@ -38,7 +39,7 @@ export default function ShoppingCartItem({
             <Button
               raised
               icon={<Icon name="trash" size={15} color="white" />}
-              buttonStyle={{ backgroundColor: "red" }}
+              buttonStyle={{ backgroundColor: red }}
               onPress={() => {
                 removeItem(id);
               }}

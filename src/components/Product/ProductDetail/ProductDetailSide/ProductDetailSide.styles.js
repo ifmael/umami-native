@@ -1,18 +1,14 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 10,
-    marginVertical: 10,
-  },
+  mainView: { marginBottom: 5 },
+  descriptionView: { flexDirection: "row", justifyContent: "center", alignItems: "center" },
 });
 
 export const stylesRNEComponents = {
-  title: {
+  descriptionText: {
     textAlign: "center",
-    fontSize: 18,
+    marginHorizontal: 10,
   },
 };
 

@@ -85,6 +85,10 @@ export const imageViewShadowWrapper = { borderRadius: 20, marginBottom: 10, ...i
  *  INPUT
  */
 export const Input = {
+  errorStyle: {
+    color: red,
+    fontFamily: defaultFont,
+  },
   inputStyle: {
     fontFamily: defaultFont,
   },

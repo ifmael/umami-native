@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { array, string, bool } from "prop-types";
 import { View } from "react-native";
-import { Text } from "react-native-elements";
+import { Text, Icon } from "react-native-elements";
 import RadioButtons from "/components/common/RadioButtons";
 import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
 import ProductDetailContext from "/context/ProductDetailContext";
 import useCheckErrors from "/hooks/useCheckErrors";
+import styles, { stylesRNComponent } from "./Configuration.styles";
+import { red, yellow } from "/styles/theme";
 
 const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }) => {
   const { setDishConfiguration, productDetailInfo, removeError } = useContext(ProductDetailContext);
@@ -35,10 +37,15 @@ const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }
   }, [selected, options, setDishConfiguration, __typename, removeError, isError]);
 
   return (
-    <View style={{ marginBottom: 5 }}>
-      <Text h4 style={{ textAlign: "center", color: isError ? "red" : "black" }}>
-        {isError ? "⚠" : null} {description} {isError ? "⚠" : null}
-      </Text>
+    <View style={styles.mainView}>
+      <View style={styles.descriptionView}>
+        {isError ? <Icon type="font-awesome-5" name="exclamation-triangle" color={yellow} /> : null}
+        <Text h4 style={[stylesRNComponent.descriptionText, { color: isError ? red : "black" }]}>
+          {description}
+        </Text>
+        {isError ? <Icon type="font-awesome-5" name="exclamation-triangle" color={yellow} /> : null}
+      </View>
+
       {isRadioButton ? (
         <RadioButtons extraInfoComponent={ExtraPriceComponent} options={options} setOption={setOption} />
       ) : null}

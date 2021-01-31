@@ -5,6 +5,8 @@ import Picker from "/components/common/Picker";
 import ProductDetailContext from "/context/ProductDetailContext";
 import useCheckErrors from "/hooks/useCheckErrors";
 import extractProducts from "/components/Umami/Menu/utils/extractProducts";
+import { stylesRNEComponents } from "../Menu.styles";
+import { red } from "/styles/theme";
 import { array, string } from "prop-types";
 
 const UmamiMenuBeverage = ({ beverages, name }) => {
@@ -22,7 +24,7 @@ const UmamiMenuBeverage = ({ beverages, name }) => {
 
   return (
     <View>
-      <Text style={{ textAlign: "center", fontSize: 18, color: isError ? "red" : "black" }}>{name}</Text>
+      <Text style={{ ...stylesRNEComponents.title, color: isError ? red : "black" }}>{name}</Text>
       {isNewBeverages ? (
         <View style={{ marginVertical: 15 }}>
           <Picker

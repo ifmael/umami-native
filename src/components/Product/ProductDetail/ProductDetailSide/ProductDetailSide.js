@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Text } from "react-native-elements";
+import { View } from "react-native";
+import { Icon, Text } from "react-native-elements";
 import UmamiIngredients from "/components/Umami/Ingredients";
 import ProductDetailContext from "/context/ProductDetailContext";
 import useCheckErrors from "/hooks/useCheckErrors";
-import headerStyles from "../ProductDetail.styles";
+import { red, yellow } from "/styles/theme";
+import styles, { stylesRNEComponents } from "./ProductDetailSide.styles";
 import { string, number, bool, array } from "prop-types";
 
 export default function ProductDetailSide({ description, ingredients, isRadioButton, price }) {
@@ -13,9 +15,14 @@ export default function ProductDetailSide({ description, ingredients, isRadioBut
 
   return (
     <>
-      <Text h4 style={{ ...headerStyles.text, color: isError ? "red" : "black" }}>
-        {isError ? "⚠" : null} {description} {isError ? "⚠" : null}
-      </Text>
+      <View style={styles.descriptionView}>
+        {isError ? <Icon type="font-awesome-5" name="exclamation-triangle" color={yellow} /> : null}
+        <Text h4 style={[stylesRNEComponents.descriptionText, { color: isError ? red : "black" }]}>
+          {description}
+        </Text>
+        {isError ? <Icon type="font-awesome-5" name="exclamation-triangle" color={yellow} /> : null}
+      </View>
+
       <UmamiIngredients ingredients={ingredients} price={price} isRadioButton={isRadioButton} />
     </>
   );

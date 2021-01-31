@@ -5,6 +5,8 @@ import ProductDetailContext from "/context/ProductDetailContext";
 import extractProducts from "/components/Umami/Menu/utils/extractProducts";
 import Picker from "/components/common/Picker";
 import useCheckErrors from "/hooks/useCheckErrors";
+import { stylesRNEComponents } from "../Menu.styles";
+import { red } from "/styles/theme";
 import { array, bool, string } from "prop-types";
 
 const UmamiMenuSide = ({ sides, name }) => {
@@ -21,7 +23,7 @@ const UmamiMenuSide = ({ sides, name }) => {
 
   return (
     <View>
-      <Text style={{ textAlign: "center", fontSize: 18, color: isError ? "red" : "black" }}>{name}</Text>
+      <Text style={{ ...stylesRNEComponents.title, color: isError ? red : "black" }}>{name}</Text>
 
       {isNewSides ? (
         <View style={{ marginVertical: 15 }}>

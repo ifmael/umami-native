@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
 // Image widh is  the windows widthn -  padding Horizontal(from the container)
 export const imageWidth = windowWidth - padding * 2;
 
-export const headerStyles = {
-  text: {
-    marginTop: 5,
-    fontSize: 18,
-    lineHeight: 25,
-  },
-};
+// export const headerStyles = {
+//   text: {
+//     marginTop: 5,
+//     fontSize: 18,
+//     lineHeight: 25,
+//   },
+// };
 
 export default styles;

@@ -4,12 +4,10 @@ import { View } from "react-native";
 import { BottomSheet, Button, Text } from "react-native-elements";
 import AddButton from "/components/common/AddButton";
 import useProductDetailAdd from "./useProductDetailAdd";
+import { red } from "/styles/theme";
 
 const modalProps = {
-  // onDismiss: () => console.log("onDismiss"),
-  // onShow: () => console.log("show"),
   animationType: "fade",
-  // transparent: true,
 };
 
 const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu }) => {
@@ -44,7 +42,7 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
             }}
           >
             {localErrors?.map(({ id, text }) => (
-              <Text key={id} style={{ color: "red", fontWeight: "bold", fontSize: 16, paddingVertical: 5 }}>
+              <Text key={id} style={{ color: red, paddingVertical: 5 }}>
                 {text}
               </Text>
             ))}
@@ -52,7 +50,7 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
             <Button
               title="Cerrar"
               titleStyle={{ fontSize: 20, width: "25%" }}
-              buttonStyle={{ backgroundColor: "red", marginTop: 20 }}
+              buttonStyle={{ backgroundColor: red, marginTop: 20 }}
               onPress={handlers.closeModal}
             />
           </View>
