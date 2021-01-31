@@ -37,7 +37,10 @@ export const getStyles = (parentWidth) => {
       predefinedPlacesDescription: {
         color: "black",
       },
-      loader: { backgroundColor: "red" },
+      specialItemRow: {
+        alignItems: "center",
+      },
+      loader: { marginRight: 10 },
     },
     inputStyles: {
       locality: {

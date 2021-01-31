@@ -57,6 +57,7 @@ export default function DeliveryOptions({ showComponent = false, showModalHandle
             currentStep={({ currentStep }) => {
               setCurrentStep(currentStep);
             }}
+            duration={0}
             ref={wizardRef}
             steps={stepList}
           />
