@@ -16,7 +16,7 @@ const RadioButtons = ({ options, setOption, extraComponent, extraInfoComponent, 
                 {price ? (
                   <View style={priceView}>
                     <Text>{name}</Text>
-                    <Text>{price} €</Text>
+                    <Text>+ {price} €</Text>
                   </View>
                 ) : (
                   <Text>{name}</Text>

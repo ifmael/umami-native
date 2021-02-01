@@ -115,11 +115,18 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   // Calculate product price === "complementos"
   useEffect(() => {
     const { category, side } = productDetailInfo;
-    if (category === "complementos" && Array.isArray(side) && side.length > 0) {
-      const totalSide = side.reduce((total, { price }) => {
-        return total + price;
-      }, 0);
-      setPriceProduct(totalSide);
+
+    if (category === "complementos") {
+      if (Array.isArray(side) && side.length > 0) {
+        const totalSide = side.reduce((total, { price }) => {
+          return total + price;
+        }, 0);
+        setPriceProduct(totalSide);
+      } else if (side?.price) {
+        setPriceProduct(side.price);
+      } else {
+        setPriceProduct(0);
+      }
     }
   }, [productDetailInfo]);
 

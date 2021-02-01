@@ -19,10 +19,13 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
     price,
     priceMenu
   );
-  console.log("product detail");
+
   return (
     <>
-      <AddButton title={`Añadelo por ${priceProduct}€`} onPress={handlers.addProductToShoppingCart} />
+      <AddButton
+        title={priceProduct === 0 ? `Añadelo al carrito` : `Añadelo por ${priceProduct}€`}
+        onPress={handlers.addProductToShoppingCart}
+      />
       {localErrors ? (
         <BottomSheet isVisible={!!localErrors} modalProps={modalProps}>
           <View style={styles.buttonErrorView}>
