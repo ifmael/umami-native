@@ -14,6 +14,7 @@ export default function ShoppingCartItem({
   category = "",
   id,
   ingredients = [],
+  ingredientsExtra = [],
   isCustom,
   isMenu,
   meatPoint = {},
@@ -54,7 +55,8 @@ export default function ShoppingCartItem({
           {side?.name ? <Text style={stylesRNEComponents.optionText}>· {side.name}</Text> : null}
           {side?.length > 0 ? <Text>{getListOfIngredients(side)}</Text> : null}
           {beverage?.name ? <Text style={stylesRNEComponents.optionText}>· {beverage.name}</Text> : null}
-          {ingredients?.length > 0 ? <Text>{getListOfIngredients(ingredients, "· Con ")} </Text> : null}
+          {ingredients?.length > 0 ? <Text>{getListOfIngredients(ingredients, "· Sin ", true)} </Text> : null}
+          {ingredientsExtra?.length > 0 ? <Text>{getListOfIngredients(ingredientsExtra, "· Con ")} </Text> : null}
         </View>
       </ListItem.Content>
     </ListItem>
@@ -66,6 +68,7 @@ ShoppingCartItem.propTypes = {
   category: string,
   id: string,
   ingredients: array,
+  ingredientsExtra: array,
   isCustom: bool,
   isMenu: bool,
   meatPoint: object,
