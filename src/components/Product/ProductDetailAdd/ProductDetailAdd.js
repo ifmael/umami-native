@@ -23,7 +23,7 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
   return (
     <>
       <AddButton
-        title={priceProduct === 0 ? `Añadelo al carrito` : `Añadelo por ${priceProduct}€`}
+        title={priceProduct === 0 ? `Añadelo al carrito` : `Añadelo por ${priceProduct?.toFixed(2)} €`}
         onPress={handlers.addProductToShoppingCart}
       />
       {localErrors ? (

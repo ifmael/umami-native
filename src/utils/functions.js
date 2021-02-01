@@ -30,7 +30,7 @@ export const validateContactInfo = (contactInfo) => {
  *
  * @param {*} listOfIngredients  List of ingredients
  * @param {*} initialWord First word to show in the string
- * @param {*} inverse To select  unselected  ingredients
+ * @param {*} inverse To show  unselected  ingredients
  */
 
 export const getListOfIngredients = (listOfIngredients = [], initialWord = "", inverse = false) => {

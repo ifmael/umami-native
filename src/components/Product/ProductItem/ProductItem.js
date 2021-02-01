@@ -39,7 +39,7 @@ const ProductItem = (props) => {
         </ListItem.Title>
         {description ? <ListItem.Subtitle>{description}</ListItem.Subtitle> : null}
       </ListItem.Content>
-      <Text h4>{price} €</Text>
+      <Text h4>{price?.toFixed(2)} €</Text>
       <ListItem.Chevron type="font-awesome-5" name={editable ? "chevron-right" : "plus"} size={24} color={yellow} />
     </ListItem>
   );

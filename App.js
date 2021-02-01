@@ -102,7 +102,7 @@ const App = () => {
                 name="ShoppingCart"
                 component={ShoppingCart}
                 options={{
-                  title: "Mi pedido 🤤",
+                  title: "Mi pedido",
                   headerShown: true,
                   headerTitleStyle: menuStackStyles.headerTitleStyle,
                 }}
