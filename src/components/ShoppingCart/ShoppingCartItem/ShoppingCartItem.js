@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { View } from "react-native";
-import { Button } from "react-native-elements";
+import { Button, Icon } from "react-native-elements";
 import { array, bool, number, string, object, oneOfType } from "prop-types";
 import { ListItem, Text } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
 import { GlobalContext } from "/context/GlobalContext";
 import { getListOfIngredients } from "/utils/functions";
-import { red } from "/styles/theme";
 import styles, { stylesRNEComponents } from "./ShoppingCartItem.styles";
 
 export default function ShoppingCartItem({
@@ -40,7 +38,7 @@ export default function ShoppingCartItem({
             </Text>
             <Button
               buttonStyle={stylesRNEComponents.deleteButton}
-              icon={<Icon name="trash" size={18} color={red} />}
+              icon={<Icon name="trash-alt" size={18} color="rgba(204,51,51,0.8)" type="font-awesome-5" />}
               onPress={() => {
                 removeItem(id);
               }}

@@ -1,45 +1,27 @@
 import React, { useContext } from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
-import { Text } from "react-native-elements";
+import { TouchableOpacity } from "react-native";
+import { Badge, Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import { GlobalContext } from "/context/GlobalContext";
 
 const ShoppingCartTopMenu = () => {
   const navigation = useNavigation();
   const { shoppingCart } = useContext(GlobalContext);
 
-  const styles = StyleSheet.create({
-    button: {
-      marginRight: 10,
-    },
-    IconBadge: {
-      position: "absolute",
-      top: -5,
-      right: -5,
-      minWidth: 15,
-      height: 15,
-      borderRadius: 7,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: "#FF0000",
-    },
-  });
-
   const goToShoppingCart = () => {
     if (shoppingCart?.length > 0) navigation.push("ShoppingCart");
   };
 
   return (
-    <TouchableOpacity onPress={goToShoppingCart} style={styles.button}>
-      <View>
-        <FontAwesome name="shopping-cart" size={25} color={"grey"} />
-        {shoppingCart?.length > 0 && (
-          <View style={[styles.IconBadge]}>
-            <Text style={{ color: "#FFFFFF" }}>{shoppingCart?.length}</Text>
-          </View>
-        )}
-      </View>
+    <TouchableOpacity onPress={goToShoppingCart} style={{ marginRight: 15 }}>
+      <Icon type="font-awesome-5" name="shopping-cart" size={25} color="grey" />
+      {shoppingCart?.length > 0 ? (
+        <Badge
+          containerStyle={{ position: "absolute", top: -4, right: -4 }}
+          value={shoppingCart?.length}
+          status="error"
+        />
+      ) : null}
     </TouchableOpacity>
   );
 };
