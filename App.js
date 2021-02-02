@@ -39,7 +39,9 @@ const screenOptionsStack = {
   headerShown: true,
   headerTitleStyle: menuStackStyles.headerTitleStyle,
   cardStyle: menuStackStyles.cardStyle,
+  headerBackTitleVisible: false,
   headerRight: ShoppingCartTopMenu,
+  headerTintColor: menuStackStyles.headerTintColor,
 };
 
 const screenOptionsTabBar = ({ route }) => ({
@@ -103,8 +105,11 @@ const App = () => {
                 component={ShoppingCart}
                 options={{
                   title: "Mi pedido",
+                  headerBackTitleVisible: false,
                   headerShown: true,
+                  headerTintColor: menuStackStyles.headerTintColor,
                   headerTitleStyle: menuStackStyles.headerTitleStyle,
+                  headerTitleAlign: "center",
                 }}
               />
             </Stack.Navigator>

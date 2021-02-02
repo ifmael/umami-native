@@ -11,6 +11,7 @@ const boldFont = { fontFamily: "Comfortaa_700Bold", fontWeight: "normal" };
  */
 
 // Palette of colors
+export const black = "black";
 export const brown = "#cc9966";
 export const red = "#cc3333";
 export const green = "#669966";
@@ -145,6 +146,7 @@ export const menuStackStyles = {
     fontFamily: "Comfortaa_700Bold",
     fontSize: 22,
   },
+  headerTintColor: black,
   cardStyle: { backgroundColor: white },
 };
 export const tabBarStyles = {
