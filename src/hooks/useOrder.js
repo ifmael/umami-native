@@ -1,12 +1,11 @@
-import { useMutation } from "@apollo/client";
-import { CREATE_ORDER } from "/graphql/mutations/order";
+import { useApolloClient } from "@apollo/client";
+import CREATE_ORDER from "/graphql/mutations/order";
+import GET_MORE_ORDERS from "/graphql/querys/getMoreOrders";
 import { addShoppingCart } from "/hooks/functions";
 import { shoppingCartBEComponent } from "/constant";
 
 const useOrder = () => {
-  const [createOrder, { data: newOrderData, error: newOrderError, loading: newOrderLoading }] = useMutation(
-    CREATE_ORDER
-  );
+  const client = useApolloClient();
 
   const addDelivery = (deliveryOptions) => {
     try {
@@ -23,23 +22,45 @@ const useOrder = () => {
     }
   };
 
-  const createNewOrder = (deliveryOptionsInput, shoppingCartByCategories, totalPrice) => {
+  const createNewOrder = async (deliveryOptionsInput, shoppingCartByCategories, totalPrice) => {
     try {
-      const deliveryOptions = addDelivery(deliveryOptionsInput);
-      const shoppingCart = addShoppingCart(shoppingCartByCategories);
+      //Check if is possible make more order
+      const { data } = await client.query({
+        query: GET_MORE_ORDERS,
+        fetchPolicy: "network-only",
+      });
+      const moreOrders = data?.configurations[0]?.configuration[0]?.moreOrder;
+      const titleNoMoreOrder = data?.configurations[0]?.configuration[0]?.titleNoMoreOrders;
 
-      const order = {
-        variables: {
-          input: { data: { deliveryOptions, shoppingCart, totalPrice } },
-        },
-      };
-      createOrder(order);
+      if (moreOrders) {
+        const deliveryOptions = addDelivery(deliveryOptionsInput);
+        // const deliveryOptions = {
+        //   __component: "contact.in-local",
+        //   __typename: "ComponentContactInLocal",
+        //   name: "Vhj",
+        //   phone: "987654321",
+        // };
+        const shoppingCart = addShoppingCart(shoppingCartByCategories);
+
+        await client.mutate({
+          mutation: CREATE_ORDER,
+          variables: {
+            input: { data: { deliveryOptions, shoppingCart, totalPrice } },
+          },
+        });
+
+        return { create: true, message: "ok" };
+      } else {
+        console.log("### Setting the error ###");
+        console.log(`${{ create: false, message: titleNoMoreOrder }}`);
+        return { create: false, message: titleNoMoreOrder };
+      }
     } catch (error) {
-      console.log(error);
+      throw new Error("Error in request");
     }
   };
 
-  return [{ newOrderData, newOrderError, newOrderLoading }, { createNewOrder }];
+  return [{}, { createNewOrder }];
 };
 
 export default useOrder;

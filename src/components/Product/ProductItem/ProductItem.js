@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { string, number, bool } from "prop-types";
 import { View } from "react-native";
-import { ListItem, Text } from "react-native-elements";
+import { colors, ListItem, Text } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "/context/GlobalContext";
 import { guidGenerator } from "/utils/functions";
@@ -11,8 +11,9 @@ import styles from "./ProductItem.styles";
 const ProductItem = (props) => {
   const { category, description, isCustomizable, isMenuable, name, price } = props;
   const navigation = useNavigation();
-  const { setItemShoppingCart } = useContext(GlobalContext);
+  const { setItemShoppingCart, configuration } = useContext(GlobalContext);
   const editable = isCustomizable || isMenuable;
+  const disableListItem = !configuration?.MoreOrders?.moreOrder;
 
   const add = () => {
     //Logic to know if a customizable product or menuable
@@ -29,7 +30,7 @@ const ProductItem = (props) => {
     }
   };
   return (
-    <ListItem bottomDivider onPress={add}>
+    <ListItem bottomDivider disabled={disableListItem} onPress={add}>
       <ListItem.Content>
         <ListItem.Title>
           <View style={styles.title}>
@@ -39,7 +40,12 @@ const ProductItem = (props) => {
         {description ? <ListItem.Subtitle>{description}</ListItem.Subtitle> : null}
       </ListItem.Content>
       <Text h4>{price?.toFixed(2)} €</Text>
-      <ListItem.Chevron type="font-awesome-5" name={editable ? "chevron-right" : "plus"} size={24} color={yellow} />
+      <ListItem.Chevron
+        type="font-awesome-5"
+        name={editable ? "chevron-right" : "plus"}
+        size={24}
+        color={!disableListItem ? yellow : colors.disabled}
+      />
     </ListItem>
   );
 };

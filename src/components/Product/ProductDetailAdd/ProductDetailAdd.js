@@ -12,7 +12,7 @@ const modalProps = {
 };
 
 const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu }) => {
-  const [{ localErrors, priceProduct }, handlers] = useProductDetailAdd(
+  const [{ disableAddButton, localErrors, priceProduct }, handlers] = useProductDetailAdd(
     goTo,
     isChildrenMenu,
     isYourTaste,
@@ -23,8 +23,9 @@ const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu 
   return (
     <>
       <AddButton
-        title={priceProduct === 0 ? `Añadelo al carrito` : `Añadelo por ${priceProduct?.toFixed(2)} €`}
+        disabled={disableAddButton}
         onPress={handlers.addProductToShoppingCart}
+        title={priceProduct === 0 ? `Añadelo al carrito` : `Añadelo por ${priceProduct?.toFixed(2)} €`}
       />
       {localErrors ? (
         <BottomSheet isVisible={!!localErrors} modalProps={modalProps}>

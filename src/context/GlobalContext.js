@@ -11,17 +11,26 @@ import {
 import AppLoading from "expo-app-loading";
 import { element } from "prop-types";
 import SafeAreaViewAndroid from "/components/common/SafeAreaViewAndroid";
-import { useCategories, useDelivery, useIngredients, useOrder, useProducts, useShoppingCart } from "/hooks";
+import {
+  useCategories,
+  useConfigurations,
+  useDelivery,
+  useIngredients,
+  useOrder,
+  useProducts,
+  useShoppingCart,
+} from "/hooks";
 
 import GET_DATA from "/graphql/querys/getData";
 
 export const GlobalContext = React.createContext({});
 
 const ContextProvider = ({ children }) => {
-  const { loading, error, data } = useQuery(GET_DATA);
+  const { loading, error, data } = useQuery(GET_DATA, { fetchPolicy: "no-cache" });
   const { productsByCategory } = useProducts(data);
   const { categories } = useCategories(data);
   const ingredients = useIngredients(data);
+  const configuration = useConfigurations(data);
   const [fontsLoaded] = useFonts({
     Comfortaa_300Light,
     Comfortaa_400Regular,
@@ -39,6 +48,7 @@ const ContextProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         categories,
+        configuration,
         error,
         ingredients,
         loading,

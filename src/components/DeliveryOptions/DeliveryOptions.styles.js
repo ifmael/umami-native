@@ -4,11 +4,6 @@ const styles = StyleSheet.create({
   titleView: {
     marginBottom: 10,
   },
-  titleViewText: {
-    position: "relative",
-    textAlign: "center",
-  },
-
   mainView: {
     backgroundColor: "white",
     paddingVertical: 20,
@@ -22,9 +17,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export const titleContainerIcon = {
-  position: "absolute",
-  right: 0,
+export const stylesRNEComponents = {
+  titleViewText: {
+    position: "relative",
+    textAlign: "center",
+  },
 };
 
 export default styles;

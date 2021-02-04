@@ -1,9 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  deliveryInfoTitle: {
-    textAlign: "center",
-  },
   deliveryInfoViewContainer: {
     marginTop: 20,
   },
@@ -15,5 +12,11 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
 });
+
+export const stylesRNEComponents = {
+  deliveryInfoTitle: {
+    textAlign: "center",
+  },
+};
 
 export default styles;

@@ -1,19 +1,35 @@
-import React, { useState } from "react";
-import { Button } from "react-native";
+import React, { useState, useContext } from "react";
+import { Text } from "react-native-elements";
 import MenuList from "/components/Menu/MenuList";
-import DeliveryOptions from "/components/DeliveryOptions";
+import Modal from "react-native-modal";
+import { GlobalContext } from "/context/GlobalContext";
 
 const Menu = () => {
-  const [showDeliveryOptions, setShowDEliveryOptions] = useState(false);
-  const toggleModal = () => {
-    setShowDEliveryOptions(!showDeliveryOptions);
-  };
+  const { configuration } = useContext(GlobalContext);
+  const [showNoMoreOrder, setShowNoMoreOrder] = useState(!configuration?.MoreOrders?.moreOrder);
+  const titleNoMoreOrders = configuration?.MoreOrders?.titleNoMoreOrders;
 
   return (
     <>
-      <Button title="Show modal" onPress={toggleModal} />
       <MenuList />
-      <DeliveryOptions showComponent={showDeliveryOptions} showModalHandler={setShowDEliveryOptions} />
+      <Modal
+        isVisible={showNoMoreOrder}
+        onBackButtonPress={() => setShowNoMoreOrder(false)}
+        onBackdropPress={() => setShowNoMoreOrder(false)}
+      >
+        <Text
+          h4
+          style={{
+            backgroundColor: "white",
+            paddingVertical: 40,
+            paddingHorizontal: 10,
+            borderRadius: 5,
+            textAlign: "center",
+          }}
+        >
+          {titleNoMoreOrders}
+        </Text>
+      </Modal>
     </>
   );
 };

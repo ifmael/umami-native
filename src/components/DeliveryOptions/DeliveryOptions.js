@@ -8,7 +8,7 @@ import DeliveryAtHome from "./DeliveryAtHome";
 import PickUpInLocal from "./PickUpInLocal";
 import useDeliveryOptions from "./useDeliveryOptions";
 import { deliverySteps } from "/constant";
-import styles from "./DeliveryOptions.styles";
+import styles, { stylesRNEComponents } from "./DeliveryOptions.styles";
 import { bool, func } from "prop-types";
 
 const propTypes = {
@@ -49,7 +49,7 @@ export default function DeliveryOptions({ showComponent = false, showModalHandle
       >
         <View style={styles.mainView} onLayout={handlers.onLayout}>
           <View style={styles.titleView}>
-            <Text h4 style={styles.titleViewText}>
+            <Text h4 style={stylesRNEComponents.titleViewText}>
               {`${deliverySteps[currentStep]?.titleStep}`}
             </Text>
           </View>

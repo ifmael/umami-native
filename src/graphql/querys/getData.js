@@ -251,6 +251,14 @@ const GET_DATA = gql`
       price
       showAddExtraIngredient
     }
+    configurations {
+      configuration {
+        ... on ComponentConfigurationsMoreOrders {
+          moreOrder
+          titleNoMoreOrders
+        }
+      }
+    }
   }
 `;
 

@@ -66,11 +66,30 @@ const getPrice = (shoppingCart) => {
   }, 0);
 };
 
+const initialValueError = { message: "", show: false };
+const fatalError =
+  "No se ha podido completar su pedido.\n\nPor favor intentelo más tarde o llame el teléfono: 987654321";
+
 export default function useShoppingCart() {
-  const { categories, shoppingCart } = useContext(GlobalContext);
+  const { categories, createNewOrder, deliveryOptions, shoppingCart } = useContext(GlobalContext);
   const [shoppingCartByCategory, setShoppingCartByCategory] = useState(groupByCategory(shoppingCart, categories));
   const [totalPrice, setTotalPrice] = useState(getPrice(shoppingCart));
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(initialValueError);
   const navigation = useNavigation();
+
+  const onCreateNewOrder = async () => {
+    try {
+      setIsLoading(true);
+      const { create, message } = await createNewOrder(deliveryOptions, shoppingCartByCategory, totalPrice);
+      create ? setError(initialValueError) : setError({ show: true, message });
+      setIsLoading(false);
+    } catch (error) {
+      setError({ message: fatalError, show: true });
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     const newShoppingCartByCategory = groupByCategory(shoppingCart, categories);
@@ -85,5 +104,8 @@ export default function useShoppingCart() {
     setTotalPrice(newPrice);
   }, [shoppingCart]);
 
-  return [{ shoppingCartByCategory, totalPrice }];
+  return [
+    { isLoading, error, shoppingCartByCategory, totalPrice },
+    { onCreateNewOrder, setError },
+  ];
 }

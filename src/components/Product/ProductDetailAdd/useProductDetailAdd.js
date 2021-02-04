@@ -17,9 +17,10 @@ const calculateIngredientsPrice = (listOfIngredients) => {
 export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, price) {
   const [localErrors, setLocalErrors] = useState(null);
   const [priceProduct, setPriceProduct] = useState(price);
-  const { setItemShoppingCart } = useContext(GlobalContext);
+  const { setItemShoppingCart, configuration } = useContext(GlobalContext);
   const { productDetailInfo, setErrors } = useContext(ProductDetailContext);
   let navigation = useNavigation();
+  const disableAddButton = !configuration?.MoreOrders?.moreOrder;
 
   const addProductToShoppingCart = useCallback(() => {
     const { category, beverage, side, isMenu, typeOfMeat, meatPoint, typeOfBread } = productDetailInfo;
@@ -131,7 +132,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   }, [productDetailInfo]);
 
   return [
-    { localErrors, priceProduct },
+    { disableAddButton, localErrors, priceProduct },
     { addProductToShoppingCart, closeModal },
   ];
 }

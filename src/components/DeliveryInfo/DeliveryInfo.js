@@ -5,7 +5,7 @@ import { Button, Text } from "react-native-elements";
 import DeliveryInfoRestaurant from "./DeliveryInfoRestaurant";
 import DeliveryInfoHome from "./DeliveryInfoHome";
 import { GlobalContext } from "/context/GlobalContext";
-import styles from "./DeliveryInfo.styles";
+import styles, { stylesRNEComponents } from "./DeliveryInfo.styles";
 import { outlineButtonStyles } from "/styles/theme";
 
 const propTypes = {
@@ -20,7 +20,7 @@ export default function DeliveryInfo({ showDeliveryOptions }) {
   return (
     <View>
       <View style={styles.deliveryInfoViewContainer}>
-        <Text h3 style={styles.deliveryInfoTitle}>
+        <Text h3 style={stylesRNEComponents.deliveryInfoTitle}>
           Datos para la entrega
         </Text>
         <View style={styles.deliveryInfoViewOptions}>
