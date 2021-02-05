@@ -6,8 +6,8 @@ import { GlobalContext } from "/context/GlobalContext";
 
 const Menu = () => {
   const { configuration } = useContext(GlobalContext);
-  const [showNoMoreOrder, setShowNoMoreOrder] = useState(!configuration?.MoreOrders?.moreOrder);
-  const titleNoMoreOrders = configuration?.MoreOrders?.titleNoMoreOrders;
+  const [showNoMoreOrder, setShowNoMoreOrder] = useState(!configuration?.moreOrders?.moreOrder);
+  const titleNoMoreOrders = configuration?.moreOrders?.titleNoMoreOrders;
 
   return (
     <>

@@ -20,7 +20,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   const { setItemShoppingCart, configuration } = useContext(GlobalContext);
   const { productDetailInfo, setErrors } = useContext(ProductDetailContext);
   let navigation = useNavigation();
-  const disableAddButton = !configuration?.MoreOrders?.moreOrder;
+  const disableAddButton = !configuration?.moreOrders?.moreOrder;
 
   const addProductToShoppingCart = useCallback(() => {
     const { category, beverage, side, isMenu, typeOfMeat, meatPoint, typeOfBread } = productDetailInfo;

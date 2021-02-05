@@ -13,7 +13,7 @@ const ProductItem = (props) => {
   const navigation = useNavigation();
   const { setItemShoppingCart, configuration } = useContext(GlobalContext);
   const editable = isCustomizable || isMenuable;
-  const disableListItem = !configuration?.MoreOrders?.moreOrder;
+  const disableListItem = !configuration?.moreOrders?.moreOrder;
 
   const add = () => {
     //Logic to know if a customizable product or menuable

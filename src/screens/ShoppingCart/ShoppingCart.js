@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { View, ScrollView } from "react-native";
 import { Text } from "react-native-elements";
 import Modal from "react-native-modal";
@@ -6,17 +6,28 @@ import ShoppingCartList from "/components/ShoppingCart/ShoppingCartList";
 import DeliveryInfo from "/components/Delivery/DeliveryInfo";
 import DeliveryOptions from "/components/Delivery/DeliveryOptions";
 import AddButton from "/components/common/AddButton";
-import { GlobalContext } from "/context/GlobalContext";
 import useShoppingCart from "./useShoppingCart";
 import styles from "./ShoppingCart.styles";
 
 export default function ShoppingCart() {
-  const [showDeliveryOptions, setShowDEliveryOptions] = useState(false);
-  const { deliveryOptions } = useContext(GlobalContext);
-  const [{ isLoading, error, shoppingCartByCategory, totalPrice }, { onCreateNewOrder, setError }] = useShoppingCart();
-  const isDeliveryOption = deliveryOptions?.option && deliveryOptions?.contactInfo;
+  const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
+  const [
+    {
+      deliveryOptions,
+      error,
+      isDeliveryOption,
+      isLoading,
+      lowerMinPayment,
+      shoppingCartByCategory,
+      showModalMinPayment,
+      titleMinPayment,
+      totalPrice,
+    },
+    { onCreateNewOrder, setError, setShowModalMinPayment },
+  ] = useShoppingCart();
+
   const toggleModal = () => {
-    setShowDEliveryOptions(!showDeliveryOptions);
+    setShowDeliveryOptions(!showDeliveryOptions);
   };
 
   return (
@@ -26,13 +37,31 @@ export default function ShoppingCart() {
         <View style={styles.divider} />
         <DeliveryInfo options={deliveryOptions} showDeliveryOptions={toggleModal} />
       </ScrollView>
-      <DeliveryOptions showComponent={showDeliveryOptions} showModalHandler={setShowDEliveryOptions} />
+      <DeliveryOptions showComponent={showDeliveryOptions} showModalHandler={setShowDeliveryOptions} />
       <AddButton
-        disabled={!isDeliveryOption}
+        disabled={!isDeliveryOption || lowerMinPayment}
         loading={isLoading}
         onPress={onCreateNewOrder}
-        title={`A pagar: ${totalPrice?.toFixed(2)} €`}
+        title={lowerMinPayment ? titleMinPayment : `A pagar: ${totalPrice?.toFixed(2)} €`}
       />
+      <Modal
+        isVisible={showModalMinPayment}
+        onBackButtonPress={() => setShowModalMinPayment(false)}
+        onBackdropPress={() => setShowModalMinPayment(false)}
+      >
+        <Text
+          h4
+          style={{
+            backgroundColor: "white",
+            paddingVertical: 40,
+            paddingHorizontal: 10,
+            borderRadius: 5,
+            textAlign: "center",
+          }}
+        >
+          {titleMinPayment}
+        </Text>
+      </Modal>
       <Modal
         isVisible={error.show}
         onBackButtonPress={() => setError((currentValue) => ({ ...currentValue, show: false }))}

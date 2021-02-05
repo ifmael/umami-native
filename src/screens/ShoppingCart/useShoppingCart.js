@@ -71,12 +71,16 @@ const fatalError =
   "No se ha podido completar su pedido.\n\nPor favor intentelo más tarde o llame el teléfono: 987654321";
 
 export default function useShoppingCart() {
-  const { categories, createNewOrder, deliveryOptions, shoppingCart } = useContext(GlobalContext);
+  const { categories, createNewOrder, configuration, deliveryOptions, shoppingCart } = useContext(GlobalContext);
   const [shoppingCartByCategory, setShoppingCartByCategory] = useState(groupByCategory(shoppingCart, categories));
   const [totalPrice, setTotalPrice] = useState(getPrice(shoppingCart));
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(initialValueError);
+  const [showModalMinPayment, setShowModalMinPayment] = useState(totalPrice < configuration?.minimumPayment.min);
   const navigation = useNavigation();
+  const isDeliveryOption = deliveryOptions?.option && deliveryOptions?.contactInfo;
+  const titleMinPayment = configuration?.minimumPayment.title;
+  const lowerMinPayment = totalPrice < configuration?.minimumPayment.min;
 
   const onCreateNewOrder = async () => {
     try {
@@ -101,11 +105,23 @@ export default function useShoppingCart() {
 
   useEffect(() => {
     const newPrice = getPrice(shoppingCart);
+
+    setShowModalMinPayment(newPrice < configuration?.minimumPayment.min);
     setTotalPrice(newPrice);
-  }, [shoppingCart]);
+  }, [configuration, shoppingCart]);
 
   return [
-    { isLoading, error, shoppingCartByCategory, totalPrice },
-    { onCreateNewOrder, setError },
+    {
+      deliveryOptions,
+      error,
+      isDeliveryOption,
+      isLoading,
+      lowerMinPayment,
+      shoppingCartByCategory,
+      showModalMinPayment,
+      titleMinPayment,
+      totalPrice,
+    },
+    { onCreateNewOrder, setError, setShowModalMinPayment },
   ];
 }

@@ -257,6 +257,10 @@ const GET_DATA = gql`
           moreOrder
           titleNoMoreOrders
         }
+        ... on ComponentConfigurationsMinimumPayment {
+          min
+          title
+        }
       }
     }
   }
