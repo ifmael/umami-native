@@ -1,7 +1,7 @@
 import React from "react";
-import { string } from "prop-types";
 import { View } from "react-native";
 import { Text } from "react-native-elements";
+import { string } from "prop-types";
 
 const propTypes = {
   name: string,

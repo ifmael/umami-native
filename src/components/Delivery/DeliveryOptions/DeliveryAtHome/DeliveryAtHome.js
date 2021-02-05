@@ -132,6 +132,5 @@ DeliveryAtHome.propTypes = propTypes;
 /**
  *
  * TODO
- * - Show loader
  * - Fix error when GPS is disabled
  */

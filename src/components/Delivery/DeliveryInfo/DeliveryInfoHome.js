@@ -16,7 +16,8 @@ export default function DeliveryInfoHome({ block, flat, locality, number, phone,
   return (
     <View>
       {street ? <Text>{street}</Text> : null}
-      {number ? <Text>Número: {number}</Text> : null}º{block ? <Text>Bloque: {block}</Text> : null}º
+      {number ? <Text>Número: {number}</Text> : null}
+      {block ? <Text>Bloque: {block}</Text> : null}
       {flat ? <Text>Piso: {flat}</Text> : null}
       {locality ? <Text>Localidad: {locality}</Text> : null}
       {phone ? <Text>Telefono: {phone}</Text> : null}

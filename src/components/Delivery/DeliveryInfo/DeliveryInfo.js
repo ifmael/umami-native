@@ -1,21 +1,22 @@
-import React, { useContext } from "react";
-import { func } from "prop-types";
+import React from "react";
 import { View } from "react-native";
 import { Button, Text } from "react-native-elements";
 import DeliveryInfoRestaurant from "./DeliveryInfoRestaurant";
 import DeliveryInfoHome from "./DeliveryInfoHome";
-import { GlobalContext } from "/context/GlobalContext";
 import styles, { stylesRNEComponents } from "./DeliveryInfo.styles";
 import { outlineButtonStyles } from "/styles/theme";
+import { red } from "/styles/theme";
+import { func, object } from "prop-types";
 
 const propTypes = {
+  options: object,
   showDeliveryOptions: func,
 };
 
-export default function DeliveryInfo({ showDeliveryOptions }) {
-  const { deliveryOptions } = useContext(GlobalContext);
+const noData = `Sin información\n`;
 
-  const isDeliveryOption = deliveryOptions?.option && deliveryOptions?.contactInfo;
+export default function DeliveryInfo({ options, showDeliveryOptions }) {
+  const isDeliveryOption = options?.option && options?.contactInfo;
 
   return (
     <View>
@@ -25,15 +26,15 @@ export default function DeliveryInfo({ showDeliveryOptions }) {
         </Text>
         <View style={styles.deliveryInfoViewOptions}>
           {isDeliveryOption ? (
-            deliveryOptions?.option === "restaurant" ? (
-              <DeliveryInfoRestaurant {...deliveryOptions?.contactInfo} />
-            ) : deliveryOptions?.option === "home" ? (
-              <DeliveryInfoHome {...deliveryOptions?.contactInfo} />
+            options?.option === "restaurant" ? (
+              <DeliveryInfoRestaurant {...options?.contactInfo} />
+            ) : options?.option === "home" ? (
+              <DeliveryInfoHome {...options?.contactInfo} />
             ) : (
-              <Text>Sin información</Text>
+              <Text style={{ color: red }}>{noData}</Text>
             )
           ) : (
-            <Text>Sin información</Text>
+            <Text style={{ color: red }}>{noData}</Text>
           )}
 
           <Button
