@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Input, Text } from "react-native-elements";
 import Picker from "/components/common/Picker";
 import TimePickerOption from "/components/Delivery/DeliveryOptions/TimePickerOption";
-import { getListOfTimes } from "../DeliveryOptions.function";
+import useTime from "../useTime";
 import { deliveryTime } from "../DeliveryOptions.styles";
 import { object } from "prop-types";
 
@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 const PickUpInLocal = ({ selectors, handlers }) => {
-  const listOfTimes = getListOfTimes();
+  const listOfTimes = useTime();
 
   return (
     <View>

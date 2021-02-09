@@ -261,6 +261,13 @@ const GET_DATA = gql`
           min
           title
         }
+        ... on ComponentConfigurationsSchedule {
+          openingTime
+          closingTime
+          initTimeLastSection
+          lastTimiUsualSection
+          lastTimelatestSection
+        }
       }
     }
   }

@@ -6,7 +6,7 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 import Picker from "/components/common/Picker";
 import { PLACES_TOKEN } from "/constant";
 import TimePickerOption from "/components/Delivery/DeliveryOptions/TimePickerOption";
-import { getListOfTimes } from "../DeliveryOptions.function";
+import useTime from "../useTime";
 import styles, { buttonStyles, getStyles } from "./DeliveryAtHome.styles";
 
 const propTypes = {
@@ -20,7 +20,7 @@ const propTypes = {
 const DeliveryAtHome = ({ handlers, parentWidth, selectors, showButton = false, UI }) => {
   const { renderRow } = UI;
   const { autocompleteStyle, inputStyles } = getStyles(parentWidth);
-  const listOfTimes = getListOfTimes();
+  const listOfTimes = useTime();
 
   return (
     <View>
