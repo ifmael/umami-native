@@ -9,7 +9,7 @@ const useDeliveryOptions = (showModalHandler) => {
   const { setContactInfo, setDeliveryOption } = useContext(GlobalContext);
   const [parentWidth, setParentWidth] = useState(0);
   const { options, setOption, selected } = useRadioButtons(deliveryOptions);
-  const [deliverAtHomeSelectors, deliveryAthomeHandlers, deliveryAtHomeUI] = useDeliveryAtHome();
+  const [deliveryAtHomeSelectors, deliveryAthomeHandlers, deliveryAtHomeUI] = useDeliveryAtHome();
   const [pickUpInLocalSelectors, pickUpInLocalHandlers] = usePickUpInLocal();
 
   const disableNextButton = (currentStep) => {
@@ -18,7 +18,7 @@ const useDeliveryOptions = (showModalHandler) => {
         return !selected;
       case 1: {
         return selected?.option === "home"
-          ? !deliverAtHomeSelectors.isPossibleAddContact
+          ? !deliveryAtHomeSelectors.isPossibleAddContact
           : selected?.option === "restaurant"
           ? !pickUpInLocalSelectors.isValidPickUpInLocal
           : true;
@@ -53,20 +53,22 @@ const useDeliveryOptions = (showModalHandler) => {
     if (currentStep === 0) {
       wizardRef?.current?.next();
     } else if (currentStep === 1) {
-      if (deliverAtHomeSelectors.isPossibleAddContact && selected?.option === "home") {
+      if (deliveryAtHomeSelectors.isPossibleAddContact && selected?.option === "home") {
         setDeliveryOption(selected?.name, selected?.option);
         setContactInfo({
-          block: deliverAtHomeSelectors.block,
-          flat: deliverAtHomeSelectors.flat,
-          number: deliverAtHomeSelectors.number,
-          locality: deliverAtHomeSelectors.locality,
-          phone: deliverAtHomeSelectors.phone,
-          street: deliverAtHomeSelectors.street,
+          block: deliveryAtHomeSelectors.block,
+          flat: deliveryAtHomeSelectors.flat,
+          number: deliveryAtHomeSelectors.number,
+          locality: deliveryAtHomeSelectors.locality,
+          phone: deliveryAtHomeSelectors.phone,
+          street: deliveryAtHomeSelectors.street,
+          time: deliveryAtHomeSelectors.time,
         });
       } else if (pickUpInLocalSelectors.isValidPickUpInLocal && selected?.option === "restaurant") {
         setContactInfo({
           name: pickUpInLocalSelectors.name,
           phone: pickUpInLocalSelectors.phone,
+          time: pickUpInLocalSelectors.time,
         });
         setDeliveryOption(selected?.name, selected?.option);
       } else {
@@ -79,10 +81,10 @@ const useDeliveryOptions = (showModalHandler) => {
 
   return [
     { parentWidth },
-    { disableNextButton, getNextName, getPrevName, onNext, onLayout, onPrev },
-    { options, setOption, deliveryOptionSelected: selected?.id === 0 || selected?.id === 1 ? selected?.option : -1 },
-    { selectors: deliverAtHomeSelectors, handlers: deliveryAthomeHandlers, UI: deliveryAtHomeUI },
-    { selectors: pickUpInLocalSelectors, handlers: pickUpInLocalHandlers },
+    { disableNextButton, getNextName, getPrevName, onNext, onLayout, onPrev }, // wizard
+    { options, setOption, deliveryOptionSelected: selected?.id === 0 || selected?.id === 1 ? selected?.option : -1 }, // Main  screen
+    { selectors: deliveryAtHomeSelectors, handlers: deliveryAthomeHandlers, UI: deliveryAtHomeUI }, // Home
+    { selectors: pickUpInLocalSelectors, handlers: pickUpInLocalHandlers }, // Local
   ];
 };
 

@@ -16,9 +16,9 @@ const propTypes = {
   showModalHandler: func,
 };
 
-export default function DeliveryOptions({ showComponent = false, showModalHandler }) {
+const DeliveryOptions = ({ showComponent = false, showModalHandler }) => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [{ parentWidth }, handlers, useChoosePlace, useDeliveryAtHome, usePickUpInLocal] = useDeliveryOptions(
+  const [{ parentWidth }, handlersWizard, useChoosePlace, useDeliveryAtHome, usePickUpInLocal] = useDeliveryOptions(
     showModalHandler
   );
   const wizardRef = useRef(null);
@@ -47,7 +47,7 @@ export default function DeliveryOptions({ showComponent = false, showModalHandle
         onBackdropPress={() => showModalHandler(false)}
         style={{ flex: 1 }}
       >
-        <View style={styles.mainView} onLayout={handlers.onLayout}>
+        <View style={styles.mainView} onLayout={handlersWizard.onLayout}>
           <View style={styles.titleView}>
             <Text h4 style={stylesRNEComponents.titleViewText}>
               {`${deliverySteps[currentStep]?.titleStep}`}
@@ -62,17 +62,22 @@ export default function DeliveryOptions({ showComponent = false, showModalHandle
             steps={stepList}
           />
           <View style={styles.buttonView}>
-            <Button title={handlers.getPrevName(currentStep)} onPress={() => handlers.onPrev(currentStep, wizardRef)} />
             <Button
-              disabled={handlers.disableNextButton(currentStep)}
-              title={handlers.getNextName(currentStep)}
-              onPress={() => handlers.onNext(currentStep, wizardRef)}
+              title={handlersWizard.getPrevName(currentStep)}
+              onPress={() => handlersWizard.onPrev(currentStep, wizardRef)}
+            />
+            <Button
+              disabled={handlersWizard.disableNextButton(currentStep)}
+              title={handlersWizard.getNextName(currentStep)}
+              onPress={() => handlersWizard.onNext(currentStep, wizardRef)}
             />
           </View>
         </View>
       </Modal>
     </View>
   );
-}
+};
 
 DeliveryOptions.propTypes = propTypes;
+
+export default DeliveryOptions;

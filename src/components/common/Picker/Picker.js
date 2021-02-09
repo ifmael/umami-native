@@ -8,6 +8,7 @@ import { array, func, object } from "prop-types";
 
 const propTypes = {
   inputProps: object,
+  modalStyles: object,
   onValueChange: func,
   options: array,
   renderItem: func,
@@ -23,16 +24,20 @@ const defaultInputProperties = {
 /**
  *  The default Option is a object with id, name and price
  */
-export default function Picker({ inputProps, onValueChange, options, renderItem }) {
+
+const Picker = ({ inputProps, modalStyles, onValueChange, options, renderItem }) => {
   const [isActive, setIsActive] = useState(false);
   const inputPropsInner = { ...defaultInputProperties, ...inputProps };
+
   const onPress = (nameInput) => {
     onValueChange(nameInput);
     setIsActive(false);
   };
-  const optionsWithHandler = options?.map((option) => ({ ...option, onPress }));
+  const optionsWithHandler = options?.map((option) => ({
+    ...option,
+    onPress,
+  }));
   const onRenderItem = renderItem || PickerDefaultItem;
-  const optionsToRender = renderItem ? options : optionsWithHandler;
 
   return (
     <>
@@ -43,13 +48,16 @@ export default function Picker({ inputProps, onValueChange, options, renderItem 
         isVisible={isActive}
         onBackButtonPress={() => setIsActive(false)}
         onBackdropPress={() => setIsActive(false)}
+        style={modalStyles ? modalStyles : null}
       >
         <View style={styles.mainView}>
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>{optionsToRender?.map(onRenderItem)}</ScrollView>
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>{optionsWithHandler?.map(onRenderItem)}</ScrollView>
         </View>
       </Modal>
     </>
   );
-}
+};
 
 Picker.propTypes = propTypes;
+
+export default Picker;

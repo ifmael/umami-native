@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
+import { deliveryTime } from "../DeliveryOptions.styles";
 import COLORS from "/styles/colors";
 
 const paddingHorizontal = 0;
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flex: 1,
   },
+  deliveryTime,
 });
 
 export default styles;

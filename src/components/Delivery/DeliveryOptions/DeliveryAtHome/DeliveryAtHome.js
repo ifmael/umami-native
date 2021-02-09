@@ -1,9 +1,12 @@
 import React from "react";
 import { bool, number, object } from "prop-types";
 import { Platform, ScrollView, TouchableOpacity, View } from "react-native";
-import { BottomSheet, Button, Input, ListItem, SearchBar } from "react-native-elements";
+import { BottomSheet, Button, Input, ListItem, SearchBar, Text } from "react-native-elements";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import Picker from "/components/common/Picker";
 import { PLACES_TOKEN } from "/constant";
+import TimePickerOption from "/components/Delivery/DeliveryOptions/TimePickerOption";
+import { getListOfTimes } from "../DeliveryOptions.function";
 import styles, { buttonStyles, getStyles } from "./DeliveryAtHome.styles";
 
 const propTypes = {
@@ -14,9 +17,10 @@ const propTypes = {
   UI: object,
 };
 
-export default function DeliveryAtHome({ handlers, parentWidth, selectors, showButton = false, UI }) {
+const DeliveryAtHome = ({ handlers, parentWidth, selectors, showButton = false, UI }) => {
   const { renderRow } = UI;
   const { autocompleteStyle, inputStyles } = getStyles(parentWidth);
+  const listOfTimes = getListOfTimes();
 
   return (
     <View>
@@ -97,6 +101,20 @@ export default function DeliveryAtHome({ handlers, parentWidth, selectors, showB
                 value={selectors?.phone}
               />
             </View>
+            <View style={styles.deliveryTime}>
+              <Text>Hora de recogida</Text>
+              {
+                <Picker
+                  inputProps={{
+                    containerStyle: { width: 250 },
+                    value: selectors?.time ? selectors?.time : "",
+                  }}
+                  onValueChange={handlers.onValuePickerChange}
+                  options={listOfTimes}
+                  renderItem={TimePickerOption}
+                />
+              }
+            </View>
           </View>
           {showButton ? (
             <View style={styles.addContactInfoButtonContainer}>
@@ -125,9 +143,11 @@ export default function DeliveryAtHome({ handlers, parentWidth, selectors, showB
       </ScrollView>
     </View>
   );
-}
+};
 
 DeliveryAtHome.propTypes = propTypes;
+
+export default DeliveryAtHome;
 
 /**
  *

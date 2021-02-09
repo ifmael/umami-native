@@ -1,8 +1,10 @@
 import React from "react";
 import { View } from "react-native";
 import { Input, Text } from "react-native-elements";
-import { Picker } from "@react-native-picker/picker";
-import { pickerStyles } from "/styles/theme";
+import Picker from "/components/common/Picker";
+import TimePickerOption from "/components/Delivery/DeliveryOptions/TimePickerOption";
+import { getListOfTimes } from "../DeliveryOptions.function";
+import { deliveryTime } from "../DeliveryOptions.styles";
 import { object } from "prop-types";
 
 const propTypes = {
@@ -10,7 +12,9 @@ const propTypes = {
   selectors: object,
 };
 
-export default function PickUpInLocal({ selectors, handlers }) {
+const PickUpInLocal = ({ selectors, handlers }) => {
+  const listOfTimes = getListOfTimes();
+
   return (
     <View>
       <Input
@@ -28,17 +32,24 @@ export default function PickUpInLocal({ selectors, handlers }) {
         onBlur={handlers.onBlurPhone}
         value={selectors.phone}
       />
-      <View
-        style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 10 }}
-      >
-        <Text>Hora de recogida: </Text>
-        <Picker style={{ width: 150, ...pickerStyles.text }} itemStyle={pickerStyles.text}>
-          <Picker.Item label="Hour 1" value="date-1" />
-          <Picker.Item label="Hour 2" value="date-2" />
-        </Picker>
+      <View style={deliveryTime}>
+        <Text>Hora de recogida</Text>
+        {
+          <Picker
+            inputProps={{
+              containerStyle: { width: 250 },
+              value: selectors?.time ? selectors?.time : "",
+            }}
+            onValueChange={handlers.onValuePickerChange}
+            options={listOfTimes}
+            renderItem={TimePickerOption}
+          />
+        }
       </View>
     </View>
   );
-}
+};
 
 PickUpInLocal.propTypes = propTypes;
+
+export default PickUpInLocal;

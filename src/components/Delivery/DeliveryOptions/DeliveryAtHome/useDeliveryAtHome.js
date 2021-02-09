@@ -37,6 +37,9 @@ const useDeliveryAtHome = () => {
   const [streetError, setStreetError] = useState(false);
   const [streetInputPristine, setStreetInputPristine] = useState(true);
 
+  // time
+  const [time, setTime] = useState(null);
+
   const isPossibleAddContact = useMemo(() => {
     const { isLocalityValid, isPhoneValid, isStreetValid } = validateContactInfo({
       locality,
@@ -44,8 +47,8 @@ const useDeliveryAtHome = () => {
       street,
     });
 
-    return isLocalityValid && isPhoneValid && isStreetValid;
-  }, [locality, phone, street]);
+    return isLocalityValid && isPhoneValid && isStreetValid && time;
+  }, [locality, phone, street, time]);
 
   // BottomSbeet
   const [isVisibleBottomSheet, setIsVisibleBottomSheet] = useState(false);
@@ -55,7 +58,6 @@ const useDeliveryAtHome = () => {
     setLocality();
     setFlat();
     setNumber();
-    // setPostalCode();
     setStreet();
   };
 
@@ -151,6 +153,10 @@ const useDeliveryAtHome = () => {
     setStreetError(street.length === 0 ? true : false);
   };
 
+  const onValuePickerChange = (option) => {
+    setTime(option?.time);
+  };
+
   return [
     {
       block,
@@ -165,6 +171,7 @@ const useDeliveryAtHome = () => {
       phoneError,
       street,
       streetError,
+      time,
     },
     {
       onBlurPhone,
@@ -174,10 +181,12 @@ const useDeliveryAtHome = () => {
       onPressAddContactInfo,
       onPressAddress,
       onSelectLocality,
+      onValuePickerChange,
       setBlock,
       setFlat,
       setIsVisibleBottomSheet,
       setNumber,
+      setTime,
     },
     { renderRow },
   ];

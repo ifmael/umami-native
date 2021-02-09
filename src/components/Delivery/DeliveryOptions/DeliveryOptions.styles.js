@@ -24,4 +24,11 @@ export const stylesRNEComponents = {
   },
 };
 
+export const deliveryTime = {
+  flexDirection: "column",
+  justifyContent: "space-between",
+  alignItems: "center",
+  paddingHorizontal: 10,
+};
+
 export default styles;

@@ -14,13 +14,12 @@ const usePickUpInLocal = () => {
 
   // time
   const [time, setTime] = useState(null);
-  const [timeError, setTimeError] = useState(false);
 
   // const isValidPickUpInLocal = useMemo(() => {
   //   return validPhone.test(phone) && name.length > 0;
   // }, [name, phone]);
 
-  const isValidPickUpInLocal = validPhone.test(phone) && name.length > 0;
+  const isValidPickUpInLocal = validPhone.test(phone) && name.length > 0 && time;
 
   // name handlers
   const onChangeTextName = (name) => {
@@ -48,19 +47,23 @@ const usePickUpInLocal = () => {
     setPhoneError(!valid);
   };
 
+  const onValuePickerChange = (option) => {
+    setTime(option?.time);
+  };
+
   return [
-    { isValidPickUpInLocal, name, nameError, phone, phoneError, time, timeError },
+    { isValidPickUpInLocal, name, nameError, phone, phoneError, time },
     {
-      onChangeTextName,
-      onChangeTextPhone,
       onBlurName,
       onBlurPhone,
+      onChangeTextName,
+      onChangeTextPhone,
+      onValuePickerChange,
       setName,
       setNameError,
       setPhone,
       setPhoneError,
       setTime,
-      setTimeError,
     },
   ];
 };

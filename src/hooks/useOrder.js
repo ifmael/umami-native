@@ -51,8 +51,6 @@ const useOrder = () => {
 
         return { create: true, message: "ok" };
       } else {
-        console.log("### Setting the error ###");
-        console.log(`${{ create: false, message: titleNoMoreOrder }}`);
         return { create: false, message: titleNoMoreOrder };
       }
     } catch (error) {
