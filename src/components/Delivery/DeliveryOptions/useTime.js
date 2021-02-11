@@ -58,28 +58,54 @@ const parseTimeConfiguration = (schedule) => {
   }
 };
 
-const useTime = () => {
-  const { configuration } = useContext(GlobalContext);
+const getTimeSection = (configuration) => {
   const {
     openingTime,
     closingTime,
     initTimeLastSection,
     lastTimelatestSection,
     lastTimeUsualSection,
-  } = parseTimeConfiguration(configuration?.schedule);
+  } = parseTimeConfiguration(configuration);
   const now = dayjs();
 
   let listOfTimes;
 
   if (now.isBetween(startToday, initTimeLastSection)) {
     const initialTime = now.isBefore(openingTime) ? getRoundedTime(openingTime) : getRoundedTime(now);
-
     listOfTimes = generateListOfTimes(initialTime, lastTimeUsualSection);
   } else if (now.isBetween(initTimeLastSection, closingTime)) {
     const initialTime = getRoundedTime(now);
     listOfTimes = generateListOfTimes(initialTime, lastTimelatestSection);
   } else if (now.isAfter(closingTime)) {
     listOfTimes = [];
+  }
+
+  return listOfTimes;
+};
+
+const useTime = () => {
+  const { configuration } = useContext(GlobalContext);
+  let listOfTimes;
+
+  if (Array.isArray(configuration?.schedule)) {
+    const scheduleSorted = configuration.schedule.sort((a, b) => a.order - b.order);
+    let skipItemInReduce = 0;
+
+    /**
+     *  Create an unique array with all list of hours from  the different meals of the day.
+     *  Remove the "lo antes posible" and  control creates new ids when there is some skip in the iteration
+     */
+    listOfTimes = scheduleSorted.flatMap(getTimeSection).reduce((acc, hourItem, index) => {
+      if (hourItem.id !== index && hourItem.id === 0) ++skipItemInReduce;
+
+      return hourItem.id === index
+        ? [...acc, hourItem]
+        : hourItem.id === 0
+        ? acc
+        : [...acc, { ...hourItem, id: index - skipItemInReduce }];
+    }, []);
+  } else {
+    listOfTimes = [configuration.schedule].map(getTimeSection);
   }
 
   return listOfTimes;

@@ -16,8 +16,20 @@ const useConfigurations = (dataFromServer) => {
               componentBaseName.length + 1
             )}`
           : __typename;
-        return { ...acc, [typename]: rest };
+
+        const propertyExist = Object.keys(acc).includes(typename);
+
+        if (!propertyExist) {
+          return { ...acc, [typename]: rest };
+        } else {
+          const oldProperty = acc[typename];
+
+          return Array.isArray(acc[typename])
+            ? { ...acc, [typename]: [...oldProperty, rest] }
+            : { ...acc, [typename]: [oldProperty, rest] };
+        }
       }, {});
+
       setConfiguration(newConfiguration);
     } catch (error) {
       console.log(error);

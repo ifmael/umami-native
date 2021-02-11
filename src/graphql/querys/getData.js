@@ -267,6 +267,10 @@ const GET_DATA = gql`
           initTimeLastSection
           lastTimiUsualSection
           lastTimelatestSection
+          order
+          days {
+            day
+          }
         }
       }
     }
