@@ -14,6 +14,7 @@ import SafeAreaViewAndroid from "/components/common/SafeAreaViewAndroid";
 import {
   useCategories,
   useConfigurations,
+  useDays,
   useDelivery,
   useIngredients,
   useOrder,
@@ -31,6 +32,7 @@ const ContextProvider = ({ children }) => {
   const { categories } = useCategories(data);
   const ingredients = useIngredients(data);
   const configuration = useConfigurations(data);
+  const days = useDays(data);
   const [fontsLoaded] = useFonts({
     Comfortaa_300Light,
     Comfortaa_400Regular,
@@ -49,6 +51,7 @@ const ContextProvider = ({ children }) => {
       value={{
         categories,
         configuration,
+        days,
         error,
         ingredients,
         loading,

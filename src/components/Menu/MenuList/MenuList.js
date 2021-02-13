@@ -5,6 +5,7 @@ import MenuItem from "../MenuItem";
 
 const MenuList = () => {
   const { categories } = useContext(GlobalContext);
+
   return (
     <FlatList
       data={categories}

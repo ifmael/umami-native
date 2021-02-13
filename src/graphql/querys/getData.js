@@ -270,9 +270,18 @@ const GET_DATA = gql`
           order
           days {
             day
+            key
           }
         }
+        ... on ComponentConfigurationsClose {
+          isClose
+          title
+        }
       }
+    }
+    days {
+      day
+      key
     }
   }
 `;

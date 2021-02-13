@@ -53,3 +53,18 @@ export const getListOfIngredients = (listOfIngredients = [], initialWord = "", i
     console.log(error);
   }
 };
+
+/**
+ *  This function checks in the array of schedules if there is some occurence which matches with today
+ *
+ * @param {*} schedules  Array of schedule
+ */
+export const isOpenToday = (schedules) => {
+  if (!Array.isArray(schedules)) return false;
+
+  const todayKey = new Date().getDay();
+
+  return schedules.some(({ days }) => {
+    return days.some(({ key }) => key === todayKey);
+  });
+};
