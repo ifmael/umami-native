@@ -3,17 +3,24 @@ import { TouchableOpacity } from "react-native";
 import { Badge, Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "/context/GlobalContext";
+import { getSchedule } from "/utils/time";
 
 const ShoppingCartTopMenu = () => {
   const navigation = useNavigation();
-  const { shoppingCart } = useContext(GlobalContext);
+  const { shoppingCart, configuration } = useContext(GlobalContext);
+  const { close, moreOrders } = configuration;
+  const isClosedFromSchedule = getSchedule(configuration?.schedule) ? false : true;
 
   const goToShoppingCart = () => {
     if (shoppingCart?.length > 0) navigation.push("ShoppingCart");
   };
 
   return (
-    <TouchableOpacity onPress={goToShoppingCart} style={{ marginRight: 15 }}>
+    <TouchableOpacity
+      disabled={close?.isClose || !moreOrders?.moreOrder || isClosedFromSchedule}
+      onPress={goToShoppingCart}
+      style={{ marginRight: 15 }}
+    >
       <Icon type="font-awesome-5" name="shopping-cart" size={25} color="grey" />
       {shoppingCart?.length > 0 ? (
         <Badge

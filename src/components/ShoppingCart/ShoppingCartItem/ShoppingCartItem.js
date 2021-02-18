@@ -7,7 +7,7 @@ import { GlobalContext } from "/context/GlobalContext";
 import { getListOfIngredients } from "/utils/functions";
 import styles, { stylesRNEComponents } from "./ShoppingCartItem.styles";
 
-export default function ShoppingCartItem({
+const ShoppingCartItem = ({
   beverage = {},
   category = "",
   id,
@@ -21,7 +21,7 @@ export default function ShoppingCartItem({
   side = {},
   typeOfBread = {},
   typeOfMeat = {},
-}) {
+}) => {
   const { removeItem } = useContext(GlobalContext);
 
   const customName =
@@ -59,7 +59,7 @@ export default function ShoppingCartItem({
       </ListItem.Content>
     </ListItem>
   );
-}
+};
 
 ShoppingCartItem.propTypes = {
   beverage: object,
@@ -76,3 +76,5 @@ ShoppingCartItem.propTypes = {
   typeOfBread: object,
   typeOfMeat: object,
 };
+
+export default ShoppingCartItem;

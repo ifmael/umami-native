@@ -17,7 +17,6 @@ import {
   useDays,
   useDelivery,
   useIngredients,
-  useOrder,
   useProducts,
   useShoppingCart,
 } from "/hooks";
@@ -31,7 +30,7 @@ const ContextProvider = ({ children }) => {
   const { productsByCategory } = useProducts(data);
   const { categories } = useCategories(data);
   const ingredients = useIngredients(data);
-  const configuration = useConfigurations(data);
+  const [configurationSelectors, configurationHandlers] = useConfigurations(data);
   const days = useDays(data);
   const [fontsLoaded] = useFonts({
     Comfortaa_300Light,
@@ -41,7 +40,6 @@ const ContextProvider = ({ children }) => {
     Comfortaa_700Bold,
   });
   const [shoppingCartSelectors, shoppingCartHandlers] = useShoppingCart();
-  const [orderSelectors, orderHandlers] = useOrder();
   const [deliverySelectors, deliveryHandlers] = useDelivery();
 
   return !fontsLoaded ? (
@@ -50,16 +48,15 @@ const ContextProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         categories,
-        configuration,
         days,
         error,
         ingredients,
         loading,
         productsByCategory,
+        ...configurationSelectors,
+        ...configurationHandlers,
         ...shoppingCartSelectors,
         ...shoppingCartHandlers,
-        ...orderSelectors,
-        ...orderHandlers,
         ...deliverySelectors,
         ...deliveryHandlers,
       }}

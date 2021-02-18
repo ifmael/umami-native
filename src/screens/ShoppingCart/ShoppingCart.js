@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "/context/GlobalContext";
 import { View, ScrollView } from "react-native";
 import { Text } from "react-native-elements";
 import Modal from "react-native-modal";
@@ -7,10 +8,17 @@ import DeliveryInfo from "/components/Delivery/DeliveryInfo";
 import DeliveryOptions from "/components/Delivery/DeliveryOptions";
 import AddButton from "/components/common/AddButton";
 import useShoppingCart from "./useShoppingCart";
+import useShoppingCartModals from "./useShoppingCartModals";
+import { getSchedule } from "/utils/time";
 import styles from "./ShoppingCart.styles";
 
-export default function ShoppingCart() {
-  const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
+const ShoppingCart = () => {
+  const { configuration } = useContext(GlobalContext);
+  const isClosedFromSchedule = getSchedule(configuration?.schedule) ? false : true;
+  const isClose = configuration?.close.isClose;
+  const moreOrder = configuration?.moreOrders.moreOrder;
+  const titleClose = configuration?.close?.title;
+  const [{ showDeliveryOptions, showIsClosedFromSchedule }, handlers] = useShoppingCartModals(isClosedFromSchedule);
   const [
     {
       deliveryOptions,
@@ -24,28 +32,24 @@ export default function ShoppingCart() {
       totalPrice,
     },
     { onCreateNewOrder, setError, setShowModalMinPayment },
-  ] = useShoppingCart();
-
-  const toggleModal = () => {
-    setShowDeliveryOptions(!showDeliveryOptions);
-  };
+  ] = useShoppingCart(isClosedFromSchedule);
 
   return (
     <View style={styles.mainView}>
       <ScrollView style={styles.scrollViewContainer}>
         <ShoppingCartList shoppingCartByCategory={shoppingCartByCategory} />
         <View style={styles.divider} />
-        <DeliveryInfo options={deliveryOptions} showDeliveryOptions={toggleModal} />
+        <DeliveryInfo options={deliveryOptions} showDeliveryOptions={handlers.toggleModalDelivery} />
       </ScrollView>
-      <DeliveryOptions showComponent={showDeliveryOptions} showModalHandler={setShowDeliveryOptions} />
+      <DeliveryOptions showComponent={showDeliveryOptions} showModalHandler={handlers.setShowDeliveryOptions} />
       <AddButton
-        disabled={!isDeliveryOption || lowerMinPayment}
+        disabled={!isDeliveryOption || lowerMinPayment || isClosedFromSchedule || isClose || !moreOrder}
         loading={isLoading}
         onPress={onCreateNewOrder}
         title={lowerMinPayment ? titleMinPayment : `A pagar: ${totalPrice?.toFixed(2)} €`}
       />
       <Modal
-        isVisible={showModalMinPayment}
+        isVisible={showModalMinPayment && showModalMinPayment && !isClosedFromSchedule && !isClose && moreOrder}
         onBackButtonPress={() => setShowModalMinPayment(false)}
         onBackdropPress={() => setShowModalMinPayment(false)}
       >
@@ -80,6 +84,26 @@ export default function ShoppingCart() {
           {error.message}
         </Text>
       </Modal>
+      <Modal
+        isVisible={showIsClosedFromSchedule}
+        onBackButtonPress={() => handlers.setIsClosedFromSchedule(false)}
+        onBackdropPress={() => handlers.setIsClosedFromSchedule(false)}
+      >
+        <Text
+          h4
+          style={{
+            backgroundColor: "white",
+            paddingVertical: 40,
+            paddingHorizontal: 10,
+            borderRadius: 5,
+            textAlign: "center",
+          }}
+        >
+          {titleClose}
+        </Text>
+      </Modal>
     </View>
   );
-}
+};
+
+export default ShoppingCart;

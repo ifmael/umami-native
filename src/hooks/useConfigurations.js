@@ -5,6 +5,14 @@ const componentBaseName = "ComponentConfigurations";
 const useConfigurations = (dataFromServer) => {
   const [configuration, setConfiguration] = useState(null);
 
+  const setProperty = (propertyToUpdate, value) => {
+    setConfiguration((currentConfiguration) => {
+      if (currentConfiguration && !currentConfiguration[propertyToUpdate]) return currentConfiguration;
+
+      return { ...currentConfiguration, [propertyToUpdate]: value };
+    });
+  };
+
   useEffect(() => {
     try {
       if (!dataFromServer) return;
@@ -36,7 +44,7 @@ const useConfigurations = (dataFromServer) => {
     }
   }, [dataFromServer]);
 
-  return configuration;
+  return [{ configuration }, { setConfiguration, setProperty }];
 };
 
 export default useConfigurations;

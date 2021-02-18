@@ -8,6 +8,10 @@ const GET_MORE_ORDERS = gql`
           moreOrder
           titleNoMoreOrders
         }
+        ... on ComponentConfigurationsClose {
+          isClose
+          title
+        }
       }
     }
   }

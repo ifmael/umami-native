@@ -1,19 +1,22 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "/context/GlobalContext";
+import useOrder from "./useOrder";
 import { getPrice, groupByCategory } from "./functions";
 
 const initialValueError = { message: "", show: false };
 const fatalError =
   "No se ha podido completar su pedido.\n\nPor favor intentelo más tarde o llame el teléfono: 987654321";
 
-export default function useShoppingCart() {
-  const { categories, createNewOrder, configuration, deliveryOptions, shoppingCart } = useContext(GlobalContext);
+const useShoppingCart = () => {
+  const { categories, configuration, deliveryOptions, shoppingCart } = useContext(GlobalContext);
+  const createNewOrder = useOrder();
   const [shoppingCartByCategory, setShoppingCartByCategory] = useState(groupByCategory(shoppingCart, categories));
   const [totalPrice, setTotalPrice] = useState(getPrice(shoppingCart));
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(initialValueError);
   const [showModalMinPayment, setShowModalMinPayment] = useState(totalPrice < configuration?.minimumPayment.min);
+
   const navigation = useNavigation();
   const isDeliveryOption = deliveryOptions?.option && deliveryOptions?.contactInfo;
   const titleMinPayment = configuration?.minimumPayment.title;
@@ -61,4 +64,6 @@ export default function useShoppingCart() {
     },
     { onCreateNewOrder, setError, setShowModalMinPayment },
   ];
-}
+};
+
+export default useShoppingCart;

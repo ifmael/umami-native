@@ -4,7 +4,8 @@ import { View } from "react-native";
 import { colors, ListItem, Text } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "/context/GlobalContext";
-import { guidGenerator, isOpenToday } from "/utils/functions";
+import { guidGenerator } from "/utils/functions";
+import { getSchedule } from "/utils/time";
 import { yellow } from "/styles/theme";
 import styles from "./ProductItem.styles";
 
@@ -13,8 +14,8 @@ const ProductItem = (props) => {
   const navigation = useNavigation();
   const { setItemShoppingCart, configuration } = useContext(GlobalContext);
   const editable = isCustomizable || isMenuable;
-  const disableListItem =
-    !configuration?.moreOrders?.moreOrder || !isOpenToday(configuration?.schedule) || configuration?.close.isClose;
+  const isClosedFromSchedule = getSchedule(configuration?.schedule) ? false : true;
+  const disableListItem = !configuration?.moreOrders?.moreOrder || configuration?.close.isClose || isClosedFromSchedule;
 
   const add = () => {
     //Logic to know if a customizable product or menuable
