@@ -11,6 +11,7 @@ import {
 import AppLoading from "expo-app-loading";
 import { element } from "prop-types";
 import SafeAreaViewAndroid from "/components/common/SafeAreaViewAndroid";
+import InitialError from "/components/common/InitialError";
 import {
   useCategories,
   useConfigurations,
@@ -41,9 +42,14 @@ const ContextProvider = ({ children }) => {
   });
   const [shoppingCartSelectors, shoppingCartHandlers] = useShoppingCart();
   const [deliverySelectors, deliveryHandlers] = useDelivery();
+  console.log("@@@@@@@@@@@@@@");
+  console.log("error");
+  console.log(error);
 
-  return !fontsLoaded ? (
+  return !fontsLoaded || loading ? (
     <AppLoading />
+  ) : error ? (
+    <InitialError />
   ) : (
     <GlobalContext.Provider
       value={{
