@@ -40,22 +40,17 @@ const useOrder = () => {
 
       if (!close?.isClose && moreOrder.moreOrder) {
         const deliveryOptions = addDelivery(deliveryOptionsInput);
-        // const deliveryOptions = {
-        //   __component: "contact.in-local",
-        //   __typename: "ComponentContactInLocal",
-        //   name: "Vhj",
-        //   phone: "987654321",
-        // };
         const shoppingCart = addShoppingCart(shoppingCartByCategories);
 
-        await client.mutate({
+        const response = await client.mutate({
           mutation: CREATE_ORDER,
           variables: {
             input: { data: { deliveryOptions, shoppingCart, totalPrice } },
           },
         });
+        const orderId = response?.data?.createOrder?.order?.id || "";
 
-        return { create: true, message: "ok" };
+        return { create: true, message: orderId };
       } else {
         !moreOrder.moreOrder ? setProperty("moreOrders", moreOrder) : setProperty("close", close);
         setTimeout(() => clearShoppingCart(), 2000);

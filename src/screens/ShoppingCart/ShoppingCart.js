@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "/context/GlobalContext";
 import { View, ScrollView } from "react-native";
-import { Text } from "react-native-elements";
+import { Icon, Text } from "react-native-elements";
 import Modal from "react-native-modal";
 import ShoppingCartList from "/components/ShoppingCart/ShoppingCartList";
 import DeliveryInfo from "/components/Delivery/DeliveryInfo";
@@ -10,6 +10,7 @@ import AddButton from "/components/common/AddButton";
 import useShoppingCart from "./useShoppingCart";
 import useShoppingCartModals from "./useShoppingCartModals";
 import { getSchedule } from "/utils/time";
+import { green } from "/styles/theme";
 import styles from "./ShoppingCart.styles";
 
 const ShoppingCart = () => {
@@ -26,12 +27,13 @@ const ShoppingCart = () => {
       isDeliveryOption,
       isLoading,
       lowerMinPayment,
+      showModalOrderCompleted,
       shoppingCartByCategory,
       showModalMinPayment,
       titleMinPayment,
       totalPrice,
     },
-    { onCreateNewOrder, setError, setShowModalMinPayment },
+    { onCreateNewOrder, resetOrder, setError, setShowModalMinPayment },
   ] = useShoppingCart(isClosedFromSchedule);
 
   return (
@@ -101,6 +103,33 @@ const ShoppingCart = () => {
         >
           {titleClose}
         </Text>
+      </Modal>
+      <Modal
+        isVisible={showModalOrderCompleted?.isCompleted}
+        onBackButtonPress={() => resetOrder()}
+        onBackdropPress={() => resetOrder()}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "white",
+            borderRadius: 5,
+            paddingVertical: 40,
+          }}
+        >
+          <Icon
+            color={green}
+            name="check-circle"
+            size={36}
+            type="font-awesome-5"
+            containerStyle={{ marginRight: 15 }}
+          />
+
+          <Text h4>Pedido completado.</Text>
+          {/* {showModalOrderCompleted?.orderId ? <Text h4>Id: {showModalOrderCompleted?.orderId}</Text> : null} */}
+        </View>
       </Modal>
     </View>
   );

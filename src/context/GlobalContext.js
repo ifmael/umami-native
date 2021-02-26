@@ -42,9 +42,6 @@ const ContextProvider = ({ children }) => {
   });
   const [shoppingCartSelectors, shoppingCartHandlers] = useShoppingCart();
   const [deliverySelectors, deliveryHandlers] = useDelivery();
-  console.log("@@@@@@@@@@@@@@");
-  console.log("error");
-  console.log(error);
 
   return !fontsLoaded || loading ? (
     <AppLoading />
