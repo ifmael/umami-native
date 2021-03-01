@@ -45,12 +45,13 @@ export const addGenericItem = (genericItemInput, category) => {
   try {
     const { beverage, dessert, salad } = shoppingCartBEComponent;
 
-    return genericItemInput?.map(({ name }) => {
+    return genericItemInput?.map(({ name, price }) => {
       const component =
         category === "bebidas" ? beverage : category === "postres" ? dessert : category === "ensaladas" ? salad : {};
 
       return {
         name,
+        price,
         ...component,
       };
     });
@@ -110,9 +111,9 @@ export const addSides = (sideInput) => {
       if (Array.isArray(sideElement.side) && sideElement.side.length > 0) {
         addToName = sideElement.side?.map(({ name }) => name).join(", ");
       }
-
       return {
         name: `${sideElement.name}${addToName ? `: ${addToName}` : ""}`,
+        price: sideElement.price,
         ...side,
       };
     });
