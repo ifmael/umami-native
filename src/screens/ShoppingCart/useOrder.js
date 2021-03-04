@@ -10,9 +10,9 @@ const addDelivery = (deliveryOptions) => {
   try {
     const { atHome, inLocal } = shoppingCartBEComponent;
     if (deliveryOptions?.option === "home") {
-      return { ...deliveryOptions?.contactInfo, ...atHome };
+      return { ...deliveryOptions?.contactInfo, time: `${deliveryOptions?.contactInfo.time}:00.000`, ...atHome };
     } else if (deliveryOptions?.option === "restaurant") {
-      return { ...deliveryOptions?.contactInfo, ...inLocal };
+      return { ...deliveryOptions?.contactInfo, time: `${deliveryOptions?.contactInfo.time}:00.000`, ...inLocal };
     } else {
       console.log(`it should be impossibe(addDelivery): ${deliveryOptions?.option}`);
     }

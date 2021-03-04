@@ -42,12 +42,13 @@ export const getListOfIngredients = (listOfIngredients = [], initialWord = "", i
       return selectItem ? true : false;
     });
     const nTotalIngredients = listOfIngredientsSelected.length;
+    const eitherNeither = inverse ? " ni " : " y ";
 
     return listOfIngredientsSelected?.reduce((listGenerated, { name }, currentIndex) => {
       const withDot = nTotalIngredients === currentIndex + 1;
       const andWord = nTotalIngredients === currentIndex + 2;
 
-      return (listGenerated += `${name?.toLowerCase()}${withDot ? "." : andWord ? " y " : ", "}`);
+      return (listGenerated += `${name?.toLowerCase()}${withDot ? "." : andWord ? eitherNeither : ", "}`);
     }, initialWord);
   } catch (error) {
     console.log(error);

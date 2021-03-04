@@ -18,7 +18,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   const [localErrors, setLocalErrors] = useState(null);
   const [priceProduct, setPriceProduct] = useState(price);
   const { setItemShoppingCart, configuration } = useContext(GlobalContext);
-  const { productDetailInfo, setErrors } = useContext(ProductDetailContext);
+  const { productDetailInfo, setErrors, setIsYourTaste } = useContext(ProductDetailContext);
   let navigation = useNavigation();
   const disableAddButton = !configuration?.moreOrders?.moreOrder;
 
@@ -78,6 +78,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
         isMenu,
         price: priceProduct,
       };
+
       setItemShoppingCart(shoppingCartItem);
       navigation.goBack();
     }
@@ -130,6 +131,10 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
       }
     }
   }, [productDetailInfo]);
+
+  useEffect(() => {
+    setIsYourTaste(isYourTaste);
+  }, [isYourTaste, setIsYourTaste]);
 
   return [
     { disableAddButton, localErrors, priceProduct },

@@ -13,6 +13,7 @@ const initValue = {
   isCustom: false,
   ingredients: [],
   ingredientsExtra: [],
+  isYourTaste: false,
   isMenu: false,
   beverage: null,
   side: null,
@@ -33,6 +34,9 @@ const reducer = (state, action) => {
       const [key] = Object.keys(payload);
       return { ...state, [key]: payload[key] };
     }
+    case "setIsYourTaste": {
+      return { ...state, isYourTaste: payload.value };
+    }
     case "setMenu":
       return { ...state, isMenu: payload.isMenu };
     case "setBeverage":
@@ -47,7 +51,7 @@ const reducer = (state, action) => {
       return { ...state, errors: newErrors.length > 0 ? newErrors : null };
     }
     default:
-      break;
+      return state;
   }
 };
 
@@ -83,6 +87,10 @@ const useProductDetail = (options) => {
     dispatch({ type: "setSide", payload: { side } });
   }, []);
 
+  const setIsYourTaste = useCallback((value) => {
+    dispatch({ type: "setIsYourTaste", payload: { value } });
+  }, []);
+
   const setErrors = useCallback((errors) => {
     dispatch({ type: "setErrors", payload: { errors } });
   }, []);
@@ -101,6 +109,7 @@ const useProductDetail = (options) => {
       setIngredientsExtra,
       setDishConfiguration,
       setIsMenu,
+      setIsYourTaste,
       setBeverage,
       setSide,
       setErrors,

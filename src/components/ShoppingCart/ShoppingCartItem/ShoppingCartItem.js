@@ -15,6 +15,7 @@ const ShoppingCartItem = ({
   ingredientsExtra = [],
   isCustom,
   isMenu,
+  isYourTaste,
   meatPoint = {},
   name,
   price,
@@ -26,6 +27,7 @@ const ShoppingCartItem = ({
 
   const customName =
     isMenu && isCustom ? `${category.charAt(0).toUpperCase()}${category.slice(1, -1)} ${name.toLowerCase()}` : name;
+  const withoutSomeIngredient = ingredients?.length > 0 ? ingredients.some(({ isSelected }) => !isSelected) : false;
 
   return (
     <ListItem>
@@ -53,7 +55,9 @@ const ShoppingCartItem = ({
           {side?.name ? <Text style={stylesRNEComponents.optionText}>· {side.name}</Text> : null}
           {side?.length > 0 ? <Text>{getListOfIngredients(side)}</Text> : null}
           {beverage?.name ? <Text style={stylesRNEComponents.optionText}>· {beverage.name}</Text> : null}
-          {ingredients?.length > 0 ? <Text>{getListOfIngredients(ingredients, "· Sin ", true)} </Text> : null}
+          {withoutSomeIngredient && !isYourTaste ? (
+            <Text>{getListOfIngredients(ingredients, "· Sin ", true)} </Text>
+          ) : null}
           {ingredientsExtra?.length > 0 ? <Text>{getListOfIngredients(ingredientsExtra, "· Con ")} </Text> : null}
         </View>
       </ListItem.Content>
@@ -69,6 +73,7 @@ ShoppingCartItem.propTypes = {
   ingredientsExtra: array,
   isCustom: bool,
   isMenu: bool,
+  isYourTaste: bool,
   meatPoint: object,
   name: string,
   price: number,

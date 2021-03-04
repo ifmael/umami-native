@@ -22,10 +22,15 @@ export const addBurgers = (burgersInput) => {
   try {
     const { burger } = shoppingCartBEComponent;
 
-    return burgersInput?.map(({ ingredients, isCustom, meatPoint, name, price, typeOfMeat }) => {
-      const listOfIngredients = isCustom
-        ? getListOfIngredients(ingredients, "· Con ")
-        : getListOfIngredients(ingredients, "· Sin ", true);
+    return burgersInput?.map(({ ingredients, ingredientsExtra, isYourTaste, meatPoint, name, price, typeOfMeat }) => {
+      let listOfIngredients = !isYourTaste ? getListOfIngredients(ingredients, "· Sin ", true) : "";
+
+      listOfIngredients =
+        ingredientsExtra.length > 0
+          ? listOfIngredients !== ""
+            ? `${listOfIngredients} || ${getListOfIngredients(ingredientsExtra, "· Con ")}`
+            : getListOfIngredients(ingredientsExtra, "· Con ")
+          : listOfIngredients;
 
       return {
         ingredients: ingredients?.length > 0 ? listOfIngredients : "",
@@ -83,10 +88,15 @@ export const addSandwiches = (sandwichInput) => {
   try {
     const { sandwich } = shoppingCartBEComponent;
 
-    return sandwichInput?.map(({ ingredients, isCustom, name, price, typeOfBread }) => {
-      const listOfIngredients = isCustom
-        ? getListOfIngredients(ingredients, "· Con ")
-        : getListOfIngredients(ingredients, "· Sin ", true);
+    return sandwichInput?.map(({ ingredients, ingredientsExtra, isYourTaste, name, price, typeOfBread }) => {
+      let listOfIngredients = !isYourTaste ? getListOfIngredients(ingredients, "· Sin ", true) : "";
+
+      listOfIngredients =
+        ingredientsExtra.length > 0
+          ? listOfIngredients !== ""
+            ? `${listOfIngredients} || ${getListOfIngredients(ingredientsExtra, "· Con ")}`
+            : getListOfIngredients(ingredientsExtra, "· Con ")
+          : listOfIngredients;
 
       return {
         ingredients: ingredients?.length > 0 ? listOfIngredients : "",
