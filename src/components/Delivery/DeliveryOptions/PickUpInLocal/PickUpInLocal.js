@@ -22,7 +22,7 @@ const PickUpInLocal = ({ selectors, handlers }) => {
         label="Tu nombre"
         onChangeText={handlers.onChangeTextName}
         onBlur={handlers.onBlurName}
-        value={selectors.name}
+        value={selectors.name ? selectors.name : ""}
       />
       <Input
         errorMessage={selectors.phoneError ? "Dinos un telefono de contacto" : ""}
@@ -30,7 +30,7 @@ const PickUpInLocal = ({ selectors, handlers }) => {
         label="Telefono"
         onChangeText={handlers.onChangeTextPhone}
         onBlur={handlers.onBlurPhone}
-        value={selectors.phone}
+        value={selectors.phone ? selectors.phone : ""}
       />
       <View style={deliveryTime}>
         <Text>Hora de recogida</Text>

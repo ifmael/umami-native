@@ -82,7 +82,7 @@ export const PLACES_TYPE = [
   "town_square",
 ];
 
-export const validPhone = /^[6-9]\d{8}/;
+export const validPhone = /^[6-9]\d{8}$/;
 
 export const shoppingCartBEComponent = {
   atHome: { __component: "contact.contact", __typename: "ComponentContactContact" },
