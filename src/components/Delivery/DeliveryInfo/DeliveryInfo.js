@@ -15,39 +15,39 @@ const propTypes = {
 
 const noData = `Sin información\n`;
 
-export default function DeliveryInfo({ options, showDeliveryOptions }) {
+const DeliveryInfo = ({ options, showDeliveryOptions }) => {
   const isDeliveryOption = options?.option && options?.contactInfo;
 
   return (
-    <View>
-      <View style={styles.deliveryInfoViewContainer}>
-        <Text h3 style={stylesRNEComponents.deliveryInfoTitle}>
-          Datos para la entrega
-        </Text>
-        <View style={styles.deliveryInfoViewOptions}>
-          {isDeliveryOption ? (
-            options?.option === "restaurant" ? (
-              <DeliveryInfoRestaurant {...options?.contactInfo} />
-            ) : options?.option === "home" ? (
-              <DeliveryInfoHome {...options?.contactInfo} />
-            ) : (
-              <Text style={{ color: red }}>{noData}</Text>
-            )
+    <View style={styles.deliveryInfoViewContainer}>
+      <Text h3 style={stylesRNEComponents.deliveryInfoTitle}>
+        Datos para la entrega
+      </Text>
+      <View style={styles.deliveryInfoViewOptions}>
+        {isDeliveryOption ? (
+          options?.option === "restaurant" ? (
+            <DeliveryInfoRestaurant {...options?.contactInfo} />
+          ) : options?.option === "home" ? (
+            <DeliveryInfoHome {...options?.contactInfo} />
           ) : (
             <Text style={{ color: red }}>{noData}</Text>
-          )}
+          )
+        ) : (
+          <Text style={{ color: red }}>{noData}</Text>
+        )}
 
-          <Button
-            buttonStyle={outlineButtonStyles.button}
-            onPress={showDeliveryOptions}
-            title="Cambiar"
-            titleStyle={outlineButtonStyles.title}
-            type="outline"
-          />
-        </View>
+        <Button
+          buttonStyle={outlineButtonStyles.button}
+          onPress={showDeliveryOptions}
+          title="Cambiar"
+          titleStyle={outlineButtonStyles.title}
+          type="outline"
+        />
       </View>
     </View>
   );
-}
+};
 
 DeliveryInfo.propTypes = propTypes;
+
+export default DeliveryInfo;

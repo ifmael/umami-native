@@ -283,6 +283,10 @@ const GET_DATA = gql`
       day
       key
     }
+    paymentMethods {
+      id
+      name
+    }
   }
 `;
 

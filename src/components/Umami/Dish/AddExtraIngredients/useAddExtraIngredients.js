@@ -10,6 +10,7 @@ const useAddExtraIngrendients = (originalListIngredients) => {
   const listOfIngredientsInner = useMemo(() => {
     return ingredients?.filter(({ id }) => {
       const ingredientFound = originalListIngredients.find((originalIngredient) => originalIngredient.id === id);
+      // We can filter more grain with showAddExtraIngredient property
       return ingredientFound ? false : true;
     });
   }, [ingredients, originalListIngredients]);

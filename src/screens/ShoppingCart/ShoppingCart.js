@@ -1,25 +1,43 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "/context/GlobalContext";
+
+// React Native components
 import { View, ScrollView } from "react-native";
-import { Icon, Text } from "react-native-elements";
+import { Button, Icon, Text } from "react-native-elements";
 import Modal from "react-native-modal";
+
+// Components
 import ShoppingCartList from "/components/ShoppingCart/ShoppingCartList";
 import DeliveryInfo from "/components/Delivery/DeliveryInfo";
 import DeliveryOptions from "/components/Delivery/DeliveryOptions";
 import AddButton from "/components/common/AddButton";
+import Payments from "/components/Payments";
+import RadioButtons from "/components/common/RadioButtons";
+
+// Contex
+import { GlobalContext } from "/context/GlobalContext";
+
+// Hooks
 import useShoppingCart from "./useShoppingCart";
 import useShoppingCartModals from "./useShoppingCartModals";
+import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
+
+// Utils
 import { getSchedule } from "/utils/time";
+
+// Styles
 import { green } from "/styles/theme";
 import styles from "./ShoppingCart.styles";
 
 const ShoppingCart = () => {
-  const { configuration } = useContext(GlobalContext);
+  const { configuration, paymentMethods } = useContext(GlobalContext);
   const isClosedFromSchedule = getSchedule(configuration?.schedule) ? false : true;
   const isClose = configuration?.close.isClose;
   const moreOrder = configuration?.moreOrders.moreOrder;
   const titleClose = configuration?.close?.title;
-  const [{ showDeliveryOptions, showIsClosedFromSchedule }, handlers] = useShoppingCartModals(isClosedFromSchedule);
+  const { options, setOption, selected: paymentMethod, setSelected } = useRadioButtons(paymentMethods);
+  const [{ showDeliveryOptions, showIsClosedFromSchedule, showPaymentsMethod }, handlers] = useShoppingCartModals(
+    isClosedFromSchedule
+  );
   const [
     {
       deliveryOptions,
@@ -34,7 +52,7 @@ const ShoppingCart = () => {
       totalPrice,
     },
     { onCreateNewOrder, resetOrder, setError, setShowModalMinPayment },
-  ] = useShoppingCart(isClosedFromSchedule);
+  ] = useShoppingCart(paymentMethod);
 
   return (
     <View style={styles.mainView}>
@@ -42,10 +60,13 @@ const ShoppingCart = () => {
         <ShoppingCartList shoppingCartByCategory={shoppingCartByCategory} />
         <View style={styles.divider} />
         <DeliveryInfo options={deliveryOptions} showDeliveryOptions={handlers.toggleModalDelivery} />
+        <Payments method={paymentMethod} showPaymentMethods={handlers.setShowPaymentsMethod} />
       </ScrollView>
       <DeliveryOptions showComponent={showDeliveryOptions} showModalHandler={handlers.setShowDeliveryOptions} />
       <AddButton
-        disabled={!isDeliveryOption || lowerMinPayment || isClosedFromSchedule || isClose || !moreOrder}
+        disabled={
+          !isDeliveryOption || lowerMinPayment || isClosedFromSchedule || isClose || !moreOrder || !paymentMethod
+        }
         loading={isLoading}
         onPress={onCreateNewOrder}
         title={lowerMinPayment ? titleMinPayment : `A pagar: ${totalPrice?.toFixed(2)} €`}
@@ -129,6 +150,41 @@ const ShoppingCart = () => {
 
           <Text h4>Pedido completado.</Text>
           {/* {showModalOrderCompleted?.orderId ? <Text h4>Id: {showModalOrderCompleted?.orderId}</Text> : null} */}
+        </View>
+      </Modal>
+      <Modal
+        isVisible={showPaymentsMethod}
+        onBackButtonPress={() => handlers.setShowPaymentsMethod(false)}
+        onBackdropPress={() => handlers.setShowPaymentsMethod(false)}
+      >
+        <View
+          style={{
+            backgroundColor: "white",
+            paddingVertical: 20,
+            paddingHorizontal: 10,
+            borderRadius: 5,
+          }}
+        >
+          <Text h3 style={{ textAlign: "center", marginBottom: 10 }}>
+            Elige una opción
+          </Text>
+          <RadioButtons options={options} setOption={setOption} />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-around",
+              marginTop: 30,
+            }}
+          >
+            <Button
+              title="Cancelar"
+              onPress={() => {
+                handlers.setShowPaymentsMethod(false);
+                setSelected(null);
+              }}
+            />
+            <Button disabled={!paymentMethod} title="Aceptar" onPress={() => handlers.setShowPaymentsMethod(false)} />
+          </View>
         </View>
       </Modal>
     </View>

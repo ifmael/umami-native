@@ -23,7 +23,7 @@ const propTypes = {
 const getTitle = (isIngregiends) =>
   isIngregiends ? "Añade o eliminar más ingredientes extra" : "Añadir ingredientes extra";
 
-export default function ExtraIngredients({ originalListIngredients }) {
+const AddExtraIngredients = ({ originalListIngredients }) => {
   const [
     { isVisible, listOfIngredients, selectedIngredients },
     { onCancel, setIngredient, setIsVisible },
@@ -68,6 +68,8 @@ export default function ExtraIngredients({ originalListIngredients }) {
       </Modal>
     </View>
   );
-}
+};
 
-ExtraIngredients.propTypes = propTypes;
+AddExtraIngredients.propTypes = propTypes;
+
+export default AddExtraIngredients;

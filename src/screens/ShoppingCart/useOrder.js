@@ -25,7 +25,7 @@ const useOrder = () => {
   const { setProperty, clearShoppingCart } = useContext(GlobalContext);
   const client = useApolloClient();
 
-  const createNewOrder = async (deliveryOptionsInput, shoppingCartByCategories, totalPrice) => {
+  const createNewOrder = async (deliveryOptionsInput, shoppingCartByCategories, totalPrice, paymentMethod) => {
     try {
       //Check if is possible make more order
       const { data } = await client.query({
@@ -45,7 +45,7 @@ const useOrder = () => {
         const response = await client.mutate({
           mutation: CREATE_ORDER,
           variables: {
-            input: { data: { deliveryOptions, shoppingCart, totalPrice } },
+            input: { data: { deliveryOptions, shoppingCart, totalPrice, paymentMethod: paymentMethod.id } },
           },
         });
         const orderId = response?.data?.createOrder?.order?.id || "";

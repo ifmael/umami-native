@@ -5,6 +5,7 @@ const useShoppingCartModals = (isClosedFromSchedule) => {
   const { clearShoppingCart } = useContext(GlobalContext);
   const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
   const [showIsClosedFromSchedule, setIsClosedFromSchedule] = useState(isClosedFromSchedule);
+  const [showPaymentsMethod, setShowPaymentsMethod] = useState(false);
 
   const toggleModalDelivery = () => {
     setShowDeliveryOptions(!showDeliveryOptions);
@@ -18,8 +19,8 @@ const useShoppingCartModals = (isClosedFromSchedule) => {
   }, [isClosedFromSchedule, clearShoppingCart]);
 
   return [
-    { showDeliveryOptions, showIsClosedFromSchedule },
-    { setIsClosedFromSchedule, setShowDeliveryOptions, toggleModalDelivery },
+    { showDeliveryOptions, showIsClosedFromSchedule, showPaymentsMethod },
+    { setIsClosedFromSchedule, setShowDeliveryOptions, setShowPaymentsMethod, toggleModalDelivery },
   ];
 };
 

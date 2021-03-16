@@ -9,7 +9,7 @@ const fatalError =
   "No se ha podido completar su pedido.\n\nPor favor intentelo más tarde o llame el teléfono: 987654321";
 const initiaValueShowModalOrder = { isCompleted: false, orderId: "" };
 
-const useShoppingCart = () => {
+const useShoppingCart = (paymentMethod) => {
   const {
     categories,
     configuration,
@@ -35,7 +35,12 @@ const useShoppingCart = () => {
   const onCreateNewOrder = async () => {
     try {
       setIsLoading(true);
-      const { create, message } = await createNewOrder(deliveryOptions, shoppingCartByCategory, totalPrice);
+      const { create, message } = await createNewOrder(
+        deliveryOptions,
+        shoppingCartByCategory,
+        totalPrice,
+        paymentMethod
+      );
       if (create) {
         setError(initialValueError);
         setShowModalOrderCompleted({ isCompleted: true, orderId: message });

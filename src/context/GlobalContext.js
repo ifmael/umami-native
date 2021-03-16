@@ -18,6 +18,7 @@ import {
   useDays,
   useDelivery,
   useIngredients,
+  usePaymentMethods,
   useProducts,
   useShoppingCart,
 } from "/hooks";
@@ -33,6 +34,7 @@ const ContextProvider = ({ children }) => {
   const ingredients = useIngredients(data);
   const [configurationSelectors, configurationHandlers] = useConfigurations(data);
   const days = useDays(data);
+  const paymentMethods = usePaymentMethods(data);
   const [fontsLoaded] = useFonts({
     Comfortaa_300Light,
     Comfortaa_400Regular,
@@ -55,6 +57,7 @@ const ContextProvider = ({ children }) => {
         error,
         ingredients,
         loading,
+        paymentMethods,
         productsByCategory,
         ...configurationSelectors,
         ...configurationHandlers,
