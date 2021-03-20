@@ -10,9 +10,20 @@ import { Home, Menu, Product, ProductDetail, ShoppingCart } from "/screens";
 import { SERVER, TOKEN } from "/constant";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
 import theme, { menuStackStyles, tabBarStyles } from "/styles/theme";
+import Constants from "expo-constants";
+
+import * as Sentry from "sentry-expo";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+Sentry.init({
+  dsn: "https://0124ba100ecf46bfa7a7efc9994b04a7@o555172.ingest.sentry.io/5684692",
+  enableInExpoDevelopment: true,
+  release: `umami-native@${Constants.manifest.version}-${Constants.manifest.releaseId}`,
+  environment: Constants.manifest.releaseChannel || "local",
+  debug: Constants.manifest.releaseChannel ? false : true,
+});
 
 const authLink = new ApolloLink((operation, forward) => {
   // Use the setContext method to set the HTTP headers.
