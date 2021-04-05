@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { StyleSheet, View, Image, Animated, Dimensions } from "react-native";
+import { StyleSheet, View, Image, Animated, Dimensions, Linking, TouchableOpacity } from "react-native";
 import logo from "/assets/umami.png";
 import { Text } from "react-native-elements";
 import { red } from "/styles/theme";
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
 });
+const phoneNumber = 858693302;
 
 const Home = () => {
   const heightPosition = useRef(new Animated.Value(0)).current;
@@ -42,18 +43,24 @@ const Home = () => {
     ]);
   }, [heightPosition, fadeAnim]);
 
+  const call = () => {
+    Linking.openURL(`tel:${phoneNumber}`);
+  };
+
   return (
     <View style={styles.container}>
       <Animated.View style={{ transform: [{ translateY: heightPosition }] }}>
         <Image source={logo} style={styles.image} />
       </Animated.View>
-      <Animated.View style={{ translateY: -80, opacity: fadeAnim }}>
-        <Text h3 style={{ color: red }}>
+      <Animated.View style={{ translateY: -80, opacity: fadeAnim, paddingHorizontal: 10 }}>
+        <Text h3 style={{ color: red }} numberOfLines={1} adjustsFontSizeToFit>
           Hamburguesería gourmet
         </Text>
-        <Text h3 style={{ color: red, textAlign: "center" }}>
-          858 69 33 02
-        </Text>
+        <TouchableOpacity onPress={call}>
+          <Text h3 style={{ color: red, textAlign: "center" }}>
+            858 69 33 02
+          </Text>
+        </TouchableOpacity>
       </Animated.View>
     </View>
   );
