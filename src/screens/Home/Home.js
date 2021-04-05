@@ -5,8 +5,12 @@ import { Text } from "react-native-elements";
 import { red } from "/styles/theme";
 
 const windowWidth = Dimensions.get("window").width;
+const windowHeigth = Dimensions.get("window").height;
 const widthRatioAspect = 0.54;
 const heightRatioAspect = 0.77;
+
+const imageWidth = parseInt(widthRatioAspect * windowWidth);
+const imageHeight = parseInt(widthRatioAspect * windowWidth * heightRatioAspect);
 
 const styles = StyleSheet.create({
   container: {
@@ -16,8 +20,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   image: {
-    width: parseInt(widthRatioAspect * windowWidth),
-    height: parseInt(widthRatioAspect * windowWidth * heightRatioAspect),
+    width: imageWidth,
+    height: imageHeight,
     resizeMode: "cover",
   },
 });
@@ -52,7 +56,9 @@ const Home = () => {
       <Animated.View style={{ transform: [{ translateY: heightPosition }] }}>
         <Image source={logo} style={styles.image} />
       </Animated.View>
-      <Animated.View style={{ translateY: -80, opacity: fadeAnim, paddingHorizontal: 10 }}>
+      <Animated.View
+        style={{ position: "absolute", top: windowHeigth / 2 - 20, opacity: fadeAnim, paddingHorizontal: 10 }}
+      >
         <Text h3 style={{ color: red }} numberOfLines={1} adjustsFontSizeToFit>
           Hamburguesería gourmet
         </Text>

@@ -32,7 +32,7 @@ const ProductItem = (props) => {
     }
   };
   return (
-    <ListItem bottomDivider disabled={disableListItem} onPress={add}>
+    <ListItem bottomDivider disabled={disableListItem} onPress={add} containerStyle={{ flexWrap: "wrap" }}>
       <ListItem.Content>
         <ListItem.Title>
           <View style={styles.title}>
@@ -41,13 +41,17 @@ const ProductItem = (props) => {
         </ListItem.Title>
         {description ? <ListItem.Subtitle>{description}</ListItem.Subtitle> : null}
       </ListItem.Content>
-      <Text h4>{price?.toFixed(2)} €</Text>
-      <ListItem.Chevron
-        type="font-awesome-5"
-        name={editable ? "chevron-right" : "plus"}
-        size={24}
-        color={!disableListItem ? yellow : colors.disabled}
-      />
+      <ListItem.Content right style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+        <Text h4 style={{ marginRight: 5 }}>
+          {price?.toFixed(2)} €
+        </Text>
+        <ListItem.Chevron
+          type="font-awesome-5"
+          name={editable ? "chevron-right" : "plus"}
+          size={24}
+          color={!disableListItem ? yellow : colors.disabled}
+        />
+      </ListItem.Content>
     </ListItem>
   );
 };
