@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/ifmael/umami-native/compare/v0.3.0...v0.4.0) (2021-04-05)
+
+
+### Features
+
+* **sentry:** :zap: Add sentry ([4d2e2ab](https://github.com/ifmael/umami-native/commit/4d2e2abd9e18f6072b201b61973807108af9cd52))
+* **theme:** :lipstick: Add aniamation in home screen ([d941c47](https://github.com/ifmael/umami-native/commit/d941c475900ac79944e852375f1fdb6c5d8242e8))
+
+
+### Bug Fixes
+
+* **payment:** :bug: style ([839f654](https://github.com/ifmael/umami-native/commit/839f654ac20f0c06c1747c7230589366f34f73b6))
+
 ## [0.3.0](https://github.com/ifmael/umami-native/compare/v0.2.0...v0.3.0) (2021-03-16)
 
 
