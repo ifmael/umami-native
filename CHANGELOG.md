@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [](https://github.com/ifmael/umami-native/compare/v0.4.0...v) (2021-04-06)
+
+
+### Features
+
+* **home:** :zap: Add phone number ([f1d83ec](https://github.com/ifmael/umami-native/commit/f1d83ecccc06b7e65927cb5db7fcc3d6076940e8))
+
+
+### Bug Fixes
+
+* **style:** :zap: Animation for iphone ([41d7a31](https://github.com/ifmael/umami-native/commit/41d7a3124d1f4d7db46407464861f31c456dcea8))
+
 ## [0.4.0](https://github.com/ifmael/umami-native/compare/v0.3.0...v0.4.0) (2021-04-05)
 
 
