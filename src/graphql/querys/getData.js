@@ -249,7 +249,9 @@ const GET_DATA = gql`
       id
       name
       price
-      showAddExtraIngredient
+      showAddExtraIngredientBurguer
+      showAddExtraIngredientSandwich
+      showAddExtraIngredientSalad
     }
     configurations {
       configuration {

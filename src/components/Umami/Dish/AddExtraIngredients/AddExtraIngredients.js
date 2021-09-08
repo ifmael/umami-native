@@ -4,7 +4,7 @@ import { Button, Divider, Text } from "react-native-elements";
 import Modal from "react-native-modal";
 import SwitchList from "/components/common/Switch/SwitchList";
 import useAddExtraIngrendients from "./useAddExtraIngredients";
-import { array } from "prop-types";
+import { array, string } from "prop-types";
 import styles, {
   dividerStyles,
   ingredientsInfoView,
@@ -18,16 +18,17 @@ import { outlineButtonStyles } from "/styles/theme";
 
 const propTypes = {
   originalListIngredients: array,
+  category: string,
 };
 
 const getTitle = (isIngregiends) =>
   isIngregiends ? "Añade o eliminar más ingredientes extra" : "Añadir ingredientes extra";
 
-const AddExtraIngredients = ({ originalListIngredients }) => {
+const AddExtraIngredients = ({ originalListIngredients, category }) => {
   const [
     { isVisible, listOfIngredients, selectedIngredients },
     { onCancel, setIngredient, setIsVisible },
-  ] = useAddExtraIngrendients(originalListIngredients);
+  ] = useAddExtraIngrendients(originalListIngredients, category);
 
   return (
     <View style={styles.addExtraIngredientMainView}>

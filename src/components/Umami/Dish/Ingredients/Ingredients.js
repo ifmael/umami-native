@@ -64,7 +64,7 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
       {isCustom || isYourTaste ? (
         <View style={{ paddingHorizontal: 15 }}>
           {!isYourTaste ? <SwitchList list={listIngredients} setItem={setIngredient} /> : null}
-          <AddExtraIngredients originalListIngredients={ingredients} />
+          <AddExtraIngredients originalListIngredients={ingredients} category={category} />
         </View>
       ) : null}
     </View>
