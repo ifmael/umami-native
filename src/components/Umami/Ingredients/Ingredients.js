@@ -6,7 +6,7 @@ import IngredientsRadio from "./IngredientsRadio";
 import styles from "./UmamiIngredients.styles.js";
 import { array, string, bool, number } from "prop-types";
 
-const UmamiIngredients = ({ ingredients, title, price, isRadioButton }) => {
+const UmamiIngredients = ({ ingredients, title, price, isRadioButton, initialSwitchValue }) => {
   const ingredientsWithPrice = ingredients?.map((ingredient) => ({ ...ingredient, price }));
 
   return (
@@ -16,7 +16,7 @@ const UmamiIngredients = ({ ingredients, title, price, isRadioButton }) => {
         {isRadioButton ? (
           <IngredientsRadio ingredients={ingredientsWithPrice} price={price} />
         ) : (
-          <IngredientsSwitch ingredients={ingredientsWithPrice} price={price} />
+          <IngredientsSwitch ingredients={ingredientsWithPrice} price={price} initialSwitchValue={initialSwitchValue} />
         )}
       </View>
     </View>
@@ -27,5 +27,6 @@ UmamiIngredients.propTypes = {
   title: string,
   isRadioButton: bool,
   price: number,
+  initialSwitchValue: bool,
 };
 export default UmamiIngredients;

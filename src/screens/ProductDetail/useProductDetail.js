@@ -18,6 +18,7 @@ const initValue = {
   beverage: null,
   side: null,
   errors: null,
+  customiseSideIngredients: false,
 };
 
 const reducer = (state, action) => {

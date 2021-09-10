@@ -114,12 +114,14 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
     }
   }, [isChildrenMenu, isYourTaste, productDetailInfo, price]);
 
-  // Calculate product price === "complementos"
+  // Calculate product category === "complementos"
   useEffect(() => {
-    const { category, side } = productDetailInfo;
+    const { category, side, customiseSideIngredients } = productDetailInfo;
 
     if (category === "complementos") {
-      if (Array.isArray(side) && side.length > 0) {
+      if (customiseSideIngredients) {
+        setPriceProduct(price);
+      } else if (Array.isArray(side) && side.length > 0) {
         const totalSide = side.reduce((total, { price }) => {
           return total + price;
         }, 0);
@@ -130,7 +132,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
         setPriceProduct(0);
       }
     }
-  }, [productDetailInfo]);
+  }, [productDetailInfo, price]);
 
   useEffect(() => {
     setIsYourTaste(isYourTaste);

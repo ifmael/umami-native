@@ -14,6 +14,7 @@ const ProductDetail = ({ route }) => {
   const [selectorProductDetail, handlerProductDetail] = useProductDetail({
     name: rest.name,
     category: rest.category,
+    customiseSideIngredients: rest.customiseSideIngredients,
   });
 
   return (

@@ -18,6 +18,7 @@ const ProductDetail = ({
   isYourTaste,
   isChildrenMenu,
   menu,
+  customiseSideIngredients,
 }) => {
   const isDish = category === "hamburguesas" || category === "bocadillos" || category === "ensaladas";
 
@@ -42,6 +43,7 @@ const ProductDetail = ({
           ingredients={ingredients}
           isRadioButton={isRadioButton}
           price={price}
+          initialSwitchValue={customiseSideIngredients}
         />
       )}
     </View>
@@ -62,6 +64,7 @@ ProductDetail.propTypes = {
   images: array,
   isChildrenMenu: bool,
   menu: array,
+  customiseSideIngredients: bool,
 };
 
 export default ProductDetail;

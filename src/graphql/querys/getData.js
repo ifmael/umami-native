@@ -17,6 +17,7 @@ const GET_DATA = gql`
       order
       isYourTaste
       isChildrenMenu
+      customiseSideIngredients
       ingredients {
         id
         name

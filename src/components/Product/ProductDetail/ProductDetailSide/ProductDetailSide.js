@@ -8,7 +8,7 @@ import { red, yellow } from "/styles/theme";
 import styles, { stylesRNEComponents } from "./ProductDetailSide.styles";
 import { string, number, bool, array } from "prop-types";
 
-export default function ProductDetailSide({ description, ingredients, isRadioButton, price }) {
+export default function ProductDetailSide({ description, ingredients, isRadioButton, price, initialSwitchValue }) {
   const { productDetailInfo } = useContext(ProductDetailContext);
   const [isError, setIsError] = useState(false);
   useCheckErrors("errorSide", productDetailInfo, setIsError);
@@ -23,7 +23,12 @@ export default function ProductDetailSide({ description, ingredients, isRadioBut
         {isError ? <Icon type="font-awesome-5" name="exclamation-triangle" color={yellow} /> : null}
       </View>
 
-      <UmamiIngredients ingredients={ingredients} price={price} isRadioButton={isRadioButton} />
+      <UmamiIngredients
+        ingredients={ingredients}
+        price={price}
+        isRadioButton={isRadioButton}
+        initialSwitchValue={initialSwitchValue}
+      />
     </>
   );
 }
@@ -33,4 +38,5 @@ ProductDetailSide.propTypes = {
   ingredients: array,
   isRadioButton: bool,
   price: number,
+  initialSwitchValue: bool,
 };
