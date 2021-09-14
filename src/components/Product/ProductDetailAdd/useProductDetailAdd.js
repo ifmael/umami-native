@@ -32,6 +32,10 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
         isError = true;
         messageErrors.push({ text: "· Por favor elige la carne", id: "typeMeat", type: "ComponentBurgerMeats" });
       }
+      if (!typeOfBread) {
+        isError = true;
+        messageErrors.push({ text: "· Por favor elige el pan", id: "typeOfBread", type: "ComponentSandwichBreads" });
+      }
       if (!meatPoint && !isChildrenMenu) {
         isError = true;
         messageErrors.push({

@@ -20,8 +20,7 @@ const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }
         setter: setIsError,
       },
     ],
-    productDetailInfo,
-    setIsError
+    productDetailInfo
   );
 
   // const ExtraPriceComponent =
