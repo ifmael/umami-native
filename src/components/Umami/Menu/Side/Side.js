@@ -14,7 +14,16 @@ const UmamiMenuSide = ({ sides, name }) => {
   const [isError, setIsError] = useState(false);
   const newSides = extractProducts(sides);
   const isNewSides = Array.isArray(newSides) && newSides.length > 0;
-  useCheckErrors("ComponentMenuSide", productDetailInfo, setIsError);
+
+  useCheckErrors(
+    [
+      {
+        type: "ComponentMenuSide",
+        setter: setIsError,
+      },
+    ],
+    productDetailInfo
+  );
 
   const onValueChange = (option) => {
     setSide(option);

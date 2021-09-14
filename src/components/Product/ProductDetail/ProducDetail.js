@@ -44,6 +44,7 @@ const ProductDetail = ({
           isRadioButton={isRadioButton}
           price={price}
           initialSwitchValue={customiseSideIngredients}
+          configuration={configuration}
         />
       )}
     </View>

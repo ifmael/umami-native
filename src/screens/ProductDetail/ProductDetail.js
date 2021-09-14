@@ -9,7 +9,7 @@ import useProductDetail from "./useProductDetail";
 
 const ProductDetail = ({ route }) => {
   const { ...rest } = route.params;
-  const { isChildrenMenu, isYourTaste, price } = rest;
+  const { isChildrenMenu, isYourTaste, price, configuration } = rest;
   const scrollViewElement = useRef(null);
   const [selectorProductDetail, handlerProductDetail] = useProductDetail({
     name: rest.name,
@@ -32,6 +32,7 @@ const ProductDetail = ({ route }) => {
         isChildrenMenu={isChildrenMenu}
         isYourTaste={isYourTaste}
         price={price}
+        configuration={configuration}
       />
     </ProductDetailContext.Provider>
   );

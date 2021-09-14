@@ -13,7 +13,17 @@ const UmamiDishConfiguration = ({ __typename, data, description, isRadioButton }
   const { setDishConfiguration, productDetailInfo, removeError } = useContext(ProductDetailContext);
   const [isError, setIsError] = useState(false);
   const { options, setOption, selected } = useRadioButtons(data);
-  useCheckErrors(__typename, productDetailInfo, setIsError);
+  useCheckErrors(
+    [
+      {
+        type: __typename,
+        setter: setIsError,
+      },
+    ],
+    productDetailInfo,
+    setIsError
+  );
+
   // const ExtraPriceComponent =
   //   selected && selected.price ? <Text style={{ marginLeft: 10 }}>Se añadirá {selected.price}€</Text> : null;
 

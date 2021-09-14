@@ -14,7 +14,7 @@ const calculateIngredientsPrice = (listOfIngredients) => {
   }
 };
 
-export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, price) {
+export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, price, configurations) {
   const [localErrors, setLocalErrors] = useState(null);
   const [priceProduct, setPriceProduct] = useState(price);
   const { setItemShoppingCart, configuration } = useContext(GlobalContext);
@@ -23,7 +23,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   const disableAddButton = !configuration?.moreOrders?.moreOrder;
 
   const addProductToShoppingCart = useCallback(() => {
-    const { category, beverage, side, isMenu, typeOfMeat, meatPoint, typeOfBread } = productDetailInfo;
+    const { category, beverage, side, isMenu, typeOfMeat, meatPoint, typeOfBread, ingredients } = productDetailInfo;
     let isError = false;
     let messageErrors = [];
 
@@ -54,6 +54,16 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
           type: "errorSide",
         });
       }
+      if (configurations && Array.isArray(configurations) && configurations.length > 0) {
+        if (!ingredients || !Array.isArray(ingredients) || ingredients.length === 0) {
+          isError = true;
+          messageErrors.push({
+            text: "· Por favor elige una salsa",
+            id: "side-ingredients",
+            type: "errorSideIngredients",
+          });
+        }
+      }
     }
 
     if (isMenu && (!beverage || !side)) {
@@ -82,7 +92,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
       setItemShoppingCart(shoppingCartItem);
       navigation.goBack();
     }
-  }, [isChildrenMenu, navigation, priceProduct, productDetailInfo, setErrors, setItemShoppingCart]);
+  }, [isChildrenMenu, navigation, priceProduct, productDetailInfo, setErrors, setItemShoppingCart, configurations]);
 
   const closeModal = useCallback(() => {
     setLocalErrors(null);

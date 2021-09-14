@@ -130,6 +130,21 @@ const GET_DATA = gql`
             name
           }
         }
+        ... on ComponentOptionsSideIngredientsConfiguration {
+          id
+          order
+          options {
+            elements {
+              ... on ComponentOptionsSideIngredients {
+                id
+                ingredients {
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
       }
       menu {
         ... on ComponentMenuInfo {

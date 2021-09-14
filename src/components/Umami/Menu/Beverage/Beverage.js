@@ -19,7 +19,15 @@ const UmamiMenuBeverage = ({ beverages, isChildrenMenu, name }) => {
     showPrice: isChildrenMenu ? false : true,
   }));
 
-  useCheckErrors("ComponentMenuBeverage", productDetailInfo, setIsError);
+  useCheckErrors(
+    [
+      {
+        type: "ComponentMenuBeverage",
+        setter: setIsError,
+      },
+    ],
+    productDetailInfo
+  );
 
   const onValueChange = (option) => {
     setBeverage(option);

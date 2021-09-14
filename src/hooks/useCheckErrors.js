@@ -1,16 +1,22 @@
 import { useEffect } from "react";
 
-export default function useCheckErrors(type, productDetailInfo, setLocalError) {
+export default function useCheckErrors(toCheck, productDetailInfo) {
   useEffect(() => {
     if (!productDetailInfo) return;
     const { errors } = productDetailInfo;
 
     if (!errors) {
-      setLocalError(false);
+      toCheck.forEach(({ setter }) => setter(false));
+
       return;
     }
 
-    const errorFound = errors?.find((errors) => errors.type === type);
-    errorFound ? setLocalError(true) : setLocalError(false);
-  }, [productDetailInfo, type, setLocalError]);
+    const errorFounds = toCheck.filter((errorConf) => {
+      return errors.find((error) => error.type === errorConf.type);
+    });
+
+    if (errorFounds && Array.isArray(errorFounds) && errorFounds.length > 0) {
+      errorFounds.forEach((error) => error.setter(true));
+    }
+  }, [productDetailInfo, toCheck]);
 }

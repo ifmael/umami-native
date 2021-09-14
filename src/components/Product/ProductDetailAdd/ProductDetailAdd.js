@@ -1,5 +1,5 @@
 import React from "react";
-import { bool, number, object } from "prop-types";
+import { bool, number, object, array } from "prop-types";
 import { View } from "react-native";
 import { BottomSheet, Button, Text } from "react-native-elements";
 import AddButton from "/components/common/AddButton";
@@ -11,13 +11,13 @@ const modalProps = {
   animationType: "fade",
 };
 
-const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, priceMenu }) => {
+const ProductDetailAdd = ({ goTo, isChildrenMenu, isYourTaste, price, configuration }) => {
   const [{ disableAddButton, localErrors, priceProduct }, handlers] = useProductDetailAdd(
     goTo,
     isChildrenMenu,
     isYourTaste,
     price,
-    priceMenu
+    configuration
   );
 
   return (
@@ -54,7 +54,7 @@ ProductDetailAdd.propTypes = {
   isChildrenMenu: bool,
   isYourTaste: bool,
   price: number,
-  priceMenu: number,
+  configuration: array,
 };
 
 export default ProductDetailAdd;
