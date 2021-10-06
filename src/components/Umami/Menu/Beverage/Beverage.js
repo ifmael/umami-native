@@ -4,7 +4,7 @@ import { Text } from "react-native-elements";
 import Picker from "/components/common/Picker";
 import ProductDetailContext from "/context/ProductDetailContext";
 import useCheckErrors from "/hooks/useCheckErrors";
-import extractProducts from "/components/Umami/Menu/utils/extractProducts";
+import { extractProducts } from "/components/Umami/Menu/utils/extractProducts";
 import { stylesRNEComponents } from "../Menu.styles";
 import { red } from "/styles/theme";
 import { array, bool, string } from "prop-types";

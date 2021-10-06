@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { View } from "react-native";
 import { Text } from "react-native-elements";
 import ProductDetailContext from "/context/ProductDetailContext";
-import extractProducts from "/components/Umami/Menu/utils/extractProducts";
+import { GlobalContext } from "/context/GlobalContext";
+import { extractProducts, extractProductsSides } from "/components/Umami/Menu/utils/extractProducts";
 import Picker from "/components/common/Picker";
 import useCheckErrors from "/hooks/useCheckErrors";
 import { stylesRNEComponents } from "../Menu.styles";
@@ -11,8 +12,10 @@ import { array, bool, string } from "prop-types";
 
 const UmamiMenuSide = ({ sides, name }) => {
   const { setSide, productDetailInfo, removeError } = useContext(ProductDetailContext);
+  const { productsByCategory } = useContext(GlobalContext);
   const [isError, setIsError] = useState(false);
   const newSides = extractProducts(sides);
+  const productSideExtra = extractProductsSides(sides, productsByCategory["complementos"]);
   const isNewSides = Array.isArray(newSides) && newSides.length > 0;
 
   useCheckErrors(
@@ -43,7 +46,7 @@ const UmamiMenuSide = ({ sides, name }) => {
               value: productDetailInfo?.side?.name ? productDetailInfo?.side?.name : "",
             }}
             onValueChange={onValueChange}
-            options={newSides}
+            options={productSideExtra}
           />
         </View>
       ) : null}

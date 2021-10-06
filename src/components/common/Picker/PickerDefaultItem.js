@@ -10,13 +10,18 @@ const propTypes = {
   onPress: func,
   price: number,
   showPrice: bool,
+  setStep: func,
+  isCustom: bool,
 };
 
-export default function PickerDefaultItem({ id, name, onPress, price, showPrice = true }) {
+export default function PickerDefaultItem({ id, name, onPress, price, setStep, isCustom, showPrice = true }) {
+  // console.log(`name: ${name}, custom: ${isCustom}`);
   return (
     <TouchableOpacity
       key={id}
-      onPress={() => onPress({ id, name, price })}
+      onPress={() => {
+        isCustom ? setStep(id) : onPress({ id, name, price });
+      }}
       style={{ ...styles.rowItem, justifyContent: showPrice ? "space-between" : "center" }}
     >
       <Text style={styles.fontItem}>{`${name}`}</Text>

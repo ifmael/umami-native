@@ -5,7 +5,6 @@ const GET_DATA = gql`
     products {
       id
       name
-      name
       description
       price
       category {
@@ -165,11 +164,12 @@ const GET_DATA = gql`
                 name
                 price
               }
-              options {
+              states {
                 id
                 name
               }
-              isRadioButton
+              isRadioButtonConfigurations
+              isRadioButtonIngredients
             }
           }
         }
@@ -190,12 +190,19 @@ const GET_DATA = gql`
                       id
                       name
                       price
+                      customiseSideIngredients
+                      isRadioButton
+                      ingredients {
+                        id
+                        name
+                      }
                     }
-                    options {
+                    states {
                       id
                       name
                     }
-                    isRadioButton
+                    isRadioButtonConfigurations
+                    isRadioButtonIngredients
                   }
                 }
               }
