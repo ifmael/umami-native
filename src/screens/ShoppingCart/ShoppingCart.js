@@ -47,6 +47,7 @@ const ShoppingCart = () => {
       showModalOrderCompleted,
       shoppingCartByCategory,
       totalPrice,
+      priceForSupplement,
     },
     { onCreateNewOrder, resetOrder, setError },
   ] = useShoppingCart(paymentMethod);
@@ -56,6 +57,16 @@ const ShoppingCart = () => {
       <ScrollView style={styles.scrollViewContainer}>
         <ShoppingCartList shoppingCartByCategory={shoppingCartByCategory} />
         <View style={styles.divider} />
+        {totalPrice - 1 < priceForSupplement ? (
+          <>
+            <View style={{ marginVertical: 20 }}>
+              <Text h5 style={{ textAlign: "right" }}>
+                Suplemento de un 1€ por pedidos inferiores a 20€
+              </Text>
+            </View>
+            <View style={styles.divider} />
+          </>
+        ) : null}
         <DeliveryInfo options={deliveryOptions} showDeliveryOptions={handlers.toggleModalDelivery} />
         <Payments method={paymentMethod} showPaymentMethods={handlers.setShowPaymentsMethod} />
       </ScrollView>

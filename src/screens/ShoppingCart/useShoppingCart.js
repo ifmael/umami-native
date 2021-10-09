@@ -9,14 +9,24 @@ const fatalError =
   "No se ha podido completar su pedido.\n\nPor favor intentelo más tarde o llame el teléfono: 987654321";
 const initiaValueShowModalOrder = { isCompleted: false, orderId: "" };
 
+const setInitialPrice = (shoppingCart, priceForSupplement) => {
+  const priceOrder = getPrice(shoppingCart);
+  return priceOrder < priceForSupplement ? priceOrder + 1 : priceOrder;
+};
+
 const useShoppingCart = (paymentMethod) => {
-  const { categories, clearDeliveryOptions, clearShoppingCart, deliveryOptions, shoppingCart } = useContext(
-    GlobalContext
-  );
+  const {
+    categories,
+    configuration,
+    clearDeliveryOptions,
+    clearShoppingCart,
+    deliveryOptions,
+    shoppingCart,
+  } = useContext(GlobalContext);
   const createNewOrder = useOrder();
   const [shoppingCartByCategory, setShoppingCartByCategory] = useState(groupByCategory(shoppingCart, categories));
-  // const [totalPrice, setTotalPrice] = useState(getPrice(shoppingCart));
-  const totalPrice = getPrice(shoppingCart);
+  const priceForSupplement = configuration?.minimumPayment.min;
+  const [totalPrice, setTotalPrice] = useState(setInitialPrice, priceForSupplement);
   const [isLoading, setIsLoading] = useState(false);
   const [showModalOrderCompleted, setShowModalOrderCompleted] = useState(initiaValueShowModalOrder);
   const [error, setError] = useState(initialValueError);
@@ -61,6 +71,12 @@ const useShoppingCart = (paymentMethod) => {
   };
 
   useEffect(() => {
+    const newPrice = getPrice(shoppingCart);
+
+    setTotalPrice(newPrice < priceForSupplement ? newPrice + 1 : newPrice);
+  }, [shoppingCart, priceForSupplement]);
+
+  useEffect(() => {
     const newShoppingCartByCategory = groupByCategory(shoppingCart, categories);
 
     newShoppingCartByCategory.length > 0
@@ -77,6 +93,7 @@ const useShoppingCart = (paymentMethod) => {
       showModalOrderCompleted,
       shoppingCartByCategory,
       totalPrice,
+      priceForSupplement,
     },
     { onCreateNewOrder, resetOrder, setError },
   ];
