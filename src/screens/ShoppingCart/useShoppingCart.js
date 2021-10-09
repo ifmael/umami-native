@@ -10,27 +10,19 @@ const fatalError =
 const initiaValueShowModalOrder = { isCompleted: false, orderId: "" };
 
 const useShoppingCart = (paymentMethod) => {
-  const {
-    categories,
-    configuration,
-    clearDeliveryOptions,
-    clearShoppingCart,
-    deliveryOptions,
-    shoppingCart,
-  } = useContext(GlobalContext);
+  const { categories, clearDeliveryOptions, clearShoppingCart, deliveryOptions, shoppingCart } = useContext(
+    GlobalContext
+  );
   const createNewOrder = useOrder();
   const [shoppingCartByCategory, setShoppingCartByCategory] = useState(groupByCategory(shoppingCart, categories));
-  const [totalPrice, setTotalPrice] = useState(getPrice(shoppingCart));
+  // const [totalPrice, setTotalPrice] = useState(getPrice(shoppingCart));
+  const totalPrice = getPrice(shoppingCart);
   const [isLoading, setIsLoading] = useState(false);
   const [showModalOrderCompleted, setShowModalOrderCompleted] = useState(initiaValueShowModalOrder);
   const [error, setError] = useState(initialValueError);
-  const [showModalMinPayment, setShowModalMinPayment] = useState(totalPrice < configuration?.minimumPayment.min);
-  const [isNavigate, setIsNavigate] = useState(false);
 
   const navigation = useNavigation();
   const isDeliveryOption = deliveryOptions?.option && deliveryOptions?.contactInfo;
-  const titleMinPayment = configuration?.minimumPayment.title;
-  const lowerMinPayment = totalPrice < configuration?.minimumPayment.min;
 
   const onCreateNewOrder = async () => {
     try {
@@ -60,7 +52,6 @@ const useShoppingCart = (paymentMethod) => {
     setShowModalOrderCompleted(initiaValueShowModalOrder);
     clearShoppingCart();
     clearDeliveryOptions();
-    setIsNavigate(true);
 
     // navigation.navigate("HomeTab", { screen: "Home" });
     navigation.reset({
@@ -77,29 +68,17 @@ const useShoppingCart = (paymentMethod) => {
       : navigation.navigate("HomeTab", { screen: "Home" });
   }, [categories, navigation, shoppingCart]);
 
-  useEffect(() => {
-    if (!isNavigate) {
-      const newPrice = getPrice(shoppingCart);
-
-      setShowModalMinPayment(newPrice < configuration?.minimumPayment.min);
-      setTotalPrice(newPrice);
-    }
-  }, [configuration, isNavigate, shoppingCart]);
-
   return [
     {
       deliveryOptions,
       error,
       isDeliveryOption,
       isLoading,
-      lowerMinPayment,
       showModalOrderCompleted,
       shoppingCartByCategory,
-      showModalMinPayment,
-      titleMinPayment,
       totalPrice,
     },
-    { onCreateNewOrder, resetOrder, setError, setShowModalMinPayment },
+    { onCreateNewOrder, resetOrder, setError },
   ];
 };
 

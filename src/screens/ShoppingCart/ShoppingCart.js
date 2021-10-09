@@ -44,14 +44,11 @@ const ShoppingCart = () => {
       error,
       isDeliveryOption,
       isLoading,
-      lowerMinPayment,
       showModalOrderCompleted,
       shoppingCartByCategory,
-      showModalMinPayment,
-      titleMinPayment,
       totalPrice,
     },
-    { onCreateNewOrder, resetOrder, setError, setShowModalMinPayment },
+    { onCreateNewOrder, resetOrder, setError },
   ] = useShoppingCart(paymentMethod);
 
   return (
@@ -64,31 +61,15 @@ const ShoppingCart = () => {
       </ScrollView>
       <DeliveryOptions showComponent={showDeliveryOptions} showModalHandler={handlers.setShowDeliveryOptions} />
       <AddButton
-        disabled={
-          !isDeliveryOption || lowerMinPayment || isClosedFromSchedule || isClose || !moreOrder || !paymentMethod
-        }
+        disabled={!isDeliveryOption || isClosedFromSchedule || isClose || !moreOrder || !paymentMethod}
         loading={isLoading}
         onPress={onCreateNewOrder}
-        title={lowerMinPayment ? titleMinPayment : `A pagar: ${totalPrice?.toFixed(2)} €`}
+        title={`A pagar: ${totalPrice?.toFixed(2)} €`}
       />
-      <Modal
-        isVisible={showModalMinPayment && showModalMinPayment && !isClosedFromSchedule && !isClose && moreOrder}
-        onBackButtonPress={() => setShowModalMinPayment(false)}
-        onBackdropPress={() => setShowModalMinPayment(false)}
-      >
-        <Text
-          h4
-          style={{
-            backgroundColor: "white",
-            paddingVertical: 40,
-            paddingHorizontal: 10,
-            borderRadius: 5,
-            textAlign: "center",
-          }}
-        >
-          {titleMinPayment}
-        </Text>
-      </Modal>
+
+      {/*
+          SHOW ERROR MODAL
+      */}
       <Modal
         isVisible={error.show}
         onBackButtonPress={() => setError((currentValue) => ({ ...currentValue, show: false }))}
@@ -107,6 +88,10 @@ const ShoppingCart = () => {
           {error.message}
         </Text>
       </Modal>
+
+      {/*
+        CLOSE
+      */}
       <Modal
         isVisible={showIsClosedFromSchedule}
         onBackButtonPress={() => handlers.setIsClosedFromSchedule(false)}
@@ -125,6 +110,10 @@ const ShoppingCart = () => {
           {titleClose}
         </Text>
       </Modal>
+
+      {/*
+  PEDIDO COMPLETADO
+ */}
       <Modal
         isVisible={showModalOrderCompleted?.isCompleted}
         onBackButtonPress={() => resetOrder()}
@@ -152,6 +141,10 @@ const ShoppingCart = () => {
           {/* {showModalOrderCompleted?.orderId ? <Text h4>Id: {showModalOrderCompleted?.orderId}</Text> : null} */}
         </View>
       </Modal>
+
+      {/*
+       PAYMENT METHOD
+      */}
       <Modal
         isVisible={showPaymentsMethod}
         onBackButtonPress={() => handlers.setShowPaymentsMethod(false)}
