@@ -14,6 +14,8 @@ export const stylesRNElements = {
   containerStyle: {
     borderWidth: 0,
     borderRadius: 20,
+    margin: 0,
+    padding: 0,
   },
   textDescription: {
     lineHeight,

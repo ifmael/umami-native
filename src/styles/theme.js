@@ -77,13 +77,20 @@ const Card = {
  */
 const Image = {
   style: {
-    borderRadius: 20,
+    // borderRadius: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     height: 200,
     resizeMode: "cover",
   },
 };
 const imageViewShadow = { ...shadowStyles, shadowOffset: { width: 0, height: 2 }, elevation: 5 };
-export const imageViewShadowWrapper = { borderRadius: 20, marginBottom: 10, ...imageViewShadow };
+export const imageViewShadowWrapper = {
+  borderTopRightRadius: 20,
+  borderTopLeftRadius: 20,
+  marginBottom: 10,
+  ...imageViewShadow,
+};
 
 /**
  *  INPUT

@@ -1,21 +1,24 @@
 import React, { useContext } from "react";
-import { FlatList, View } from "react-native";
+import { View } from "react-native";
 import { GlobalContext } from "/context/GlobalContext";
 import MenuItem from "../MenuItem";
+
+import { FlatGrid } from "react-native-super-grid";
 
 const MenuList = () => {
   const { categories } = useContext(GlobalContext);
 
   return (
-    <>
-      <FlatList
+    <View style={{ alignItems: "center", flex: 1, justifyContent: "center" }}>
+      <FlatGrid
+        itemDimension={130}
         data={categories}
         renderItem={({ item }) => <MenuItem {...item} />}
         keyExFtractor={(item) => item?.id?.toString()}
-        ListFooterComponent={<View />}
-        ListFooterComponentStyle={{ height: 10 }}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
+        spacing={10}
       />
-    </>
+    </View>
   );
 };
 
