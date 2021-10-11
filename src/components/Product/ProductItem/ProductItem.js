@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import { string, number, bool } from "prop-types";
-import { View } from "react-native";
 import { colors, ListItem, Text } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalContext } from "/context/GlobalContext";
 import { guidGenerator } from "/utils/functions";
 import { getSchedule } from "/utils/time";
 import { yellow } from "/styles/theme";
-import styles from "./ProductItem.styles";
 
 const ProductItem = (props) => {
   const { category, description, isCustomizable, isMenuable, name, price } = props;
@@ -35,9 +33,9 @@ const ProductItem = (props) => {
     <ListItem bottomDivider disabled={disableListItem} onPress={add} containerStyle={{ flexWrap: "wrap" }}>
       <ListItem.Content>
         <ListItem.Title>
-          <View style={styles.title}>
-            <Text h4>{name}</Text>
-          </View>
+          <Text h4 adjustsFontSizeToFit>
+            {name}
+          </Text>
         </ListItem.Title>
         {description ? <ListItem.Subtitle>{description}</ListItem.Subtitle> : null}
       </ListItem.Content>
