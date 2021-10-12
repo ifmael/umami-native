@@ -3,6 +3,9 @@ import { validPhone } from "/constant";
 export const sortDesc = (a, b) => b.order - a.order;
 export const sortAsc = (a, b) => a.order - b.order;
 
+export const alphabeticName = (a, b) => a.name.localeCompare(b.name);
+// a.name < b.name ? -1 : a.name > b.firstName ? 1 : 0;
+
 export const guidGenerator = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
     var r = (Math.random() * 16) | 0,

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getProductsByCategory } from "./functions";
+import { alphabeticName } from "/utils/functions";
 
 const useProducts = (dataFromServer) => {
   const [productsByCategory, setProductsByCategory] = useState();
@@ -8,7 +9,13 @@ const useProducts = (dataFromServer) => {
     if (!dataFromServer) return;
     const { products: productsServer } = dataFromServer;
 
-    const productsByCategory = getProductsByCategory(productsServer);
+    const ingredientsSortedInProducts = productsServer.map(({ ingredients, ...restProps }) => {
+      return Array.isArray(ingredients) && ingredients.length > 0
+        ? { ...restProps, ingredients: ingredients.sort(alphabeticName) }
+        : { ingredients, ...restProps };
+    });
+
+    const productsByCategory = getProductsByCategory(ingredientsSortedInProducts);
 
     setProductsByCategory(productsByCategory);
   }, [dataFromServer]);
