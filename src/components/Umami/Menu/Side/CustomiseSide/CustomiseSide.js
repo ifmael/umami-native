@@ -117,7 +117,7 @@ const CustomiseSide = ({
         <TouchableOpacity onPress={() => setStep(0)}>
           <Icon type="font-awesome-5" name="arrow-left" size={16} color="black" />
         </TouchableOpacity>
-        <Text>{name}</Text>
+        <Text h4>{name}</Text>
       </View>
 
       {customiseSideIngredients ? (

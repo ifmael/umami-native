@@ -17,7 +17,7 @@ const addDelivery = (deliveryOptions) => {
       console.log(`it should be impossibe(addDelivery): ${deliveryOptions?.option}`);
     }
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 
@@ -25,7 +25,13 @@ const useOrder = () => {
   const { setProperty, clearShoppingCart } = useContext(GlobalContext);
   const client = useApolloClient();
 
-  const createNewOrder = async (deliveryOptionsInput, shoppingCartByCategories, totalPrice, paymentMethod) => {
+  const createNewOrder = async (
+    deliveryOptionsInput,
+    shoppingCartByCategories,
+    totalPrice,
+    paymentMethod,
+    withSupplement
+  ) => {
     try {
       //Check if is possible make more order
       const { data } = await client.query({
@@ -45,7 +51,15 @@ const useOrder = () => {
         const response = await client.mutate({
           mutation: CREATE_ORDER,
           variables: {
-            input: { data: { deliveryOptions, shoppingCart, totalPrice, paymentMethod: paymentMethod.id } },
+            input: {
+              data: {
+                deliveryOptions,
+                shoppingCart,
+                totalPrice,
+                paymentMethod: paymentMethod.id,
+                supplement: withSupplement ? 1 : 0,
+              },
+            },
           },
         });
         const orderId = response?.data?.createOrder?.order?.id || "";

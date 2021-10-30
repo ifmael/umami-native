@@ -4,7 +4,7 @@ import SwitchList from "/components/common/Switch/SwitchList";
 import useSwitchList from "/components/common/Switch/SwitchList/useSwitchList";
 import ProductDetailContext from "/context/ProductDetailContext";
 
-const IngredientsSwitch = ({ ingredients, initialSwitchValue }) => {
+const IngredientsSwitch = ({ ingredients, initialSwitchValue, showWith }) => {
   const {
     setSide,
     productDetailInfo: { errors },
@@ -15,18 +15,19 @@ const IngredientsSwitch = ({ ingredients, initialSwitchValue }) => {
   useEffect(() => {
     if (!items) return;
 
-    const ingredientsSelected = items.filter(({ isSelected }) => isSelected);
+    const ingredientsSelected = items.filter(({ isSelected }) => (showWith ? isSelected : !isSelected));
 
     if (ingredientsSelected.length > 0) {
-      setSide(ingredientsSelected);
+      setSide({ showWith, data: ingredientsSelected });
       if (errors) removeError("errorSide");
     } else setSide();
-  }, [items, setSide, removeError, errors]);
+  }, [items, setSide, removeError, errors, showWith]);
 
   return <SwitchList list={items} setItem={setItem} />;
 };
 IngredientsSwitch.propTypes = {
   ingredients: array,
   initialSwitchValue: bool,
+  showWith: bool,
 };
 export default IngredientsSwitch;

@@ -41,7 +41,8 @@ const useShoppingCart = (paymentMethod) => {
         deliveryOptions,
         shoppingCartByCategory,
         totalPrice,
-        paymentMethod
+        paymentMethod,
+        getPrice(shoppingCart) < priceForSupplement
       );
       if (create) {
         setError(initialValueError);

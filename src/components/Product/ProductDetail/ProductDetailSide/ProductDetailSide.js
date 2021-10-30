@@ -36,6 +36,7 @@ export default function ProductDetailSide({
   );
 
   const configurations = destructComponentOptions(configuration);
+  const isSauce = description === "Descubre nuestas salsas";
 
   return (
     <>
@@ -51,6 +52,7 @@ export default function ProductDetailSide({
         price={price}
         isRadioButton={isRadioButton}
         initialSwitchValue={initialSwitchValue}
+        showWith={isSauce ? true : false}
       />
       {configurations && Array.isArray(configurations) && configurations.length > 0 ? (
         <>
@@ -66,6 +68,7 @@ export default function ProductDetailSide({
             initialSwitchValue={false}
             isRadioButton={true}
             additionalIngredientSide={true}
+            showWith={true}
           />
         </>
       ) : null}

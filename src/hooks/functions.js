@@ -22,27 +22,54 @@ export const addBurgers = (burgersInput) => {
   try {
     const { burger } = shoppingCartBEComponent;
 
-    return burgersInput?.map(({ ingredients, ingredientsExtra, isYourTaste, meatPoint, name, price, typeOfMeat }) => {
-      let listOfIngredients = !isYourTaste ? getListOfIngredients(ingredients, "· Sin ", true) : "";
-
-      listOfIngredients =
-        ingredientsExtra.length > 0
-          ? listOfIngredients !== ""
-            ? `${listOfIngredients} || ${getListOfIngredients(ingredientsExtra, "· Con ")}`
-            : getListOfIngredients(ingredientsExtra, "· Con ")
-          : listOfIngredients;
-
-      return {
-        ingredients: ingredients?.length > 0 ? listOfIngredients : "",
-        meatPoint: meatPoint?.name,
+    return burgersInput?.map(
+      ({
+        ingredients,
+        ingredientsExtra,
+        isYourTaste,
+        meatPoint,
         name,
-        price,
-        typeOfMeat: typeOfMeat?.name,
-        ...burger,
-      };
-    });
+        // price,
+        typeOfMeat,
+        typeOfBread,
+        mainProductPrice,
+        isChildrenMenu,
+      }) => {
+        let listOfIngredients = !isYourTaste
+          ? ingredients
+              .filter(({ isSelected }) => !isSelected)
+              .map(({ name }) => `- Sin ${name}`)
+              .join(",")
+          : "";
+
+        listOfIngredients =
+          ingredientsExtra.length > 0
+            ? listOfIngredients !== ""
+              ? `${listOfIngredients} ||${ingredientsExtra
+                  .map(({ name, price }) => `- Con ${name}--${price}`)
+                  .join(",")}`
+              : ingredientsExtra.map(({ name, price }) => `- Con ${name}--${price}`).join(",")
+            : listOfIngredients;
+        // : listOfIngredients;
+        // ? listOfIngredients !== ""
+        //   ? `${listOfIngredients} ||${ingredientsExtra.map(({ name }) => `- Con ${name}`).join(",")}`
+        //   : ingredientsExtra.map(({ name, price }) => `- Con ${name}--${price}`).join(",")
+        // : listOfIngredients;
+
+        return {
+          ingredients: listOfIngredients ?? "",
+          meatPoint: meatPoint?.name,
+          name,
+          price: mainProductPrice,
+          typeOfMeat: typeOfMeat?.price ? `${typeOfMeat?.name}||${typeOfMeat?.price}` : typeOfMeat?.name,
+          typeOfBread: typeOfBread?.name,
+          isChildrenMenu: isChildrenMenu ?? false,
+          ...burger,
+        };
+      }
+    );
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 
@@ -61,7 +88,7 @@ export const addGenericItem = (genericItemInput, category) => {
       };
     });
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 
@@ -80,7 +107,7 @@ export const addMenus = (menusInput) => {
       return { ...newMenuElement, ...menuComponent };
     });
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 
@@ -107,7 +134,7 @@ export const addSandwiches = (sandwichInput) => {
       };
     });
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 
@@ -117,37 +144,100 @@ export const addSides = (sideInput) => {
 
     return sideInput?.map((sideElement) => {
       let addToName = "";
+      let isSauce = false;
+      let sauces = [];
+      let ingredientsSide;
 
       if (Array.isArray(sideElement.side) && sideElement.side.length > 0) {
+        // Normal
         addToName = sideElement.side?.map(({ name }) => name).join(", ");
+      } else if (Array.isArray(sideElement.option) && sideElement.option.length > 0) {
+        // Sides from menu, custom ingredients
+        ingredientsSide = sideElement.option
+          .filter(({ isSelected }) => !isSelected)
+          .map(({ name }) => `Sin ${name}`)
+          .join(",");
+      } else if (typeof sideElement === "object" && sideElement !== null && !Array.isArray(sideElement)) {
+        // Tequeños from  menu
+        if (sideElement?.option?.main && sideElement?.option?.secondary) {
+          const { main, secondary } = sideElement.option;
+          ingredientsSide = `Con ${main.name},Con ${secondary.name}`;
+        } else if (sideElement?.option) {
+          addToName = sideElement.option;
+        }
+      } else if (
+        typeof sideElement.side === "object" &&
+        sideElement.side !== null &&
+        !Array.isArray(sideElement.side)
+      ) {
+        if (Array.isArray(sideElement.ingredients) && sideElement.ingredients.length) {
+          // Tequeños
+          if (sideElement.side.name) {
+            ingredientsSide = `Con ${sideElement.side.name.toLowerCase()},`;
+          }
+          ingredientsSide += sideElement.ingredients.map(({ name }) => `Con ${name.toLowerCase()}`).join(",");
+        } else if (sideElement.side?.data && Array.isArray(sideElement.side.data)) {
+          if (sideElement.side?.showWith) {
+            // sauce
+            isSauce = true;
+            sauces = sideElement.side.data.map(({ name, price }) => ({
+              name: `${sideElement.name}: ${name}`,
+              price,
+              ...side,
+            }));
+          } else {
+            //custom ingredients ( nachos y pattas umami)
+            ingredientsSide = sideElement.side?.data.map(({ name }) => `Sin ${name.toLowerCase()}`).join(",");
+            // addToName = `${sideElement.side?.showWith ? "" : "Sin "}${ingredients}`;
+          }
+        } else if (sideElement.side.name) {
+          // patatas
+          addToName = sideElement.side.name;
+        }
       }
-      return {
-        name: `${sideElement.name}${addToName ? `: ${addToName}` : ""}`,
-        price: sideElement.price,
-        ...side,
-      };
+
+      const name = sideElement.name.includes("uds)")
+        ? sideElement.name.substr(0, sideElement.name.length - 6)
+        : sideElement.name;
+      return isSauce
+        ? sauces
+        : {
+            name: `${name}${addToName ? `: ${addToName}` : ""}`,
+            price: sideElement.price,
+            ...side,
+            ingredients: ingredientsSide,
+          };
     });
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 
 export const addShoppingCart = (shoppingCartByCategories) => {
   try {
-    return shoppingCartByCategories?.reduce((newShoppingCart, { category, data }) => {
-      return category === "bocadillos"
-        ? [...newShoppingCart, ...addSandwiches(data)]
-        : category === "hamburguesas"
-        ? [...newShoppingCart, ...addBurgers(data)]
-        : category === "menus"
-        ? [...newShoppingCart, ...addMenus(data)]
-        : category === "complementos"
-        ? [...newShoppingCart, ...addSides(data)]
-        : category === "bebidas" || category === "postres" || category === "ensaladas"
-        ? [...newShoppingCart, ...addGenericItem(data, category)]
-        : newShoppingCart;
-    }, []);
+    return shoppingCartByCategories
+      ?.reduce((newShoppingCart, { category, data }) => {
+        let sides, sidesShoppingCart;
+        if (category === "complementos") {
+          sides = addSides(data);
+          sides = Array.isArray(sides) ? sides : [sides];
+          sidesShoppingCart = [...newShoppingCart, ...sides];
+
+          return sidesShoppingCart;
+        }
+
+        return category === "bocadillos"
+          ? [...newShoppingCart, ...addSandwiches(data)]
+          : category === "hamburguesas"
+          ? [...newShoppingCart, ...addBurgers(data)]
+          : category === "menus"
+          ? [...newShoppingCart, ...addMenus(data)]
+          : category === "bebidas" || category === "postres" || category === "ensaladas"
+          ? [...newShoppingCart, ...addGenericItem(data, category)]
+          : newShoppingCart;
+      }, [])
+      .flat();
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };

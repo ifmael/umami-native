@@ -13,6 +13,7 @@ const UmamiIngredients = ({
   isRadioButton,
   initialSwitchValue,
   additionalIngredientSide = false,
+  showWith,
 }) => {
   const ingredientsWithPrice = ingredients?.map((ingredient) => ({ ...ingredient, price }));
 
@@ -27,7 +28,12 @@ const UmamiIngredients = ({
             additionalIngredientSide={additionalIngredientSide}
           />
         ) : (
-          <IngredientsSwitch ingredients={ingredientsWithPrice} price={price} initialSwitchValue={initialSwitchValue} />
+          <IngredientsSwitch
+            ingredients={ingredientsWithPrice}
+            price={price}
+            initialSwitchValue={initialSwitchValue}
+            showWith={showWith}
+          />
         )}
       </View>
     </View>
@@ -40,5 +46,6 @@ UmamiIngredients.propTypes = {
   price: number,
   initialSwitchValue: bool,
   additionalIngredientSide: bool,
+  showWith: bool,
 };
 export default UmamiIngredients;

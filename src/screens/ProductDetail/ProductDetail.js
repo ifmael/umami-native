@@ -15,6 +15,8 @@ const ProductDetail = ({ route }) => {
     name: rest.name,
     category: rest.category,
     customiseSideIngredients: rest.customiseSideIngredients,
+    mainProductPrice: price,
+    isChildrenMenu,
   });
 
   return (

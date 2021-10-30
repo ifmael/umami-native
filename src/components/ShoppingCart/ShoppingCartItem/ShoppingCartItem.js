@@ -52,8 +52,19 @@ const ShoppingCartItem = ({
           {typeOfMeat?.name ? <Text style={stylesRNEComponents.optionText}>· {typeOfMeat.name}</Text> : null}
           {meatPoint?.name ? <Text style={stylesRNEComponents.optionText}>· {meatPoint.name}</Text> : null}
           {typeOfBread?.name ? <Text style={stylesRNEComponents.optionText}>· {typeOfBread.name}</Text> : null}
-          {side?.name ? <Text style={stylesRNEComponents.optionText}>· {side.name}</Text> : null}
-          {side?.length > 0 ? <Text>{getListOfIngredients(side)}</Text> : null}
+          {side?.name && ingredients?.length === 0 ? (
+            <Text style={stylesRNEComponents.optionText}>· {side.name}</Text>
+          ) : null}
+          {side?.name && ingredients?.length ? (
+            <Text style={stylesRNEComponents.optionText}>
+              · {side.name} con {getListOfIngredients(ingredients)}
+            </Text>
+          ) : null}
+          {Array.isArray(side?.data) && side?.data.length ? (
+            <Text>
+              {getListOfIngredients(side.data, side?.showWith ? "" : "· Sin ", side?.showWith ? false : true)}
+            </Text>
+          ) : null}
           {beverage?.name ? <Text style={stylesRNEComponents.optionText}>· {beverage.name}</Text> : null}
           {withoutSomeIngredient && !isYourTaste ? (
             <Text>{getListOfIngredients(ingredients, "· Sin ", true)} </Text>

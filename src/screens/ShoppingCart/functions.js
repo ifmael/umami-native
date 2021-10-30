@@ -27,6 +27,7 @@ export const groupByCategory = (shoppingCart, categories) => {
           side,
           typeOfBread,
           typeOfMeat,
+          mainProductPrice,
         } = cartElement;
         const newCategory = isMenu ? menusCategory : category;
         const categoryElement = elementsGrouped?.find(({ category: categoryGrouped }) => {
@@ -48,6 +49,7 @@ export const groupByCategory = (shoppingCart, categories) => {
           side,
           typeOfBread,
           typeOfMeat,
+          mainProductPrice,
         });
 
         return elementsGrouped;

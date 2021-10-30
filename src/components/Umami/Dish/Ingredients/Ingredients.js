@@ -21,7 +21,7 @@ const getTitle = (category) => {
 
 const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
   const {
-    productDetailInfo: { isCustom },
+    productDetailInfo: { isCustom, isChildrenMenu },
     setCustom,
     setIngredients,
   } = useContext(ProductDetailContext);
@@ -64,7 +64,7 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
       {isCustom || isYourTaste ? (
         <View style={{ paddingHorizontal: 15 }}>
           {!isYourTaste ? <SwitchList list={listIngredients} setItem={setIngredient} /> : null}
-          <AddExtraIngredients originalListIngredients={ingredients} category={category} />
+          {!isChildrenMenu ? <AddExtraIngredients originalListIngredients={ingredients} category={category} /> : null}
         </View>
       ) : null}
     </View>

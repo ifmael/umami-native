@@ -23,7 +23,17 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   const disableAddButton = !configuration?.moreOrders?.moreOrder;
 
   const addProductToShoppingCart = useCallback(() => {
-    const { category, beverage, side, isMenu, typeOfMeat, meatPoint, typeOfBread, ingredients } = productDetailInfo;
+    const {
+      category,
+      beverage,
+      side,
+      isMenu,
+      typeOfMeat,
+      meatPoint,
+      typeOfBread,
+      ingredients,
+      name,
+    } = productDetailInfo;
     let isError = false;
     let messageErrors = [];
 
@@ -32,7 +42,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
         isError = true;
         messageErrors.push({ text: "· Por favor elige la carne", id: "typeMeat", type: "ComponentBurgerMeats" });
       }
-      if (!typeOfBread) {
+      if (!typeOfBread && !isChildrenMenu) {
         isError = true;
         messageErrors.push({ text: "· Por favor elige el pan", id: "typeOfBread", type: "ComponentSandwichBreads" });
       }
@@ -50,7 +60,9 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
         messageErrors.push({ text: "· Por favor elige el pan", id: "typeOfBread", type: "ComponentSandwichBreads" });
       }
     } else if (category === "complementos") {
-      if (!side) {
+      const isPreselectedIngredientProduct =
+        name.toLowerCase() === "patatas umami" || name.toLowerCase() === "nachos umami";
+      if (!side && !isPreselectedIngredientProduct) {
         isError = true;
         messageErrors.push({
           text: "· Seleccion al menos una opción",
@@ -133,6 +145,9 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
     const { category, side, customiseSideIngredients } = productDetailInfo;
 
     if (category === "complementos") {
+      const calculatePrices = (total, { price }) => {
+        return total + price;
+      };
       if (customiseSideIngredients) {
         setPriceProduct(price);
       } else if (Array.isArray(side) && side.length > 0) {
@@ -142,6 +157,9 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
         setPriceProduct(totalSide);
       } else if (side?.price) {
         setPriceProduct(side.price);
+      } else if (typeof side === "object" && side !== null && Array.isArray(side.data) && side.data.length) {
+        const totalSide = side.data.reduce(calculatePrices, 0);
+        setPriceProduct(totalSide);
       } else {
         setPriceProduct(0);
       }

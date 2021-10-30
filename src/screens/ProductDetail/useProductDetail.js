@@ -19,6 +19,8 @@ const initValue = {
   side: null,
   errors: null,
   customiseSideIngredients: false,
+  mainProductPrice: 0,
+  isChildrenMenu: false,
 };
 
 const reducer = (state, action) => {
