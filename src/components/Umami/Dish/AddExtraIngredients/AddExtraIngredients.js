@@ -21,8 +21,8 @@ const propTypes = {
   category: string,
 };
 
-const getTitle = (isIngregiends) =>
-  isIngregiends ? "Añade o eliminar más ingredientes extra" : "Añadir ingredientes extra";
+const getTitle = (isIngredients) =>
+  isIngredients ? "Añade o eliminar más ingredientes extra" : "Añadir ingredientes extra";
 
 const AddExtraIngredients = ({ originalListIngredients, category }) => {
   const [

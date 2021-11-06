@@ -61,7 +61,7 @@ const Picker = ({ inputProps, modalStyles, onValueChange, options, renderItem })
     }
   );
   const onRenderItem = renderItem || PickerDefaultItem;
-  const customSide = options.find((option) => option.id === idSideSelected);
+  const customSide = options?.find((option) => option.id === idSideSelected);
 
   return (
     <>

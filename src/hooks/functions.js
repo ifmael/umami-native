@@ -101,7 +101,7 @@ export const addMenus = (menusInput) => {
 
       if (category === "hamburguesas") [newMenuElement.burger] = addBurgers([menuItem]);
       if (category === "bocadillos") [newMenuElement.sandwich] = addSandwiches([menuItem]);
-      if (!isChildrenMenu) [newMenuElement.side] = addSides([menuItem?.side]);
+      if (!isChildrenMenu) [newMenuElement.side] = addSidesMenu([menuItem?.side]);
       [newMenuElement.beverage] = addGenericItem([menuItem?.beverage], "bebidas");
 
       return { ...newMenuElement, ...menuComponent };
@@ -115,20 +115,25 @@ export const addSandwiches = (sandwichInput) => {
   try {
     const { sandwich } = shoppingCartBEComponent;
 
-    return sandwichInput?.map(({ ingredients, ingredientsExtra, isYourTaste, name, price, typeOfBread }) => {
-      let listOfIngredients = !isYourTaste ? getListOfIngredients(ingredients, "· Sin ", true) : "";
+    return sandwichInput?.map(({ ingredients, ingredientsExtra, isYourTaste, name, typeOfBread, mainProductPrice }) => {
+      let listOfIngredients = !isYourTaste
+        ? ingredients
+            .filter(({ isSelected }) => !isSelected)
+            .map(({ name }) => `- Sin ${name}`)
+            .join(",")
+        : "";
 
       listOfIngredients =
         ingredientsExtra.length > 0
           ? listOfIngredients !== ""
-            ? `${listOfIngredients} || ${getListOfIngredients(ingredientsExtra, "· Con ")}`
-            : getListOfIngredients(ingredientsExtra, "· Con ")
+            ? `${listOfIngredients} ||${ingredientsExtra.map(({ name, price }) => `- Con ${name}--${price}`).join(",")}`
+            : ingredientsExtra.map(({ name, price }) => `- Con ${name}--${price}`).join(",")
           : listOfIngredients;
 
       return {
         ingredients: ingredients?.length > 0 ? listOfIngredients : "",
         name,
-        price,
+        price: mainProductPrice,
         typeOfBread: typeOfBread?.name,
         ...sandwich,
       };
@@ -138,7 +143,7 @@ export const addSandwiches = (sandwichInput) => {
   }
 };
 
-export const addSides = (sideInput) => {
+export const addSidesMenu = (sideInput) => {
   try {
     const { side } = shoppingCartBEComponent;
 
@@ -213,6 +218,81 @@ export const addSides = (sideInput) => {
   }
 };
 
+const addSides = (sideInput) => {
+  const { side } = shoppingCartBEComponent;
+
+  return sideInput?.map((sideElement) => {
+    let addToName = "";
+    let ingredientsSide;
+    let isSauce = false;
+    let sauces = [];
+
+    if (sideElement.side && !sideElement.side?.data && !sideElement?.ingredients?.length) {
+      // patatas
+      addToName = sideElement.side?.name;
+    } else if (sideElement.side && sideElement.side?.data && sideElement.side?.data?.length) {
+      if (sideElement.side?.showWith) {
+        // sauce
+        isSauce = true;
+        sauces = sideElement.side.data.map(({ name, price }) => ({
+          name: `${sideElement.name}: ${name}`,
+          price,
+          ...side,
+        }));
+      } else {
+        //custom ingredients ( nachos y pattas umami)
+        ingredientsSide = sideElement.side?.data.map(({ name }) => `Sin ${name.toLowerCase()}`).join(",");
+      }
+    } else if (sideElement.side && !sideElement.side?.data && sideElement?.ingredients?.length) {
+      if (sideElement.side.name) {
+        ingredientsSide = `Con ${sideElement.side.name.toLowerCase()},`;
+      }
+      ingredientsSide += sideElement.ingredients.map(({ name }) => `Con ${name.toLowerCase()}`).join(",");
+    }
+    const name = sideElement.name.includes("uds)")
+      ? sideElement.name.substr(0, sideElement.name.length - 6)
+      : sideElement.name;
+
+    return isSauce
+      ? sauces
+      : {
+          name: `${name}${addToName ? `: ${addToName}` : ""}`,
+          price: sideElement.price,
+          ...side,
+          ingredients: ingredientsSide,
+        };
+  });
+};
+
+export const addSalad = (saladInput) => {
+  try {
+    const { salad } = shoppingCartBEComponent;
+
+    return saladInput?.map(({ ingredients, ingredientsExtra, name, mainProductPrice }) => {
+      let listOfIngredients = ingredients
+        .filter(({ isSelected }) => !isSelected)
+        .map(({ name }) => `- Sin ${name}`)
+        .join(",");
+
+      listOfIngredients =
+        ingredientsExtra.length > 0
+          ? listOfIngredients !== ""
+            ? `${listOfIngredients} ||${ingredientsExtra.map(({ name, price }) => `- Con ${name}--${price}`).join(",")}`
+            : ingredientsExtra.map(({ name, price }) => `- Con ${name}--${price}`).join(",")
+          : listOfIngredients;
+
+      return {
+        ingredients: ingredients?.length > 0 ? listOfIngredients : "",
+        name,
+        price: mainProductPrice,
+        ...salad,
+      };
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const addShoppingCart = (shoppingCartByCategories) => {
   try {
     return shoppingCartByCategories
@@ -232,7 +312,9 @@ export const addShoppingCart = (shoppingCartByCategories) => {
           ? [...newShoppingCart, ...addBurgers(data)]
           : category === "menus"
           ? [...newShoppingCart, ...addMenus(data)]
-          : category === "bebidas" || category === "postres" || category === "ensaladas"
+          : category === "ensaladas"
+          ? [...newShoppingCart, ...addSalad(data)]
+          : category === "bebidas" || category === "postres"
           ? [...newShoppingCart, ...addGenericItem(data, category)]
           : newShoppingCart;
       }, [])
