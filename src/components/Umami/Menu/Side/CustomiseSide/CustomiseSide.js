@@ -14,7 +14,7 @@ import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
 import useCustomiseSideErrors from "./useCustomiseSideErrors";
 
 // Types
-import { string, number, array, func, bool, undefined } from "prop-types";
+import { string, number, array, func, bool } from "prop-types";
 
 const propTypes = {
   id: string,
@@ -22,7 +22,7 @@ const propTypes = {
   price: number,
   setStep: func,
   ingredients: array,
-  configuration: array | undefined,
+  configuration: func,
   isRadioButtonConfigurations: bool,
   isRadioButtonIngredients: bool,
   customiseSideIngredients: bool,

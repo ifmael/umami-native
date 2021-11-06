@@ -65,6 +65,18 @@ const ShoppingCartItem = ({
               {getListOfIngredients(side.data, side?.showWith ? "" : "· Sin ", side?.showWith ? false : true)}
             </Text>
           ) : null}
+          {side?.option &&
+          Array.isArray(side.option) &&
+          side.option.length &&
+          side.option.some(({ isSelected }) => !isSelected) ? (
+            <Text style={{ paddingLeft: 16 }}>{getListOfIngredients(side.option, "· Sin ", true)}</Text>
+          ) : null}
+          {side?.option && !Array.isArray(side.option) && side?.option?.main && side?.option?.secondary ? (
+            <>
+              <Text style={{ paddingLeft: 16 }}>Con {side.option.main.name}</Text>
+              <Text style={{ paddingLeft: 16 }}>Con {side.option.secondary.name}</Text>
+            </>
+          ) : null}
           {beverage?.name ? <Text style={stylesRNEComponents.optionText}>· {beverage.name}</Text> : null}
           {withoutSomeIngredient && !isYourTaste ? (
             <Text>{getListOfIngredients(ingredients, "· Sin ", true)} </Text>

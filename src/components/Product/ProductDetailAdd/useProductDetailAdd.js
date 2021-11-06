@@ -127,7 +127,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
 
       let total = price;
       total += calculateIngredientsPrice(ingredientsExtra) || 0;
-      const discountMenu = beverage?.price && side.price ? true : false;
+      const discountMenu = beverage?.price && side?.price ? true : false;
 
       total += side?.price ? side?.price : 0;
       total += beverage?.price ? beverage?.price : 0;
