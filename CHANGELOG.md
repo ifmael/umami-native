@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [](https://github.com/ifmael/umami-native/compare/v0.4.0...v) (2021-11-09)
+
+
+### Features
+
+* **ticket:** :rocket: more tweaks for the tickets ([fd40e33](https://github.com/ifmael/umami-native/commit/fd40e33f4cf2350836d39df2848e44cc33e93648))
+* :sparkles: several changes to adjust new changes ([7140b4d](https://github.com/ifmael/umami-native/commit/7140b4df818b6ae7a46da42f14512a26f24e34cc))
+* **custom-side:** :memo: customise side products in the menu modal ([bd4c056](https://github.com/ifmael/umami-native/commit/bd4c056fe793faecfd6f2ca9fdf250962e969af9))
+* **home:** :zap: Add phone number ([f1d83ec](https://github.com/ifmael/umami-native/commit/f1d83ecccc06b7e65927cb5db7fcc3d6076940e8))
+* **ingredients:** :rewind: sort ingredients list ([ff0bf4d](https://github.com/ifmael/umami-native/commit/ff0bf4d0dae3acfa83a80737fdb044483d8bb30e))
+* **ingredients:** :sparkles: custom ingredients for burgers, salads and sandwiches ([8873a00](https://github.com/ifmael/umami-native/commit/8873a006a6675fcc1307fe3c27e9c078fb35d0fa))
+* **menu:** :lipstick: change menu list for a grid ([99845a6](https://github.com/ifmael/umami-native/commit/99845a677d444662e3b48fc24ace568d6ff98dd4))
+* **shopping-cart:** :construction_worker: add suplement for lower order to 20e ([5da2cf4](https://github.com/ifmael/umami-native/commit/5da2cf4b7114866b293c05496a0c5a8209b77eae))
+* **shoppingcart:** :fire: remove min order ([0b639bc](https://github.com/ifmael/umami-native/commit/0b639bcfb6cf98d46c14fff66d455c84cd806b08))
+* **side:** :rocket: add more than on ingredient component in productside component ([ed10f2f](https://github.com/ifmael/umami-native/commit/ed10f2f6363ed8df5d3ee36104fd49c936df5782))
+* **side:** :sparkles: user can customise sides ([6ec7f84](https://github.com/ifmael/umami-native/commit/6ec7f84d5d68ec36fc23081034314d723190693a))
+
+
+### Bug Fixes
+
+* :bug: remove some bugs ([73630d7](https://github.com/ifmael/umami-native/commit/73630d704b1fb10f15661e7cc1413b1d52ffc819))
+* **burguer:** :bug: show error in burger when the bread is not selected ([352a439](https://github.com/ifmael/umami-native/commit/352a439530c024273b86923bbc91dc802563db28))
+* **style:** :zap: Animation for iphone ([41d7a31](https://github.com/ifmael/umami-native/commit/41d7a3124d1f4d7db46407464861f31c456dcea8))
+
 ## [0.6.0](https://github.com/ifmael/umami-native/compare/v0.4.0...v0.6.0) (2021-04-06)
 
 
