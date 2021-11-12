@@ -4,7 +4,7 @@ import { Dimensions } from "react-native";
  * DEFAULT FONT
  */
 export const defaultFont = "Comfortaa_400Regular";
-const boldFont = { fontFamily: "Comfortaa_700Bold", fontWeight: "normal" };
+export const boldFont = { fontFamily: "Comfortaa_700Bold", fontWeight: "normal" };
 
 /**
  *  COLORS

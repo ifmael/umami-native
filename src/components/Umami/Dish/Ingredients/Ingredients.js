@@ -48,7 +48,13 @@ const UmamiDishIngredients = ({ ingredients, category, isYourTaste }) => {
 
   return (
     <View>
-      <View style={{ ...styles.container, justifyContent: isYourTaste ? "center" : "space-between" }}>
+      <View
+        style={{
+          ...styles.container,
+          justifyContent: isYourTaste ? "center" : "space-between",
+          marginBottom: 0,
+        }}
+      >
         <Text style={productDetailCustomActionStyles}>{title}</Text>
         {!isYourTaste ? (
           <Switch

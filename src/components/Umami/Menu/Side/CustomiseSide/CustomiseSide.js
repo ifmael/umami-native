@@ -1,8 +1,8 @@
 import React from "react";
-import { TouchableOpacity, View, Text } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 // React native elements component
-import { Icon, Button } from "react-native-elements";
+import { Icon, Button, Text } from "react-native-elements";
 
 // Components
 import SwitchList from "/components/common/Switch/SwitchList";
@@ -12,6 +12,9 @@ import RadioButtons from "/components/common/RadioButtons";
 import useSwitchList from "/components/common/Switch/SwitchList/useSwitchList";
 import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
 import useCustomiseSideErrors from "./useCustomiseSideErrors";
+
+// Styles
+import { boldFont } from "/styles/theme";
 
 // Types
 import { string, number, array, func, bool } from "prop-types";
@@ -113,11 +116,13 @@ const CustomiseSide = ({
 
   return (
     <View>
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
         <TouchableOpacity onPress={() => setStep(0)}>
           <Icon type="font-awesome-5" name="arrow-left" size={16} color="black" />
         </TouchableOpacity>
-        <Text h4>{name}</Text>
+        <Text h4 style={{ marginLeft: 10 }}>
+          {name}
+        </Text>
       </View>
 
       {customiseSideIngredients ? (
@@ -128,7 +133,7 @@ const CustomiseSide = ({
 
       {isRadioButtonConfigurations ? (
         <View style={{ marginTop: 16 }}>
-          <Text>Elige una salsa</Text>
+          <Text style={{ ...boldFont, fontSize: 20, textAlign: "center" }}>Elige una salsa</Text>
           <RadioButtons options={configurationsRadio} setOption={setConfigurationsOption} />
         </View>
       ) : null}

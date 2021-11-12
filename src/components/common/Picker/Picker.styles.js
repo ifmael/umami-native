@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   rowItem: {
     flexDirection: "row",
-    paddingVertical: 15,
+    paddingVertical: 12,
   },
   fontItem: {
     fontSize: 16,
