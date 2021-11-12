@@ -169,6 +169,7 @@ export const switchStyleView = {
   flexDirection: "row",
   marginVertical: 10,
   justifyContent: "space-between",
+  alignItems: "center",
 };
 
 export const switchStyles = {

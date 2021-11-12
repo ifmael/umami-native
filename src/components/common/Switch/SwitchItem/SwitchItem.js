@@ -6,7 +6,7 @@ import { switchStyles, switchStyleView } from "/styles/theme";
 
 const SwitchItem = ({ id, name, isSelected, setState }) => {
   return (
-    <View style={switchStyleView}>
+    <View style={{ ...switchStyleView, marginVertical: 0 }}>
       <Text>{name}</Text>
       <Switch
         trackColor={{ false: switchStyles.trackColor.false, true: switchStyles.trackColor.true }}
@@ -14,8 +14,6 @@ const SwitchItem = ({ id, name, isSelected, setState }) => {
         ios_backgroundColor={switchStyles.ios_backgroundColor}
         onValueChange={() => setState(id)}
         value={isSelected}
-        style={{ paddingVertical: 5 }}
-        // style={{ paddingVertical: 5, transform: [{ scaleX: 1 }, { scaleY: 1 }] }}
       />
     </View>
   );
