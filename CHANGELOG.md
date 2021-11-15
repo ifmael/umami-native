@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/ifmael/umami-native/compare/v0.6.1...v0.7.0) (2021-11-15)
+
+
+### Features
+
+* **schedule:** :globe_with_meridians: simplify schedule behaviour ([b2ae5d7](https://github.com/ifmael/umami-native/commit/b2ae5d738df798952eec17291f4f4b0b30bbbcdd))
+
+
+### Bug Fixes
+
+* **ui:** :lipstick: tweaks padding, margin and so on  in some components ([88787db](https://github.com/ifmael/umami-native/commit/88787dbb94dd93afecfcdbfd68b452d1a73a2472))
+* **ui:** :lipstick: vertical align for switch list ([f149218](https://github.com/ifmael/umami-native/commit/f1492188a082456255f6c3fcb75b042f6909a89c))
+
 ### [0.6.1](https://github.com/ifmael/umami-native/compare/v0.4.0...v0.6.1) (2021-11-09)
 
 
