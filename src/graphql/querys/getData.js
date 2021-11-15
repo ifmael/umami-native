@@ -289,8 +289,6 @@ const GET_DATA = gql`
         ... on ComponentConfigurationsSchedule {
           openingTime
           closingTime
-          initTimeLastSection
-          lastTimiUsualSection
           lastTimelatestSection
           order
           days {

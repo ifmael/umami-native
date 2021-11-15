@@ -9,7 +9,6 @@ import "dayjs/locale/es";
 dayjs.locale("es");
 dayjs.extend(isBetween).extend(isSameOrBefore).extend(customParseFormat).extend(isoWeek);
 
-const startToday = dayjs().startOf("date");
 const range = 30;
 const now = dayjs();
 
@@ -67,17 +66,14 @@ export const getTimesShedule = (schedule) => {
   const {
     openingTime,
     closingTime,
-    initTimeLastSection,
+    // initTimeLastSection,
     lastTimelatestSection,
-    lastTimeUsualSection,
+    // lastTimeUsualSection,
   } = parseTimeSchedule(schedule);
 
   let listOfTimes;
 
-  if (now.isBetween(startToday, initTimeLastSection)) {
-    const initialTime = now.isBefore(openingTime) ? getRoundedTime(openingTime) : getRoundedTime(now);
-    listOfTimes = generateListOfTimes(initialTime, lastTimeUsualSection);
-  } else if (now.isBetween(initTimeLastSection, closingTime)) {
+  if (now.isBetween(openingTime, closingTime)) {
     const initialTime = getRoundedTime(now);
     listOfTimes = generateListOfTimes(initialTime, lastTimelatestSection);
   } else if (now.isAfter(closingTime)) {
