@@ -21,8 +21,8 @@ Sentry.init({
   dsn: "https://0124ba100ecf46bfa7a7efc9994b04a7@o555172.ingest.sentry.io/5684692",
   enableInExpoDevelopment: true,
   release: `umami-native@${Constants.manifest.version}-${Constants.manifest.releaseId}`,
-  environment: Constants.manifest.releaseChannel || "local",
-  debug: Constants.manifest.releaseChannel ? false : true,
+  environment: Constants.manifest?.releaseChannel || "local",
+  debug: Constants.manifest?.releaseChannel ? false : true,
 });
 
 const authLink = new ApolloLink((operation, forward) => {

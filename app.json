@@ -3,8 +3,7 @@
     "name": "Hamburgueseria Umami",
     "description": "Development channel",
     "slug": "umami-burger",
-    "version": null,
-    "owner": "ifmael",
+    "version": "0.7.0",
     "orientation": "portrait",
     "icon": "./src/assets/ios.png",
     "splash": {
@@ -15,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/android.png",
