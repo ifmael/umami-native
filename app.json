@@ -3,7 +3,7 @@
     "name": "Hamburgueseria Umami",
     "description": "Development channel",
     "slug": "umami-burger",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "orientation": "portrait",
     "icon": "./src/assets/ios.png",
     "splash": {
@@ -14,7 +14,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/android.png",
@@ -22,13 +24,13 @@
       },
       "userInterfaceStyle": "light",
       "package": "com.ifmael.umami",
-      "versionCode": 400000700
+      "versionCode": 400000701
     },
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "light",
       "bundleIdentifier": "com.ifmael.umami",
-      "buildNumber": null
+      "buildNumber": "0.7.1"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
