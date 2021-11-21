@@ -32,5 +32,6 @@ export default ({ config }) => {
       mapsToken: process.env.GOOGLE_MAPS_KEY,
       placesToken: process.env.PLACES_API,
     },
+    plugins: ["expo-updates"],
   };
 };
