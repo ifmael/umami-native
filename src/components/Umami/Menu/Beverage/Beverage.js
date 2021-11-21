@@ -40,8 +40,8 @@ const UmamiMenuBeverage = ({ beverages, isChildrenMenu, name }) => {
       {isNewBeverages ? (
         <View style={{ marginVertical: 15 }}>
           <Picker
-            inputProps={{
-              containerStyle: { paddingHorizontal: 50 },
+            textProps={{
+              containerStyle: { paddingHorizontal: 20 },
               errorMessage: isError ? "Elige una bebida" : "",
               value: productDetailInfo?.beverage?.name ? productDetailInfo?.beverage?.name : "",
             }}

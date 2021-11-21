@@ -1,35 +1,28 @@
 import React, { useState } from "react";
 
 import { ScrollView, TouchableOpacity, View } from "react-native";
-import { Input } from "react-native-elements";
+import { Text, Divider, Icon } from "react-native-elements";
 import Modal from "react-native-modal";
 import PickerDefaultItem from "./PickerDefaultItem";
 import CustomiseSide from "../../Umami/Menu/Side/CustomiseSide";
 import styles from "./Picker.styles";
+import { red } from "/styles/theme";
 import { array, func, object } from "prop-types";
 
 const propTypes = {
-  inputProps: object,
+  textProps: object,
   modalStyles: object,
   onValueChange: func,
   options: array,
   renderItem: func,
 };
 
-const defaultInputProperties = {
-  disabled: true,
-  inputStyle: { textAlign: "center", fontSize: 18 },
-  placeholder: "Pulsame",
-  rightIcon: { type: "font-awesome-5", napme: "caret-down" },
-};
-
 /**
  *  The default Option is a object with id, name and price
  */
 
-const Picker = ({ inputProps, modalStyles, onValueChange, options, renderItem }) => {
+const Picker = ({ textProps, modalStyles, onValueChange, options, renderItem }) => {
   const [isActive, setIsActive] = useState(false);
-  const inputPropsInner = { ...defaultInputProperties, ...inputProps };
   const [step, setStep] = useState(0);
   const [idSideSelected, setIdSideSelected] = useState(null);
 
@@ -66,8 +59,23 @@ const Picker = ({ inputProps, modalStyles, onValueChange, options, renderItem })
   return (
     <>
       <TouchableOpacity onPress={() => setIsActive(true)}>
-        <Input {...inputPropsInner} />
+        <View
+          style={{
+            ...textProps.containerStyle,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text numberOfLines={1}>{textProps.value ? textProps.value : "Pulsame"}</Text>
+          <Icon color={"grey"} name="caret-down" type="font-awesome-5" />
+        </View>
+        <Divider style={{ marginHorizontal: 10 }} />
+        {textProps.errorMessage && !textProps.value ? (
+          <Text style={{ fontSize: 12, color: red }}>{textProps.errorMessage}</Text>
+        ) : null}
       </TouchableOpacity>
+
       <Modal
         isVisible={isActive}
         onBackButtonPress={() => setIsActive(false)}

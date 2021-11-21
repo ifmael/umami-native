@@ -14,7 +14,7 @@ import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
 import useCustomiseSideErrors from "./useCustomiseSideErrors";
 
 // Styles
-import { boldFont } from "/styles/theme";
+import { boldFont, red } from "/styles/theme";
 
 // Types
 import { string, number, array, func, bool } from "prop-types";
@@ -138,7 +138,7 @@ const CustomiseSide = ({
         </View>
       ) : null}
 
-      {hasError ? <Text style={{ fontSize: 16, color: "red" }}>Por favor elija alguna opción</Text> : null}
+      {hasError ? <Text style={{ fontSize: 16, color: red }}>Por favor elija alguna opción</Text> : null}
       <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30 }}>
         <Button title="Cancelar" onPress={() => onCancel()} />
         <Button disabled={false} title="Aceptar" onPress={() => validateOptions()} />

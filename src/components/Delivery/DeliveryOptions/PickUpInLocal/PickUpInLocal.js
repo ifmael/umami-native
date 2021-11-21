@@ -34,9 +34,10 @@ const PickUpInLocal = ({ selectors, handlers }) => {
       />
       <View style={deliveryTime}>
         <Text>Hora de recogida</Text>
-        {
+
+        <View>
           <Picker
-            inputProps={{
+            textProps={{
               containerStyle: { width: 250 },
               value: selectors?.time ? selectors?.time : "",
             }}
@@ -44,7 +45,7 @@ const PickUpInLocal = ({ selectors, handlers }) => {
             options={listOfTimes}
             renderItem={TimePickerOption}
           />
-        }
+        </View>
       </View>
     </View>
   );

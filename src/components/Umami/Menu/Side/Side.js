@@ -40,8 +40,8 @@ const UmamiMenuSide = ({ sides, name }) => {
       {isNewSides ? (
         <View style={{ marginVertical: 15 }}>
           <Picker
-            inputProps={{
-              containerStyle: { paddingHorizontal: 50 },
+            textProps={{
+              containerStyle: { paddingHorizontal: 20 },
               errorMessage: isError ? "Elige un complemento" : "",
               value: productDetailInfo?.side?.name ? productDetailInfo?.side?.name : "",
             }}

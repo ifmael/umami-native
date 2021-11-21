@@ -105,7 +105,7 @@ const DeliveryAtHome = ({ handlers, parentWidth, selectors, showButton = false, 
               <Text>Hora de recogida</Text>
               {
                 <Picker
-                  inputProps={{
+                  textProps={{
                     containerStyle: { width: 250 },
                     value: selectors?.time ? selectors?.time : "",
                   }}
