@@ -9,7 +9,7 @@ import ContextProvider from "/context/GlobalContext";
 import { Home, Menu, Product, ProductDetail, ShoppingCart } from "/screens";
 import { SERVER, TOKEN } from "/constant";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
-import theme, { menuStackStyles, tabBarStyles } from "/styles/theme";
+import theme, { menuStackStyles, brown, defaultFont } from "/styles/theme";
 import Constants from "expo-constants";
 
 import * as Sentry from "sentry-expo";
@@ -67,6 +67,17 @@ const screenOptionsTabBar = ({ route }) => ({
 
     return component;
   },
+  tabBarStyle: [
+    {
+      display: "flex",
+    },
+    null,
+  ],
+  tabBarActiveTintColor: brown,
+  tabBarLabelStyle: {
+    fontSize: 12,
+    fontFamily: defaultFont,
+  },
 });
 
 const productHeaderOption = ({ route }) => {
@@ -78,7 +89,7 @@ const productHeaderOption = ({ route }) => {
 const MenuStack = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionsStack}>
-      <Stack.Screen name="Menu" component={Menu} options={{ title: "Nuestro menú" }} />
+      <Stack.Screen name="Menu Inside" component={Menu} options={{ title: "Nuestro menú" }} />
       <Stack.Screen name="Product" component={Product} options={productHeaderOption} />
     </Stack.Navigator>
   );
@@ -86,9 +97,9 @@ const MenuStack = () => {
 
 const MenuTabs = () => {
   return (
-    <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} tabBarOptions={tabBarStyles} lazy="true">
-      <Tab.Screen name="Home" component={Home} options={{ title: "Umami" }} />
-      <Tab.Screen name="Menu" component={MenuStack} />
+    <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} lazy="true">
+      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Tab.Screen name="Menu" component={MenuStack} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 };

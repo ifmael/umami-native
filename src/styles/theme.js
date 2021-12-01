@@ -156,10 +156,6 @@ export const menuStackStyles = {
   headerTintColor: black,
   cardStyle: { backgroundColor: white },
 };
-export const tabBarStyles = {
-  activeTintColor: brown,
-  labelStyle: { fontSize: 12, fontFamily: defaultFont },
-};
 
 /**
  * SWITCH
