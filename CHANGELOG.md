@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/ifmael/umami-native/compare/v0.7.2...v0.8.0) (2021-12-02)
+
+
+### Bug Fixes
+
+* **picker:** :bug: change input component for a text component inside a picker for increase the touchable area ([5552e60](https://github.com/ifmael/umami-native/commit/5552e60886640f598a4a7c6f527f8330596a2d56))
+* **shopping-cart:** :bug: unify tequeños object ([c434562](https://github.com/ifmael/umami-native/commit/c434562f9f55ba9fe96f4cf0b5cd923a5f10fb5a))
+* **side:** :bug: add type for french chips ([83505be](https://github.com/ifmael/umami-native/commit/83505bed1b0e229bd655d26f7e925d98305fa7f5))
+
 ### [0.7.2](https://github.com/ifmael/umami-native/compare/v0.7.1...v0.7.2) (2021-11-19)
 
 ### [0.7.1](https://github.com/ifmael/umami-native/compare/v0.7.0...v0.7.1) (2021-11-19)
