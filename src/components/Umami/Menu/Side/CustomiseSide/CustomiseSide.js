@@ -97,7 +97,10 @@ const CustomiseSide = ({
 
     if (!isRadioButtonConfigurations && isRadioButtonIngredients && !customiseSideIngredients) {
       isValid = selectedIngredientRadio ? true : false;
-      if (isValid) optionSide.option = selectedIngredientRadio.name;
+      if (isValid)
+        optionSide.name = `${optionSide.name} ${selectedIngredientRadio.name
+          .charAt(0)
+          .toLowerCase()}${selectedIngredientRadio.name.slice(1)}`;
     } else if (!isRadioButtonConfigurations && !isRadioButtonIngredients && customiseSideIngredients) {
       isValid = true;
       optionSide.option = ingredientsSwitch;
