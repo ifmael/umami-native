@@ -15,14 +15,8 @@ const setInitialPrice = (shoppingCart, priceForSupplement) => {
 };
 
 const useShoppingCart = (paymentMethod) => {
-  const {
-    categories,
-    configuration,
-    clearDeliveryOptions,
-    clearShoppingCart,
-    deliveryOptions,
-    shoppingCart,
-  } = useContext(GlobalContext);
+  const { categories, configuration, clearDeliveryOptions, clearShoppingCart, deliveryOptions, shoppingCart } =
+    useContext(GlobalContext);
   const createNewOrder = useOrder();
   const [shoppingCartByCategory, setShoppingCartByCategory] = useState(groupByCategory(shoppingCart, categories));
   const priceForSupplement = configuration?.minimumPayment.min;

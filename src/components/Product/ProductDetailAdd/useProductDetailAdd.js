@@ -23,19 +23,11 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   const disableAddButton = !configuration?.moreOrders?.moreOrder;
 
   const addProductToShoppingCart = useCallback(() => {
-    const {
-      category,
-      beverage,
-      side,
-      isMenu,
-      typeOfMeat,
-      meatPoint,
-      typeOfBread,
-      ingredients,
-      name,
-    } = productDetailInfo;
+    const { category, beverage, side, isMenu, typeOfMeat, meatPoint, typeOfBread, ingredients, name } =
+      productDetailInfo;
     let isError = false;
     let messageErrors = [];
+    let isTequeno = false;
 
     if (category === "hamburguesas") {
       if (!typeOfMeat) {
@@ -62,6 +54,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
     } else if (category === "complementos") {
       const isPreselectedIngredientProduct =
         name.toLowerCase() === "patatas umami" || name.toLowerCase() === "nachos umami";
+      isTequeno = name.toLowerCase().includes("tequeños");
       if (!side && !isPreselectedIngredientProduct) {
         isError = true;
         messageErrors.push({
@@ -98,7 +91,14 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
       setErrors(messageErrors);
     } else {
       const shoppingCartItem = {
-        ...productDetailInfo,
+        ...(isTequeno
+          ? {
+              name,
+              price: priceProduct,
+              category: productDetailInfo.category,
+              side: { option: { main: productDetailInfo.side, secondary: productDetailInfo.ingredients[0] } },
+            }
+          : productDetailInfo),
         id: guidGenerator(),
         isChildrenMenu,
         isMenu,

@@ -35,9 +35,8 @@ const ShoppingCart = () => {
   const moreOrder = configuration?.moreOrders.moreOrder;
   const titleClose = configuration?.close?.title;
   const { options, setOption, selected: paymentMethod, setSelected } = useRadioButtons(paymentMethods);
-  const [{ showDeliveryOptions, showIsClosedFromSchedule, showPaymentsMethod }, handlers] = useShoppingCartModals(
-    isClosedFromSchedule
-  );
+  const [{ showDeliveryOptions, showIsClosedFromSchedule, showPaymentsMethod }, handlers] =
+    useShoppingCartModals(isClosedFromSchedule);
   const [
     {
       deliveryOptions,

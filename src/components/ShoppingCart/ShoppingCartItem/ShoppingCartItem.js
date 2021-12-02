@@ -52,14 +52,7 @@ const ShoppingCartItem = ({
           {typeOfMeat?.name ? <Text style={stylesRNEComponents.optionText}>· {typeOfMeat.name}</Text> : null}
           {meatPoint?.name ? <Text style={stylesRNEComponents.optionText}>· {meatPoint.name}</Text> : null}
           {typeOfBread?.name ? <Text style={stylesRNEComponents.optionText}>· {typeOfBread.name}</Text> : null}
-          {side?.name && ingredients?.length === 0 ? (
-            <Text style={stylesRNEComponents.optionText}>· {side.name}</Text>
-          ) : null}
-          {side?.name && ingredients?.length ? (
-            <Text style={stylesRNEComponents.optionText}>
-              · {side.name} con {getListOfIngredients(ingredients)}
-            </Text>
-          ) : null}
+          {side?.name ? <Text style={stylesRNEComponents.optionText}>· {side.name}</Text> : null}
           {Array.isArray(side?.data) && side?.data.length ? (
             <Text>
               {getListOfIngredients(side.data, side?.showWith ? "" : "· Sin ", side?.showWith ? false : true)}
@@ -87,6 +80,10 @@ const ShoppingCartItem = ({
     </ListItem>
   );
 };
+
+// {
+//   side?.name && ingredients?.length === 0 ? <Text style={stylesRNEComponents.optionText}>· {side.name}</Text> : null;
+// }
 
 ShoppingCartItem.propTypes = {
   beverage: object,
