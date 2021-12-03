@@ -81,10 +81,6 @@ const ShoppingCartItem = ({
   );
 };
 
-// {
-//   side?.name && ingredients?.length === 0 ? <Text style={stylesRNEComponents.optionText}>· {side.name}</Text> : null;
-// }
-
 ShoppingCartItem.propTypes = {
   beverage: object,
   category: string,
