@@ -2,6 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-elements";
 import { SERVER, TOKEN, MAPS_TOKEN, PLACES_TOKEN } from "/constant";
+import Constants from "expo-constants";
 import { any } from "prop-types";
 
 const propTypes = {
