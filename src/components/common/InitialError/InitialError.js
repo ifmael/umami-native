@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-elements";
-import { server, token, mapsToken, placesToken } from "/constant";
+import { SERVER, TOKEN, MAPS_TOKEN, PLACES_TOKEN } from "/constant";
 import { any } from "prop-types";
 
 const propTypes = {
@@ -9,16 +9,16 @@ const propTypes = {
 };
 
 const InitialError = ({ error }) => {
+  console.log(error);
   return (
     <View style={{ flex: 1, justifyContent: "center", marginHorizontal: 15 }}>
-      <Text>server: {server}</Text>
-      <Text>token: {token}</Text>
-      <Text>maps:{mapsToken}</Text>
-      <Text>places:{placesToken}</Text>
-      <Text>{process.env.SENTRY_ORG}</Text>
+      <Text>server: {SERVER}</Text>
+      <Text>token: {TOKEN}</Text>
+      <Text>maps:{MAPS_TOKEN}</Text>
+      <Text>places:{PLACES_TOKEN}</Text>
+      <Text>sentry:{process.env.SENTRY_ORG}</Text>
       <Text>Error graphl</Text>
       <Text>message: {error.message}</Text>
-      <Text>errorMesage:{error.clientErrors?.name}</Text>
       {/* <Text h4 style={{ marginBottom: 30 }}>
         Lo sentimos, ha habido un problema al cargar la aplicación.
       </Text>
