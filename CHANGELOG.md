@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.3](https://github.com/ifmael/umami-native/compare/v0.8.2...v0.8.3) (2021-12-04)
+
+
+### Bug Fixes
+
+* **import:** :bug: fix import ([73e7c16](https://github.com/ifmael/umami-native/commit/73e7c160d23bdc383bb541f2f4dfba8c4eb7028d))
+
 ### [0.8.2](https://github.com/ifmael/umami-native/compare/v0.8.1...v0.8.2) (2021-12-04)
 
 ### [0.8.1](https://github.com/ifmael/umami-native/compare/v0.8.0...v0.8.1) (2021-12-03)
