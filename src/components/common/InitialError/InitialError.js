@@ -10,6 +10,7 @@ const propTypes = {
 
 const InitialError = ({ error }) => {
   console.log(error);
+  let releaseChannel = process.env.RELEASE_CHANNEL ?? Constants.manifest.releaseChannel;
   return (
     <View style={{ flex: 1, justifyContent: "center", marginHorizontal: 15 }}>
       <Text>server: {SERVER}</Text>
@@ -19,6 +20,8 @@ const InitialError = ({ error }) => {
       <Text>sentry:{process.env.SENTRY_ORG}</Text>
       <Text>Error graphl</Text>
       <Text>message: {error.message}</Text>
+      <Text>buildProfile: {process.env.EAS_BUILD_PROFILE}</Text>
+      <Text>releaseChannel: {releaseChannel}</Text>
       {/* <Text h4 style={{ marginBottom: 30 }}>
         Lo sentimos, ha habido un problema al cargar la aplicación.
       </Text>

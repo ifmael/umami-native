@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Hamburgueseria Umami",
-    "description": "Development channel",
+    "description": "App for Ummai",
     "slug": "umami-burger",
     "version": "0.8.5",
     "owner": "ifmael",
@@ -15,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/android.png",
