@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-elements";
-import { server, token, mapsToken, placesToken } from "/constants";
+import { server, token, mapsToken, placesToken } from "/constant";
 import { any } from "prop-types";
 
 const propTypes = {
