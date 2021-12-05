@@ -31,6 +31,7 @@
     "expo-dev-client": "~0.6.3",
     "expo-device": "~4.0.3",
     "expo-font": "~10.0.3",
+    "expo-location": "~13.0.4",
     "expo-splash-screen": "~0.13.5",
     "expo-status-bar": "~1.1.0",
     "expo-updates": "~0.10.15",

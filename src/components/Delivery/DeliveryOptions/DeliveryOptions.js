@@ -18,9 +18,8 @@ const propTypes = {
 
 const DeliveryOptions = ({ showComponent = false, showModalHandler }) => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [{ parentWidth }, handlersWizard, useChoosePlace, useDeliveryAtHome, usePickUpInLocal] = useDeliveryOptions(
-    showModalHandler
-  );
+  const [{ parentWidth }, handlersWizard, useChoosePlace, useDeliveryAtHome, usePickUpInLocal] =
+    useDeliveryOptions(showModalHandler);
   const wizardRef = useRef(null);
   const stepList = [
     { content: <ChoosePlace options={useChoosePlace.options} setOption={useChoosePlace.setOption} /> },
