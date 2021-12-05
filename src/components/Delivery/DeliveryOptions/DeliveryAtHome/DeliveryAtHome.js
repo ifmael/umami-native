@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "/context/GlobalContext";
 import { bool, number, object } from "prop-types";
 import { Platform, ScrollView, TouchableOpacity, View } from "react-native";
 import { BottomSheet, Button, Input, ListItem, SearchBar, Text } from "react-native-elements";
@@ -21,35 +22,38 @@ const DeliveryAtHome = ({ handlers, parentWidth, selectors, showButton = false, 
   const { renderRow } = UI;
   const { autocompleteStyle, inputStyles } = getStyles(parentWidth);
   const listOfTimes = useTime();
+  const { location } = useContext(GlobalContext);
 
   return (
     <View>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
         <View style={styles.mainContainer}>
-          <GooglePlacesAutocomplete
-            currentLocation
-            currentLocationLabel="Usar mi localización."
-            debounce={750}
-            enablePoweredByContainer={false}
-            fetchDetails
-            keyboardShouldPersistTaps="handled"
-            minLength={2}
-            nearbyPlacesAPI="GoogleReverseGeocoding"
-            onPress={handlers.onPressAddress}
-            placeholder="Busca tu calle."
-            renderRow={renderRow}
-            query={{
-              components: "country:es",
-              key: PLACES_TOKEN,
-              language: "es",
-            }}
-            styles={autocompleteStyle}
-            textInputProps={{
-              InputComp: SearchBar,
-              searchIcon: { name: "search", type: "font-awesome-5" },
-              clearIcon: Platform.OS === "ios" ? null : { name: "times-circle", type: "font-awesome-5", solid: true },
-            }}
-          />
+          {location ? (
+            <GooglePlacesAutocomplete
+              currentLocation
+              currentLocationLabel="Usar mi localización."
+              debounce={750}
+              enablePoweredByContainer={false}
+              fetchDetails
+              keyboardShouldPersistTaps="handled"
+              minLength={2}
+              nearbyPlacesAPI="GoogleReverseGeocoding"
+              onPress={handlers.onPressAddress}
+              placeholder="Busca tu calle."
+              renderRow={renderRow}
+              query={{
+                components: "country:es",
+                key: PLACES_TOKEN,
+                language: "es",
+              }}
+              styles={autocompleteStyle}
+              textInputProps={{
+                InputComp: SearchBar,
+                searchIcon: { name: "search", type: "font-awesome-5" },
+                clearIcon: Platform.OS === "ios" ? null : { name: "times-circle", type: "font-awesome-5", solid: true },
+              }}
+            />
+          ) : null}
 
           <View style={[styles.contactInfoContainer]}>
             <Input

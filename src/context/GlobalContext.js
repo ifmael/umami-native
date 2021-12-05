@@ -21,6 +21,7 @@ import {
   usePaymentMethods,
   useProducts,
   useShoppingCart,
+  useLocation,
 } from "/hooks";
 
 import GET_DATA from "/graphql/querys/getData";
@@ -33,6 +34,7 @@ const ContextProvider = ({ children }) => {
   const { categories } = useCategories(data);
   const ingredients = useIngredients(data);
   const [configurationSelectors, configurationHandlers] = useConfigurations(data);
+  const location = useLocation();
   const days = useDays(data);
   const paymentMethods = usePaymentMethods(data);
   const [fontsLoaded] = useFonts({
@@ -59,6 +61,7 @@ const ContextProvider = ({ children }) => {
         loading,
         paymentMethods,
         productsByCategory,
+        location,
         ...configurationSelectors,
         ...configurationHandlers,
         ...shoppingCartSelectors,

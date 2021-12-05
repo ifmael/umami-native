@@ -7,6 +7,7 @@ import useIngredients from "./useIngredients";
 import useProducts from "./useProducts";
 import useShoppingCart from "./useShoppingCart";
 import usePaymentMethods from "./usePaymentMethods";
+import useLocation from "./useLocation";
 
 export {
   useCategories,
@@ -18,4 +19,5 @@ export {
   usePaymentMethods,
   useProducts,
   useShoppingCart,
+  useLocation,
 };
