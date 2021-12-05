@@ -19,7 +19,7 @@ export default ({ config }) => {
     // All values in extra will be passed to your app.
 
     extra: {
-      // server: process.env.EXPO_PRODUCTION_SERVER,
+      releaseChannel: process.env.RELEASE_CHANNEL,
       server: {
         local: process.env.EXPO_LOCAL_SERVER,
         development: process.env.EXPO_DEVELOPMENT_SERVER,

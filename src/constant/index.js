@@ -4,7 +4,7 @@ import Constants from "expo-constants";
 const getObjectEnvironment = (server, token, mapsToken, placesToken) => ({ server, token, mapsToken, placesToken });
 
 const getEnvironment = () => {
-  let releaseChannel = process.env.RELEASE_CHANNEL ?? Constants.manifest.releaseChannel;
+  let releaseChannel = Constants.manifest.extra.releaseChannel ?? Constants.manifest.releaseChannel;
 
   if (releaseChannel === undefined)
     // since releaseChannels are undefined in dev, return your default.
