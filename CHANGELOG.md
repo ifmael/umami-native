@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.12](https://github.com/ifmael/umami-native/compare/v0.8.11...v0.8.12) (2021-12-06)
+
+
+### Features
+
+* **home:** :boom: add instagram link ([fbbad12](https://github.com/ifmael/umami-native/commit/fbbad1202238bac92b6d4c75b1e89c6eb3b6c605))
+
 ### [0.8.11](https://github.com/ifmael/umami-native/compare/v0.8.10...v0.8.11) (2021-12-06)
 
 
