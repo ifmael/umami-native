@@ -76,9 +76,6 @@ const Home = () => {
             @umamisantafe
           </Text>
         </TouchableOpacity>
-        <Text h3 style={{ color: red, textAlign: "center" }}>
-          testing updates
-        </Text>
       </Animated.View>
     </View>
   );

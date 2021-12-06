@@ -11,6 +11,7 @@ import { SERVER, TOKEN } from "/constant";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
 import theme, { menuStackStyles, brown, defaultFont } from "/styles/theme";
 import Constants from "expo-constants";
+import * as Updates from "expo-updates";
 
 import * as Sentry from "sentry-expo";
 
@@ -22,7 +23,7 @@ Sentry.init({
   enableInExpoDevelopment: true,
   release: `umami-native@${Constants.manifest.version}-${Constants.manifest.releaseId}`,
   environment: Constants.manifest?.releaseChannel || "local",
-  debug: Constants.manifest?.releaseChannel ? false : true,
+  debug: Updates.releaseChannel ? false : true,
 });
 
 const authLink = new ApolloLink((operation, forward) => {
