@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.11](https://github.com/ifmael/umami-native/compare/v0.8.10...v0.8.11) (2021-12-06)
+
+
+### Bug Fixes
+
+* **location:** :construction_worker: use `installWebGeolocationPolyfill` polyfill for location ([a01b299](https://github.com/ifmael/umami-native/commit/a01b2998b3a9411dd1cff2813f59ceb24aaa22df))
+
 ### [0.8.10](https://github.com/ifmael/umami-native/compare/v0.8.9...v0.8.10) (2021-12-05)
 
 
