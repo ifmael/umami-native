@@ -51,6 +51,10 @@ const Home = () => {
     Linking.openURL(`tel:${phoneNumber}`);
   };
 
+  const goToInstagram = () => {
+    Linking.openURL(`instagram://user?username=umamisantafe`);
+  };
+
   return (
     <View style={styles.container}>
       <Animated.View style={{ transform: [{ translateY: heightPosition }] }}>
@@ -65,6 +69,11 @@ const Home = () => {
         <TouchableOpacity onPress={call}>
           <Text h3 style={{ color: red, textAlign: "center" }}>
             858 69 33 02
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={goToInstagram}>
+          <Text h3 style={{ color: red, textAlign: "center" }}>
+            @umamisantafe
           </Text>
         </TouchableOpacity>
       </Animated.View>
