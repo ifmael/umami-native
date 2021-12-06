@@ -8,6 +8,7 @@ const useLocation = () => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") return;
+      Location.installWebGeolocationPolyfill();
 
       let location = await Location.getCurrentPositionAsync({});
       setHasLocation(location);
