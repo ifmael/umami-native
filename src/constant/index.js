@@ -7,7 +7,7 @@ const getObjectEnvironment = (server, token, mapsToken, placesToken) => ({ serve
 const getEnvironment = () => {
   let releaseChannel = Constants.manifest.extra.releaseChannel ?? Updates.releaseChannel;
 
-  if (releaseChannel === undefined)
+  if (releaseChannel === "default")
     // since releaseChannels are undefined in dev, return your default.
     return getObjectEnvironment(
       Constants.manifest.extra.server.local,

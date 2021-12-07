@@ -87,7 +87,6 @@ export const getSchedule = (schedules) => {
   try {
     const todayKey = dayjs().isoWeekday();
     let scheduleSelected;
-    let minDiff = -1;
 
     for (const schedule of schedules) {
       const { closingTime, days, openingTime } = schedule;
@@ -100,13 +99,6 @@ export const getSchedule = (schedules) => {
         if (now.isBetween(openingTimeParsed, closingTimeParsed)) {
           scheduleSelected = schedule;
           break;
-        } else if (now.isBefore(openingTimeParsed)) {
-          const diff = openingTimeParsed.diff(now, "minute");
-
-          if (diff < minDiff || minDiff === -1) {
-            minDiff = diff;
-            scheduleSelected = schedule;
-          }
         }
       }
     }
