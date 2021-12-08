@@ -1,8 +1,14 @@
 import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-elements";
+// import { SERVER, TOKEN, MAPS_TOKEN, PLACES_TOKEN } from "/constant";
+import { any } from "prop-types";
 
-const InitialError = () => {
+const propTypes = {
+  error: any,
+};
+
+const InitialError = ({ error }) => {
   return (
     <View style={{ flex: 1, justifyContent: "center", marginHorizontal: 15 }}>
       <Text h4 style={{ marginBottom: 30 }}>
@@ -16,5 +22,7 @@ const InitialError = () => {
     </View>
   );
 };
+
+InitialError.propTypes = propTypes;
 
 export default InitialError;

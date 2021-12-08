@@ -50,7 +50,7 @@ const ContextProvider = ({ children }) => {
   return !fontsLoaded || loading ? (
     <AppLoading />
   ) : error ? (
-    <InitialError />
+    <InitialError error={error} />
   ) : (
     <GlobalContext.Provider
       value={{
