@@ -5,19 +5,27 @@ import { Card, Text } from "react-native-elements";
 import { string, object } from "prop-types";
 import { imageViewShadowWrapper } from "/styles/theme";
 import { stylesRNElements } from "./MenuItem.styles";
+import images from "/assets/images";
 
-const MenuItem = ({ name, image, slug }) => {
+const MenuItem = ({ name, image, slug, imageAsset }) => {
   const navigation = useNavigation();
   const navigateToCategory = () => {
     navigation.navigate("Product", { slug, name });
   };
 
+  const hasImage = (!!imageAsset && images.menu[imageAsset]) || image.url;
+  const source = hasImage
+    ? !!imageAsset && images.menu[imageAsset]
+      ? images.menu[imageAsset]
+      : { uri: image.url }
+    : null;
+
   return (
     <Card containerStyle={stylesRNElements.containerStyle}>
       <TouchableOpacity onPress={navigateToCategory} activeOpacity={1}>
-        {image?.url ? (
+        {hasImage ? (
           <View style={imageViewShadowWrapper}>
-            <Card.Image source={{ uri: `${image.url}` }} style={{ height: 150 }} />
+            <Card.Image source={source} style={{ height: 150 }} />
           </View>
         ) : null}
         <Card.Title>
@@ -33,6 +41,7 @@ MenuItem.propTypes = {
   name: string,
   image: object,
   slug: string,
+  imageAsset: string,
 };
 
 export default MenuItem;

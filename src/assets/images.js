@@ -1,8 +1,11 @@
 const images = {
   menu: {
-    burger: require("./img/buguer.jpg"),
-    salad: require("./img/salad.jpg"),
-    beverage: require("./img/beverage.jpg"),
+    burger: require("./img/burger.jpg"),
+    salad: require("./img/salad.jpeg"),
+    beverage: require("./img/beverage.jpeg"),
+    dessert: require("./img/dessert.jpeg"),
+    side: require("./img/side.jpg"),
+    sandwich: require("./img/sandwich.jpeg"),
   },
 };
 

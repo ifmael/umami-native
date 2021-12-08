@@ -267,6 +267,7 @@ const GET_DATA = gql`
         url
         previewUrl
       }
+      imageAsset
     }
     ingredients {
       id
