@@ -25,6 +25,9 @@
       "package": "com.ifmael.umami",
       "versionCode": 430000813
     },
+    "androidStatusBar": {
+      "barStyle": "dark-content"
+    },
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "light",
