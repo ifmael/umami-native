@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/ifmael/umami-native/compare/v0.8.13...v0.9.0) (2021-12-08)
+
+
+### Bug Fixes
+
+* **location:** :globe_with_meridians: ask for location persmission to get the place not at the beginning ([8c49ee0](https://github.com/ifmael/umami-native/commit/8c49ee0aca39af9acc776fefd0d0d932f3dbb866))
+* **schedule:** :bug: close between opening and closing time ([61e2fad](https://github.com/ifmael/umami-native/commit/61e2fad5167ccf3520570ef35a35822dc893ebad))
+
 ### [0.8.13](https://github.com/ifmael/umami-native/compare/v0.8.12...v0.8.13) (2021-12-06)
 
 ### [0.8.12](https://github.com/ifmael/umami-native/compare/v0.8.11...v0.8.12) (2021-12-06)
