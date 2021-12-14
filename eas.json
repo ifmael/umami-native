@@ -13,15 +13,15 @@
     },
     "production": {
       "releaseChannel": "production",
-      "android": {
-        "buildType": "apk"
-      },
       "env": {
         "RELEASE_CHANNEL": "production"
       }
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {},
+      "ios": {}
+    }
   }
 }
