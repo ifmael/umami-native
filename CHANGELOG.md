@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/ifmael/umami-native/compare/v0.8.13...v1.0.0) (2021-12-14)
+
+
+### Features
+
+* **error:** :goal_net: pass error to InitialError component ([841b2fc](https://github.com/ifmael/umami-native/commit/841b2fc7cbe2eeea45be16042964ca7862ffd94d))
+
+
+### Bug Fixes
+
+* **location:** :globe_with_meridians: ask for location persmission to get the place not at the beginning ([8c49ee0](https://github.com/ifmael/umami-native/commit/8c49ee0aca39af9acc776fefd0d0d932f3dbb866))
+* **schedule:** :bug: close between opening and closing time ([61e2fad](https://github.com/ifmael/umami-native/commit/61e2fad5167ccf3520570ef35a35822dc893ebad))
+
 ### [0.9.1](https://github.com/ifmael/umami-native/compare/v0.9.0...v0.9.1) (2021-12-08)
 
 ## [0.9.0](https://github.com/ifmael/umami-native/compare/v0.8.13...v0.9.0) (2021-12-08)

@@ -3,7 +3,7 @@
     "name": "Umami",
     "description": "Hamburgueseria Umami",
     "slug": "umami-burger",
-    "version": "0.9.1",
+    "version": "1.0.0",
     "owner": "ifmael",
     "orientation": "portrait",
     "icon": "./src/assets/ios.png",
@@ -25,7 +25,7 @@
       },
       "userInterfaceStyle": "light",
       "package": "com.ifmael.umami",
-      "versionCode": 430000901,
+      "versionCode": 430010000,
       "permissions": [
         "ACCESS_FINE_LOCATION"
       ]
@@ -37,7 +37,7 @@
       "supportsTablet": true,
       "userInterfaceStyle": "light",
       "bundleIdentifier": "com.ifmael.umami",
-      "buildNumber": "0.9.1",
+      "buildNumber": "1.0.0",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Para enviar tu pedido a casa."
       }
