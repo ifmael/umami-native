@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/ifmael/umami-native/compare/v1.0.3...v1.0.4) (2021-12-17)
+
+
+### Bug Fixes
+
+* :bug: remove  ascIdApple ([d8d6e1d](https://github.com/ifmael/umami-native/commit/d8d6e1df6f2c79acca4c7eada6a051bac5d43d4b))
+
 ### [1.0.3](https://github.com/ifmael/umami-native/compare/v1.0.2...v1.0.3) (2021-12-17)
 
 
