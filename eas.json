@@ -13,9 +13,7 @@
     },
     "production": {
       "releaseChannel": "production",
-      "ios": {
-        "ascAppId": "1600535350"
-      },
+
       "env": {
         "RELEASE_CHANNEL": "production"
       }
