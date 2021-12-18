@@ -15,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/android.png",
@@ -26,9 +24,7 @@
       "userInterfaceStyle": "light",
       "package": "com.ifmael.umami",
       "versionCode": 430010005,
-      "permissions": [
-        "ACCESS_FINE_LOCATION"
-      ]
+      "permissions": ["ACCESS_FINE_LOCATION"]
     },
     "androidStatusBar": {
       "barStyle": "dark-content"
@@ -36,7 +32,7 @@
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "light",
-      "bundleIdentifier": "com.ifmael.umami",
+      "bundleIdentifier": "com.ifmaeles.umami",
       "buildNumber": "1.0.5",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Para enviar tu pedido a casa."
