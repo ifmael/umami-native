@@ -3,7 +3,7 @@
     "name": "umamiapp",
     "description": "Hamburgueseria Umami",
     "slug": "umami-burger",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "owner": "ifmael",
     "orientation": "portrait",
     "icon": "./src/assets/ios.png",
@@ -15,7 +15,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/android.png",
@@ -23,8 +25,10 @@
       },
       "userInterfaceStyle": "light",
       "package": "com.ifmael.umami",
-      "versionCode": 430010005,
-      "permissions": ["ACCESS_FINE_LOCATION"]
+      "versionCode": 430010006,
+      "permissions": [
+        "ACCESS_FINE_LOCATION"
+      ]
     },
     "androidStatusBar": {
       "barStyle": "dark-content"
@@ -33,7 +37,7 @@
       "supportsTablet": true,
       "userInterfaceStyle": "light",
       "bundleIdentifier": "com.ifmaeles.umami",
-      "buildNumber": "1.0.5",
+      "buildNumber": "1.0.6",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Para enviar tu pedido a casa."
       }
