@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { StyleSheet, View, Image, Animated, Dimensions, Linking, TouchableOpacity } from "react-native";
 import logo from "/assets/umami.png";
-import { Text } from "react-native-elements";
+import { Text, Icon } from "react-native-elements";
 import { red } from "/styles/theme";
 
 const windowWidth = Dimensions.get("window").width;
@@ -66,14 +66,44 @@ const Home = () => {
         <Text h3 style={{ color: red }} numberOfLines={1} adjustsFontSizeToFit>
           Hamburguesería gourmet
         </Text>
-        <TouchableOpacity onPress={call}>
+        <TouchableOpacity
+          onPress={call}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Icon
+            type="font-awesome-5"
+            name="phone"
+            size={24}
+            color={red}
+            iconStyle={{ transform: [{ rotate: "120deg" }], marginTop: 4 }}
+          />
           <Text h3 style={{ color: red, textAlign: "center" }}>
             858 69 33 02
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={goToInstagram}>
+        <TouchableOpacity
+          onPress={goToInstagram}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Icon
+            type="font-awesome-5"
+            name="instagram"
+            size={30}
+            color={red}
+            iconStyle={{ marginRight: 6, marginTop: 4 }}
+          />
           <Text h3 style={{ color: red, textAlign: "center" }}>
-            @umamisantafe
+            umamisantafe
           </Text>
         </TouchableOpacity>
       </Animated.View>
