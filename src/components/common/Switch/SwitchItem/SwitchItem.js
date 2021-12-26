@@ -8,7 +8,7 @@ const SwitchItem = ({ id, name, isSelected, setState }) => {
   const platformStyle = Platform.OS === "android" ? { marginVertical: 0 } : {};
 
   return (
-    <View style={{ ...switchStyleView, ...platformStyle }}>
+    <View style={{ ...switchStyleView, ...platformStyle, flexWrap: "wrap" }}>
       <Text adjustsFontSizeToFit>{name}</Text>
       <Switch
         trackColor={{ false: switchStyles.trackColor.false, true: switchStyles.trackColor.true }}

@@ -84,7 +84,12 @@ const Picker = ({ textProps, modalStyles, onValueChange, options, renderItem }) 
       >
         <View style={styles.mainView}>
           {step === 0 ? (
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>{optionsWithHandler?.map(onRenderItem)}</ScrollView>
+            <>
+              <ScrollView contentContainerStyle={{ flexGrow: 1 }}>{optionsWithHandler?.map(onRenderItem)}</ScrollView>
+              <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
+                <Button title="Cancelar" onPress={() => setIsActive(false)} />
+              </View>
+            </>
           ) : step === 1 ? (
             <CustomiseSide
               id={customSide.id}
@@ -100,9 +105,6 @@ const Picker = ({ textProps, modalStyles, onValueChange, options, renderItem }) 
               onCancel={onClose}
             />
           ) : null}
-          <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
-            <Button title="Cancelar" onPress={() => setIsActive(false)} />
-          </View>
         </View>
       </Modal>
     </>
