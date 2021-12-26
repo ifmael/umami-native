@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/ifmael/umami-native/compare/v1.0.6...v1.1.0) (2021-12-26)
+
+
+### Features
+
+* **icon:** :lipstick: add icons in the home screen ([9ceaf8a](https://github.com/ifmael/umami-native/commit/9ceaf8a87f91720d13a3229dcf643eee51c76677))
+* **location:** :globe_with_meridians: add location ([c5cadf6](https://github.com/ifmael/umami-native/commit/c5cadf6a5f572b2d6b7d5f9bfae547c51104c175))
+
+
+### Bug Fixes
+
+* **font:** :lipstick: limit font scaling ([5e61ec8](https://github.com/ifmael/umami-native/commit/5e61ec860070c32a2b89959bb367eba68d1b1743))
+* **wrap:** :lipstick: wrap tex row ([43050aa](https://github.com/ifmael/umami-native/commit/43050aa66ad3ae96fdd30535d6d1db65b38c8d6e))
+
 ### [1.0.6](https://github.com/ifmael/umami-native/compare/v1.0.5...v1.0.6) (2021-12-18)
 
 ### [1.0.5](https://github.com/ifmael/umami-native/compare/v1.0.4...v1.0.5) (2021-12-17)
