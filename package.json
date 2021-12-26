@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -18,7 +18,7 @@
     "eas:build:production": "eas build --profile production"
   },
   "dependencies": {
-    "@apollo/client": "~3.5.6",
+    "@apollo/client": "~3.4.17",
     "@expo-google-fonts/comfortaa": "^0.2.0",
     "@expo-google-fonts/inter": "^0.2.0",
     "@react-native-community/masked-view": "0.1.11",
