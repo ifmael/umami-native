@@ -2897,7 +2897,7 @@ arrify@^1.0.1:
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
   integrity sha1-iYUI2iIm84DfkEcoRWhJwVAaSw0=
 
-asap@~2.0.3, asap@~2.0.6:
+asap@~2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
@@ -7380,14 +7380,7 @@ progress@^2.0.0, progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-promise@^7.1.1:
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/promise/-/promise-7.3.1.tgz#064b72602b18f90f29192b8b1bc418ffd1ebd3bf"
-  integrity sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==
-  dependencies:
-    asap "~2.0.3"
-
-promise@^8.0.3:
+promise@^7.1.1, promise@^8.0.3:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.1.0.tgz#697c25c3dfe7435dd79fcd58c38a135888eaf05e"
   integrity sha512-W04AqnILOL/sPRXziNicCjSNRruLAuIHEOVBazepu0545DDNGYHz7ar9ZgZ1fMU8/MA4mVxp5rkBWRi6OXIy3Q==
@@ -8100,10 +8093,9 @@ send@0.17.2:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
-sentry-expo@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/sentry-expo/-/sentry-expo-4.0.3.tgz#8b98481d37923f734da13519a98913f55995aad3"
-  integrity sha512-Def+9ewJPRE1i/TdAGrZqY5/UqOA6lwS0C4L/XMekJMPeDMjFf3c/++u5EyK45eU/SM611tG6LwUvj38sp88sg==
+"sentry-expo@https://github.com/expo/sentry-expo":
+  version "4.0.5"
+  resolved "https://github.com/expo/sentry-expo#3d18c562b6604e780bb27ddf1652070c3a244938"
   dependencies:
     "@expo/config-plugins" "^2.0.2"
     "@expo/config-types" "^41.0.0"
