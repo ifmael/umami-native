@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { ScrollView, TouchableOpacity, View } from "react-native";
-import { Text, Divider, Icon } from "react-native-elements";
+import { Text, Divider, Icon, Button } from "react-native-elements";
 import Modal from "react-native-modal";
 import PickerDefaultItem from "./PickerDefaultItem";
 import CustomiseSide from "../../Umami/Menu/Side/CustomiseSide";
@@ -100,6 +100,9 @@ const Picker = ({ textProps, modalStyles, onValueChange, options, renderItem }) 
               onCancel={onClose}
             />
           ) : null}
+          <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
+            <Button title="Cancelar" onPress={() => setIsActive(false)} />
+          </View>
         </View>
       </Modal>
     </>

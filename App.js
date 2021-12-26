@@ -11,6 +11,7 @@ import { SERVER, TOKEN } from "/constant";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
 import theme, { menuStackStyles, brown, defaultFont } from "/styles/theme";
 import Constants from "expo-constants";
+import { Text } from "react-native-elements";
 
 import * as Sentry from "sentry-expo";
 
@@ -139,5 +140,10 @@ const App = () => {
 };
 
 AppRegistry.registerComponent("MyApplication", () => App);
+
+Text.defaultProps = {
+  ...Text.defaultProps,
+  maxFontSizeMultiplier: 1.15,
+};
 
 export default App;

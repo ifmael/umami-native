@@ -9,7 +9,7 @@ const SwitchItem = ({ id, name, isSelected, setState }) => {
 
   return (
     <View style={{ ...switchStyleView, ...platformStyle }}>
-      <Text>{name}</Text>
+      <Text adjustsFontSizeToFit>{name}</Text>
       <Switch
         trackColor={{ false: switchStyles.trackColor.false, true: switchStyles.trackColor.true }}
         thumbColor={isSelected ? switchStyles.thumbColor.false : switchStyles.thumbColor.true}
