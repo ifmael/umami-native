@@ -46,14 +46,16 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
           type: "ComponentBurgerPointCooking",
         });
       }
-    } else if (category === "bocadillos") {
-      if (!typeOfBread) {
-        isError = true;
-        messageErrors.push({ text: "· Por favor elige el pan", id: "typeOfBread", type: "ComponentSandwichBreads" });
-      }
+      // } else if (category === "bocadillos") {
+      //   if (!typeOfBread) {
+      //     isError = true;
+      //     messageErrors.push({ text: "· Por favor elige el pan", id: "typeOfBread", type: "ComponentSandwichBreads" });
+      //   }
     } else if (category === "complementos") {
       const isPreselectedIngredientProduct =
-        name.toLowerCase() === "patatas umami" || name.toLowerCase() === "nachos umami";
+        name.toLowerCase() === "patatas umami" ||
+        name.toLowerCase() === "nachos umami" ||
+        name.toLowerCase() === "patatas tejanas";
       isTequeno = name.toLowerCase().includes("tequeños");
       if (!side && !isPreselectedIngredientProduct) {
         isError = true;

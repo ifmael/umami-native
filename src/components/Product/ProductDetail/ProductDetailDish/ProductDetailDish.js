@@ -41,13 +41,15 @@ export default function ProductDetailDish({
 
         <Text style={headerStyles.text}>{description}</Text>
       </View>
-      {isBurguerSandwich ? (
+      {isBurguerSandwich && configuration && configuration.length ? (
         <>
           <Divider style={{ marginBottom: 10 }} />
           <UmamiDishConfiguration configurations={configuration} />
           <Divider />
         </>
-      ) : null}
+      ) : (
+        <Divider />
+      )}
       {isCustomizable ? (
         <>
           <UmamiDishIngredients ingredients={ingredients} category={category} isYourTaste={isYourTaste} />
