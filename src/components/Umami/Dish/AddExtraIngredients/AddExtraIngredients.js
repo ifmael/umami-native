@@ -25,10 +25,8 @@ const getTitle = (isIngredients) =>
   isIngredients ? "Añade o eliminar más ingredientes extra" : "Añadir ingredientes extra";
 
 const AddExtraIngredients = ({ originalListIngredients, category }) => {
-  const [
-    { isVisible, listOfIngredients, selectedIngredients },
-    { onCancel, setIngredient, setIsVisible },
-  ] = useAddExtraIngrendients(originalListIngredients, category);
+  const [{ isVisible, listOfIngredients, selectedIngredients }, { onCancel, setIngredient, setIsVisible }] =
+    useAddExtraIngrendients(originalListIngredients, category);
 
   return (
     <View style={styles.addExtraIngredientMainView}>
@@ -36,10 +34,10 @@ const AddExtraIngredients = ({ originalListIngredients, category }) => {
         <>
           <Divider style={dividerStyles} />
           <View style={ingredientsInfoView}>
-            {selectedIngredients?.map(({ name, id }) => (
+            {selectedIngredients?.map(({ name, id, price }) => (
               <View key={id} style={ingredientsInfoItem}>
                 <Text>{name}</Text>
-                <Text>+ 0.50 €</Text>
+                <Text>+ {price?.toFixed(2) ?? ""} €</Text>
               </View>
             ))}
           </View>
@@ -55,11 +53,11 @@ const AddExtraIngredients = ({ originalListIngredients, category }) => {
       <Modal isVisible={isVisible}>
         <View style={modalStyle}>
           <Text h4 style={modalTitleStyle}>
-            Añadelos por 0,50 €
+            Añadelos
           </Text>
           <Divider style={modalDividerStyle} />
           <ScrollView>
-            <SwitchList list={listOfIngredients} setItem={setIngredient} />
+            <SwitchList list={listOfIngredients} setItem={setIngredient} showPrice={true} />
           </ScrollView>
           <View style={modalButtonView}>
             <Button title="Cerrar" onPress={onCancel} />
