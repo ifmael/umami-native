@@ -5,6 +5,7 @@ import GET_MORE_ORDERS from "/graphql/querys/getMoreOrders";
 import { addShoppingCart } from "/hooks/functions";
 import { GlobalContext } from "/context/GlobalContext";
 import { shoppingCartBEComponent } from "/constant";
+import * as Sentry from "sentry-expo";
 
 const addDelivery = (deliveryOptions) => {
   try {
@@ -32,6 +33,7 @@ const useOrder = () => {
     paymentMethod,
     withSupplement
   ) => {
+    let payload;
     try {
       //Check if is possible make more order
       const { data } = await client.query({
@@ -48,17 +50,18 @@ const useOrder = () => {
         const deliveryOptions = addDelivery(deliveryOptionsInput);
         const shoppingCart = addShoppingCart(shoppingCartByCategories);
 
+        payload = {
+          deliveryOptions,
+          shoppingCart,
+          totalPrice,
+          paymentMethod: paymentMethod.id,
+          supplement: withSupplement ? 1 : 0,
+        };
         const response = await client.mutate({
           mutation: CREATE_ORDER,
           variables: {
             input: {
-              data: {
-                deliveryOptions,
-                shoppingCart,
-                totalPrice,
-                paymentMethod: paymentMethod.id,
-                supplement: withSupplement ? 1 : 0,
-              },
+              data: payload,
             },
           },
         });
@@ -74,6 +77,17 @@ const useOrder = () => {
           : { create: false, message: close?.title };
       }
     } catch (error) {
+      const context = {
+        level: "fatal",
+        contexts: payload,
+        tags: "order",
+      };
+      if (Sentry?.Native?.captureException) {
+        Sentry.Native.captureException(new Error("error creating a new order"), context);
+      } else if (Sentry?.Browser?.captureException) {
+        Sentry.Browser.captureException(new Error("error creating a new order"), context);
+      }
+
       throw new Error("Error in request");
     }
   };

@@ -15,7 +15,11 @@ const propTypesError = {
 };
 
 const ErrorFallback = ({ error }) => {
-  Sentry.captureMessage(error);
+  if (Sentry.Native.captureMessage) {
+    Sentry.Native.captureMessage(error);
+  } else if (Sentry.Browser.captureMessage) {
+    Sentry.Browser.captureMessage(error);
+  }
 
   return (
     <View>
