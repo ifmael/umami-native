@@ -19,12 +19,17 @@ const ShoppingCartTopMenu = () => {
     <TouchableOpacity
       disabled={close?.isClose || !moreOrders?.moreOrder || isClosedFromSchedule}
       onPress={goToShoppingCart}
-      style={{ marginRight: 15 }}
+      style={{
+        marginRight: 15,
+        paddingVertical: 6,
+        paddingLeft: 10,
+        paddingRight: 5,
+      }}
     >
       <Icon type="font-awesome-5" name="shopping-cart" size={25} color="grey" />
       {shoppingCart?.length > 0 ? (
         <Badge
-          containerStyle={{ position: "absolute", top: -4, right: -4 }}
+          containerStyle={{ position: "absolute", top: -5, right: -5 }}
           value={shoppingCart?.length}
           status="error"
         />

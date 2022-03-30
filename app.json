@@ -15,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/android.png",
@@ -26,15 +24,13 @@
       "userInterfaceStyle": "light",
       "package": "com.ifmael.umami",
       "versionCode": 440010300,
-      "permissions": [
-        "ACCESS_FINE_LOCATION"
-      ]
+      "permissions": ["ACCESS_FINE_LOCATION"]
     },
     "androidStatusBar": {
       "barStyle": "dark-content"
     },
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "userInterfaceStyle": "light",
       "bundleIdentifier": "com.ifmaeles.umami",
       "buildNumber": "1.3.0",

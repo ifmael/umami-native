@@ -15,7 +15,8 @@
     "release:major": "standard-version -r major",
     "release:simulation": "standard-version --dry-run",
     "publish:production": "expo publish --release-channel production",
-    "eas:build:production": "eas build --profile production"
+    "eas:build:production": "eas build --profile production",
+    "eas:submit:all": "eas submit -p all"
   },
   "dependencies": {
     "@apollo/client": "~3.4.17",
