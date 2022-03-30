@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/ifmael/umami-native/compare/v1.2.0...v1.4.0) (2022-03-30)
+
+
+### Features
+
+* :construction_worker: add price ingredient ([e68f6c2](https://github.com/ifmael/umami-native/commit/e68f6c254ef08579732d9c13eb16d28af3051651))
+* **sentry:** :loud_sound: capture error if creatreNewOrder fails ([ffa53fa](https://github.com/ifmael/umami-native/commit/ffa53fa1aded78f2530c1de8a8fb398840384d7c))
+
 ## [1.3.0](https://github.com/ifmael/umami-native/compare/v1.2.0...v1.3.0) (2022-03-21)
 
 
