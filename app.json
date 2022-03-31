@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "umami",
+    "name": "Hamburgueseria Umami",
     "description": "Hamburgueseria Umami",
     "slug": "umami-burger",
     "version": "1.4.2",
@@ -15,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/android.png",
@@ -26,9 +24,7 @@
       "userInterfaceStyle": "light",
       "package": "com.ifmael.umami",
       "versionCode": 440010402,
-      "permissions": [
-        "ACCESS_FINE_LOCATION"
-      ]
+      "permissions": ["ACCESS_FINE_LOCATION"]
     },
     "androidStatusBar": {
       "barStyle": "dark-content"
