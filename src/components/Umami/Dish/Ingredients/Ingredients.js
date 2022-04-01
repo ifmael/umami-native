@@ -15,7 +15,7 @@ const getTitle = (category) => {
     : category === "bocadillos"
     ? "¿Quíeres personalizarlo?"
     : category === "ensaladas"
-    ? "¿Quíeres personalizar tu ensalada?"
+    ? "¿Quíeres personalizarla?"
     : "";
 };
 
