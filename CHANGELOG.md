@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.4](https://github.com/ifmael/umami-native/compare/v1.4.3...v1.4.4) (2022-04-01)
+
+
+### Bug Fixes
+
+* :ambulance: text so long ([eca322a](https://github.com/ifmael/umami-native/commit/eca322a578e61aa1e4638a750fd667a9ce8baa1c))
+
 ### [1.4.3](https://github.com/ifmael/umami-native/compare/v1.4.2...v1.4.3) (2022-03-31)
 
 ### [1.4.2](https://github.com/ifmael/umami-native/compare/v1.4.1...v1.4.2) (2022-03-31)
