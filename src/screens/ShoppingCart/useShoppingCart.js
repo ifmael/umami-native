@@ -58,7 +58,6 @@ const useShoppingCart = (paymentMethod) => {
     clearShoppingCart();
     clearDeliveryOptions();
 
-    // navigation.navigate("HomeTab", { screen: "Home" });
     navigation.reset({
       index: 0,
       routes: [{ name: "HomeTab" }],

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 // React Native components
 import { View, ScrollView } from "react-native";
@@ -22,14 +22,15 @@ import useShoppingCartModals from "./useShoppingCartModals";
 import useRadioButtons from "/components/common/RadioButtons/useRadioButtons";
 
 // Utils
-import { getSchedule } from "/utils/time";
+import { getSchedule, getDate } from "/utils/time";
 
 // Styles
 import { green } from "/styles/theme";
 import styles from "./ShoppingCart.styles";
 
 const ShoppingCart = () => {
-  const { configuration, paymentMethods } = useContext(GlobalContext);
+  const { configuration, paymentMethods, lastOrdersStorage, saveIntoLastOrders, shoppingCart } =
+    useContext(GlobalContext);
   const isClosedFromSchedule = getSchedule(configuration?.schedule) ? false : true;
   const isClose = configuration?.close.isClose;
   const moreOrder = configuration?.moreOrders.moreOrder;
@@ -50,6 +51,27 @@ const ShoppingCart = () => {
     },
     { onCreateNewOrder, resetOrder, setError },
   ] = useShoppingCart(paymentMethod);
+
+  const onCloseOrderFullfilled = async () => {
+    resetOrder();
+  };
+
+  useEffect(() => {
+    if (showModalOrderCompleted?.isCompleted) {
+      try {
+        const saveOrder = async () => {
+          await saveIntoLastOrders([
+            { date: getDate(), order: shoppingCart },
+            ...(lastOrdersStorage && Array.isArray(lastOrdersStorage) ? lastOrdersStorage : []),
+          ]);
+        };
+
+        saveOrder();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }, [showModalOrderCompleted?.isCompleted, lastOrdersStorage, saveIntoLastOrders, shoppingCart]);
 
   return (
     <View style={styles.mainView}>
@@ -126,8 +148,8 @@ const ShoppingCart = () => {
  */}
       <Modal
         isVisible={showModalOrderCompleted?.isCompleted}
-        onBackButtonPress={() => resetOrder()}
-        onBackdropPress={() => resetOrder()}
+        onBackButtonPress={onCloseOrderFullfilled}
+        onBackdropPress={onCloseOrderFullfilled}
       >
         <View
           style={{

@@ -130,3 +130,13 @@ export const getOptionsFilled = (configurations) => {
     ? configurations?.filter((configuration) => Object.keys(configuration).length > 1)
     : [];
 };
+
+export const getDate = () => {
+  let date = new Date();
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+
+  return month < 10 ? `${day}/0${month}/${year}` : `${day}/${month}/${year}`;
+};

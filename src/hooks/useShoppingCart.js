@@ -17,7 +17,7 @@ const useShoppingCart = () => {
     setShoppingCart([]);
   }, []);
 
-  return [{ shoppingCart }, { clearShoppingCart, removeItem, setItemShoppingCart }];
+  return [{ shoppingCart }, { clearShoppingCart, removeItem, setItemShoppingCart, setShoppingCart }];
 };
 
 export default useShoppingCart;

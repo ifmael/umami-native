@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { AppRegistry } from "react-native";
 import { ThemeProvider, Icon } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
-import ContextProvider from "/context/GlobalContext";
+import ContextProvider, { GlobalContext } from "/context/GlobalContext";
 import { Home, Menu, Product, ProductDetail, ShoppingCart } from "/screens";
 import { SERVER, TOKEN } from "/constant";
 import ShoppingCartTopMenu from "/components/Bar/ShoppingCartTopMenu";
 import theme, { menuStackStyles, brown, defaultFont } from "/styles/theme";
 import Constants from "expo-constants";
 import { Text } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
+
+import LastOrders from "./src/screens/LastOrders";
 
 import * as Sentry from "sentry-expo";
 
@@ -65,8 +68,9 @@ const screenOptionsTabBar = ({ route }) => ({
       component = <Icon color={color} name="hamburger" size={size} type="font-awesome-5" />;
     } else if (route.name === "Menu") {
       component = <Icon color={color} name="align-justify" size={size} type="font-awesome-5" />;
+    } else if (route.name === "Últimos pedidos") {
+      component = <Icon color={color} name="shopping-cart" size={size} />;
     }
-
     return component;
   },
   tabBarStyle: [
@@ -98,10 +102,33 @@ const MenuStack = () => {
 };
 
 const MenuTabs = () => {
+  const { lastOrdersStorage, getLastOrders } = useContext(GlobalContext);
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      getLastOrders();
+    });
+  }, [navigation, getLastOrders]);
+
   return (
     <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionsTabBar} lazy="true">
       <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
       <Tab.Screen name="Menu" component={MenuStack} options={{ headerShown: false }} />
+      {lastOrdersStorage && Array.isArray(lastOrdersStorage) && lastOrdersStorage.length ? (
+        <Tab.Screen
+          name="Últimos pedidos"
+          component={LastOrders}
+          options={{
+            headerShown: true,
+            headerTitleStyle: menuStackStyles.headerTitleStyle,
+            cardStyle: menuStackStyles.cardStyle,
+            headerBackTitleVisible: false,
+            headerTintColor: menuStackStyles.headerTintColor,
+            headerTitleAlign: "center",
+          }}
+        />
+      ) : null}
     </Tab.Navigator>
   );
 };

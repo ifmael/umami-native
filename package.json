@@ -22,6 +22,7 @@
     "@apollo/client": "~3.4.17",
     "@expo-google-fonts/comfortaa": "^0.2.0",
     "@expo-google-fonts/inter": "^0.2.0",
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/masked-view": "0.1.11",
     "@react-native-picker/picker": "2.2.1",
     "@react-navigation/bottom-tabs": "^6.0.9",

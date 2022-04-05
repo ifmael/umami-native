@@ -22,6 +22,7 @@ import {
   useProducts,
   useShoppingCart,
   useLocation,
+  useStorage,
 } from "/hooks";
 
 import GET_DATA from "/graphql/querys/getData";
@@ -46,6 +47,7 @@ const ContextProvider = ({ children }) => {
   });
   const [shoppingCartSelectors, shoppingCartHandlers] = useShoppingCart();
   const [deliverySelectors, deliveryHandlers] = useDelivery();
+  const { lastOrdersStorage, saveIntoLastOrders, getLastOrders } = useStorage();
 
   return !fontsLoaded || loading ? (
     <AppLoading />
@@ -62,12 +64,15 @@ const ContextProvider = ({ children }) => {
         paymentMethods,
         productsByCategory,
         location,
+        lastOrdersStorage,
         ...configurationSelectors,
         ...configurationHandlers,
         ...shoppingCartSelectors,
         ...shoppingCartHandlers,
         ...deliverySelectors,
         ...deliveryHandlers,
+        saveIntoLastOrders,
+        getLastOrders,
       }}
     >
       <SafeAreaViewAndroid>{children}</SafeAreaViewAndroid>

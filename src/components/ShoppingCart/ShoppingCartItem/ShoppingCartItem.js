@@ -22,6 +22,7 @@ const ShoppingCartItem = ({
   side = {},
   typeOfBread = {},
   typeOfMeat = {},
+  showDeleteIcon,
 }) => {
   const { removeItem } = useContext(GlobalContext);
 
@@ -38,14 +39,16 @@ const ShoppingCartItem = ({
             <Text h4 style={{ ...styles.titleText, marginRight: 10 }}>
               {price?.toFixed(2)} €
             </Text>
-            <Button
-              buttonStyle={stylesRNEComponents.deleteButton}
-              icon={<Icon name="trash-alt" size={18} color="rgba(204,51,51,0.8)" type="font-awesome-5" />}
-              onPress={() => {
-                removeItem(id);
-              }}
-              type="outline"
-            />
+            {showDeleteIcon ? (
+              <Button
+                buttonStyle={stylesRNEComponents.deleteButton}
+                icon={<Icon name="trash-alt" size={18} color="rgba(204,51,51,0.8)" type="font-awesome-5" />}
+                onPress={() => {
+                  removeItem(id);
+                }}
+                type="outline"
+              />
+            ) : null}
           </View>
         </View>
         <View style={styles.optionsView}>
@@ -96,6 +99,7 @@ ShoppingCartItem.propTypes = {
   side: oneOfType([array, object]),
   typeOfBread: object,
   typeOfMeat: object,
+  showDeleteIcon: bool,
 };
 
 export default ShoppingCartItem;

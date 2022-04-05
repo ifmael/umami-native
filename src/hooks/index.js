@@ -9,6 +9,8 @@ import useShoppingCart from "./useShoppingCart";
 import usePaymentMethods from "./usePaymentMethods";
 import useLocation from "./useLocation";
 
+export { default as useStorage } from "./useStorage";
+
 export {
   useCategories,
   useCheckErrors,

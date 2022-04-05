@@ -1,11 +1,11 @@
 import React from "react";
-import { array } from "prop-types";
+import { array, bool } from "prop-types";
 import { View } from "react-native";
 import { Card, Text } from "react-native-elements";
 import ShoppingCartItem from "/components/ShoppingCart/ShoppingCartItem";
 import { stylesRNEComponents } from "./ShoppingCartList.styles";
 
-export default function ShoppingCartList({ shoppingCartByCategory }) {
+export default function ShoppingCartList({ shoppingCartByCategory, showDeleteIcon = true }) {
   return (
     <View>
       {shoppingCartByCategory?.map((shoppingCartCategory) => {
@@ -18,7 +18,14 @@ export default function ShoppingCartList({ shoppingCartByCategory }) {
             </Card.Title>
             <Card.Divider style={{ marginBottom: 0 }} />
             {data?.map((shoppingItem) => {
-              return <ShoppingCartItem key={shoppingItem?.id?.toString()} {...shoppingItem} {...category} />;
+              return (
+                <ShoppingCartItem
+                  key={shoppingItem?.id?.toString()}
+                  showDeleteIcon={showDeleteIcon}
+                  {...shoppingItem}
+                  {...category}
+                />
+              );
             })}
           </Card>
         );
@@ -29,4 +36,5 @@ export default function ShoppingCartList({ shoppingCartByCategory }) {
 
 ShoppingCartList.propTypes = {
   shoppingCartByCategory: array,
+  showDeleteIcon: bool,
 };
