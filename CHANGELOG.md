@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/ifmael/umami-native/compare/v1.4.4...v1.5.0) (2022-04-05)
+
+
+### Features
+
+* :sparkles: add store for last orders ([eebd509](https://github.com/ifmael/umami-native/commit/eebd509ad2b1c21f03cdccbc54b820d0172a11d7))
+
+
+### Bug Fixes
+
+* :bug: prepare date for ticket ([6ea30f6](https://github.com/ifmael/umami-native/commit/6ea30f6a28055c410a7f1e4b0ce3a04b89a62678))
+
 ### [1.4.4](https://github.com/ifmael/umami-native/compare/v1.4.3...v1.4.4) (2022-04-01)
 
 
