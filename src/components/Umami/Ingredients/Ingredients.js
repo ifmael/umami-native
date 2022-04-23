@@ -16,6 +16,7 @@ const UmamiIngredients = ({
   showWith,
 }) => {
   const ingredientsWithPrice = ingredients?.map((ingredient) => ({ ...ingredient, price }));
+  const ingredientsWithoutPrice = ingredients?.map(({ price, ...ingredient }) => ingredient);
 
   return (
     <View>
@@ -23,7 +24,7 @@ const UmamiIngredients = ({
       <View style={styles.options}>
         {isRadioButton ? (
           <IngredientsRadio
-            ingredients={ingredientsWithPrice}
+            ingredients={ingredientsWithoutPrice}
             price={price}
             additionalIngredientSide={additionalIngredientSide}
           />
