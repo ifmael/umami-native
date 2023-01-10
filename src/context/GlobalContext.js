@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
+
 import {
   useFonts,
   Comfortaa_300Light,
@@ -8,7 +9,7 @@ import {
   Comfortaa_600SemiBold,
   Comfortaa_700Bold,
 } from "@expo-google-fonts/comfortaa";
-import AppLoading from "expo-app-loading";
+import * as SplashScreen from "expo-splash-screen";
 import { element } from "prop-types";
 import SafeAreaViewAndroid from "/components/common/SafeAreaViewAndroid";
 import InitialError from "/components/common/InitialError";
@@ -26,6 +27,8 @@ import {
 } from "/hooks";
 
 import GET_DATA from "/graphql/querys/getData";
+
+SplashScreen.preventAutoHideAsync();
 
 export const GlobalContext = React.createContext({});
 
@@ -49,9 +52,15 @@ const ContextProvider = ({ children }) => {
   const [deliverySelectors, deliveryHandlers] = useDelivery();
   const { lastOrdersStorage, saveIntoLastOrders, getLastOrders } = useStorage();
 
-  return !fontsLoaded || loading ? (
-    <AppLoading />
-  ) : error ? (
+  useEffect(() => {
+    if (fontsLoaded && !loading && !error) {
+      SplashScreen.hideAsync();
+    }
+  }, [error, fontsLoaded, loading]);
+
+  if (!fontsLoaded || loading) return null;
+
+  return error ? (
     <InitialError error={error} />
   ) : (
     <GlobalContext.Provider
