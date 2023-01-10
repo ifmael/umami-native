@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/ifmael/umami-native/compare/v1.5.0...v2.0.0) (2023-01-10)
+
+
+### Features
+
+* **update-dependencies:** :arrow_up: upgrade dependencies and update globalcontext due to breaking changes ([06116bd](https://github.com/ifmael/umami-native/commit/06116bdc85bb97bd7355f6641503378d114440ba))
+
+
+### Bug Fixes
+
+* **radio:** :bug: remove price for radio ingredients ([c92239f](https://github.com/ifmael/umami-native/commit/c92239f3a72ef8ba81feb8b92cc8b3eb8a7e2c2b))
+
 ## [1.5.0](https://github.com/ifmael/umami-native/compare/v1.4.4...v1.5.0) (2022-04-05)
 
 
