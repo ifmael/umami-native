@@ -62,6 +62,7 @@ const GET_DATA = gql`
           data {
             id
             name
+            price
           }
         }
         ... on ComponentOptionsMeat {
@@ -117,6 +118,7 @@ const GET_DATA = gql`
                 data {
                   id
                   name
+                  price
                 }
               }
             }
