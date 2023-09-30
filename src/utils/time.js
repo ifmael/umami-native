@@ -5,6 +5,7 @@ import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import isoWeek from "dayjs/plugin/isoWeek";
 import "dayjs/locale/es";
+import { isArray } from "@apollo/client/cache/inmemory/helpers";
 
 dayjs.locale("es");
 dayjs.extend(isBetween).extend(isSameOrBefore).extend(customParseFormat).extend(isoWeek);
@@ -88,7 +89,9 @@ export const getSchedule = (schedules) => {
     const todayKey = dayjs().isoWeekday();
     let scheduleSelected;
 
-    for (const schedule of schedules) {
+    const schedulesAsArray = isArray(schedules) ? schedules : [schedules];
+
+    for (const schedule of schedulesAsArray) {
       const { closingTime, days, openingTime } = schedule;
       const isOpenInThisSchedule = days.map(({ key }) => key).includes(todayKey);
 
