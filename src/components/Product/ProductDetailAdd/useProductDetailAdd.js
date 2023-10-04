@@ -55,7 +55,8 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
       const isPreselectedIngredientProduct =
         name.toLowerCase() === "patatas umami" ||
         name.toLowerCase() === "nachos umami" ||
-        name.toLowerCase() === "patatas tejanas";
+        name.toLowerCase() === "patatas tejanas" ||
+        name.toLowerCase() === "patatas Kebab";
       isTequeno = name.toLowerCase().includes("tequeños");
       if (!side && !isPreselectedIngredientProduct) {
         isError = true;
@@ -152,6 +153,7 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
         return total + price;
       };
       if (customiseSideIngredients) {
+        // Para complementos en los que se quitan ingredientes
         setPriceProduct(price);
       } else if (Array.isArray(side) && side.length > 0) {
         const totalSide = side.reduce((total, { price }) => {
@@ -172,6 +174,8 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
   useEffect(() => {
     setIsYourTaste(isYourTaste);
   }, [isYourTaste, setIsYourTaste]);
+
+  console.log(`priceProduct: ${priceProduct}`);
 
   return [
     { disableAddButton, localErrors, priceProduct },
