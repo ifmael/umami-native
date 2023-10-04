@@ -62,7 +62,7 @@ export const addBurgers = (burgersInput) => {
           name,
           price: mainProductPrice,
           typeOfMeat: typeOfMeat?.price ? `${typeOfMeat?.name}||${typeOfMeat?.price}` : typeOfMeat?.name,
-          typeOfBread: typeOfBread?.name,
+          typeOfBread: typeOfBread?.price ? `${typeOfBread?.name}||${typeOfBread?.price}` : typeOfBread?.name,
           isChildrenMenu: isChildrenMenu ?? false,
           ...burger,
         };
