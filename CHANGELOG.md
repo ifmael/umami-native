@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/ifmael/umami-native/compare/v2.0.1...v3.0.0) (2023-10-19)
+
+
+### Features
+
+* **bread:** Add price format for bread ([2aa4cb2](https://github.com/ifmael/umami-native/commit/2aa4cb2ebc85e1105a4df5df2b129ad11ca6761e))
+* **hamburguer:** Add price for breads ([940cb1b](https://github.com/ifmael/umami-native/commit/940cb1ba05b6d57e34a485314cce4606f2311213))
+* **new-changes:** change code to adapt it to new products ([929c017](https://github.com/ifmael/umami-native/commit/929c01797888c9fef6874c8a1978d099cc17e9b4))
+* **side:** Add patatas kebad to isPreselectedIngredientProduct ([3a0709e](https://github.com/ifmael/umami-native/commit/3a0709e54259712611fd841df6472c71c70211e5))
+
 ### [2.0.1](https://github.com/ifmael/umami-native/compare/v2.0.0...v2.0.1) (2023-01-10)
 
 ## [2.0.0](https://github.com/ifmael/umami-native/compare/v1.5.0...v2.0.0) (2023-01-10)
