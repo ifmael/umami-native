@@ -16,6 +16,16 @@ export const getProductsByCategory = (products) => {
   }, {});
 };
 
+const removeUds = (name) => {
+  const index = name.indexOf("(");
+
+  return name.includes("uds)")
+    ? // el -6 no no elimina el parentesis. puedo buscar la primera ocurrencia de "(" y eliminar desde ahi
+      index !== -1
+      ? name.substr(0, index)
+      : name
+    : name;
+};
 // ### ORDERS ###
 
 export const addBurgers = (burgersInput) => {
@@ -164,9 +174,14 @@ export const addSidesMenu = (sideInput) => {
           .join(",");
       } else if (typeof sideElement === "object" && sideElement !== null && !Array.isArray(sideElement)) {
         // Tequeños from  menu
-        if (sideElement?.option?.main && sideElement?.option?.secondary) {
-          const { main, secondary } = sideElement.option;
-          ingredientsSide = `Con ${main.name},Con ${secondary.name}`;
+        if (sideElement?.option?.main) {
+          const { main } = sideElement.option;
+          let secondary = null;
+          if (sideElement?.option?.secondary) {
+            secondary = sideElement.option.secondary;
+          }
+
+          ingredientsSide = `Con ${main.name}${secondary !== null ? `,Con ${secondary.name}` : ""}`;
         } else if (sideElement?.option) {
           addToName = sideElement.option;
         }
@@ -201,9 +216,17 @@ export const addSidesMenu = (sideInput) => {
         }
       }
 
-      const name = sideElement.name.includes("uds)")
-        ? sideElement.name.substr(0, sideElement.name.length - 6)
-        : sideElement.name;
+      // find the firt ocurrence of (  in the sideElement.name and remove from there
+      const name = removeUds(sideElement.name);
+
+      // const index = sideElement.name.indexOf("(");
+
+      // const name = sideElement.name.includes("uds)")
+      //   ? // el -6 no no elimina el parentesis. puedo buscar la primera ocurrencia de "(" y eliminar desde ahi
+      //     index !== -1
+      //     ? sideElement.name.substr(0, index)
+      //     : sideElement.name
+      //   : sideElement.name;
       return isSauce
         ? sauces
         : {
@@ -227,9 +250,14 @@ const addSides = (sideInput) => {
     let isSauce = false;
     let sauces = [];
 
-    if (sideElement.side && !sideElement.side?.data && !sideElement?.ingredients?.length) {
-      // patatas
-      addToName = sideElement.side?.name;
+    if (sideElement.side && sideElement.side?.option) {
+      const { main } = sideElement.side.option;
+      let secondary = null;
+      if (sideElement?.side?.option?.secondary) {
+        secondary = sideElement.side.option.secondary;
+      }
+
+      ingredientsSide = `Con ${main.name}${secondary !== null ? `,Con ${secondary.name}` : ""}`;
     } else if (sideElement.side && sideElement.side?.data && sideElement.side?.data?.length) {
       if (sideElement.side?.showWith) {
         // sauce
@@ -249,9 +277,11 @@ const addSides = (sideInput) => {
       }
       ingredientsSide += sideElement.ingredients.map(({ name }) => `Con ${name.toLowerCase()}`).join(",");
     }
-    const name = sideElement.name.includes("uds)")
-      ? sideElement.name.substr(0, sideElement.name.length - 6)
-      : sideElement.name;
+
+    const name = removeUds(sideElement.name);
+    // const name = sideElement.name.includes("uds)")
+    //   ? sideElement.name.substr(0, sideElement.name.length - 6)
+    //   : sideElement.name;
 
     return isSauce
       ? sauces

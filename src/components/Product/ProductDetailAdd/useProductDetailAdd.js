@@ -27,7 +27,8 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
       productDetailInfo;
     let isError = false;
     let messageErrors = [];
-    let isTequeno = false;
+    //let isTequeno = false;
+    let isRadioButtons = false;
 
     if (category === "hamburguesas") {
       if (!typeOfMeat) {
@@ -56,8 +57,12 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
         name.toLowerCase() === "patatas umami" ||
         name.toLowerCase() === "nachos umami" ||
         name.toLowerCase() === "patatas tejanas" ||
-        name.toLowerCase() === "patatas Kebab";
-      isTequeno = name.toLowerCase().includes("tequeños");
+        name.toLowerCase() === "patatas kebab";
+
+      // isTequeno = name.toLowerCase().includes("tequeños");
+      if (side && !side?.data) {
+        isRadioButtons = true;
+      }
       if (!side && !isPreselectedIngredientProduct) {
         isError = true;
         messageErrors.push({
@@ -94,12 +99,17 @@ export default function useProductDetailAdd(goTo, isChildrenMenu, isYourTaste, p
       setErrors(messageErrors);
     } else {
       const shoppingCartItem = {
-        ...(isTequeno
+        ...(isRadioButtons
           ? {
               name,
               price: priceProduct,
               category: productDetailInfo.category,
-              side: { option: { main: productDetailInfo.side, secondary: productDetailInfo.ingredients[0] } },
+              side: {
+                option: {
+                  main: productDetailInfo.side,
+                  secondary: productDetailInfo?.ingredients[0] ? productDetailInfo?.ingredients[0] : undefined,
+                },
+              },
             }
           : productDetailInfo),
         id: guidGenerator(),

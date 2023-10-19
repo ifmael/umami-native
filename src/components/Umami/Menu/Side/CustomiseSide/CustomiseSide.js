@@ -33,32 +33,62 @@ const propTypes = {
   onCancel: func,
 };
 
-/**
- *  Patatas Fritas
- * isRadioButtonConfigurations: null
- * isRadioButtonIngredients: true
- * customiseSideIngredients: false
- * */
-/**
- *  Patatas Umami
- * isRadioButtonConfigurations: null
- * isRadioButtonIngredients: false
- * customiseSideIngredients: true
- * */
-/**
- *  Nachos Umami
- * isRadioButtonConfigurations: null
- * isRadioButtonIngredients: false
- * customiseSideIngredients: true
- * */
+/*
 
-/**
- *  Tequeños
- * isRadioButtonConfigurations: true
- * isRadioButtonIngredients: true
- * customiseSideIngredients: false
- * */
+Patatas Umami
+  isRadioButtonConfigurations: null
+  isRadioButtonIngredients: false
+  customiseSideIngredients: true
 
+Patatas tejanas
+  isRadioButtonConfigurations: null
+  isRadioButtonIngredients: false
+  customiseSideIngredients: true
+
+Patatas kebab
+  isRadioButtonConfigurations: null
+  isRadioButtonIngredients: null
+  customiseSideIngredients: true
+
+
+Aros de cebolla
+  isRadioButtonConfigurations: false
+  isRadioButtonIngredients: true
+  customiseSideIngredients: true
+
+bocaditos de queso
+  isRadioButtonConfigurations: null
+  isRadioButtonIngredients: true
+  customiseSideIngredients: true
+
+
+chicket finger
+  isRadioButtonConfigurations: null
+  isRadioButtonIngredients: true
+  customiseSideIngredients: true
+
+croquetones caseros con patatas
+  isRadioButtonConfigurations: null
+  isRadioButtonIngredients: true
+  customiseSideIngredients: true
+
+
+nachos umami
+  isRadioButtonConfigurations: null
+  isRadioButtonIngredients: false
+  customiseSideIngredients: true
+
+alitas de pollo
+  isRadioButtonConfigurations: null
+  isRadioButtonIngredients: true
+  customiseSideIngredients: true
+
+
+tequeños venezolanos
+  isRadioButtonConfigurations: true
+  isRadioButtonIngredients: true
+  customiseSideIngredients: true
+*/
 const CustomiseSide = ({
   id,
   name,
@@ -90,21 +120,29 @@ const CustomiseSide = ({
     isRadioButtonConfigurations,
     isRadioButtonIngredients
   );
+  console.log(ingredientsRadio);
 
   const validateOptions = () => {
     let isValid = false;
     let optionSide = { id, name, price };
 
-    if (!isRadioButtonConfigurations && isRadioButtonIngredients && !customiseSideIngredients) {
+    console.log(`isRadioButtonConfigurations: ${isRadioButtonConfigurations}`);
+    console.log(`isRadioButtonIngredients: ${isRadioButtonIngredients}`);
+    console.log(`customiseSideIngredients: ${customiseSideIngredients}`);
+
+    if (!isRadioButtonConfigurations && isRadioButtonIngredients) {
       isValid = selectedIngredientRadio ? true : false;
-      if (isValid)
-        optionSide.name = `${optionSide.name} ${selectedIngredientRadio.name
-          .charAt(0)
-          .toLowerCase()}${selectedIngredientRadio.name.slice(1)}`;
-    } else if (!isRadioButtonConfigurations && !isRadioButtonIngredients && customiseSideIngredients) {
+      if (isValid) {
+        optionSide.option = { main: selectedIngredientRadio };
+        // optionSide.name = `${optionSide.name} ${selectedIngredientRadio.name
+        //   .charAt(0)
+        //   .toLowerCase()}${selectedIngredientRadio.name.slice(1)}`;
+      }
+    } else if (!isRadioButtonConfigurations && !isRadioButtonIngredients) {
+      // Patatas umami
       isValid = true;
       optionSide.option = ingredientsSwitch;
-    } else if (isRadioButtonConfigurations && isRadioButtonIngredients && !customiseSideIngredients) {
+    } else if (isRadioButtonConfigurations && isRadioButtonIngredients) {
       isValid = selectedIngredientRadio && selectedConfigurationsOption ? true : false;
       optionSide.option = { main: selectedIngredientRadio, secondary: selectedConfigurationsOption };
     }
@@ -128,11 +166,11 @@ const CustomiseSide = ({
         </Text>
       </View>
 
-      {customiseSideIngredients ? (
-        <SwitchList list={ingredientsSwitch} setItem={setIngredientsSwitch} />
-      ) : isRadioButtonIngredients ? (
+      {isRadioButtonIngredients ? (
         <RadioButtons options={ingredientsRadio} setOption={setIngredientsRadio} />
-      ) : null}
+      ) : (
+        <SwitchList list={ingredientsSwitch} setItem={setIngredientsSwitch} />
+      )}
 
       {isRadioButtonConfigurations ? (
         <View style={{ marginTop: 16 }}>
