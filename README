@@ -83,3 +83,12 @@ Cuando se abra la aplicación se cargará en el contexto los datos actualizados 
 ## 2
 
 Separar los componentes genéricos de los específicos de cada app en diferentes paquetes/repositorios. La idea detrás de esto es que se puedan actualizar por separado en el hipotético caso en el que se tenga mas clientes, no solo umami, y así poder actulizar los componentes genéricos en un sitio y que este disponibles para el resto de clientes.
+
+# Problema con standard-version
+
+Se ha tenido que eliminar porque estaba utilizando una versión antigua de @expo/config-plugins que estaba dando problema.
+Para sacar version como lo hacía esta utils hay que modificar:
+
+- package.json: modificar el atributo `version`
+- app.json: modificar el atributo `version`,`android.versionCode` y `ios.buildNumber`. Para ver como lo hacía se puede ver en el historico de commits.
+- Para creear los tags de git: `git tag <version> <commit>` y para subirlos `git push --follow-tags origin main`
