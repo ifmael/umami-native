@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.7](https://github.com/ifmael/umami-native/compare/v3.1.5...v3.1.7) (2023-10-24)
+
+
+### Bug Fixes
+
+* **reanimated:** do not use reanimated to avoid fatal error ([ffa1b95](https://github.com/ifmael/umami-native/commit/ffa1b955814e8a1aaa0b0a08aed21f4bc2cce9d4))
+
 ### [3.1.5](https://github.com/ifmael/umami-native/compare/v3.1.4...v3.1.5) (2023-10-20)
 
 

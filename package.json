@@ -1,5 +1,5 @@
 {
-  "version": "3.1.6",
+  "version": "3.1.7",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -62,7 +62,9 @@
     "react-native-vector-icons": "^10.0.0",
     "react-native-web": "0.19.9",
     "react-native-wizard": "^2.1.1",
-    "sentry-expo": "~7.0.0"
+    "sentry-expo": "~7.0.0",
+    "standard-version": "^7.1.0",
+    "standard-version-expo": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
