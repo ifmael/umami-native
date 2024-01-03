@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.8](https://github.com/ifmael/umami-native/compare/v3.1.7...v3.1.8) (2024-01-03)
+
+
+### Features
+
+* remove sentry ([7f6d9f9](https://github.com/ifmael/umami-native/commit/7f6d9f978558970255607fda043278f38059e1cb))
+
 ### [3.1.7](https://github.com/ifmael/umami-native/compare/v3.1.5...v3.1.7) (2023-10-24)
 
 
