@@ -5,7 +5,7 @@ import GET_MORE_ORDERS from "/graphql/querys/getMoreOrders";
 import { addShoppingCart } from "/hooks/functions";
 import { GlobalContext } from "/context/GlobalContext";
 import { shoppingCartBEComponent } from "/constant";
-import * as Sentry from "sentry-expo";
+// import * as Sentry from "sentry-expo";
 
 const addDelivery = (deliveryOptions) => {
   try {
@@ -31,7 +31,7 @@ const useOrder = () => {
     shoppingCartByCategories,
     totalPrice,
     paymentMethod,
-    withSupplement
+    withSupplement,
   ) => {
     let payload;
     try {
@@ -77,16 +77,16 @@ const useOrder = () => {
           : { create: false, message: close?.title };
       }
     } catch (error) {
-      const context = {
-        level: "fatal",
-        contexts: payload,
-        tags: "order",
-      };
-      if (Sentry?.Native?.captureException) {
-        Sentry.Native.captureException(new Error("error creating a new order"), context);
-      } else if (Sentry?.Browser?.captureException) {
-        Sentry.Browser.captureException(new Error("error creating a new order"), context);
-      }
+      // const context = {
+      //   level: "fatal",
+      //   contexts: payload,
+      //   tags: "order",
+      // };
+      // if (Sentry?.Native?.captureException) {
+      //   Sentry.Native.captureException(new Error("error creating a new order"), context);
+      // } else if (Sentry?.Browser?.captureException) {
+      //   Sentry.Browser.captureException(new Error("error creating a new order"), context);
+      // }
 
       throw new Error("Error in request");
     }

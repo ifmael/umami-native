@@ -1,3 +1,3 @@
-import CatchError from "./CatchError";
+// import CatchError from "./CatchError";
 
-export default CatchError;
+// export default CatchError;

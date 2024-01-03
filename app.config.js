@@ -3,19 +3,19 @@ import "dotenv/config";
 export default ({ config }) => {
   return {
     ...config,
-    hooks: {
-      postPublish: [
-        {
-          file: "sentry-expo/upload-sourcemaps",
-          config: {
-            organization: process.env.SENTRY_ORG,
-            project: process.env.SENTRY_PROJECT,
-            authToken: process.env.SENTRY_AUTH_TOKEN,
-            setCommits: true,
-          },
-        },
-      ],
-    },
+    // hooks: {
+    //   postPublish: [
+    //     {
+    //       file: "sentry-expo/upload-sourcemaps",
+    //       config: {
+    //         organization: process.env.SENTRY_ORG,
+    //         project: process.env.SENTRY_PROJECT,
+    //         // authToken: process.env.SENTRY_AUTH_TOKEN,
+    //         setCommits: true,
+    //       },
+    //     },
+    //   ],
+    // },
     // All values in extra will be passed to your app.
 
     extra: {
@@ -35,6 +35,11 @@ export default ({ config }) => {
         projectId: "47711f24-5e27-42b8-832a-d8eea61789c3",
       },
     },
-    plugins: ["expo-updates", "expo-dev-client", "expo-location", "sentry-expo"],
+    plugins: [
+      "expo-updates",
+      "expo-dev-client",
+      "expo-location",
+      // "sentry-expo"
+    ],
   };
 };

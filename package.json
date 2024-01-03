@@ -5,8 +5,8 @@
     "start": "expo start",
     "start-with-node-19": "NODE_OPTIONS=--openssl-legacy-provider npx expo start --web",
     "start-with-node-19-android": "NODE_OPTIONS=--openssl-legacy-provider npx expo start --android",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint \"**/*.{js,jsx}\"",
@@ -32,7 +32,6 @@
     "@react-navigation/drawer": "^6.6.4",
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/stack": "^6.3.18",
-    "@sentry/react-native": "5.5.0",
     "dayjs": "^1.11.10",
     "dotenv": "^16.3.1",
     "expo": "^49.0.15",
@@ -62,7 +61,6 @@
     "react-native-vector-icons": "^10.0.0",
     "react-native-web": "0.19.9",
     "react-native-wizard": "^2.1.1",
-    "sentry-expo": "~7.0.0",
     "standard-version": "^7.1.0",
     "standard-version-expo": "^1.0.3"
   },
@@ -101,5 +99,6 @@
   },
   "resolutions": {
     "promise": "^8.0.3"
-  }
+  },
+  "name": "umami-native"
 }
