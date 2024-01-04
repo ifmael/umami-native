@@ -13,7 +13,7 @@ const getEnvironment = () => {
       Constants.manifest.extra.server.local,
       Constants.manifest.extra.secret.development,
       Constants.manifest.extra.mapsToken,
-      Constants.manifest.extra.placesToken
+      Constants.manifest.extra.placesToken,
     );
   if (releaseChannel.indexOf("development") !== -1)
     // this would pick up development-v1, development-v2 ...
@@ -21,7 +21,7 @@ const getEnvironment = () => {
       Constants.manifest.extra.server.development,
       Constants.manifest.extra.secret.development,
       Constants.manifest.extra.mapsToken,
-      Constants.manifest.extra.placesToken
+      Constants.manifest.extra.placesToken,
     );
   if (releaseChannel.indexOf("production") !== -1)
     // this would pick up production-v1, production-v2 ...
@@ -29,7 +29,7 @@ const getEnvironment = () => {
       Constants.manifest.extra.server.production,
       Constants.manifest.extra.secret.production,
       Constants.manifest.extra.mapsToken,
-      Constants.manifest.extra.placesToken
+      Constants.manifest.extra.placesToken,
     );
 };
 

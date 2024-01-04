@@ -15,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/android.png",
@@ -26,9 +24,7 @@
       "userInterfaceStyle": "light",
       "package": "com.ifmael.umami",
       "versionCode": 490030108,
-      "permissions": [
-        "ACCESS_FINE_LOCATION"
-      ]
+      "permissions": ["ACCESS_FINE_LOCATION"]
     },
     "androidStatusBar": {
       "barStyle": "dark-content"
@@ -50,6 +46,7 @@
       "eas": {
         "projectId": "47711f24-5e27-42b8-832a-d8eea61789c3"
       }
-    }
+    },
+    "jsEngine": "hermes"
   }
 }

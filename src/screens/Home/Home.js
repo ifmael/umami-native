@@ -114,7 +114,6 @@ const Home = () => {
           umamisantafe
         </Text>
       </TouchableOpacity>
-      {/* </Animated.View> */}
     </View>
   );
 };
