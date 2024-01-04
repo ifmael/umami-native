@@ -18,6 +18,16 @@
       "env": {
         "RELEASE_CHANNEL": "production"
       }
+    },
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      },
+      "node": "20.8.0",
+      "releaseChannel": "production",
+      "env": {
+        "RELEASE_CHANNEL": "production"
+      }
     }
   },
   "submit": {
