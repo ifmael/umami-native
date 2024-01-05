@@ -31,6 +31,9 @@ export default ({ config }) => {
       },
       mapsToken: process.env.GOOGLE_MAPS_KEY,
       placesToken: process.env.PLACES_API,
+      eas: {
+        projectId: "47711f24-5e27-42b8-832a-d8eea61789c3",
+      },
     },
     plugins: [
       "expo-updates",
