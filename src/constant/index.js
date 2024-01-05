@@ -5,31 +5,31 @@ import * as Updates from "expo-updates";
 const getObjectEnvironment = (server, token, mapsToken, placesToken) => ({ server, token, mapsToken, placesToken });
 
 const getEnvironment = () => {
-  let releaseChannel = Constants.manifest.extra.releaseChannel ?? Updates.releaseChannel;
+  let releaseChannel = Constants.expoConfig.extra.releaseChannel ?? Updates.releaseChannel;
 
   if (releaseChannel === "default")
     // since releaseChannels are undefined in dev, return your default.
     return getObjectEnvironment(
-      Constants.manifest.extra.server.local,
-      Constants.manifest.extra.secret.development,
-      Constants.manifest.extra.mapsToken,
-      Constants.manifest.extra.placesToken,
+      Constants.expoConfig.extra.server.local,
+      Constants.expoConfig.extra.secret.development,
+      Constants.expoConfig.extra.mapsToken,
+      Constants.expoConfig.extra.placesToken,
     );
   if (releaseChannel.indexOf("development") !== -1)
     // this would pick up development-v1, development-v2 ...
     return getObjectEnvironment(
-      Constants.manifest.extra.server.development,
-      Constants.manifest.extra.secret.development,
-      Constants.manifest.extra.mapsToken,
-      Constants.manifest.extra.placesToken,
+      Constants.expoConfig.extra.server.development,
+      Constants.expoConfig.extra.secret.development,
+      Constants.expoConfig.extra.mapsToken,
+      Constants.expoConfig.extra.placesToken,
     );
   if (releaseChannel.indexOf("production") !== -1)
     // this would pick up production-v1, production-v2 ...
     return getObjectEnvironment(
-      Constants.manifest.extra.server.production,
-      Constants.manifest.extra.secret.production,
-      Constants.manifest.extra.mapsToken,
-      Constants.manifest.extra.placesToken,
+      Constants.expoConfig.extra.server.production,
+      Constants.expoConfig.extra.secret.production,
+      Constants.expoConfig.extra.mapsToken,
+      Constants.expoConfig.extra.placesToken,
     );
 };
 
